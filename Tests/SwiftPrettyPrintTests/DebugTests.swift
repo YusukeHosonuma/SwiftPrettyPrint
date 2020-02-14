@@ -42,6 +42,20 @@ class DebugTests: XCTestCase {
         
         XCTAssertEqual(Debug.pString([dog, dog], debug: true),
                        "[\(expectDebugString), \(expectDebugString)]")
+        
+        let dictionary: [String: Dog] = [
+            "dog-1": dog,
+            "dog-2": dog,
+        ]
+        
+        print(dictionary)
+        // => ["dog-1": SwiftPrettyPrint.Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/)), "dog-2": SwiftPrettyPrint.Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))]
+        
+        XCTAssertEqual(Debug.pString(dictionary),
+                       #"["dog-1": \#(expectString), "dog-2": \#(expectString)]"#)
+
+        XCTAssertEqual(Debug.pString(dictionary, debug: true),
+                       #"["dog-1": \#(expectDebugString), "dog-2": \#(expectDebugString)]"#)
     }
 
     func test_ppString() {
@@ -92,6 +106,45 @@ class DebugTests: XCTestCase {
                                nickname: nil,
                                age: 3,
                                homepage: Optional(https://www.google.com/))
+                       ]
+                       """)
+        
+        let dictionary: [String: Dog] = [
+            "dog-1": dog,
+            "dog-2": dog,
+        ]
+        
+        Debug.pp(dictionary)
+        
+        XCTAssertEqual(Debug.ppString(dictionary, debug: false),
+                       """
+                       [
+                           "dog-1": Dog(id: "pochi",
+                                        name: "ポチ",
+                                        nickname: nil,
+                                        age: 3,
+                                        homepage: https://www.google.com/),
+                           "dog-2": Dog(id: "pochi",
+                                        name: "ポチ",
+                                        nickname: nil,
+                                        age: 3,
+                                        homepage: https://www.google.com/)
+                       ]
+                       """)
+        
+        XCTAssertEqual(Debug.ppString(dictionary, debug: true),
+                       """
+                       [
+                           "dog-1": Dog(id: DogId("pochi"),
+                                        name: Optional("ポチ"),
+                                        nickname: nil,
+                                        age: 3,
+                                        homepage: Optional(https://www.google.com/)),
+                           "dog-2": Dog(id: DogId("pochi"),
+                                        name: Optional("ポチ"),
+                                        nickname: nil,
+                                        age: 3,
+                                        homepage: Optional(https://www.google.com/))
                        ]
                        """)
     }
