@@ -1,31 +1,24 @@
 # SwiftPrettyPrint
 
-Pretty print for debug `Debug.p()` and `Debug.pp()` that readable output than `print()` and `debugPrint()`.
+![Test](https://github.com/YusukeHosonuma/SwiftPrettyPrint/workflows/Test/badge.svg)
+[![Release](https://img.shields.io/github/v/release/YusukeHosonuma/SwiftPrettyPrint?include_prereleases)](https://github.com/YusukeHosonuma/SwiftPrettyPrint/releases)
+[![License](https://img.shields.io/github/license/YusukeHosonuma/SwiftPrettyPrint)](https://github.com/YusukeHosonuma/SwiftPrettyPrint/blob/master/LICENSE)
+
+Pretty print for debug that readable output than `print()` and `debugPrint()`.
 
 ```swift
 let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
-```
 
-`print()` and `debugPrint()`:
-
-```swift
 print(dog)
 // => Dog(id: SwiftPrettyPrint.DogId(rawValue: "pochi"), price: SwiftPrettyPrint.Price(rawValue: 10.0), name: Optional("ポチ"))
 
 debugPrint(dog)
-// => SwiftPrettyPrint.Dog(id: SwiftPrettyPrint.DogId(rawValue: "pochi"), price: SwiftPrettyPrint.Price(rawValue: 10.0), name: Optional("ポチ"))s
-```
+// => SwiftPrettyPrint.Dog(id: SwiftPrettyPrint.DogId(rawValue: "pochi"), price: SwiftPrettyPrint.Price(rawValue: 10.0), name: Optional("ポチ"))
 
-`Debug.p()` and `Debug.pp()`:
-
-```swift
 Debug.p(dog)
 // => Dog(id: "pochi", price: 10.0, name: "ポチ")
 
-Debug.p(dog, debug: true)
-// => Dog(id: DogId("pochi"), price: Price(10.0), name: Optional("ポチ"))
-
-Debug.pp([dog, dog], debug: true) // more pretty
+Debug.pp([dog, dog], debug: true) // pretty and more debug information
 // =>
 // [
 //     Dog(id: DogId("pochi"),
