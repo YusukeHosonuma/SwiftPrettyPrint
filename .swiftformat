@@ -1,6 +1,6 @@
 # file options
 
---exclude Tests/SwiftPrettyPrintTests/XCTestManifests.swift,Tests/LinuxMain.swift
+--exclude Tests/XCTestManifests.swift,Tests/LinuxMain.swift
 
 # format options
 
