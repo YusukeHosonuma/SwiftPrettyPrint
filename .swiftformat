@@ -1,0 +1,10 @@
+# file options
+
+--exclude Tests/SwiftPrettyPrintTests/XCTestManifests.swift,Tests/LinuxMain.swift
+
+# format options
+
+--swiftversion 5.1
+
+# rules
+
