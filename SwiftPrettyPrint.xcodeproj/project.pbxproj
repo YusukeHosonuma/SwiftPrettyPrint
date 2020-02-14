@@ -21,9 +21,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		OBJ_29 /* Pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Pretty.swift */; };
+		E5F0188D23F662B600689420 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0188A23F662B600689420 /* Function.swift */; };
+		E5F0188F23F662B600689420 /* DebaggableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0188C23F662B600689420 /* DebaggableValue.swift */; };
+		E5F0189123F6630B00689420 /* DebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0189023F6630B00689420 /* DebugTests.swift */; };
+		OBJ_29 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Debug.swift */; };
 		OBJ_36 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_47 /* SwiftPrettyPrintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SwiftPrettyPrintTests.swift */; };
 		OBJ_48 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* XCTestManifests.swift */; };
 		OBJ_50 /* SwiftPrettyPrint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */; };
 /* End PBXBuildFile section */
@@ -46,7 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		OBJ_12 /* SwiftPrettyPrintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPrettyPrintTests.swift; sourceTree = "<group>"; };
+		E5F0188A23F662B600689420 /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		E5F0188C23F662B600689420 /* DebaggableValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebaggableValue.swift; sourceTree = "<group>"; };
+		E5F0189023F6630B00689420 /* DebugTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = SOURCE_ROOT; };
 		OBJ_18 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -56,7 +60,7 @@
 		OBJ_22 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		OBJ_23 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* Pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretty.swift; sourceTree = "<group>"; };
+		OBJ_9 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		"SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftPrettyPrint.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftPrettyPrint::SwiftPrettyPrintTests::Product" /* SwiftPrettyPrintTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftPrettyPrintTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -91,7 +95,7 @@
 		OBJ_11 /* SwiftPrettyPrintTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_12 /* SwiftPrettyPrintTests.swift */,
+				E5F0189023F6630B00689420 /* DebugTests.swift */,
 				OBJ_13 /* XCTestManifests.swift */,
 			);
 			name = SwiftPrettyPrintTests;
@@ -136,7 +140,9 @@
 		OBJ_8 /* SwiftPrettyPrint */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* Pretty.swift */,
+				OBJ_9 /* Debug.swift */,
+				E5F0188A23F662B600689420 /* Function.swift */,
+				E5F0188C23F662B600689420 /* DebaggableValue.swift */,
 			);
 			name = SwiftPrettyPrint;
 			path = Sources/SwiftPrettyPrint;
@@ -226,7 +232,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_29 /* Pretty.swift in Sources */,
+				E5F0189123F6630B00689420 /* DebugTests.swift in Sources */,
+				OBJ_29 /* Debug.swift in Sources */,
+				E5F0188D23F662B600689420 /* Function.swift in Sources */,
+				E5F0188F23F662B600689420 /* DebaggableValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_47 /* SwiftPrettyPrintTests.swift in Sources */,
 				OBJ_48 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
