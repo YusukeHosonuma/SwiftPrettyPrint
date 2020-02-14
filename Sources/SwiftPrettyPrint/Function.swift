@@ -30,6 +30,16 @@ func arrayString<T: Any>(_ xs: [T], debug: Bool, pretty: Bool) -> String {
     return "[\(contents)]"
 }
 
+func dictionaryString<K: Any, V: Any>(_ d: [K: V], debug: Bool, pretty: Bool) -> String {
+    let contents = d.map {
+        let key = valueString($0.key, debug: debug)
+        let value = elementString($0.value, debug: debug, pretty: pretty)
+        return "\(key): \(value)"
+    }.sorted().joined(separator: ", ")
+    
+    return "[\(contents)]"
+}
+
 // MARK: - pp()
 
 func prettyElementString<T: Any>(_ x: T, debug: Bool = false) -> String {

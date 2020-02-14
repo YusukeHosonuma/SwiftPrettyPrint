@@ -10,6 +10,10 @@ public class Debug {
         print(pString(x, debug: debug))
     }
     
+    public static func p<K: Any, V: Any>(_ d: [K: V], debug: Bool = false) {
+        print(pString(d, debug: debug))
+    }
+
     public static func pp<T: Any>(_ x: T, debug: Bool = false) {
         print(ppString(x, debug: debug))
     }
@@ -26,6 +30,10 @@ public class Debug {
     
     public static func pString<T: Any>(_ xs: [T], debug: Bool = false) -> String {
         return arrayString(xs, debug: debug, pretty: false)
+    }
+    
+    public static func pString<K: Any, V: Any>(_ d: [K: V], debug: Bool = false) -> String {
+        return dictionaryString(d, debug: debug, pretty: false)
     }
 
     public static func ppString<T: Any>(_ x: T, debug: Bool = false) -> String {
