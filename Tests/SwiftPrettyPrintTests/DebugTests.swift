@@ -1,5 +1,5 @@
-import XCTest
 import SwiftPrettyPrint
+import XCTest
 
 struct Dog {
     var id: DogId
@@ -19,7 +19,7 @@ class DebugTests: XCTestCase {
                   nickname: nil,
                   age: 3,
                   homepage: URL(string: "https://www.google.com/"))
-    
+
     override func setUp() {}
 
     override func tearDown() {}
@@ -27,7 +27,7 @@ class DebugTests: XCTestCase {
     func test_pString() {
         let expectString =
             #"Dog(id: "pochi", name: "ポチ", nickname: nil, age: 3, homepage: https://www.google.com/)"#
-        
+
         let expectDebugString =
             #"Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))"#
 
@@ -39,18 +39,18 @@ class DebugTests: XCTestCase {
 
         XCTAssertEqual(Debug.pString([dog, dog], debug: false),
                        "[\(expectString), \(expectString)]")
-        
+
         XCTAssertEqual(Debug.pString([dog, dog], debug: true),
                        "[\(expectDebugString), \(expectDebugString)]")
-        
+
         let dictionary: [String: Dog] = [
             "dog-1": dog,
             "dog-2": dog,
         ]
-        
+
         print(dictionary)
         // => ["dog-1": SwiftPrettyPrint.Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/)), "dog-2": SwiftPrettyPrint.Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))]
-        
+
         XCTAssertEqual(Debug.pString(dictionary),
                        #"["dog-1": \#(expectString), "dog-2": \#(expectString)]"#)
 
@@ -92,7 +92,7 @@ class DebugTests: XCTestCase {
                                homepage: https://www.google.com/)
                        ]
                        """)
-        
+
         XCTAssertEqual(Debug.ppString([dog, dog], debug: true),
                        """
                        [
@@ -108,14 +108,14 @@ class DebugTests: XCTestCase {
                                homepage: Optional(https://www.google.com/))
                        ]
                        """)
-        
+
         let dictionary: [String: Dog] = [
             "dog-1": dog,
             "dog-2": dog,
         ]
-        
+
         Debug.pp(dictionary)
-        
+
         XCTAssertEqual(Debug.ppString(dictionary, debug: false),
                        """
                        [
@@ -131,7 +131,7 @@ class DebugTests: XCTestCase {
                                         homepage: https://www.google.com/)
                        ]
                        """)
-        
+
         XCTAssertEqual(Debug.ppString(dictionary, debug: true),
                        """
                        [

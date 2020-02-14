@@ -13,7 +13,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
             "\($0.label ?? "-"): " + valueString($0.value, debug: debug)
         }
 
-        if pretty && fields.count > 1 {
+        if pretty, fields.count > 1 {
             let tailFields = fields.dropFirst()
                 .map { $0.indent(size: prefix.count) }
                 .joined(separator: ",\n")
@@ -36,14 +36,14 @@ func dictionaryString<K: Any, V: Any>(_ d: [K: V], debug: Bool, pretty: Bool) ->
         let value = elementString($0.value, debug: debug, pretty: pretty)
         return "\(key): \(value)"
     }.sorted().joined(separator: ", ")
-    
+
     return "[\(contents)]"
 }
 
 // MARK: - pp()
 
 func prettyElementString<T: Any>(_ x: T, debug: Bool = false) -> String {
-    return elementString(x, debug: debug, pretty: true)
+    elementString(x, debug: debug, pretty: true)
 }
 
 func prettyArrayString<T: Any>(_ xs: [T], debug: Bool = false) -> String {
@@ -61,7 +61,7 @@ func prettyDictionaryString<K: Any, V: Any>(_ d: [K: V], debug: Bool) -> String 
         }
         return "\(key): \(value)"
     }.sorted().joined(separator: ",\n")
-    
+
     return "[\n\(contents.indent(size: 4))\n]"
 }
 

@@ -1,7 +1,6 @@
 public class Debug {
-    
     // MARK: - Print to console
-    
+
     public static func p<T: Any>(_ x: T, debug: Bool = false) {
         print(pString(x, debug: debug))
     }
@@ -9,7 +8,7 @@ public class Debug {
     public static func p<T: Any>(_ x: [T], debug: Bool = false) {
         print(pString(x, debug: debug))
     }
-    
+
     public static func p<K: Any, V: Any>(_ d: [K: V], debug: Bool = false) {
         print(pString(d, debug: debug))
     }
@@ -29,30 +28,30 @@ public class Debug {
     // MARK: - Get as string
 
     // p()
-    
+
     public static func pString<T: Any>(_ x: T, debug: Bool = false) -> String {
-        return elementString(x, debug: debug, pretty: false)
+        elementString(x, debug: debug, pretty: false)
     }
-    
+
     public static func pString<T: Any>(_ xs: [T], debug: Bool = false) -> String {
-        return arrayString(xs, debug: debug, pretty: false)
+        arrayString(xs, debug: debug, pretty: false)
     }
-    
+
     public static func pString<K: Any, V: Any>(_ d: [K: V], debug: Bool = false) -> String {
-        return dictionaryString(d, debug: debug, pretty: false)
+        dictionaryString(d, debug: debug, pretty: false)
     }
 
     // pp()
-    
+
     public static func ppString<T: Any>(_ x: T, debug: Bool = false) -> String {
-        return prettyElementString(x, debug: debug)
+        prettyElementString(x, debug: debug)
     }
 
     public static func ppString<T: Any>(_ xs: [T], debug: Bool = false) -> String {
-        return prettyArrayString(xs, debug: debug)
+        prettyArrayString(xs, debug: debug)
     }
 
     public static func ppString<K: Any, V: Any>(_ d: [K: V], debug: Bool = false) -> String {
-        return prettyDictionaryString(d, debug: debug)
+        prettyDictionaryString(d, debug: debug)
     }
 }
