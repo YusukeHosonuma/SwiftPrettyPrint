@@ -13,6 +13,6 @@ extension DebuggableValue {
     }
 
     public var debugDescription: String {
-        return "\(type(of: self))(\(description))"
+        "\(type(of: self))(\(description))"
     }
 }
