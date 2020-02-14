@@ -1,0 +1,7 @@
+coverage_service: coveralls
+xcodeproj: SwiftPrettyPrint.xcodeproj
+scheme: SwiftPrettyPrint-Package
+# source_directory: Sources/*
+# output_directory: coverage
+ignore:
+  - Tests/*

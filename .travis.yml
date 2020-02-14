@@ -1,0 +1,8 @@
+os: osx
+osx_image: xcode11.3
+before_install:
+  - gem install bundler
+install:
+  - bundle install --without=documentation --path ../travis_bundle_dir
+script:
+  - bundle exec slather
