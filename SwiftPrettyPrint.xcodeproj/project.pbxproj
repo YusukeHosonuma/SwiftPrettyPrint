@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E56D6C1123F7350A00904648 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56D6C1023F7350A00904648 /* String+extension.swift */; };
 		E5F0188D23F662B600689420 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0188A23F662B600689420 /* Function.swift */; };
 		E5F0188F23F662B600689420 /* DebaggableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0188C23F662B600689420 /* DebaggableValue.swift */; };
 		E5F0189123F6630B00689420 /* DebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0189023F6630B00689420 /* DebugTests.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E56D6C1023F7350A00904648 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		E5F0188A23F662B600689420 /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		E5F0188C23F662B600689420 /* DebaggableValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebaggableValue.swift; sourceTree = "<group>"; };
 		E5F0189023F6630B00689420 /* DebugTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugTests.swift; sourceTree = "<group>"; };
@@ -111,7 +113,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -126,7 +128,6 @@
 				OBJ_22 /* Gemfile */,
 				OBJ_23 /* Gemfile.lock */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -143,6 +144,7 @@
 				OBJ_9 /* Debug.swift */,
 				E5F0188A23F662B600689420 /* Function.swift */,
 				E5F0188C23F662B600689420 /* DebaggableValue.swift */,
+				E56D6C1023F7350A00904648 /* String+extension.swift */,
 			);
 			name = SwiftPrettyPrint;
 			path = Sources/SwiftPrettyPrint;
@@ -214,7 +216,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +235,7 @@
 			buildActionMask = 0;
 			files = (
 				E5F0189123F6630B00689420 /* DebugTests.swift in Sources */,
+				E56D6C1123F7350A00904648 /* String+extension.swift in Sources */,
 				OBJ_29 /* Debug.swift in Sources */,
 				E5F0188D23F662B600689420 /* Function.swift in Sources */,
 				E5F0188F23F662B600689420 /* DebaggableValue.swift in Sources */,

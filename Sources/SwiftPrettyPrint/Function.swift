@@ -15,7 +15,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
 
         if pretty && fields.count > 1 {
             let tailFields = fields.dropFirst()
-                .map { indent($0, size: prefix.count) }
+                .map { $0.indent(size: prefix.count) }
                 .joined(separator: ",\n")
 
             return "\(prefix)\(fields.first!),\n\(tailFields))"
@@ -48,7 +48,21 @@ func prettyElementString<T: Any>(_ x: T, debug: Bool = false) -> String {
 
 func prettyArrayString<T: Any>(_ xs: [T], debug: Bool = false) -> String {
     let contents = xs.map { prettyElementString($0, debug: debug) }.joined(separator: ",\n")
-    return "[\n\(indent(contents, size: 4))\n]"
+    return "[\n\(contents.indent(size: 4))\n]"
+}
+
+func prettyDictionaryString<K: Any, V: Any>(_ d: [K: V], debug: Bool) -> String {
+    let contents = d.map {
+        let key = valueString($0.key, debug: debug)
+        var value = prettyElementString($0.value, debug: debug)
+
+        if let head = value.lines.first {
+            value = head + "\n" + value.lines.dropFirst().joined(separator: "\n").indent(size: 9)
+        }
+        return "\(key): \(value)"
+    }.sorted().joined(separator: ",\n")
+    
+    return "[\n\(contents.indent(size: 4))\n]"
 }
 
 // MARK: - util
@@ -80,11 +94,4 @@ func valueString(_ target: Any, debug: Bool) -> String {
             return String(describing: target)
         }
     }
-}
-
-func indent(_ string: String, size: Int) -> String {
-    return string
-        .split(separator: "\n")
-        .map { String(repeating: " ", count: size) + $0 }
-        .joined(separator: "\n")
 }

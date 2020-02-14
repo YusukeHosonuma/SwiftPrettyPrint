@@ -108,5 +108,44 @@ class DebugTests: XCTestCase {
                                homepage: Optional(https://www.google.com/))
                        ]
                        """)
+        
+        let dictionary: [String: Dog] = [
+            "dog-1": dog,
+            "dog-2": dog,
+        ]
+        
+        Debug.pp(dictionary)
+        
+        XCTAssertEqual(Debug.ppString(dictionary, debug: false),
+                       """
+                       [
+                           "dog-1": Dog(id: "pochi",
+                                        name: "ポチ",
+                                        nickname: nil,
+                                        age: 3,
+                                        homepage: https://www.google.com/),
+                           "dog-2": Dog(id: "pochi",
+                                        name: "ポチ",
+                                        nickname: nil,
+                                        age: 3,
+                                        homepage: https://www.google.com/)
+                       ]
+                       """)
+        
+        XCTAssertEqual(Debug.ppString(dictionary, debug: true),
+                       """
+                       [
+                           "dog-1": Dog(id: DogId("pochi"),
+                                        name: Optional("ポチ"),
+                                        nickname: nil,
+                                        age: 3,
+                                        homepage: Optional(https://www.google.com/)),
+                           "dog-2": Dog(id: DogId("pochi"),
+                                        name: Optional("ポチ"),
+                                        nickname: nil,
+                                        age: 3,
+                                        homepage: Optional(https://www.google.com/))
+                       ]
+                       """)
     }
 }
