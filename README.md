@@ -82,7 +82,7 @@ Debug.p(dog, debug: true)
 Note: Not register official Cocoapods currently.
 
 ```ruby
-pod 'SwiftPrettyPrint', :git => 'https://github.com/YusukeHosonuma/SwiftPrettyPrint.git', :tag => '0.0.1'
+pod 'SwiftPrettyPrint'
 ```
 
 ### Carthage
