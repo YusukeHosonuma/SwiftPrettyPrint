@@ -1,6 +1,6 @@
-// MARK: - p()
+// MARK: - print
 
-func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
+func elementString<T>(_ x: T, debug: Bool, pretty: Bool) -> String {
     let mirror = Mirror(reflecting: x)
 
     let typeName = type(of: x)
@@ -25,12 +25,12 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
     }
 }
 
-func arrayString<T: Any>(_ xs: [T], debug: Bool, pretty: Bool) -> String {
+func arrayString<T>(_ xs: [T], debug: Bool, pretty: Bool) -> String {
     let contents = xs.map { elementString($0, debug: debug, pretty: pretty) }.joined(separator: ", ")
     return "[\(contents)]"
 }
 
-func dictionaryString<K: Any, V: Any>(_ d: [K: V], debug: Bool, pretty: Bool) -> String {
+func dictionaryString<K, V>(_ d: [K: V], debug: Bool, pretty: Bool) -> String {
     let contents = d.map {
         let key = valueString($0.key, debug: debug)
         let value = elementString($0.value, debug: debug, pretty: pretty)
@@ -40,18 +40,18 @@ func dictionaryString<K: Any, V: Any>(_ d: [K: V], debug: Bool, pretty: Bool) ->
     return "[\(contents)]"
 }
 
-// MARK: - pp()
+// MARK: - pretty-print
 
-func prettyElementString<T: Any>(_ x: T, debug: Bool = false) -> String {
+func prettyElementString<T>(_ x: T, debug: Bool = false) -> String {
     elementString(x, debug: debug, pretty: true)
 }
 
-func prettyArrayString<T: Any>(_ xs: [T], debug: Bool = false) -> String {
+func prettyArrayString<T>(_ xs: [T], debug: Bool = false) -> String {
     let contents = xs.map { prettyElementString($0, debug: debug) }.joined(separator: ",\n")
     return "[\n\(contents.indent(size: 4))\n]"
 }
 
-func prettyDictionaryString<K: Any, V: Any>(_ d: [K: V], debug: Bool) -> String {
+func prettyDictionaryString<K, V>(_ d: [K: V], debug: Bool) -> String {
     let contents = d.map {
         let key = valueString($0.key, debug: debug)
         var value = prettyElementString($0.value, debug: debug)
@@ -67,7 +67,7 @@ func prettyDictionaryString<K: Any, V: Any>(_ d: [K: V], debug: Bool) -> String 
 
 // MARK: - util
 
-func valueString(_ target: Any, debug: Bool) -> String {
+func valueString<T>(_ target: T, debug: Bool) -> String {
     switch target {
     case let value as CustomDebugStringConvertible where debug:
         return value.debugDescription
@@ -77,7 +77,7 @@ func valueString(_ target: Any, debug: Bool) -> String {
         } else {
             return value.description
         }
-    case let value as Any?:
+    case let value as T?:
         if let value = value {
             if let string = value as? String {
                 return "\"\(string)\""
