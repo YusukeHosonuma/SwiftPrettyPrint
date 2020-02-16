@@ -21,10 +21,10 @@ Debug.p(dog)
 Debug.pp([dog, dog], debug: true) // pretty and more debug information
 // =>
 // [
-//     Dog(id: DogId("pochi"),
+//     Dog(id: DogId(rawValue: "pochi"),
 //         price: Price(10.0),
 //         name: Optional("ポチ")),
-//     Dog(id: DogId("pochi"),
+//     Dog(id: DogId(rawValue: "pochi"),
 //         price: Price(10.0),
 //         name: Optional("ポチ"))
 // ]
@@ -68,15 +68,11 @@ but not human-readable for when forcusing on the values.
 With SwiftPrittyPrint it looks like this:
 
 ```swift
-// Adopt `DebuggableValue` protocol to ValueObject.
-extension DogId: DebuggableValue {}
-extension Price: DebuggableValue {}
-
 Debug.p(dog)
 // => Dog(id: "pochi", price: 10.0, name: "ポチ")
 
 Debug.p(dog, debug: true)
-// => Dog(id: DogId("pochi"), price: Price(10.0), name: Optional("ポチ"))
+// => Dog(id: DogId(rawValue: "pochi"), price: Price(10.0), name: Optional("ポチ"))
 ```
 
 ## Installation
