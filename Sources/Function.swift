@@ -68,6 +68,17 @@ func prettyDictionaryString<K, V>(_ d: [K: V], debug: Bool) -> String {
 // MARK: - util
 
 func valueString<T>(_ target: T, debug: Bool) -> String {
+    let mirror = Mirror(reflecting: target)
+
+    if mirror.children.count == 1, !debug {
+        guard let value = mirror.children.first?.value else { preconditionFailure() }
+        if let string = value as? String {
+            return "\"\(string)\""
+        } else {
+            return String(describing: value)
+        }
+    }
+
     switch target {
     case let value as CustomDebugStringConvertible where debug:
         return value.debugDescription

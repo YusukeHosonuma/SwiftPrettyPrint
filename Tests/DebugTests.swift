@@ -1,4 +1,4 @@
-import SwiftPrettyPrint
+@testable import SwiftPrettyPrint
 import XCTest
 
 struct Dog {
@@ -9,7 +9,7 @@ struct Dog {
     var homepage: URL?
 }
 
-struct DogId: DebuggableValue {
+struct DogId {
     var rawValue: String
 }
 
@@ -29,7 +29,7 @@ class DebugTests: XCTestCase {
             #"Dog(id: "pochi", name: "ポチ", nickname: nil, age: 3, homepage: https://www.google.com/)"#
 
         let expectDebugString =
-            #"Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))"#
+            #"Dog(id: DogId(rawValue: "pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))"#
 
         XCTAssertEqual(Debug.pString(dog, debug: false),
                        expectString)
@@ -70,7 +70,7 @@ class DebugTests: XCTestCase {
 
         XCTAssertEqual(Debug.ppString(dog, debug: true),
                        """
-                       Dog(id: DogId("pochi"),
+                       Dog(id: DogId(rawValue: "pochi"),
                            name: Optional("ポチ"),
                            nickname: nil,
                            age: 3,
@@ -96,12 +96,12 @@ class DebugTests: XCTestCase {
         XCTAssertEqual(Debug.ppString([dog, dog], debug: true),
                        """
                        [
-                           Dog(id: DogId("pochi"),
+                           Dog(id: DogId(rawValue: "pochi"),
                                name: Optional("ポチ"),
                                nickname: nil,
                                age: 3,
                                homepage: Optional(https://www.google.com/)),
-                           Dog(id: DogId("pochi"),
+                           Dog(id: DogId(rawValue: "pochi"),
                                name: Optional("ポチ"),
                                nickname: nil,
                                age: 3,
@@ -135,12 +135,12 @@ class DebugTests: XCTestCase {
         XCTAssertEqual(Debug.ppString(dictionary, debug: true),
                        """
                        [
-                           "dog-1": Dog(id: DogId("pochi"),
+                           "dog-1": Dog(id: DogId(rawValue: "pochi"),
                                         name: Optional("ポチ"),
                                         nickname: nil,
                                         age: 3,
                                         homepage: Optional(https://www.google.com/)),
-                           "dog-2": Dog(id: DogId("pochi"),
+                           "dog-2": Dog(id: DogId(rawValue: "pochi"),
                                         name: Optional("ポチ"),
                                         nickname: nil,
                                         age: 3,
