@@ -3,6 +3,7 @@
 ![Test](https://github.com/YusukeHosonuma/SwiftPrettyPrint/workflows/Test/badge.svg)
 [![Release](https://img.shields.io/github/v/release/YusukeHosonuma/SwiftPrettyPrint?include_prereleases)](https://github.com/YusukeHosonuma/SwiftPrettyPrint/releases)
 [![License](https://img.shields.io/github/license/YusukeHosonuma/SwiftPrettyPrint)](https://github.com/YusukeHosonuma/SwiftPrettyPrint/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Ftobi462)](https://twitter.com/tobi462)
 
 Pretty print for debug that readable output than `print()` and `debugPrint()`.
 
