@@ -1,0 +1,7 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/nicklockwood/SwiftFormat
+    rev: 0.44.2
+    hooks:
+    -   id: swiftformat
