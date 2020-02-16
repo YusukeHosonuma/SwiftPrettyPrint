@@ -120,3 +120,16 @@ Debug.p(dog, debug: true)
 Debug.pp(dog)
 Debug.pp(dog, debug: true)
 ```
+
+## Develoopment
+
+Require:
+
+- Xcode 11.3
+- [pre-commit](https://github.com/pre-commit/pre-commit-hooks)
+
+### Setup
+
+```sh
+pre-commit install
+```
