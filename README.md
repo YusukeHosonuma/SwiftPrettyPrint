@@ -80,19 +80,25 @@ Debug.p(dog, debug: true)
 
 ### CocoaPods
 
-Note: Not register official Cocoapods currently.
-
 ```ruby
 pod 'SwiftPrettyPrint'
 ```
 
 ### Carthage
 
-T.B.D
+```text
+github "YusukeHosonuma/SwiftPrettyPrint"
+```
 
 ### Swift Package Manager
 
-T.B.D
+```swift
+dependencies: [
+    .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", from: "0.0.2"),
+],
+```
+
+or add from Xcode 10+.
 
 ## Recommend Setting 📝
 
