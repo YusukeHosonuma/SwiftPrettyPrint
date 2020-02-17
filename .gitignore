@@ -92,3 +92,7 @@ iOSInjectionProject/
 # Bundler
 
 vendor/bundle
+
+# Homebrew
+
+Brewfile.lock.json

@@ -131,8 +131,25 @@ Require:
 - Xcode 11.3
 - [pre-commit](https://github.com/pre-commit/pre-commit-hooks)
 
+Execute `make setup` to install development tools to system (not include Xcode 11.3).
+
 ### Setup
 
 ```sh
 pre-commit install
+```
+
+### Make
+
+Execute `make help` to print all tasks that like following:
+
+```sh
+$ make help
+build      swift - build
+test       swift - test
+xcode      swift - generate xcode project
+format     format sources by SwiftFormat
+lint       cocoapods - lint podspec
+release    cocoapods - release
+info       cocoapods - show trunk information
 ```
