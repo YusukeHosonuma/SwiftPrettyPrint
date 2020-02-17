@@ -6,6 +6,11 @@ HELP_INDENT := "10"
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-$(HELP_INDENT)s\033[0m %s\n", $$1, $$2}'
 
+.PHONY: setup
+setup: ## Install requirement development tools to system and setup (not include Xcode 11.3)
+	brew bundle
+	pre-commit install
+
 .PHONY: build
 build: ## swift - build
 	swift build
