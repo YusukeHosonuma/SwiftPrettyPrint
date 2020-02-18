@@ -84,9 +84,7 @@ or add from Xcode 10+.
 
 ## Recommend Settings 📝
 
-When you need debug, you don't want to write `import` statement.
-
-I recommend to create `Debug.swift` file in each target.
+When you don't want to write import statement, I recommended to create `Debug.swift` in each targets.
 
 ```swift
 // Note:
