@@ -6,7 +6,6 @@
 //  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
-import SwiftPrettyPrint
 @testable import SwiftPrettyPrintExample
 import XCTest
 

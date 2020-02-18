@@ -2,7 +2,7 @@ platform :ios, '13.0'
 
 use_frameworks!
 
-pod "SwiftPrettyPrint"
+pod "SwiftPrettyPrint", :configuration => "Debug"
 
 target 'SwiftPrettyPrintExample' do
   target 'SwiftPrettyPrintExampleTests' do

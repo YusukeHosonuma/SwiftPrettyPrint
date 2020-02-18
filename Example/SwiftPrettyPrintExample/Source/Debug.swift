@@ -6,6 +6,11 @@
 //  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
-import SwiftPrettyPrint
+// Note:
+// Enabled on `debug` configuration only.
+// Therefore compile error in `release` build when remaining `Debug` in sources.
 
-typealias Debug = SwiftPrettyPrint.Debug
+#if canImport(SwiftPrettyPrint)
+    import SwiftPrettyPrint
+    typealias Debug = SwiftPrettyPrint.Debug
+#endif
