@@ -58,11 +58,13 @@ Debug.p(dog, debug: true)
 
 ## Installation
 
-### CocoaPods
+### CocoaPods (Recommended)
 
 ```ruby
-pod 'SwiftPrettyPrint'
+pod "SwiftPrettyPrint", :configuration => "Debug" # enabled on `Debug` build only
 ```
+
+Example app is in [Example](./Example).
 
 ### Carthage
 
@@ -75,33 +77,33 @@ github "YusukeHosonuma/SwiftPrettyPrint"
 ```swift
 dependencies: [
     .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", from: "0.0.2"),
-],
+]
 ```
 
 or add from Xcode 10+.
 
-## Recommend Setting 📝
+## Recommend Settings 📝
 
 When you need debug, you don't want to write `import` statement.
 
-I recomend create `Debug.swift` in each target.
+I recommend to create `Debug.swift` file in each target.
 
 ```swift
-import SwiftPrettyPrint
+// Note:
+// Enabled on `debug` configuration only.
+// Therefore compile error in `release` build when remaining `Debug` in sources.
 
-typealias Debug = SwiftPrettyPrint.Debug
+#if canImport(SwiftPrettyPrint)
+    import SwiftPrettyPrint
+    typealias Debug = SwiftPrettyPrint.Debug
+#endif
 ```
 
 This can be not need to `import` as follows:
 
 ```swift
 let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
-
 Debug.p(dog)
-Debug.p(dog, debug: true)
-
-Debug.pp(dog)
-Debug.pp(dog, debug: true)
 ```
 
 ## Develoopment
