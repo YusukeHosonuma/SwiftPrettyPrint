@@ -25,6 +25,28 @@ class DebugTests: XCTestCase {
     override func tearDown() {}
 
     func test_pString() {
+        //
+        // Basic type
+        //
+
+        XCTAssertEqual(Debug.pString("Hello", debug: false), #""Hello""#)
+        XCTAssertEqual(Debug.pString("Hello", debug: true), #""Hello""#)
+
+        XCTAssertEqual(Debug.pString(42, debug: false), "42")
+        XCTAssertEqual(Debug.pString(42, debug: true), "42")
+
+        // TODO: support URL type - https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/23
+        // XCTAssertEqual(Debug.pString(URL(string: "https://www.google.com/")!, debug: false), "https://www.google.com/")
+        // XCTAssertEqual(Debug.pString(URL(string: "https://www.google.com/")!, debug: true), #"URL("https://www.google.com/")"#) // this is best?
+        // print(URL(string: "https://www.google.com/")!)
+        // debugPrint(URL(string: "https://www.google.com/")!)
+        // => https://www.google.com/
+        // => https://www.google.com/
+
+        //
+        // Struct
+        //
+
         let expectString =
             #"Dog(id: "pochi", name: "ポチ", nickname: nil, age: 3, homepage: https://www.google.com/)"#
 
@@ -59,6 +81,20 @@ class DebugTests: XCTestCase {
     }
 
     func test_ppString() {
+        //
+        // Basic type
+        //
+
+        XCTAssertEqual(Debug.ppString("Hello", debug: false), #""Hello""#)
+        XCTAssertEqual(Debug.ppString("Hello", debug: true), #""Hello""#)
+
+        XCTAssertEqual(Debug.ppString(42, debug: false), "42")
+        XCTAssertEqual(Debug.ppString(42, debug: true), "42")
+
+        //
+        // Struct
+        //
+
         XCTAssertEqual(Debug.ppString(dog, debug: false),
                        """
                        Dog(id: "pochi",
