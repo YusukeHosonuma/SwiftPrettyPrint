@@ -1,0 +1,11 @@
+platform :ios, '13.0'
+
+use_frameworks!
+
+pod "SwiftPrettyPrint"
+
+target 'SwiftPrettyPrintExample' do
+  target 'SwiftPrettyPrintExampleTests' do
+    inherit! :search_paths
+  end
+end

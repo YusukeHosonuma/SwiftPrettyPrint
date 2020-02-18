@@ -1,0 +1,16 @@
+PODS:
+  - SwiftPrettyPrint (0.0.2)
+
+DEPENDENCIES:
+  - SwiftPrettyPrint
+
+SPEC REPOS:
+  trunk:
+    - SwiftPrettyPrint
+
+SPEC CHECKSUMS:
+  SwiftPrettyPrint: a7a7dd9b3bdfaab1c07e678bb140afa044115b44
+
+PODFILE CHECKSUM: a4f4a2a7ab0779333066339251af3758bf9e43b3
+
+COCOAPODS: 1.8.4
