@@ -1,6 +1,6 @@
 // MARK: - print
 
-func elementString<T>(_ x: T, debug: Bool, pretty: Bool) -> String {
+func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
     let mirror = Mirror(reflecting: x)
 
     let typeName = String(describing: mirror.subjectType)
@@ -10,14 +10,14 @@ func elementString<T>(_ x: T, debug: Bool, pretty: Bool) -> String {
         return valueString(x, debug: debug)
     }
 
-    // Optional<T>
-    if typeName.starts(with: "Optional<") { // TODO: better judge is exist?
+    // Optional
+    if case .optional = mirror.displayStyle {
         return valueString(x, debug: debug)
     }
 
     // ValueObject
     if mirror.children.count == 1, !debug {
-        let value = mirror.children.first!.value
+        let value = mirror.children.first!.value // TODO: change to safe-api when official release
         return valueString(value, debug: debug)
     }
 
@@ -84,7 +84,10 @@ func valueString<T>(_ target: T, debug: Bool) -> String {
     let mirror = Mirror(reflecting: target)
 
     // Note: this function currently supports Optional type that includes a child.
-    guard mirror.children.count <= 1 else { preconditionFailure("valueString() is must value that not has members") }
+    guard mirror.children.count <= 1 else {
+        // TODO: change to safe-api when official release
+        preconditionFailure("valueString() is must value that not has members")
+    }
 
     switch target {
     case let value as CustomDebugStringConvertible where debug:
