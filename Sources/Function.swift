@@ -6,7 +6,7 @@ func elementString<T>(_ x: T, debug: Bool, pretty: Bool) -> String {
     let typeName = type(of: x)
 
     if mirror.children.count == 0 {
-        return "\(typeName)()"
+        return valueString(x, debug: debug)
     } else {
         let prefix = "\(typeName)("
         let fields = mirror.children.map {
