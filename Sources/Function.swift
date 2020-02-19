@@ -106,10 +106,6 @@ func valueString<T>(_ target: T, debug: Bool) -> String {
             return "nil"
         }
     default:
-        if let string = target as? String {
-            return "\"\(string)\""
-        } else {
-            return String(describing: target)
-        }
+        preconditionFailure("Not supported type")
     }
 }

@@ -17,13 +17,13 @@ class FunctionTests: XCTestCase {
         struct Dog {
             var name: String
             var owner: Owner
-            var age: Int
+            var age: Int?
         }
 
         struct Owner {
             var name: String
             var age: Int
-            var address: String
+            var address: String?
         }
 
         //
@@ -31,19 +31,24 @@ class FunctionTests: XCTestCase {
         //
 
         let owner = Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")
-        let dog = Dog(name: "Pochi", owner: owner, age: 4)
+        let dog = Dog(name: "Pochi", owner: owner, age: nil)
 
         XCTAssertEqual(elementString(dog, debug: false, pretty: false),
-                       #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: 4)"#)
+                       #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
 
-        // TODO: support
-//        XCTAssertEqual(elementString(dog, debug: false, pretty: true),
-//                       """
-//                       Dog(name: "Pochi",
-//                           owner: Owner(name: "Nanachi",
-//                                        age: 20,
-//                                        address: "4th layer Abyss"),
-//                           age: 4)
-//                       """)
+        XCTAssertEqual(elementString(dog, debug: true, pretty: false),
+                       #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
+
+        //
+        // TODO: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/25
+        //
+        // XCTAssertEqual(elementString(dog, debug: false, pretty: true),
+        //                """
+        //                Dog(name: "Pochi",
+        //                    owner: Owner(name: "Nanachi",
+        //                                 age: 20,
+        //                                 address: "4th layer Abyss"),
+        //                    age: 4)
+        //                """)
     }
 }
