@@ -18,11 +18,7 @@ func elementString<T>(_ x: T, debug: Bool, pretty: Bool) -> String {
     // ValueObject
     if mirror.children.count == 1, !debug {
         let value = mirror.children.first!.value
-        if let string = value as? String {
-            return "\"\(string)\""
-        } else {
-            return String(describing: value)
-        }
+        return valueString(value, debug: debug)
     }
 
     // Other
