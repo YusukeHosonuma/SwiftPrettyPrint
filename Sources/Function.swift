@@ -27,10 +27,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
         if pretty {
             let contents = extractKeyValues(from: x).map { key, val in
                 let label = valueString(key, debug: debug)
-                var value = elementString(val, debug: debug, pretty: pretty)
-                if let head = value.lines.first {
-                    value = head + "\n" + value.lines.dropFirst().joined(separator: "\n").indent(size: "\(label): ".count)
-                }
+                let value = elementString(val, debug: debug, pretty: pretty).indentTail(size: "\(label): ".count)
                 return "\(label): \(value)"
             }.sorted().joined(separator: ",\n")
 

@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E522F4EB23FE6BDC007AD28A /* String+extensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */; };
 		E5ECBFE223FD045200B0DDAA /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECBFE123FD045200B0DDAA /* FunctionTests.swift */; };
 		OBJ_31 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Debug.swift */; };
 		OBJ_32 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Function.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensionTests.swift"; sourceTree = "<group>"; };
 		E5ECBFE123FD045200B0DDAA /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		OBJ_11 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				OBJ_13 /* DebugTests.swift */,
 				E5ECBFE123FD045200B0DDAA /* FunctionTests.swift */,
+				E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */,
 				OBJ_14 /* XCTestManifests.swift */,
 			);
 			path = Tests;
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				E522F4EB23FE6BDC007AD28A /* String+extensionTests.swift in Sources */,
 				OBJ_51 /* DebugTests.swift in Sources */,
 				E5ECBFE223FD045200B0DDAA /* FunctionTests.swift in Sources */,
 				OBJ_52 /* XCTestManifests.swift in Sources */,
