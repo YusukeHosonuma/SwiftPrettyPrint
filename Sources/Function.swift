@@ -5,13 +5,28 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
 
     let typeName = String(describing: mirror.subjectType)
 
-    // Empty
-    if mirror.children.count == 0 {
+    // Optional / Collection
+    switch mirror.displayStyle {
+    case .optional:
         return valueString(x, debug: debug)
+    case .collection:
+        if pretty {
+            let contents = mirror.children
+                .map { prettyElementString($0.value, debug: debug) }
+                .joined(separator: ",\n")
+            return "[\n\(contents.indent(size: 4))\n]"
+        } else {
+            let contents = mirror.children
+                .map { elementString($0.value, debug: debug, pretty: pretty) }
+                .joined(separator: ", ")
+            return "[\(contents)]"
+        }
+    default:
+        break
     }
 
-    // Optional
-    if case .optional = mirror.displayStyle {
+    // Empty
+    if mirror.children.count == 0 {
         return valueString(x, debug: debug)
     }
 
@@ -38,11 +53,6 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
     }
 }
 
-func arrayString<T>(_ xs: [T], debug: Bool, pretty: Bool) -> String {
-    let contents = xs.map { elementString($0, debug: debug, pretty: pretty) }.joined(separator: ", ")
-    return "[\(contents)]"
-}
-
 func dictionaryString<K, V>(_ d: [K: V], debug: Bool, pretty: Bool) -> String {
     let contents = d.map {
         let key = valueString($0.key, debug: debug)
@@ -57,11 +67,6 @@ func dictionaryString<K, V>(_ d: [K: V], debug: Bool, pretty: Bool) -> String {
 
 func prettyElementString<T>(_ x: T, debug: Bool = false) -> String {
     elementString(x, debug: debug, pretty: true)
-}
-
-func prettyArrayString<T>(_ xs: [T], debug: Bool = false) -> String {
-    let contents = xs.map { prettyElementString($0, debug: debug) }.joined(separator: ",\n")
-    return "[\n\(contents.indent(size: 4))\n]"
 }
 
 func prettyDictionaryString<K, V>(_ d: [K: V], debug: Bool) -> String {
