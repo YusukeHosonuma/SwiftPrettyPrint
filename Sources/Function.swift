@@ -29,8 +29,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
                 let label = valueString(key, debug: debug)
                 var value = elementString(val, debug: debug, pretty: pretty)
                 if let head = value.lines.first {
-                    // FIXME: do not use fixed value `9`
-                    value = head + "\n" + value.lines.dropFirst().joined(separator: "\n").indent(size: 9)
+                    value = head + "\n" + value.lines.dropFirst().joined(separator: "\n").indent(size: "\(label): ".count)
                 }
                 return "\(label): \(value)"
             }.sorted().joined(separator: ",\n")
