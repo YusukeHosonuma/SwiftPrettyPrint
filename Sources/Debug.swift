@@ -30,6 +30,6 @@ extension Debug {
     // MARK: - pretty-print
 
     public static func ppString<T>(_ x: T, debug: Bool = false) -> String {
-        prettyElementString(x, debug: debug)
+        elementString(x, debug: debug, pretty: true)
     }
 }

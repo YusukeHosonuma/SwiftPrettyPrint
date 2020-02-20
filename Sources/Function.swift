@@ -12,7 +12,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
     case .collection:
         if pretty {
             let contents = mirror.children
-                .map { prettyElementString($0.value, debug: debug) }
+                .map { elementString($0.value, debug: debug, pretty: pretty) }
                 .joined(separator: ",\n")
             return "[\n\(contents.indent(size: 4))\n]"
         } else {
@@ -79,12 +79,6 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
     } else {
         return "\(prefix)\(fields.joined(separator: ", ")))"
     }
-}
-
-// MARK: - pretty-print
-
-func prettyElementString<T>(_ x: T, debug: Bool = false) -> String {
-    elementString(x, debug: debug, pretty: true)
 }
 
 // MARK: - util
