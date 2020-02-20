@@ -5,7 +5,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
 
     let typeName = String(describing: mirror.subjectType)
 
-    // Optional / Collection
+    // Optional / Collection / Dictionary
     switch mirror.displayStyle {
     case .optional:
         return valueString(x, debug: debug)
@@ -19,6 +19,34 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
             let contents = mirror.children
                 .map { elementString($0.value, debug: debug, pretty: pretty) }
                 .joined(separator: ", ")
+            return "[\(contents)]"
+        }
+    case .dictionary:
+        if pretty {
+            let contents = mirror.children.map {
+                let keyObject = Mirror(reflecting: $0.value).children.first!.value
+                let valueObject = Mirror(reflecting: $0.value).children.dropFirst().first!.value
+
+                let label = valueString(keyObject, debug: debug)
+                var value = elementString(valueObject, debug: debug, pretty: pretty)
+
+                if let head = value.lines.first {
+                    value = head + "\n" + value.lines.dropFirst().joined(separator: "\n").indent(size: 9)
+                }
+                return "\(label): \(value)"
+            }.sorted().joined(separator: ",\n")
+
+            return "[\n\(contents.indent(size: 4))\n]"
+        } else {
+            let contents = mirror.children.map {
+                let keyObject = Mirror(reflecting: $0.value).children.first!.value
+                let valueObject = Mirror(reflecting: $0.value).children.dropFirst().first!.value
+
+                let label = valueString(keyObject, debug: debug)
+                let value = elementString(valueObject, debug: debug, pretty: pretty)
+                return "\(label): \(value)"
+            }.sorted().joined(separator: ", ")
+
             return "[\(contents)]"
         }
     default:
@@ -53,34 +81,10 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
     }
 }
 
-func dictionaryString<K, V>(_ d: [K: V], debug: Bool, pretty: Bool) -> String {
-    let contents = d.map {
-        let key = valueString($0.key, debug: debug)
-        let value = elementString($0.value, debug: debug, pretty: pretty)
-        return "\(key): \(value)"
-    }.sorted().joined(separator: ", ")
-
-    return "[\(contents)]"
-}
-
 // MARK: - pretty-print
 
 func prettyElementString<T>(_ x: T, debug: Bool = false) -> String {
     elementString(x, debug: debug, pretty: true)
-}
-
-func prettyDictionaryString<K, V>(_ d: [K: V], debug: Bool) -> String {
-    let contents = d.map {
-        let key = valueString($0.key, debug: debug)
-        var value = prettyElementString($0.value, debug: debug)
-
-        if let head = value.lines.first {
-            value = head + "\n" + value.lines.dropFirst().joined(separator: "\n").indent(size: 9)
-        }
-        return "\(key): \(value)"
-    }.sorted().joined(separator: ",\n")
-
-    return "[\n\(contents.indent(size: 4))\n]"
 }
 
 // MARK: - util
