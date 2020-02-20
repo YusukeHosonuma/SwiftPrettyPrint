@@ -83,7 +83,7 @@ func prettyDictionaryString<K, V>(_ d: [K: V], debug: Bool) -> String {
 func valueString<T>(_ target: T, debug: Bool) -> String {
     let mirror = Mirror(reflecting: target)
 
-    // Note: this function support Optional type currently that inclue 1 children.
+    // Note: this function currently supports Optional type that includes a child.
     guard mirror.children.count <= 1 else { preconditionFailure("valueString() is must value that not has members") }
 
     switch target {
