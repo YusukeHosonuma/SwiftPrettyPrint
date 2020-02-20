@@ -9,6 +9,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
     switch mirror.displayStyle {
     case .optional:
         return valueString(x, debug: debug)
+
     case .collection:
         if pretty {
             let contents = mirror.children
@@ -21,16 +22,14 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
                 .joined(separator: ", ")
             return "[\(contents)]"
         }
+
     case .dictionary:
         if pretty {
-            let contents = mirror.children.map {
-                let keyObject = Mirror(reflecting: $0.value).children.first!.value
-                let valueObject = Mirror(reflecting: $0.value).children.dropFirst().first!.value
-
-                let label = valueString(keyObject, debug: debug)
-                var value = elementString(valueObject, debug: debug, pretty: pretty)
-
+            let contents = extractKeyValues(from: x).map { key, val in
+                let label = valueString(key, debug: debug)
+                var value = elementString(val, debug: debug, pretty: pretty)
                 if let head = value.lines.first {
+                    // FIXME: do not use fixed value `9`
                     value = head + "\n" + value.lines.dropFirst().joined(separator: "\n").indent(size: 9)
                 }
                 return "\(label): \(value)"
@@ -38,17 +37,15 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
 
             return "[\n\(contents.indent(size: 4))\n]"
         } else {
-            let contents = mirror.children.map {
-                let keyObject = Mirror(reflecting: $0.value).children.first!.value
-                let valueObject = Mirror(reflecting: $0.value).children.dropFirst().first!.value
-
-                let label = valueString(keyObject, debug: debug)
-                let value = elementString(valueObject, debug: debug, pretty: pretty)
+            let contents = extractKeyValues(from: x).map { key, val in
+                let label = valueString(key, debug: debug)
+                let value = elementString(val, debug: debug, pretty: pretty)
                 return "\(label): \(value)"
             }.sorted().joined(separator: ", ")
 
             return "[\(contents)]"
         }
+
     default:
         break
     }
@@ -113,5 +110,13 @@ func valueString<T>(_ target: T, debug: Bool) -> String {
         }
     default:
         preconditionFailure("Not supported type")
+    }
+}
+
+func extractKeyValues(from dictionary: Any) -> [(Any, Any)] {
+    Mirror(reflecting: dictionary).children.map {
+        let key = Mirror(reflecting: $0.value).children.first!.value
+        let value = Mirror(reflecting: $0.value).children.dropFirst().first!.value
+        return (key, value)
     }
 }
