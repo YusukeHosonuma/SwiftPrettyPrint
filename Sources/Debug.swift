@@ -23,10 +23,10 @@ extension Debug {
 
 extension Debug {
     public static func pString<T>(_ target: T, debug: Bool = false) -> String {
-        pretty.elementString(target, debug: debug, pretty: false)
+        pretty.string(target, debug: debug, pretty: false)
     }
 
     public static func ppString<T>(_ target: T, debug: Bool = false) -> String {
-        pretty.elementString(target, debug: debug, pretty: true)
+        pretty.string(target, debug: debug, pretty: true)
     }
 }

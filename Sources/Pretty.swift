@@ -1,9 +1,12 @@
 class Pretty {
     private var indent: Int { Debug.option.indent }
 
-    // MARK: - print
-
-    func elementString<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
+    /// Get pretty string for `target`.
+    /// - Parameters:
+    ///   - target: target
+    ///   - debug: Enable debug-level output if `true` (like `debugPrint`)
+    ///   - pretty: Enable pretty output if `true`
+    func string<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
         let mirror = Mirror(reflecting: target)
 
         // Optional / Collection / Dictionary
@@ -12,7 +15,7 @@ class Pretty {
             return valueString(target, debug: debug)
 
         case .collection:
-            let elements = mirror.children.map { elementString($0.value, debug: debug, pretty: pretty) }
+            let elements = mirror.children.map { string($0.value, debug: debug, pretty: pretty) }
             if pretty {
                 return """
                 [
@@ -27,7 +30,7 @@ class Pretty {
             if pretty {
                 let contents = extractKeyValues(from: target).map { key, val in
                     let label = valueString(key, debug: debug)
-                    let value = elementString(val, debug: debug, pretty: pretty).indentTail(size: "\(label): ".count)
+                    let value = string(val, debug: debug, pretty: pretty).indentTail(size: "\(label): ".count)
                     return "\(label): \(value)"
                 }.sorted().joined(separator: ",\n")
 
@@ -35,7 +38,7 @@ class Pretty {
             } else {
                 let contents = extractKeyValues(from: target).map { key, val in
                     let label = valueString(key, debug: debug)
-                    let value = elementString(val, debug: debug, pretty: pretty)
+                    let value = string(val, debug: debug, pretty: pretty)
                     return "\(label): \(value)"
                 }.sorted().joined(separator: ", ")
 
@@ -61,7 +64,7 @@ class Pretty {
 
         let prefix = "\(typeName)("
         let fields = mirror.children.map {
-            "\($0.label ?? "-"): " + elementString($0.value, debug: debug, pretty: pretty) // recursive call
+            "\($0.label ?? "-"): " + string($0.value, debug: debug, pretty: pretty) // recursive call
         }
 
         if pretty, fields.count > 1 {
