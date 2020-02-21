@@ -1,81 +1,72 @@
 // MARK: - print
 
-func elementString<T>(_ x: T, debug: Bool, pretty: Bool) -> String {
-    let mirror = Mirror(reflecting: x)
+func elementString<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
+    let mirror = Mirror(reflecting: target)
 
-    let typeName = String(describing: mirror.subjectType)
+    // Optional / Collection / Dictionary
+    switch mirror.displayStyle {
+    case .optional:
+        return valueString(target, debug: debug)
+
+    case .collection:
+        let elements = mirror.children.map { elementString($0.value, debug: debug, pretty: pretty) }
+        if pretty {
+            return """
+            [
+            \(elements.joined(separator: ",\n").indent(size: 4))
+            ]
+            """
+        } else {
+            return "[\(elements.joined(separator: ", "))]"
+        }
+
+    case .dictionary:
+        if pretty {
+            let contents = extractKeyValues(from: target).map { key, val in
+                let label = valueString(key, debug: debug)
+                let value = elementString(val, debug: debug, pretty: pretty).indentTail(size: "\(label): ".count)
+                return "\(label): \(value)"
+            }.sorted().joined(separator: ",\n")
+
+            return "[\n\(contents.indent(size: 4))\n]"
+        } else {
+            let contents = extractKeyValues(from: target).map { key, val in
+                let label = valueString(key, debug: debug)
+                let value = elementString(val, debug: debug, pretty: pretty)
+                return "\(label): \(value)"
+            }.sorted().joined(separator: ", ")
+
+            return "[\(contents)]"
+        }
+
+    default:
+        break
+    }
 
     // Empty
     if mirror.children.count == 0 {
-        return valueString(x, debug: debug)
-    }
-
-    // Optional<T>
-    if typeName.starts(with: "Optional<") { // TODO: better judge is exist?
-        return valueString(x, debug: debug)
+        return valueString(target, debug: debug)
     }
 
     // ValueObject
-    if mirror.children.count == 1, !debug {
-        let value = mirror.children.first!.value
+    if !debug, mirror.children.count == 1, let value = mirror.children.first?.value {
         return valueString(value, debug: debug)
     }
 
     // Other
+    let typeName = String(describing: mirror.subjectType)
+
     let prefix = "\(typeName)("
     let fields = mirror.children.map {
         "\($0.label ?? "-"): " + elementString($0.value, debug: debug, pretty: pretty) // recursive call
     }
 
     if pretty, fields.count > 1 {
-        let tailFields = fields.dropFirst()
-            .map { $0.indent(size: prefix.count) }
-            .joined(separator: ",\n")
-
-        return "\(prefix)\(fields.first!),\n\(tailFields))"
+        let contents = prefix + fields.joined(separator: ",\n") + ")"
+        return contents.indentTail(size: prefix.count)
     } else {
-        return "\(prefix)\(fields.joined(separator: ", ")))"
+        return prefix + fields.joined(separator: ", ") + ")"
     }
-}
-
-func arrayString<T>(_ xs: [T], debug: Bool, pretty: Bool) -> String {
-    let contents = xs.map { elementString($0, debug: debug, pretty: pretty) }.joined(separator: ", ")
-    return "[\(contents)]"
-}
-
-func dictionaryString<K, V>(_ d: [K: V], debug: Bool, pretty: Bool) -> String {
-    let contents = d.map {
-        let key = valueString($0.key, debug: debug)
-        let value = elementString($0.value, debug: debug, pretty: pretty)
-        return "\(key): \(value)"
-    }.sorted().joined(separator: ", ")
-
-    return "[\(contents)]"
-}
-
-// MARK: - pretty-print
-
-func prettyElementString<T>(_ x: T, debug: Bool = false) -> String {
-    elementString(x, debug: debug, pretty: true)
-}
-
-func prettyArrayString<T>(_ xs: [T], debug: Bool = false) -> String {
-    let contents = xs.map { prettyElementString($0, debug: debug) }.joined(separator: ",\n")
-    return "[\n\(contents.indent(size: 4))\n]"
-}
-
-func prettyDictionaryString<K, V>(_ d: [K: V], debug: Bool) -> String {
-    let contents = d.map {
-        let key = valueString($0.key, debug: debug)
-        var value = prettyElementString($0.value, debug: debug)
-
-        if let head = value.lines.first {
-            value = head + "\n" + value.lines.dropFirst().joined(separator: "\n").indent(size: 9)
-        }
-        return "\(key): \(value)"
-    }.sorted().joined(separator: ",\n")
-
-    return "[\n\(contents.indent(size: 4))\n]"
 }
 
 // MARK: - util
@@ -84,7 +75,10 @@ func valueString<T>(_ target: T, debug: Bool) -> String {
     let mirror = Mirror(reflecting: target)
 
     // Note: this function currently supports Optional type that includes a child.
-    guard mirror.children.count <= 1 else { preconditionFailure("valueString() is must value that not has members") }
+    guard mirror.children.count <= 1 else {
+        // TODO: change to safe-api when official release
+        preconditionFailure("valueString() is must value that not has members")
+    }
 
     switch target {
     case let value as CustomDebugStringConvertible where debug:
@@ -107,5 +101,29 @@ func valueString<T>(_ target: T, debug: Bool) -> String {
         }
     default:
         preconditionFailure("Not supported type")
+    }
+}
+
+func extractKeyValues(from dictionary: Any) -> [(Any, Any)] {
+    Mirror(reflecting: dictionary).children.map {
+        // Note:
+        // Each element $0 structure are like following:
+        //
+        // ```
+        // - label : nil
+        // + value :          ->  `root`
+        //   - key   : "Two"  ->  `key`
+        //   - value : 2      ->  `value`
+        // ```
+
+        let root = Mirror(reflecting: $0.value)
+
+        guard
+            let key = root.children.first?.value,
+            let value = root.children.dropFirst().first?.value else {
+            preconditionFailure("Extract key or value is failed.")
+        }
+
+        return (key, value)
     }
 }
