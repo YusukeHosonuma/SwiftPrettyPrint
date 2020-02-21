@@ -1,5 +1,5 @@
 //
-//  FunctionTests.swift
+//  PrettyTests.swift
 //  SwiftPrettyPrintTests
 //
 //  Created by Yusuke Hosonuma on 2020/02/19.
@@ -8,7 +8,7 @@
 @testable import SwiftPrettyPrint
 import XCTest
 
-class FunctionTests: XCTestCase {
+class PrettyTests: XCTestCase {
     let pretty = Pretty()
 
     override func setUp() {}
