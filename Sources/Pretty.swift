@@ -7,15 +7,23 @@ class Pretty {
     ///   - debug: Enable debug-level output if `true` (like `debugPrint`)
     ///   - pretty: Enable pretty output if `true`
     func string<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
+        func _string(_ target: Any) -> String {
+            string(target, debug: debug, pretty: pretty) // fixed `debug` and `pretty`
+        }
+
+        func _value(_ target: Any) -> String {
+            valueString(target, debug: debug) // fixed `debug`
+        }
+
         let mirror = Mirror(reflecting: target)
 
         // Optional / Collection / Dictionary
         switch mirror.displayStyle {
         case .optional:
-            return valueString(target, debug: debug)
+            return _value(target)
 
         case .collection:
-            let elements = mirror.children.map { string($0.value, debug: debug, pretty: pretty) }
+            let elements = mirror.children.map { _string($0.value) }
             if pretty {
                 return """
                 [
@@ -29,16 +37,16 @@ class Pretty {
         case .dictionary:
             if pretty {
                 let contents = extractKeyValues(from: target).map { key, val in
-                    let label = valueString(key, debug: debug)
-                    let value = string(val, debug: debug, pretty: pretty).indentTail(size: "\(label): ".count)
+                    let label = _value(key)
+                    let value = _string(val).indentTail(size: "\(label): ".count)
                     return "\(label): \(value)"
                 }.sorted().joined(separator: ",\n")
 
                 return "[\n\(contents.indent(size: indent))\n]"
             } else {
                 let contents = extractKeyValues(from: target).map { key, val in
-                    let label = valueString(key, debug: debug)
-                    let value = string(val, debug: debug, pretty: pretty)
+                    let label = _value(key)
+                    let value = _string(val)
                     return "\(label): \(value)"
                 }.sorted().joined(separator: ", ")
 
@@ -51,12 +59,12 @@ class Pretty {
 
         // Empty
         if mirror.children.count == 0 {
-            return valueString(target, debug: debug)
+            return _value(target)
         }
 
         // ValueObject
         if !debug, mirror.children.count == 1, let value = mirror.children.first?.value {
-            return valueString(value, debug: debug)
+            return _value(value)
         }
 
         // Other
@@ -64,7 +72,7 @@ class Pretty {
 
         let prefix = "\(typeName)("
         let fields = mirror.children.map {
-            "\($0.label ?? "-"): " + string($0.value, debug: debug, pretty: pretty) // recursive call
+            "\($0.label ?? "-"): " + _string($0.value)
         }
 
         if pretty, fields.count > 1 {
@@ -89,12 +97,14 @@ class Pretty {
         switch target {
         case let value as CustomDebugStringConvertible where debug:
             return value.debugDescription
+
         case let value as CustomStringConvertible:
             if let string = value as? String {
                 return "\"\(string)\""
             } else {
                 return value.description
             }
+
         case let value as T?:
             if let value = value {
                 if let string = value as? String {
@@ -105,6 +115,7 @@ class Pretty {
             } else {
                 return "nil"
             }
+
         default:
             preconditionFailure("Not supported type")
         }
