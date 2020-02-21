@@ -1,7 +1,7 @@
 @testable import SwiftPrettyPrint
 import XCTest
 
-struct Dog {
+private struct Dog {
     var id: DogId
     var name: String?
     var nickname: String?
@@ -9,16 +9,16 @@ struct Dog {
     var homepage: URL?
 }
 
-struct DogId {
+private struct DogId {
     var rawValue: String
 }
 
 class DebugTests: XCTestCase {
-    let dog = Dog(id: DogId(rawValue: "pochi"),
-                  name: "ポチ",
-                  nickname: nil,
-                  age: 3,
-                  homepage: URL(string: "https://www.google.com/"))
+    fileprivate let dog = Dog(id: DogId(rawValue: "pochi"),
+                              name: "ポチ",
+                              nickname: nil,
+                              age: 3,
+                              homepage: URL(string: "https://www.google.com/"))
 
     override func setUp() {}
 
@@ -59,11 +59,19 @@ class DebugTests: XCTestCase {
         XCTAssertEqual(Debug.pString(dog, debug: true),
                        expectDebugString)
 
+        //
+        // Array
+        //
+
         XCTAssertEqual(Debug.pString([dog, dog], debug: false),
                        "[\(expectString), \(expectString)]")
 
         XCTAssertEqual(Debug.pString([dog, dog], debug: true),
                        "[\(expectDebugString), \(expectDebugString)]")
+
+        //
+        // Dictionary
+        //
 
         let dictionary: [String: Dog] = [
             "dog-1": dog,
