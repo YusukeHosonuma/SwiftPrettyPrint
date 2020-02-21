@@ -11,16 +11,15 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
         return valueString(x, debug: debug)
 
     case .collection:
+        let elements = mirror.children.map { elementString($0.value, debug: debug, pretty: pretty) }
         if pretty {
-            let contents = mirror.children
-                .map { elementString($0.value, debug: debug, pretty: pretty) }
-                .joined(separator: ",\n")
-            return "[\n\(contents.indent(size: 4))\n]"
+            return """
+            [
+            \(elements.joined(separator: ",\n").indent(size: 4))
+            ]
+            """
         } else {
-            let contents = mirror.children
-                .map { elementString($0.value, debug: debug, pretty: pretty) }
-                .joined(separator: ", ")
-            return "[\(contents)]"
+            return "[\(elements.joined(separator: ", "))]"
         }
 
     case .dictionary:
