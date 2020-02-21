@@ -1,4 +1,4 @@
-@testable import SwiftPrettyPrint
+import SwiftPrettyPrint // Note: don't use `@testable`, because test to public API
 import XCTest
 
 private struct Dog {

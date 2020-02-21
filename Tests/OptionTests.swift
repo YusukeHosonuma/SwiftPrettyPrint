@@ -5,7 +5,7 @@
 //  Created by Yusuke Hosonuma on 2020/02/21.
 //
 
-import SwiftPrettyPrint
+import SwiftPrettyPrint // Note: don't use `@testable`, because test to public API
 import XCTest
 
 class OptionTests: XCTestCase {
