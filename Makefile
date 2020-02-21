@@ -33,7 +33,7 @@ lint: ## cocoapods - lint podspec
 
 .PHONY: release
 release: ## cocoapods - release
-	bundle exec pod trunk push SwiftPrettyPrint
+	bundle exec pod trunk push SwiftPrettyPrint.podspec
 
 .PHONY: info
 info: ## cocoapods - show trunk information

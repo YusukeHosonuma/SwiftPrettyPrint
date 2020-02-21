@@ -2,7 +2,7 @@ name: Release to CocoaPods
 
 on:
   release:
-    types: [published, prereleased]
+    types: [prereleased]
 
 jobs:
   build:
@@ -22,6 +22,9 @@ jobs:
     - name: Setup
       run: |
         bundle
+
+    - name: Test
+      run: make test
 
     - name: Lint
       run: make lint

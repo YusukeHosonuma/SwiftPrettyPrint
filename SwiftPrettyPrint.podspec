@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "SwiftPrettyPrint"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.summary      = "Pretty print for debug in Swift"
   spec.description  = <<-DESC
   SwiftPrettyPrint is a library for debug in Swift.
