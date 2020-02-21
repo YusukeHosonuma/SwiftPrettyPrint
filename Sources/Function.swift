@@ -110,8 +110,20 @@ func valueString<T>(_ target: T, debug: Bool) -> String {
 
 func extractKeyValues(from dictionary: Any) -> [(Any, Any)] {
     Mirror(reflecting: dictionary).children.map {
-        let key = Mirror(reflecting: $0.value).children.first!.value
-        let value = Mirror(reflecting: $0.value).children.dropFirst().first!.value
+        // Note:
+        // Each element $0 structure are like following:
+        //
+        // ```
+        // - label : nil
+        // + value :          ->  `root`
+        //   - key   : "Two"  ->  `key`
+        //   - value : 2      ->  `value`
+        // ```
+
+        let root = Mirror(reflecting: $0.value)
+
+        let key = root.children.first!.value
+        let value = root.children.dropFirst().first!.value
         return (key, value)
     }
 }

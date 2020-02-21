@@ -51,4 +51,22 @@ class FunctionTests: XCTestCase {
         //                    age: 4)
         //                """)
     }
+
+    func test_extractKeyValues() throws {
+        let dictionary: [String: Int] = [
+            "One": 1,
+            "Two": 2,
+        ]
+
+        let result = extractKeyValues(from: dictionary) as? [(String, Int)]
+        var actual = try XCTUnwrap(result)
+
+        actual = actual.sorted { $0.1 < $1.1 } // sorted by value
+
+        XCTAssertEqual(actual.count, 2)
+        XCTAssertEqual(actual[0].0, "One")
+        XCTAssertEqual(actual[0].1, 1)
+        XCTAssertEqual(actual[1].0, "Two")
+        XCTAssertEqual(actual[1].1, 2)
+    }
 }
