@@ -2,7 +2,15 @@ platform :ios, '13.0'
 
 use_frameworks!
 
-pod "SwiftPrettyPrint", :configuration => "Debug"
+#
+# Install from local parent directory.
+#
+pod "SwiftPrettyPrint", :path => "../", :configuration => "Debug"
+
+#
+# Typical: install from CocoaPods repository.
+#
+# pod "SwiftPrettyPrint", :configuration => "Debug"
 
 target 'SwiftPrettyPrintExample' do
   target 'SwiftPrettyPrintExampleTests' do

@@ -77,10 +77,11 @@ Dependencies/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+Example/fastlane/report.xml
+Example/fastlane/Preview.html
+Example/fastlane/screenshots/**/*.png
+Example/fastlane/test_output
+Example/fastlane/README.md
 
 # Code Injection
 #
