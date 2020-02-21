@@ -14,26 +14,26 @@ class String_extensionTests: XCTestCase {
     override func tearDown() {}
 
     func test_indentTail() {
+        XCTAssertEqual("Single line".indentTail(size: 4), "Single line")
+
         let text = """
         Apple
         Orange
         Banana
         """
 
-        XCTAssertEqual("Single line".indentTail(size: 4), "Single line")
+        var expected = """
+        Apple
+          Orange
+          Banana
+        """
+        XCTAssertEqual(text.indentTail(size: 2), expected)
 
-        XCTAssertEqual(text.indentTail(size: 2),
-                       """
-                       Apple
-                         Orange
-                         Banana
-                       """)
-
-        XCTAssertEqual(text.indentTail(size: 4),
-                       """
-                       Apple
-                           Orange
-                           Banana
-                       """)
+        expected = """
+        Apple
+            Orange
+            Banana
+        """
+        XCTAssertEqual(text.indentTail(size: 4), expected)
     }
 }
