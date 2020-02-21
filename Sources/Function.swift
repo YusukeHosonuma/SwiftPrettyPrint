@@ -1,14 +1,12 @@
 // MARK: - print
 
-func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
-    let mirror = Mirror(reflecting: x)
-
-    let typeName = String(describing: mirror.subjectType)
+func elementString<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
+    let mirror = Mirror(reflecting: target)
 
     // Optional / Collection / Dictionary
     switch mirror.displayStyle {
     case .optional:
-        return valueString(x, debug: debug)
+        return valueString(target, debug: debug)
 
     case .collection:
         let elements = mirror.children.map { elementString($0.value, debug: debug, pretty: pretty) }
@@ -24,7 +22,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
 
     case .dictionary:
         if pretty {
-            let contents = extractKeyValues(from: x).map { key, val in
+            let contents = extractKeyValues(from: target).map { key, val in
                 let label = valueString(key, debug: debug)
                 let value = elementString(val, debug: debug, pretty: pretty).indentTail(size: "\(label): ".count)
                 return "\(label): \(value)"
@@ -32,7 +30,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
 
             return "[\n\(contents.indent(size: 4))\n]"
         } else {
-            let contents = extractKeyValues(from: x).map { key, val in
+            let contents = extractKeyValues(from: target).map { key, val in
                 let label = valueString(key, debug: debug)
                 let value = elementString(val, debug: debug, pretty: pretty)
                 return "\(label): \(value)"
@@ -47,7 +45,7 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
 
     // Empty
     if mirror.children.count == 0 {
-        return valueString(x, debug: debug)
+        return valueString(target, debug: debug)
     }
 
     // ValueObject
@@ -57,6 +55,8 @@ func elementString<T: Any>(_ x: T, debug: Bool, pretty: Bool) -> String {
     }
 
     // Other
+    let typeName = String(describing: mirror.subjectType)
+
     let prefix = "\(typeName)("
     let fields = mirror.children.map {
         "\($0.label ?? "-"): " + elementString($0.value, debug: debug, pretty: pretty) // recursive call
