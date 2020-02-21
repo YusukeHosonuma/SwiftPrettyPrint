@@ -49,8 +49,7 @@ func elementString<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
     }
 
     // ValueObject
-    if mirror.children.count == 1, !debug {
-        let value = mirror.children.first!.value // TODO: change to safe-api when official release
+    if !debug, mirror.children.count == 1, let value = mirror.children.first?.value {
         return valueString(value, debug: debug)
     }
 
@@ -63,13 +62,10 @@ func elementString<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
     }
 
     if pretty, fields.count > 1 {
-        let tailFields = fields.dropFirst()
-            .map { $0.indent(size: prefix.count) }
-            .joined(separator: ",\n")
-
-        return "\(prefix)\(fields.first!),\n\(tailFields))"
+        let contents = prefix + fields.joined(separator: ",\n") + ")"
+        return contents.indentTail(size: prefix.count)
     } else {
-        return "\(prefix)\(fields.joined(separator: ", ")))"
+        return prefix + fields.joined(separator: ", ") + ")"
     }
 }
 
@@ -122,8 +118,12 @@ func extractKeyValues(from dictionary: Any) -> [(Any, Any)] {
 
         let root = Mirror(reflecting: $0.value)
 
-        let key = root.children.first!.value
-        let value = root.children.dropFirst().first!.value
+        guard
+            let key = root.children.first?.value,
+            let value = root.children.dropFirst().first?.value else {
+            preconditionFailure("Extract key or value is failed.")
+        }
+
         return (key, value)
     }
 }
