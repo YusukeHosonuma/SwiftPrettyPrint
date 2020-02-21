@@ -59,7 +59,11 @@ class FunctionTests: XCTestCase {
         ]
 
         let result = extractKeyValues(from: dictionary) as? [(String, Int)]
-        var actual = try XCTUnwrap(result)
+
+        // Note:
+        // XCTUnwrap is not supported Swift Package Manager currently.
+        var actual = result!
+        // var actual = try XCTUnwrap(result)
 
         actual = actual.sorted { $0.1 < $1.1 } // sorted by value
 
