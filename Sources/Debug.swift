@@ -5,6 +5,8 @@ public class Debug {
     private init() {}
 }
 
+private let pretty = Pretty()
+
 // MARK: Print to console
 
 extension Debug {
@@ -21,10 +23,10 @@ extension Debug {
 
 extension Debug {
     public static func pString<T>(_ target: T, debug: Bool = false) -> String {
-        elementString(target, debug: debug, pretty: false)
+        pretty.elementString(target, debug: debug, pretty: false)
     }
 
     public static func ppString<T>(_ target: T, debug: Bool = false) -> String {
-        elementString(target, debug: debug, pretty: true)
+        pretty.elementString(target, debug: debug, pretty: true)
     }
 }
