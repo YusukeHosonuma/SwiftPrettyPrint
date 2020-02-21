@@ -1,4 +1,7 @@
 public class Debug {
+    public static let defaultOption = Option(indent: 4)
+    public static var option: Option = Debug.defaultOption
+
     private init() {}
 }
 

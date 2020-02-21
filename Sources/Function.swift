@@ -13,7 +13,7 @@ func elementString<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
         if pretty {
             return """
             [
-            \(elements.joined(separator: ",\n").indent(size: 4))
+            \(elements.joined(separator: ",\n").indent(size: Debug.option.indent))
             ]
             """
         } else {
@@ -28,7 +28,7 @@ func elementString<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
                 return "\(label): \(value)"
             }.sorted().joined(separator: ",\n")
 
-            return "[\n\(contents.indent(size: 4))\n]"
+            return "[\n\(contents.indent(size: Debug.option.indent))\n]"
         } else {
             let contents = extractKeyValues(from: target).map { key, val in
                 let label = valueString(key, debug: debug)
