@@ -92,13 +92,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		OBJ_12 /* Tests */ = {
+		E5FFB23B240118EF008556A2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* String+extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E5FFB23C24011901008556A2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E5FFB23D24011920008556A2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_10 /* Pretty.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E5FFB23E24011930008556A2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E5FFB240240119C0008556A2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* Debug.swift */,
+				E522E35523FFB58A00C42B78 /* Option.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		E5FFB241240119CD008556A2 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_13 /* DebugTests.swift */,
 				E522E35723FFB5C400C42B78 /* OptionTests.swift */,
-				E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */,
-				E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		OBJ_12 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E5FFB241240119CD008556A2 /* API */,
+				E5FFB23E24011930008556A2 /* Core */,
+				E5FFB23C24011901008556A2 /* Extension */,
 				OBJ_14 /* XCTestManifests.swift */,
 			);
 			path = Tests;
@@ -133,10 +182,9 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* Debug.swift */,
-				E522E35523FFB58A00C42B78 /* Option.swift */,
-				OBJ_10 /* Pretty.swift */,
-				OBJ_11 /* String+extension.swift */,
+				E5FFB240240119C0008556A2 /* API */,
+				E5FFB23D24011920008556A2 /* Core */,
+				E5FFB23B240118EF008556A2 /* Extension */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
