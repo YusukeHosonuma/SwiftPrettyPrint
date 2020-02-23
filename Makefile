@@ -39,6 +39,12 @@ release: ## cocoapods - release
 info: ## cocoapods - show trunk information
 	bundle exec pod trunk info SwiftPrettyPrint
 
+.PHONY: integration-test
+integration-test: ## Integration test by Example app
+	cd ./Example && \
+	bundle exec pod update && \
+	bundle exec fastlane test
+
 # ----------------
 # Trouble shooting
 # ----------------

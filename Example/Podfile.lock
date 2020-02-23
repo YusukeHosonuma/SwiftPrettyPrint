@@ -2,15 +2,15 @@ PODS:
   - SwiftPrettyPrint (0.0.2)
 
 DEPENDENCIES:
-  - SwiftPrettyPrint
+  - SwiftPrettyPrint (from `../`)
 
-SPEC REPOS:
-  trunk:
-    - SwiftPrettyPrint
+EXTERNAL SOURCES:
+  SwiftPrettyPrint:
+    :path: "../"
 
 SPEC CHECKSUMS:
   SwiftPrettyPrint: a7a7dd9b3bdfaab1c07e678bb140afa044115b44
 
-PODFILE CHECKSUM: 11aa0c16e568ed1e205c559083d9c4c0183217b6
+PODFILE CHECKSUM: e57c1331f81ff220ccc169627a83df5238a8e57f
 
 COCOAPODS: 1.8.4
