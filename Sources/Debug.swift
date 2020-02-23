@@ -1,6 +1,11 @@
 public class Debug {
+    public static let defaultOption = Option(indent: 4)
+    public static var option: Option = Debug.defaultOption
+
     private init() {}
 }
+
+private let pretty = Pretty()
 
 // MARK: Print to console
 
@@ -18,10 +23,10 @@ extension Debug {
 
 extension Debug {
     public static func pString<T>(_ target: T, debug: Bool = false) -> String {
-        elementString(target, debug: debug, pretty: false)
+        pretty.string(target, debug: debug, pretty: false)
     }
 
     public static func ppString<T>(_ target: T, debug: Bool = false) -> String {
-        elementString(target, debug: debug, pretty: true)
+        pretty.string(target, debug: debug, pretty: true)
     }
 }

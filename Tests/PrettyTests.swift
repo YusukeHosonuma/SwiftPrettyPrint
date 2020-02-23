@@ -1,5 +1,5 @@
 //
-//  FunctionTests.swift
+//  PrettyTests.swift
 //  SwiftPrettyPrintTests
 //
 //  Created by Yusuke Hosonuma on 2020/02/19.
@@ -8,12 +8,14 @@
 @testable import SwiftPrettyPrint
 import XCTest
 
-class FunctionTests: XCTestCase {
+class PrettyTests: XCTestCase {
+    let pretty = Pretty()
+
     override func setUp() {}
 
     override func tearDown() {}
 
-    func test_elementString_struct_in_struct() {
+    func test_string_struct_in_struct() {
         struct Dog {
             var name: String
             var owner: Owner
@@ -33,16 +35,16 @@ class FunctionTests: XCTestCase {
         let owner = Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")
         let dog = Dog(name: "Pochi", owner: owner, age: nil)
 
-        XCTAssertEqual(elementString(dog, debug: false, pretty: false),
+        XCTAssertEqual(pretty.string(dog, debug: false, pretty: false),
                        #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
 
-        XCTAssertEqual(elementString(dog, debug: true, pretty: false),
+        XCTAssertEqual(pretty.string(dog, debug: true, pretty: false),
                        #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
 
         //
         // TODO: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/25
         //
-        // XCTAssertEqual(elementString(dog, debug: false, pretty: true),
+        // XCTAssertEqual(pretty.string(dog, debug: false, pretty: true),
         //                """
         //                Dog(name: "Pochi",
         //                    owner: Owner(name: "Nanachi",
@@ -58,7 +60,7 @@ class FunctionTests: XCTestCase {
             "Two": 2,
         ]
 
-        let result = extractKeyValues(from: dictionary) as? [(String, Int)]
+        let result = pretty.extractKeyValues(from: dictionary) as? [(String, Int)]
 
         // Note:
         // XCTUnwrap is not supported Swift Package Manager currently.
