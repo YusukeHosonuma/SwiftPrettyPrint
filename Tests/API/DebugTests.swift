@@ -24,7 +24,7 @@ class DebugTests: XCTestCase {
 
     override func tearDown() {}
 
-    func test_pString() {
+    func testPrint() {
         //
         // Struct
         //
@@ -35,20 +35,20 @@ class DebugTests: XCTestCase {
         let expectDebugString =
             #"Dog(id: DogId(rawValue: "pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))"#
 
-        XCTAssertEqual(Debug.pString(dog, debug: false),
+        XCTAssertEqual(Debug.print(dog),
                        expectString)
 
-        XCTAssertEqual(Debug.pString(dog, debug: true),
+        XCTAssertEqual(Debug.debugPrint(dog),
                        expectDebugString)
 
         //
         // Array
         //
 
-        XCTAssertEqual(Debug.pString([dog, dog], debug: false),
+        XCTAssertEqual(Debug.print([dog, dog]),
                        "[\(expectString), \(expectString)]")
 
-        XCTAssertEqual(Debug.pString([dog, dog], debug: true),
+        XCTAssertEqual(Debug.debugPrint([dog, dog]),
                        "[\(expectDebugString), \(expectDebugString)]")
 
         //
@@ -63,19 +63,19 @@ class DebugTests: XCTestCase {
         print(dictionary)
         // => ["dog-1": SwiftPrettyPrint.Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/)), "dog-2": SwiftPrettyPrint.Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))]
 
-        XCTAssertEqual(Debug.pString(dictionary),
+        XCTAssertEqual(Debug.print(dictionary),
                        #"["dog-1": \#(expectString), "dog-2": \#(expectString)]"#)
 
-        XCTAssertEqual(Debug.pString(dictionary, debug: true),
+        XCTAssertEqual(Debug.debugPrint(dictionary),
                        #"["dog-1": \#(expectDebugString), "dog-2": \#(expectDebugString)]"#)
     }
 
-    func test_ppString() {
+    func testPretyPrint() {
         //
         // Struct
         //
 
-        XCTAssertEqual(Debug.ppString(dog, debug: false),
+        XCTAssertEqual(Debug.prettyPrint(dog),
                        """
                        Dog(id: "pochi",
                            name: "ポチ",
@@ -84,7 +84,7 @@ class DebugTests: XCTestCase {
                            homepage: https://www.google.com/)
                        """)
 
-        XCTAssertEqual(Debug.ppString(dog, debug: true),
+        XCTAssertEqual(Debug.debugPrettyPrint(dog),
                        """
                        Dog(id: DogId(rawValue: "pochi"),
                            name: Optional("ポチ"),
@@ -93,7 +93,7 @@ class DebugTests: XCTestCase {
                            homepage: Optional(https://www.google.com/))
                        """)
 
-        XCTAssertEqual(Debug.ppString([dog, dog], debug: false),
+        XCTAssertEqual(Debug.prettyPrint([dog, dog]),
                        """
                        [
                            Dog(id: "pochi",
@@ -109,7 +109,7 @@ class DebugTests: XCTestCase {
                        ]
                        """)
 
-        XCTAssertEqual(Debug.ppString([dog, dog], debug: true),
+        XCTAssertEqual(Debug.debugPrettyPrint([dog, dog]),
                        """
                        [
                            Dog(id: DogId(rawValue: "pochi"),
@@ -130,9 +130,7 @@ class DebugTests: XCTestCase {
             "dog-2": dog,
         ]
 
-        Debug.pp(dictionary)
-
-        XCTAssertEqual(Debug.ppString(dictionary, debug: false),
+        XCTAssertEqual(Debug.prettyPrint(dictionary),
                        """
                        [
                            "dog-1": Dog(id: "pochi",
@@ -148,7 +146,7 @@ class DebugTests: XCTestCase {
                        ]
                        """)
 
-        XCTAssertEqual(Debug.ppString(dictionary, debug: true),
+        XCTAssertEqual(Debug.debugPrettyPrint(dictionary),
                        """
                        [
                            "dog-1": Dog(id: DogId(rawValue: "pochi"),
