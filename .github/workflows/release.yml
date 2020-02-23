@@ -5,7 +5,7 @@ on:
     types: [prereleased]
 
 jobs:
-  build:
+  release:
     runs-on: macos-latest
 
     steps:
@@ -20,11 +20,13 @@ jobs:
           bundler-${{ hashFiles('Gemfile.lock') }}
 
     - name: Setup
-      run: |
-        bundle
+      run: bundle
 
-    - name: Test
+    - name: Run Unit Test
       run: make test
+
+    - name: Run Integration Test
+      run: make integration-test
 
     - name: Lint
       run: make lint
@@ -33,3 +35,41 @@ jobs:
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
       run: make release
+
+    - name: Write result
+      if: always()
+      run: echo ${{ job.status }} > job-result.txt
+
+    - name: Upload job result for job slack-notify
+      if: always()
+      uses: actions/upload-artifact@v1
+      with:
+        name: result
+        path: job-result.txt
+
+  slack-notify:
+    runs-on: ubuntu-latest
+    needs: release
+    if: always()
+
+    steps:
+    - name: Download result for job slack-notify
+      uses: actions/download-artifact@v1
+      with:
+        name: result
+
+    - run: echo "::set-env name=JOB_RESULT::`cat ./result/job-result.txt`"
+
+    # Note:
+    # This action is run ubuntu only, because jobs are separated.
+    - name: Slack Notification
+      if: always()
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_CHANNEL: swift-pretty-print-notify
+        SLACK_COLOR: ${{ (env.JOB_RESULT == 'success' && 'good') || 'danger' }}
+        SLACK_ICON: https://github.com/Penginmura.png?size=48
+        SLACK_MESSAGE: ${{ env.JOB_RESULT }}
+        SLACK_TITLE: Release
+        SLACK_USERNAME: Bot
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
