@@ -1,0 +1,35 @@
+name: Release to CocoaPods
+
+on:
+  release:
+    types: [prereleased]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache bundler
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: bundler-${{ hashFiles('Gemfile.lock') }}
+        restore-keys: |
+          bundler-${{ hashFiles('Gemfile.lock') }}
+
+    - name: Setup
+      run: |
+        bundle
+
+    - name: Test
+      run: make test
+
+    - name: Lint
+      run: make lint
+
+    - name: Deploy to CocoaPods
+      env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+      run: make release
