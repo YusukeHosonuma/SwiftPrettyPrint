@@ -10,6 +10,9 @@ private let pretty = Pretty()
 // MARK: Standard API
 
 extension Debug {
+    /// Output `target` to console.
+    /// - Parameter target: target
+    /// - Returns: String that same of output console.
     @discardableResult
     public static func print(_ target: Any) -> String {
         let string = pretty.string(target, debug: false, pretty: false)
@@ -17,6 +20,9 @@ extension Debug {
         return string
     }
 
+    /// Output pretty-formatted `target` to console.
+    /// - Parameter target: target
+    /// - Returns: String that same of output console.
     @discardableResult
     public static func prettyPrint(_ target: Any) -> String {
         let string = pretty.string(target, debug: false, pretty: true)
@@ -24,6 +30,9 @@ extension Debug {
         return string
     }
 
+    /// Output debuggable `target` to console.
+    /// - Parameter target: target
+    /// - Returns: String that same of output console.
     @discardableResult
     public static func debugPrint(_ target: Any) -> String {
         let string = pretty.string(target, debug: true, pretty: false)
@@ -31,6 +40,9 @@ extension Debug {
         return string
     }
 
+    /// Output debuggable and pretty-formatted `target` to console.
+    /// - Parameter target: target
+    /// - Returns: String that same of output console.
     @discardableResult
     public static func debugPrettyPrint(_ target: Any) -> String {
         let string = pretty.string(target, debug: true, pretty: true)
@@ -42,6 +54,11 @@ extension Debug {
 // MARK: Alias API
 
 extension Debug {
+    /// Alias to `print()` and `debugPrint`
+    /// - Parameters:
+    ///   - target: target
+    ///   - debug: debuggable output if `true` (default: `false`)
+    /// - Returns: String that same of output console.
     @discardableResult
     public static func p<T>(_ target: T, debug: Bool = false) -> String {
         if debug {
@@ -51,6 +68,11 @@ extension Debug {
         }
     }
 
+    /// Alias to `prettyPrint()` and `debugPrettyPrint`
+    /// - Parameters:
+    ///   - target: target
+    ///   - debug: debuggable output if `true` (default: `false`)
+    /// - Returns: String that same of output console.
     @discardableResult
     public static func pp<T>(_ target: T, debug: Bool = false) -> String {
         if debug {
