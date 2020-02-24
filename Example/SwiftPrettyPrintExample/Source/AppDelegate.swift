@@ -6,11 +6,17 @@
 //  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
+import SwiftPrettyPrint
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // -------------------------
+        // Configure format-options
+        // -------------------------
+        Debug.sharedOption = Option(indent: 4)
+
         // --------
         // Example
         // --------
@@ -19,11 +25,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Debug.print(dog)
         // => Dog(id: "pochi", price: 10.0, name: "ポチ")
 
-        Debug.prettyPrint(dog)
+        Debug.prettyPrint([dog, dog])
         // =>
-        // Dog(id: "pochi",
-        //     price: 10.0,
-        //     name: "ポチ")
+        // [
+        //     Dog(id: "pochi",
+        //         price: 10.0,
+        //         name: "ポチ"),
+        //     Dog(id: "pochi",
+        //         price: 10.0,
+        //         name: "ポチ")
+        // ]
+
+        Debug.prettyPrint(["one": dog, "two": dog], option: Option(indent: 2))
+        // =>
+        // [
+        //   "one": Dog(id: "pochi",
+        //              price: 10.0,
+        //              name: "ポチ"),
+        //   "two": Dog(id: "pochi",
+        //              price: 10.0,
+        //              name: "ポチ")
+        // ]
 
         Debug.debugPrint(dog)
         // => Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: Optional("ポチ"))
@@ -39,6 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // -------------------
         print(dog)
         // => Dog(id: SwiftPrettyPrintExample.DogId(rawValue: "pochi"), price: SwiftPrettyPrintExample.Price(rawValue: 10.0), name: Optional("ポチ"))
+
+        print([dog, dog])
+        // => [SwiftPrettyPrintExample.Dog(id: SwiftPrettyPrintExample.DogId(rawValue: "pochi"), price: SwiftPrettyPrintExample.Price(rawValue: 10.0), name: Optional("ポチ")), SwiftPrettyPrintExample.Dog(id: SwiftPrettyPrintExample.DogId(rawValue: "pochi"), price: SwiftPrettyPrintExample.Price(rawValue: 10.0), name: Optional("ポチ"))]
 
         debugPrint(dog)
         // => SwiftPrettyPrintExample.Dog(id: SwiftPrettyPrintExample.DogId(rawValue: "pochi"), price: SwiftPrettyPrintExample.Price(rawValue: 10.0), name: Optional("ポチ"))
