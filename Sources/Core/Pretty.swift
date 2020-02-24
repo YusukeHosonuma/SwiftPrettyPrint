@@ -1,5 +1,7 @@
-class Pretty {
-    private var indent: Int { Debug.option.indent }
+struct Pretty {
+    let option: Option
+
+    private var indent: Int { option.indent }
 
     /// Get pretty string for `target`.
     /// - Parameters:

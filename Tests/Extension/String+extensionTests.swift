@@ -13,7 +13,7 @@ class String_extensionTests: XCTestCase {
 
     override func tearDown() {}
 
-    func test_indentTail() {
+    func testIndentTail() {
         XCTAssertEqual("Single line".indentTail(size: 4), "Single line")
 
         let text = """
