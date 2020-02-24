@@ -57,15 +57,12 @@ class PrettyTests: XCTestCase {
 
         //
         // URL
-        // TODO: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/23
         //
 
         XCTAssertEqual(pretty.string(URL(string: "https://www.google.com/")!, debug: false, pretty: false),
                        "https://www.google.com/")
-
-        // FIXME: this test has failed currently
-        // XCTAssertEqual(pretty.string(URL(string: "https://www.google.com/")!, debug: true, pretty: false),
-        //               #"URL("https://www.google.com/")"#)
+        XCTAssertEqual(pretty.string(URL(string: "https://www.google.com/")!, debug: true, pretty: false),
+                       #"URL("https://www.google.com/")"#)
 
         // TODO: add test pattern
     }
