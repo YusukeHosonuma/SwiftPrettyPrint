@@ -22,7 +22,7 @@ extension Debug {
 
     /// Output pretty-formatted `target` to console.
     /// - Parameter target: target
-    /// - Returns: String that same of output console.
+    /// - Returns: String that is the same as output console.
     @discardableResult
     public static func prettyPrint(_ target: Any) -> String {
         let string = pretty.string(target, debug: false, pretty: true)
@@ -32,7 +32,7 @@ extension Debug {
 
     /// Output debuggable `target` to console.
     /// - Parameter target: target
-    /// - Returns: String that same of output console.
+    /// - Returns: String that is the same as output console.
     @discardableResult
     public static func debugPrint(_ target: Any) -> String {
         let string = pretty.string(target, debug: true, pretty: false)
@@ -42,7 +42,7 @@ extension Debug {
 
     /// Output debuggable and pretty-formatted `target` to console.
     /// - Parameter target: target
-    /// - Returns: String that same of output console.
+    /// - Returns: String that is the same as output console.
     @discardableResult
     public static func debugPrettyPrint(_ target: Any) -> String {
         let string = pretty.string(target, debug: true, pretty: true)
@@ -58,7 +58,7 @@ extension Debug {
     /// - Parameters:
     ///   - target: target
     ///   - debug: debuggable output if `true` (default: `false`)
-    /// - Returns: String that same of output console.
+    /// - Returns: String that is the same as output console.
     @discardableResult
     public static func p<T>(_ target: T, debug: Bool = false) -> String {
         if debug {
@@ -72,7 +72,7 @@ extension Debug {
     /// - Parameters:
     ///   - target: target
     ///   - debug: debuggable output if `true` (default: `false`)
-    /// - Returns: String that same of output console.
+    /// - Returns: String that is the same as output console.
     @discardableResult
     public static func pp<T>(_ target: T, debug: Bool = false) -> String {
         if debug {
