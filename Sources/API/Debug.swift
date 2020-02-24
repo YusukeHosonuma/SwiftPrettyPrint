@@ -12,7 +12,7 @@ private let pretty = Pretty()
 extension Debug {
     /// Output `target` to console.
     /// - Parameter target: target
-    /// - Returns: String that same of output console.
+    /// - Returns: String that is the same as output console.
     @discardableResult
     public static func print(_ target: Any) -> String {
         let string = pretty.string(target, debug: false, pretty: false)
@@ -54,7 +54,7 @@ extension Debug {
 // MARK: Alias API
 
 extension Debug {
-    /// Alias to `print()` and `debugPrint`
+    /// Alias to `print()` and `debugPrint()`
     /// - Parameters:
     ///   - target: target
     ///   - debug: debuggable output if `true` (default: `false`)
@@ -68,7 +68,7 @@ extension Debug {
         }
     }
 
-    /// Alias to `prettyPrint()` and `debugPrettyPrint`
+    /// Alias to `prettyPrint()` and `debugPrettyPrint()`
     /// - Parameters:
     ///   - target: target
     ///   - debug: debuggable output if `true` (default: `false`)

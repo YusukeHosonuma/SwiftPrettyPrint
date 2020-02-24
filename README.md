@@ -9,7 +9,7 @@
 
 ![Logo](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/logo.png)
 
-Pretty print that **Human-readable output** than `print()` and `debugPrint()` in Swift standard library.
+Pretty print that is **Human-readable output** than `print()` and `debugPrint()` in Swift standard library.
 
 ![Screenshot](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/screenshot.png)
 
