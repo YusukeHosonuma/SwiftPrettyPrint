@@ -160,3 +160,7 @@ lint       cocoapods - lint podspec
 release    cocoapods - release
 info       cocoapods - show trunk information
 ```
+
+## Contributors
+
+- [@sahara-ooga](https://github.com/sahara-ooga)

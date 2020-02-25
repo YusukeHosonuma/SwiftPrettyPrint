@@ -1,3 +1,5 @@
+import Foundation
+
 struct Pretty {
     let option: Option
 
@@ -73,6 +75,12 @@ struct Pretty {
         let typeName = String(describing: mirror.subjectType)
 
         let prefix = "\(typeName)("
+        
+        if typeName == "URL" {
+            let field = mirror.children.first?.value as! NSURL
+            return prefix + "\"" + field.absoluteString! + "\"" + ")"
+        }
+
         let fields = mirror.children.map {
             "\($0.label ?? "-"): " + _string($0.value)
         }
