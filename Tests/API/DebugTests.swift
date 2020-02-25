@@ -13,6 +13,8 @@ private struct DogId {
     var rawValue: String
 }
 
+// TODO: organize test to comprehensive
+
 class DebugTests: XCTestCase {
     fileprivate let dog = Dog(id: DogId(rawValue: "pochi"),
                               name: "ポチ",
@@ -59,9 +61,6 @@ class DebugTests: XCTestCase {
             "dog-1": dog,
             "dog-2": dog,
         ]
-
-        print(dictionary)
-        // => ["dog-1": SwiftPrettyPrint.Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/)), "dog-2": SwiftPrettyPrint.Dog(id: DogId("pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))]
 
         XCTAssertEqual(Debug.print(dictionary),
                        #"["dog-1": \#(expectString), "dog-2": \#(expectString)]"#)

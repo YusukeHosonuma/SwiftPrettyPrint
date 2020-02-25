@@ -1,7 +1,9 @@
 import Foundation
 
-class Pretty {
-    private var indent: Int { Debug.option.indent }
+struct Pretty {
+    let option: Debug.Option
+
+    private var indent: Int { option.indent }
 
     /// Get pretty string for `target`.
     /// - Parameters:
@@ -73,7 +75,7 @@ class Pretty {
         let typeName = String(describing: mirror.subjectType)
 
         let prefix = "\(typeName)("
-        
+
         if typeName == "URL" {
             let field = mirror.children.first?.value as! NSURL
             return prefix + "\"" + field.absoluteString! + "\"" + ")"

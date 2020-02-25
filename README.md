@@ -78,7 +78,7 @@ github "YusukeHosonuma/SwiftPrettyPrint"
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", from: "0.0.2"),
+    .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", from: "0.0.3"),
 ]
 ```
 
@@ -104,6 +104,31 @@ This can be not need to `import` as follows:
 ```swift
 let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
 Debug.print(dog)
+```
+
+## Format options
+
+You can configure format option, shared or passed by arguments:
+
+```swift
+// Global option
+Debug.sharedOption = Debug.Option(indent: 4)
+
+// Use `sharedOption`
+Debug.prettyPrint(["Hello", "World"])
+// =>
+// [
+//     "Hello",
+//     "World"
+// ]
+
+// Use option that is passed by argument
+Debug.prettyPrint(["Hello", "World"], option: Debug.Option(indent: 2))
+// =>
+// [
+//   "Hello",
+//   "World"
+// ]
 ```
 
 ## Alias API - `p()` and `pp()`

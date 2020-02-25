@@ -9,7 +9,7 @@
 import XCTest
 
 class PrettyTests: XCTestCase {
-    let pretty = Pretty()
+    let pretty = Pretty(option: Debug.defaultOption)
 
     override func setUp() {}
 
