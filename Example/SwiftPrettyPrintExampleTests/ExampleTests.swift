@@ -16,7 +16,7 @@ class SwiftPrettyPrintExampleTests: XCTestCase {
 
     func testExample() {
         let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
-        XCTAssertEqual(Debug.pString(dog),
+        XCTAssertEqual(Debug.print(dog),
                        #"Dog(id: "pochi", price: 10.0, name: "ポチ")"#)
     }
 }

@@ -9,7 +9,7 @@
 
 ![Logo](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/logo.png)
 
-Pretty print for debug that readable output than `print()` and `debugPrint()`.
+Pretty print that is **Human-readable output** than `print()` and `debugPrint()` in Swift standard library.
 
 ![Screenshot](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/screenshot.png)
 
@@ -51,10 +51,10 @@ but not human-readable for when forcusing on the values.
 With SwiftPrittyPrint it looks like this:
 
 ```swift
-Debug.p(dog)
+Debug.print(dog)
 // => Dog(id: "pochi", price: 10.0, name: "ポチ")
 
-Debug.p(dog, debug: true)
+Debug.debugPrint(dog)
 // => Dog(id: DogId(rawValue: "pochi"), price: Price(10.0), name: Optional("ポチ"))
 ```
 
@@ -103,8 +103,17 @@ This can be not need to `import` as follows:
 
 ```swift
 let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
-Debug.p(dog)
+Debug.print(dog)
 ```
+
+## Alias API - `p()` and `pp()`
+
+You can use `p()` and `pp()` that like Ruby's API.
+
+- `p(_:, debug: Bool = false)`
+  - Equatable to `print()` and `debugPrint()`
+- `pp(_:, debug: Bool = false)`
+  - Equatable to `prettyPrint()` and `debugPrettyPrint()`
 
 ## Develoopment
 

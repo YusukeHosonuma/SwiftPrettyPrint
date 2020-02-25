@@ -18,7 +18,7 @@ class OptionTests: XCTestCase {
     func testExample() {
         Debug.option = Option(indent: 2)
 
-        XCTAssertEqual(Debug.ppString(["Hello", "World"], debug: false),
+        XCTAssertEqual(Debug.prettyPrint(["Hello", "World"]),
                        """
                        [
                          "Hello",
@@ -26,7 +26,7 @@ class OptionTests: XCTestCase {
                        ]
                        """)
 
-        XCTAssertEqual(Debug.ppString(["One": 1, "Two": 2], debug: false),
+        XCTAssertEqual(Debug.prettyPrint(["One": 1, "Two": 2]),
                        """
                        [
                          "One": 1,
