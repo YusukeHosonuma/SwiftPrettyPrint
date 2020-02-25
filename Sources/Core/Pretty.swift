@@ -174,14 +174,15 @@ struct Pretty {
 
     func dumpError(error: Error) {
         let message = """
+        
         ---------------------------------------------------------
         Fatal error in SwiftPrettyPrint.
         ---------------------------------------------------------
-        Detail: \(error.localizedDescription)
-
+        \(error.localizedDescription)
         Please report issue from below:
         https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues
         ---------------------------------------------------------
+        
         """
         print(message)
     }
