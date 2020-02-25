@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // -------------------------
         // Configure format-options
         // -------------------------
-        Debug.sharedOption = Option(indent: 4)
+        Debug.sharedOption = Debug.Option(indent: 4)
 
         // --------
         // Example
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //         name: "ポチ")
         // ]
 
-        Debug.prettyPrint(["one": dog, "two": dog], option: Option(indent: 2))
+        Debug.prettyPrint(["one": dog, "two": dog], option: Debug.Option(indent: 2))
         // =>
         // [
         //   "one": Dog(id: "pochi",

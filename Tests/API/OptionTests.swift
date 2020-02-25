@@ -19,7 +19,7 @@ class OptionTests: XCTestCase {
     }
 
     func testIndent() {
-        let option = Option(indent: 2)
+        let option = Debug.Option(indent: 2)
 
         XCTAssertEqual(Debug.prettyPrint(array, option: option),
                        """
@@ -39,7 +39,7 @@ class OptionTests: XCTestCase {
     }
 
     func testSharedOption() {
-        Debug.sharedOption = Option(indent: 2)
+        Debug.sharedOption = Debug.Option(indent: 2)
 
         var expected: String
 
@@ -71,7 +71,7 @@ class OptionTests: XCTestCase {
         // Use `option` that passed by arguments.
         //
 
-        let option = Option(indent: 4)
+        let option = Debug.Option(indent: 4)
 
         // debug = `false`
         expected = """

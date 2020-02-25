@@ -112,7 +112,7 @@ You can configure format option, shared or passed by arguments:
 
 ```swift
 // Global option
-Debug.sharedOption = Option(indent: 4)
+Debug.sharedOption = Debug.Option(indent: 4)
 
 // Use `sharedOption`
 Debug.prettyPrint(["Hello", "World"])
@@ -123,7 +123,7 @@ Debug.prettyPrint(["Hello", "World"])
 // ]
 
 // Use option that is passed by argument
-Debug.prettyPrint(["Hello", "World"], option: Option(indent: 2))
+Debug.prettyPrint(["Hello", "World"], option: Debug.Option(indent: 2))
 // =>
 // [
 //   "Hello",
