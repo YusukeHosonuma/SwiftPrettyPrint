@@ -242,7 +242,7 @@ class PrettyTests: XCTestCase {
             "Two": 2,
         ]
 
-        let result = pretty.extractKeyValues(from: dictionary) as? [(String, Int)]
+        let result = try pretty.extractKeyValues(from: dictionary) as? [(String, Int)]
 
         // Note:
         // XCTUnwrap is not supported Swift Package Manager currently.
