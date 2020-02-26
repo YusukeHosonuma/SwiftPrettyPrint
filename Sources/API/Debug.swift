@@ -8,6 +8,12 @@ public class Debug {
     private init() {}
 }
 
+private func withPrint(f: () -> String) -> String {
+    let string = f()
+    Swift.print(string)
+    return string
+}
+
 // MARK: Standard API
 
 extension Debug {
@@ -17,9 +23,9 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func print(_ target: Any) -> String {
-        let string = Pretty(formatter: SimpleFormatter()).string(target, debug: false)
-        Swift.print(string)
-        return string
+        withPrint {
+            Pretty(formatter: SimpleFormatter()).string(target, debug: false)
+        }
     }
 
     /// Output pretty-formatted `target` to console.
@@ -29,9 +35,9 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func prettyPrint(_ target: Any, option: Option = Debug.sharedOption) -> String {
-        let string = Pretty(formatter: PrettyFormatter(option: option)).string(target, debug: false)
-        Swift.print(string)
-        return string
+        withPrint {
+            Pretty(formatter: PrettyFormatter(option: option)).string(target, debug: false)
+        }
     }
 
     /// Output debuggable `target` to console.
@@ -40,9 +46,9 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func debugPrint(_ target: Any) -> String {
-        let string = Pretty(formatter: SimpleFormatter()).string(target, debug: true)
-        Swift.print(string)
-        return string
+        withPrint {
+            Pretty(formatter: SimpleFormatter()).string(target, debug: true)
+        }
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
@@ -52,9 +58,9 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func debugPrettyPrint(_ target: Any, option: Option = Debug.sharedOption) -> String {
-        let string = Pretty(formatter: PrettyFormatter(option: option)).string(target, debug: true)
-        Swift.print(string)
-        return string
+        withPrint {
+            Pretty(formatter: PrettyFormatter(option: option)).string(target, debug: true)
+        }
     }
 }
 
