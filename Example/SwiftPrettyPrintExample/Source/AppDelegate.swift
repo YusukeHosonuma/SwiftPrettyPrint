@@ -1,9 +1,9 @@
 //
-//  AppDelegate.swift
-//  SwiftPrettyPrintExample
+// AppDelegate.swift
+// SwiftPrettyPrint
 //
-//  Created by Yusuke Hosonuma on 2020/02/18.
-//  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
+// Created by Yusuke Hosonuma on 2020/02/27.
+// Copyright (c) 2020 Yusuke Hosonuma.
 //
 
 import SwiftPrettyPrint

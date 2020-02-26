@@ -1,8 +1,9 @@
 //
-//  String+extension.swift
-//  SwiftPrettyPrint
+// String+extension.swift
+// SwiftPrettyPrint
 //
-//  Created by Yusuke Hosonuma on 2020/02/15.
+// Created by Yusuke Hosonuma on 2020/02/27.
+// Copyright (c) 2020 Yusuke Hosonuma.
 //
 
 extension String {

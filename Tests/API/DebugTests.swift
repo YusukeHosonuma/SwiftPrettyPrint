@@ -1,3 +1,11 @@
+//
+// DebugTests.swift
+// SwiftPrettyPrint
+//
+// Created by Yusuke Hosonuma on 2020/02/27.
+// Copyright (c) 2020 Yusuke Hosonuma.
+//
+
 import SwiftPrettyPrint // Note: don't use `@testable`, because test to public API
 import XCTest
 

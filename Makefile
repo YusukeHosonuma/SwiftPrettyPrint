@@ -25,7 +25,7 @@ xcode: ## swift - generate xcode project
 
 .PHONY: format
 format: ## format sources by SwiftFormat
-	swiftformat --config .swiftformat .
+	swiftformat --config .swiftformat --header "\n{file}\nSwiftPrettyPrint\n\nCreated by Yusuke Hosonuma on {created}.\nCopyright (c) {year} Yusuke Hosonuma.\n" .
 
 .PHONY: lint
 lint: ## cocoapods - lint podspec
