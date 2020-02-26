@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		E5222E5E2405141000C68300 /* PrettyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E5D2405141000C68300 /* PrettyError.swift */; };
+		E5222E602405F2C000C68300 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E5F2405F2C000C68300 /* Formatter.swift */; };
+		E5222E622405FA4500C68300 /* SimpleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E612405FA4500C68300 /* SimpleFormatter.swift */; };
+		E5222E642405FA6000C68300 /* PrettyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E632405FA6000C68300 /* PrettyFormatter.swift */; };
 		E522E35623FFB58A00C42B78 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522E35523FFB58A00C42B78 /* Option.swift */; };
 		E522E35823FFB5C400C42B78 /* OptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522E35723FFB5C400C42B78 /* OptionTests.swift */; };
 		E522F4EB23FE6BDC007AD28A /* String+extensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */; };
@@ -54,6 +57,9 @@
 
 /* Begin PBXFileReference section */
 		E5222E5D2405141000C68300 /* PrettyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyError.swift; sourceTree = "<group>"; };
+		E5222E5F2405F2C000C68300 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		E5222E612405FA4500C68300 /* SimpleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFormatter.swift; sourceTree = "<group>"; };
+		E5222E632405FA6000C68300 /* PrettyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFormatter.swift; sourceTree = "<group>"; };
 		E522E35523FFB58A00C42B78 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		E522E35723FFB5C400C42B78 /* OptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTests.swift; sourceTree = "<group>"; };
 		E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensionTests.swift"; sourceTree = "<group>"; };
@@ -94,6 +100,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E5222E652405FA6800C68300 /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				E5222E5F2405F2C000C68300 /* Formatter.swift */,
+				E5222E612405FA4500C68300 /* SimpleFormatter.swift */,
+				E5222E632405FA6000C68300 /* PrettyFormatter.swift */,
+			);
+			path = Formatter;
+			sourceTree = "<group>";
+		};
 		E5FFB23B240118EF008556A2 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +129,7 @@
 		E5FFB23D24011920008556A2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E5222E652405FA6800C68300 /* Formatter */,
 				OBJ_10 /* Pretty.swift */,
 				E5222E5D2405141000C68300 /* PrettyError.swift */,
 			);
@@ -276,10 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				E5222E602405F2C000C68300 /* Formatter.swift in Sources */,
 				E522E35623FFB58A00C42B78 /* Option.swift in Sources */,
 				E5222E5E2405141000C68300 /* PrettyError.swift in Sources */,
 				OBJ_31 /* Debug.swift in Sources */,
+				E5222E642405FA6000C68300 /* PrettyFormatter.swift in Sources */,
 				OBJ_32 /* Pretty.swift in Sources */,
+				E5222E622405FA4500C68300 /* SimpleFormatter.swift in Sources */,
 				OBJ_33 /* String+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

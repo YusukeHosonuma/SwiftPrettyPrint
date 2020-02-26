@@ -11,6 +11,16 @@ struct Pretty {
     ///   - debug: Enable debug-level output if `true` (like `debugPrint`)
     ///   - pretty: Enable pretty output if `true`
     func string<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
+        let formatter: Formatter
+        if pretty {
+            formatter = PrettyFormatter(option: option)
+        } else {
+            formatter = SimpleFormatter()
+        }
+        return string(target, debug: debug, pretty: pretty, formatter: formatter)
+    }
+
+    func string<T: Any>(_ target: T, debug: Bool, pretty: Bool, formatter: Formatter) -> String {
         func _handleError(_ f: () throws -> String) -> String {
             do {
                 return try f()
@@ -21,7 +31,7 @@ struct Pretty {
         }
 
         func _string(_ target: Any) -> String {
-            string(target, debug: debug, pretty: pretty)
+            string(target, debug: debug, pretty: pretty, formatter: formatter)
         }
 
         func _value(_ target: Any) -> String {
@@ -37,35 +47,16 @@ struct Pretty {
 
         case .collection:
             let elements = mirror.children.map { _string($0.value) }
-            if pretty {
-                return """
-                [
-                \(elements.joined(separator: ",\n").indent(size: indent))
-                ]
-                """
-            } else {
-                return "[\(elements.joined(separator: ", "))]"
-            }
+            return formatter.arrayString(elements: elements)
 
         case .dictionary:
             return _handleError {
-                if pretty {
-                    let contents = try extractKeyValues(from: target).map { key, val in
-                        let label = _value(key)
-                        let value = _string(val).indentTail(size: "\(label): ".count)
-                        return "\(label): \(value)"
-                    }.sorted().joined(separator: ",\n")
-
-                    return "[\n\(contents.indent(size: indent))\n]"
-                } else {
-                    let contents = try extractKeyValues(from: target).map { key, val in
-                        let label = _value(key)
-                        let value = _string(val)
-                        return "\(label): \(value)"
-                    }.sorted().joined(separator: ", ")
-
-                    return "[\(contents)]"
+                let keysAndValues: [(String, String)] = try extractKeyValues(from: target).map { key, val in
+                    let label = _value(key)
+                    let value = _string(val)
+                    return (label, value)
                 }
+                return formatter.dictionaryString(keysAndValues: keysAndValues)
             }
 
         default:
@@ -97,18 +88,13 @@ struct Pretty {
             }
         }
 
-        let prefix = "\(typeName)("
-
-        let fields = mirror.children.map {
-            "\($0.label ?? "-"): " + _string($0.value)
+        let fields: [(String, String)] = mirror.children.map {
+            let label = $0.label ?? "-"
+            let value = _string($0.value)
+            return (label, value)
         }
 
-        if pretty, fields.count > 1 {
-            let contents = prefix + fields.joined(separator: ",\n") + ")"
-            return contents.indentTail(size: prefix.count)
-        } else {
-            return prefix + fields.joined(separator: ", ") + ")"
-        }
+        return formatter.objectString(typeName: typeName, fields: fields)
     }
 
     // MARK: - util
