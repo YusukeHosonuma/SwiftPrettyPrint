@@ -34,10 +34,8 @@ struct Pretty {
 
         case .dictionary:
             return _handleError {
-                let keysAndValues: [(String, String)] = try extractKeyValues(from: target).map { key, val in
-                    let label = _value(key)
-                    let value = _string(val)
-                    return (label, value)
+                let keysAndValues: [(String, String)] = try extractKeyValues(from: target).map { key, value in
+                    (_value(key), _string(value))
                 }
                 return formatter.dictionaryString(keysAndValues: keysAndValues)
             }
@@ -71,12 +69,10 @@ struct Pretty {
             }
         }
 
+        // Object
         let fields: [(String, String)] = mirror.children.map {
-            let label = $0.label ?? "-"
-            let value = _string($0.value)
-            return (label, value)
+            ($0.label ?? "-", _string($0.value))
         }
-
         return formatter.objectString(typeName: typeName, fields: fields)
     }
 
