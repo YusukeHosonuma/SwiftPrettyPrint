@@ -28,7 +28,8 @@
 		E522E35623FFB58A00C42B78 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522E35523FFB58A00C42B78 /* Option.swift */; };
 		E522E35823FFB5C400C42B78 /* OptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522E35723FFB5C400C42B78 /* OptionTests.swift */; };
 		E522F4EB23FE6BDC007AD28A /* String+extensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */; };
-		E5ECBFE223FD045200B0DDAA /* PrettyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */; };
+		E558826724060108009633C0 /* PrettyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */; };
+		E558826A240602BB009633C0 /* PrettyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5588269240602BB009633C0 /* PrettyFormatterTests.swift */; };
 		OBJ_31 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Debug.swift */; };
 		OBJ_32 /* Pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Pretty.swift */; };
 		OBJ_33 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* String+extension.swift */; };
@@ -63,6 +64,7 @@
 		E522E35523FFB58A00C42B78 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		E522E35723FFB5C400C42B78 /* OptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTests.swift; sourceTree = "<group>"; };
 		E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensionTests.swift"; sourceTree = "<group>"; };
+		E5588269240602BB009633C0 /* PrettyFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyFormatterTests.swift; sourceTree = "<group>"; };
 		E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretty.swift; sourceTree = "<group>"; };
 		OBJ_11 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
@@ -110,6 +112,14 @@
 			path = Formatter;
 			sourceTree = "<group>";
 		};
+		E55882622405FF34009633C0 /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				E5588269240602BB009633C0 /* PrettyFormatterTests.swift */,
+			);
+			path = Formatter;
+			sourceTree = "<group>";
+		};
 		E5FFB23B240118EF008556A2 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +149,7 @@
 		E5FFB23E24011930008556A2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E55882622405FF34009633C0 /* Formatter */,
 				E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */,
 			);
 			path = Core;
@@ -316,10 +327,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				E558826A240602BB009633C0 /* PrettyFormatterTests.swift in Sources */,
 				E522F4EB23FE6BDC007AD28A /* String+extensionTests.swift in Sources */,
 				OBJ_51 /* DebugTests.swift in Sources */,
-				E5ECBFE223FD045200B0DDAA /* PrettyTests.swift in Sources */,
 				E522E35823FFB5C400C42B78 /* OptionTests.swift in Sources */,
+				E558826724060108009633C0 /* PrettyTests.swift in Sources */,
 				OBJ_52 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,8 +17,7 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func print(_ target: Any) -> String {
-        // Note: `option` is meaningless in `not-pretty` print currently.
-        let string = Pretty(option: Debug.sharedOption).string(target, debug: false, pretty: false)
+        let string = Pretty(formatter: SimpleFormatter()).string(target, debug: false)
         Swift.print(string)
         return string
     }
@@ -30,7 +29,7 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func prettyPrint(_ target: Any, option: Option = Debug.sharedOption) -> String {
-        let string = Pretty(option: option).string(target, debug: false, pretty: true)
+        let string = Pretty(formatter: PrettyFormatter(option: option)).string(target, debug: false)
         Swift.print(string)
         return string
     }
@@ -41,8 +40,7 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func debugPrint(_ target: Any) -> String {
-        // Note: `option` is meaningless in `not-pretty` print currently.
-        let string = Pretty(option: Debug.sharedOption).string(target, debug: true, pretty: false)
+        let string = Pretty(formatter: SimpleFormatter()).string(target, debug: true)
         Swift.print(string)
         return string
     }
@@ -54,7 +52,7 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func debugPrettyPrint(_ target: Any, option: Option = Debug.sharedOption) -> String {
-        let string = Pretty(option: option).string(target, debug: true, pretty: true)
+        let string = Pretty(formatter: PrettyFormatter(option: option)).string(target, debug: true)
         Swift.print(string)
         return string
     }

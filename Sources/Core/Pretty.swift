@@ -1,26 +1,9 @@
 import Foundation
 
 struct Pretty {
-    let option: Debug.Option
+    let formatter: Formatter
 
-    private var indent: Int { option.indent }
-
-    /// Get pretty string for `target`.
-    /// - Parameters:
-    ///   - target: target
-    ///   - debug: Enable debug-level output if `true` (like `debugPrint`)
-    ///   - pretty: Enable pretty output if `true`
-    func string<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
-        let formatter: Formatter
-        if pretty {
-            formatter = PrettyFormatter(option: option)
-        } else {
-            formatter = SimpleFormatter()
-        }
-        return string(target, debug: debug, pretty: pretty, formatter: formatter)
-    }
-
-    func string<T: Any>(_ target: T, debug: Bool, pretty: Bool, formatter: Formatter) -> String {
+    func string<T: Any>(_ target: T, debug: Bool) -> String {
         func _handleError(_ f: () throws -> String) -> String {
             do {
                 return try f()
@@ -31,7 +14,7 @@ struct Pretty {
         }
 
         func _string(_ target: Any) -> String {
-            string(target, debug: debug, pretty: pretty, formatter: formatter)
+            string(target, debug: debug)
         }
 
         func _value(_ target: Any) -> String {
