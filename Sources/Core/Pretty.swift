@@ -4,21 +4,12 @@ struct Pretty {
     let formatter: Formatter
 
     func string<T: Any>(_ target: T, debug: Bool) -> String {
-        func _handleError(_ f: () throws -> String) -> String {
-            do {
-                return try f()
-            } catch {
-                dumpError(error: error)
-                return "\(error)"
-            }
-        }
-
         func _string(_ target: Any) -> String {
             string(target, debug: debug)
         }
 
         func _value(_ target: Any) -> String {
-            _handleError { try valueString(target, debug: debug) }
+            handleError { try valueString(target, debug: debug) }
         }
 
         let mirror = Mirror(reflecting: target)
@@ -33,7 +24,7 @@ struct Pretty {
             return formatter.arrayString(elements: elements)
 
         case .dictionary:
-            return _handleError {
+            return handleError {
                 let keysAndValues: [(String, String)] = try extractKeyValues(from: target).map { key, value in
                     (_value(key), _string(value))
                 }
@@ -58,7 +49,7 @@ struct Pretty {
 
         // Swift.URL
         if typeName == "URL" {
-            return _handleError {
+            return handleError {
                 guard
                     let field = mirror.children.first?.value as? NSURL,
                     let urlString = field.absoluteString else {
@@ -137,7 +128,16 @@ struct Pretty {
         }
     }
 
-    func dumpError(error: Error) {
+    private func handleError(_ f: () throws -> String) -> String {
+        do {
+            return try f()
+        } catch {
+            dumpError(error: error)
+            return "\(error)"
+        }
+    }
+
+    private func dumpError(error: Error) {
         let message = """
         
         ---------------------------------------------------------
