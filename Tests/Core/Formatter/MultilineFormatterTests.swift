@@ -1,5 +1,5 @@
 //
-//  PrettyFormatterTests.swift
+//  MultilineFormatterTests.swift
 //  SwiftPrettyPrint
 //
 //  Created by Yusuke Hosonuma on 2020/02/26.
@@ -10,8 +10,8 @@ import XCTest
 
 // TODO: This tests should organize because it is only moved from PrettyTests.
 
-class PrettyFormatterTests: XCTestCase {
-    let pretty = Pretty(formatter: PrettyFormatter(option: Debug.defaultOption))
+class MultilineFormatterTests: XCTestCase {
+    let pretty = Pretty(formatter: MultilineFormatter(option: Debug.defaultOption))
 
     override func setUp() {}
 

@@ -9,7 +9,7 @@
 import XCTest
 
 class PrettyTests: XCTestCase {
-    let pretty = Pretty(formatter: SimpleFormatter())
+    let pretty = Pretty(formatter: SinglelineFormatter())
 
     override func setUp() {}
 

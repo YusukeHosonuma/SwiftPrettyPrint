@@ -1,593 +1,802 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXAggregateTarget section */
-		"SwiftPrettyPrint::SwiftPrettyPrintPackageTests::ProductTarget" /* SwiftPrettyPrintPackageTests */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_42 /* Build configuration list for PBXAggregateTarget "SwiftPrettyPrintPackageTests" */;
-			buildPhases = (
-			);
-			dependencies = (
-				OBJ_45 /* PBXTargetDependency */,
-			);
-			name = SwiftPrettyPrintPackageTests;
-			productName = SwiftPrettyPrintPackageTests;
-		};
-/* End PBXAggregateTarget section */
-
-/* Begin PBXBuildFile section */
-		E5222E5E2405141000C68300 /* PrettyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E5D2405141000C68300 /* PrettyError.swift */; };
-		E5222E602405F2C000C68300 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E5F2405F2C000C68300 /* Formatter.swift */; };
-		E5222E622405FA4500C68300 /* SimpleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E612405FA4500C68300 /* SimpleFormatter.swift */; };
-		E5222E642405FA6000C68300 /* PrettyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E632405FA6000C68300 /* PrettyFormatter.swift */; };
-		E522E35623FFB58A00C42B78 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522E35523FFB58A00C42B78 /* Option.swift */; };
-		E522E35823FFB5C400C42B78 /* OptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522E35723FFB5C400C42B78 /* OptionTests.swift */; };
-		E522F4EB23FE6BDC007AD28A /* String+extensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */; };
-		E558826724060108009633C0 /* PrettyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */; };
-		E558826A240602BB009633C0 /* PrettyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5588269240602BB009633C0 /* PrettyFormatterTests.swift */; };
-		OBJ_31 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Debug.swift */; };
-		OBJ_32 /* Pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Pretty.swift */; };
-		OBJ_33 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* String+extension.swift */; };
-		OBJ_40 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_51 /* DebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* DebugTests.swift */; };
-		OBJ_52 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* XCTestManifests.swift */; };
-		OBJ_54 /* SwiftPrettyPrint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E50B405723F932DA0062C486 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPrettyPrint::SwiftPrettyPrint";
-			remoteInfo = SwiftPrettyPrint;
-		};
-		E5ECBFE323FD045200B0DDAA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPrettyPrint::SwiftPrettyPrintTests";
-			remoteInfo = SwiftPrettyPrintTests;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		E5222E5D2405141000C68300 /* PrettyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyError.swift; sourceTree = "<group>"; };
-		E5222E5F2405F2C000C68300 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		E5222E612405FA4500C68300 /* SimpleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFormatter.swift; sourceTree = "<group>"; };
-		E5222E632405FA6000C68300 /* PrettyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFormatter.swift; sourceTree = "<group>"; };
-		E522E35523FFB58A00C42B78 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
-		E522E35723FFB5C400C42B78 /* OptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTests.swift; sourceTree = "<group>"; };
-		E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensionTests.swift"; sourceTree = "<group>"; };
-		E5588269240602BB009633C0 /* PrettyFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyFormatterTests.swift; sourceTree = "<group>"; };
-		E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyTests.swift; sourceTree = "<group>"; };
-		OBJ_10 /* Pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretty.swift; sourceTree = "<group>"; };
-		OBJ_11 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
-		OBJ_13 /* DebugTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTests.swift; sourceTree = "<group>"; };
-		OBJ_14 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		OBJ_18 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = SOURCE_ROOT; };
-		OBJ_19 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		OBJ_20 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		OBJ_21 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		OBJ_22 /* SwiftPrettyPrint.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftPrettyPrint.podspec; sourceTree = "<group>"; };
-		OBJ_23 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
-		OBJ_24 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
-		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
-		"SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftPrettyPrint.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"SwiftPrettyPrint::SwiftPrettyPrintTests::Product" /* SwiftPrettyPrintTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftPrettyPrintTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		OBJ_34 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_53 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_54 /* SwiftPrettyPrint.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		E5222E652405FA6800C68300 /* Formatter */ = {
-			isa = PBXGroup;
-			children = (
-				E5222E5F2405F2C000C68300 /* Formatter.swift */,
-				E5222E612405FA4500C68300 /* SimpleFormatter.swift */,
-				E5222E632405FA6000C68300 /* PrettyFormatter.swift */,
-			);
-			path = Formatter;
-			sourceTree = "<group>";
-		};
-		E55882622405FF34009633C0 /* Formatter */ = {
-			isa = PBXGroup;
-			children = (
-				E5588269240602BB009633C0 /* PrettyFormatterTests.swift */,
-			);
-			path = Formatter;
-			sourceTree = "<group>";
-		};
-		E5FFB23B240118EF008556A2 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_11 /* String+extension.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		E5FFB23C24011901008556A2 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		E5FFB23D24011920008556A2 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				E5222E652405FA6800C68300 /* Formatter */,
-				OBJ_10 /* Pretty.swift */,
-				E5222E5D2405141000C68300 /* PrettyError.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		E5FFB23E24011930008556A2 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				E55882622405FF34009633C0 /* Formatter */,
-				E5ECBFE123FD045200B0DDAA /* PrettyTests.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		E5FFB240240119C0008556A2 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_9 /* Debug.swift */,
-				E522E35523FFB58A00C42B78 /* Option.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		E5FFB241240119CD008556A2 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_13 /* DebugTests.swift */,
-				E522E35723FFB5C400C42B78 /* OptionTests.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		OBJ_12 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				E5FFB241240119CD008556A2 /* API */,
-				E5FFB23E24011930008556A2 /* Core */,
-				E5FFB23C24011901008556A2 /* Extension */,
-				OBJ_14 /* XCTestManifests.swift */,
-			);
-			path = Tests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_15 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				"SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */,
-				"SwiftPrettyPrint::SwiftPrettyPrintTests::Product" /* SwiftPrettyPrintTests.xctest */,
-			);
-			name = Products;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		OBJ_5 = {
-			isa = PBXGroup;
-			children = (
-				OBJ_6 /* Package.swift */,
-				OBJ_7 /* Sources */,
-				OBJ_12 /* Tests */,
-				OBJ_15 /* Products */,
-				OBJ_18 /* vendor */,
-				OBJ_19 /* LICENSE */,
-				OBJ_20 /* Makefile */,
-				OBJ_21 /* README.md */,
-				OBJ_22 /* SwiftPrettyPrint.podspec */,
-				OBJ_23 /* Gemfile */,
-				OBJ_24 /* Gemfile.lock */,
-			);
-			sourceTree = "<group>";
-		};
-		OBJ_7 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				E5FFB240240119C0008556A2 /* API */,
-				E5FFB23D24011920008556A2 /* Core */,
-				E5FFB23B240118EF008556A2 /* Extension */,
-			);
-			path = Sources;
-			sourceTree = SOURCE_ROOT;
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		"SwiftPrettyPrint::SwiftPMPackageDescription" /* SwiftPrettyPrintPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_36 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintPackageDescription" */;
-			buildPhases = (
-				OBJ_39 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SwiftPrettyPrintPackageDescription;
-			productName = SwiftPrettyPrintPackageDescription;
-			productType = "com.apple.product-type.framework";
-		};
-		"SwiftPrettyPrint::SwiftPrettyPrint" /* SwiftPrettyPrint */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_26 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrint" */;
-			buildPhases = (
-				OBJ_29 /* Sources */,
-				OBJ_34 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SwiftPrettyPrint;
-			productName = SwiftPrettyPrint;
-			productReference = "SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"SwiftPrettyPrint::SwiftPrettyPrintTests" /* SwiftPrettyPrintTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_47 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintTests" */;
-			buildPhases = (
-				OBJ_50 /* Sources */,
-				OBJ_53 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_55 /* PBXTargetDependency */,
-			);
-			name = SwiftPrettyPrintTests;
-			productName = SwiftPrettyPrintTests;
-			productReference = "SwiftPrettyPrint::SwiftPrettyPrintTests::Product" /* SwiftPrettyPrintTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		OBJ_1 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftMigration = 9999;
-				LastUpgradeCheck = 9999;
-			};
-			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "SwiftPrettyPrint" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = OBJ_5;
-			productRefGroup = OBJ_15 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				"SwiftPrettyPrint::SwiftPrettyPrint" /* SwiftPrettyPrint */,
-				"SwiftPrettyPrint::SwiftPMPackageDescription" /* SwiftPrettyPrintPackageDescription */,
-				"SwiftPrettyPrint::SwiftPrettyPrintPackageTests::ProductTarget" /* SwiftPrettyPrintPackageTests */,
-				"SwiftPrettyPrint::SwiftPrettyPrintTests" /* SwiftPrettyPrintTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		OBJ_29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				E5222E602405F2C000C68300 /* Formatter.swift in Sources */,
-				E522E35623FFB58A00C42B78 /* Option.swift in Sources */,
-				E5222E5E2405141000C68300 /* PrettyError.swift in Sources */,
-				OBJ_31 /* Debug.swift in Sources */,
-				E5222E642405FA6000C68300 /* PrettyFormatter.swift in Sources */,
-				OBJ_32 /* Pretty.swift in Sources */,
-				E5222E622405FA4500C68300 /* SimpleFormatter.swift in Sources */,
-				OBJ_33 /* String+extension.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_39 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_40 /* Package.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_50 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				E558826A240602BB009633C0 /* PrettyFormatterTests.swift in Sources */,
-				E522F4EB23FE6BDC007AD28A /* String+extensionTests.swift in Sources */,
-				OBJ_51 /* DebugTests.swift in Sources */,
-				E522E35823FFB5C400C42B78 /* OptionTests.swift in Sources */,
-				E558826724060108009633C0 /* PrettyTests.swift in Sources */,
-				OBJ_52 /* XCTestManifests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		OBJ_45 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPrettyPrint::SwiftPrettyPrintTests" /* SwiftPrettyPrintTests */;
-			targetProxy = E5ECBFE323FD045200B0DDAA /* PBXContainerItemProxy */;
-		};
-		OBJ_55 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPrettyPrint::SwiftPrettyPrint" /* SwiftPrettyPrint */;
-			targetProxy = E50B405723F932DA0062C486 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		OBJ_27 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = SwiftPrettyPrint.xcodeproj/SwiftPrettyPrint_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = SwiftPrettyPrint;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = SwiftPrettyPrint;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		OBJ_28 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = SwiftPrettyPrint.xcodeproj/SwiftPrettyPrint_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = SwiftPrettyPrint;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = SwiftPrettyPrint;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		OBJ_3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_NS_ASSERTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"SWIFT_PACKAGE=1",
-					"DEBUG=1",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				USE_HEADERMAP = NO;
-			};
-			name = Debug;
-		};
-		OBJ_37 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode_11.3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.1";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		OBJ_38 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode_11.3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.1";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		OBJ_4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"SWIFT_PACKAGE=1",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				USE_HEADERMAP = NO;
-			};
-			name = Release;
-		};
-		OBJ_43 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		OBJ_44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		OBJ_48 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = SwiftPrettyPrint.xcodeproj/SwiftPrettyPrintTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = SwiftPrettyPrintTests;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		OBJ_49 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = SwiftPrettyPrint.xcodeproj/SwiftPrettyPrintTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = SwiftPrettyPrintTests;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		OBJ_2 /* Build configuration list for PBXProject "SwiftPrettyPrint" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_3 /* Debug */,
-				OBJ_4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_26 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrint" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_27 /* Debug */,
-				OBJ_28 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_36 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_37 /* Debug */,
-				OBJ_38 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_42 /* Build configuration list for PBXAggregateTarget "SwiftPrettyPrintPackageTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_43 /* Debug */,
-				OBJ_44 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_47 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_48 /* Debug */,
-				OBJ_49 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = OBJ_1 /* Project object */;
+   archiveVersion = "1";
+   objectVersion = "46";
+   objects = {
+      "OBJ_1" = {
+         isa = "PBXProject";
+         attributes = {
+            LastSwiftMigration = "9999";
+            LastUpgradeCheck = "9999";
+         };
+         buildConfigurationList = "OBJ_2";
+         compatibilityVersion = "Xcode 3.2";
+         developmentRegion = "en";
+         hasScannedForEncodings = "0";
+         knownRegions = (
+            "en"
+         );
+         mainGroup = "OBJ_5";
+         productRefGroup = "OBJ_31";
+         projectDirPath = ".";
+         targets = (
+            "SwiftPrettyPrint::SwiftPrettyPrint",
+            "SwiftPrettyPrint::SwiftPMPackageDescription",
+            "SwiftPrettyPrint::SwiftPrettyPrintPackageTests::ProductTarget",
+            "SwiftPrettyPrint::SwiftPrettyPrintTests"
+         );
+      };
+      "OBJ_10" = {
+         isa = "PBXFileReference";
+         path = "Option.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_11" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_12",
+            "OBJ_16",
+            "OBJ_17"
+         );
+         name = "Core";
+         path = "Core";
+         sourceTree = "<group>";
+      };
+      "OBJ_12" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_13",
+            "OBJ_14",
+            "OBJ_15"
+         );
+         name = "Formatter";
+         path = "Formatter";
+         sourceTree = "<group>";
+      };
+      "OBJ_13" = {
+         isa = "PBXFileReference";
+         path = "MultilineFormatter.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_14" = {
+         isa = "PBXFileReference";
+         path = "PrettyFormatter.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_15" = {
+         isa = "PBXFileReference";
+         path = "SinglelineFormatter.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_16" = {
+         isa = "PBXFileReference";
+         path = "Pretty.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_17" = {
+         isa = "PBXFileReference";
+         path = "PrettyError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_18" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_19"
+         );
+         name = "Extension";
+         path = "Extension";
+         sourceTree = "<group>";
+      };
+      "OBJ_19" = {
+         isa = "PBXFileReference";
+         path = "String+extension.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_2" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_3",
+            "OBJ_4"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_20" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_21",
+            "OBJ_24",
+            "OBJ_28",
+            "OBJ_30"
+         );
+         name = "Tests";
+         path = "Tests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_21" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_22",
+            "OBJ_23"
+         );
+         name = "API";
+         path = "API";
+         sourceTree = "<group>";
+      };
+      "OBJ_22" = {
+         isa = "PBXFileReference";
+         path = "DebugTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_23" = {
+         isa = "PBXFileReference";
+         path = "OptionTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_24" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_25",
+            "OBJ_27"
+         );
+         name = "Core";
+         path = "Core";
+         sourceTree = "<group>";
+      };
+      "OBJ_25" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_26"
+         );
+         name = "Formatter";
+         path = "Formatter";
+         sourceTree = "<group>";
+      };
+      "OBJ_26" = {
+         isa = "PBXFileReference";
+         path = "MultilineFormatterTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_27" = {
+         isa = "PBXFileReference";
+         path = "PrettyTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_28" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_29"
+         );
+         name = "Extension";
+         path = "Extension";
+         sourceTree = "<group>";
+      };
+      "OBJ_29" = {
+         isa = "PBXFileReference";
+         path = "String+extensionTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_3" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "NO";
+            DEBUG_INFORMATION_FORMAT = "dwarf";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            ENABLE_NS_ASSERTIONS = "YES";
+            GCC_OPTIMIZATION_LEVEL = "0";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1",
+               "DEBUG=1"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            ONLY_ACTIVE_ARCH = "YES";
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE",
+               "DEBUG"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Debug";
+      };
+      "OBJ_30" = {
+         isa = "PBXFileReference";
+         path = "XCTestManifests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_31" = {
+         isa = "PBXGroup";
+         children = (
+            "SwiftPrettyPrint::SwiftPrettyPrintTests::Product",
+            "SwiftPrettyPrint::SwiftPrettyPrint::Product"
+         );
+         name = "Products";
+         path = "";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OBJ_34" = {
+         isa = "PBXFileReference";
+         path = "Example";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_35" = {
+         isa = "PBXFileReference";
+         path = "Image";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_36" = {
+         isa = "PBXFileReference";
+         path = "vendor";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_37" = {
+         isa = "PBXFileReference";
+         path = "LICENSE";
+         sourceTree = "<group>";
+      };
+      "OBJ_38" = {
+         isa = "PBXFileReference";
+         path = "Makefile";
+         sourceTree = "<group>";
+      };
+      "OBJ_39" = {
+         isa = "PBXFileReference";
+         path = "README.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_4" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "YES";
+            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            GCC_OPTIMIZATION_LEVEL = "s";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Release";
+      };
+      "OBJ_40" = {
+         isa = "PBXFileReference";
+         path = "SwiftPrettyPrint.podspec";
+         sourceTree = "<group>";
+      };
+      "OBJ_41" = {
+         isa = "PBXFileReference";
+         path = "Gemfile";
+         sourceTree = "<group>";
+      };
+      "OBJ_42" = {
+         isa = "PBXFileReference";
+         path = "Gemfile.lock";
+         sourceTree = "<group>";
+      };
+      "OBJ_43" = {
+         isa = "PBXFileReference";
+         path = "Brewfile";
+         sourceTree = "<group>";
+      };
+      "OBJ_45" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_46",
+            "OBJ_47"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_46" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SwiftPrettyPrint.xcodeproj/SwiftPrettyPrint_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "SwiftPrettyPrint";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SwiftPrettyPrint";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_47" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SwiftPrettyPrint.xcodeproj/SwiftPrettyPrint_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "SwiftPrettyPrint";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SwiftPrettyPrint";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Release";
+      };
+      "OBJ_48" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_49",
+            "OBJ_50",
+            "OBJ_51",
+            "OBJ_52",
+            "OBJ_53",
+            "OBJ_54",
+            "OBJ_55",
+            "OBJ_56"
+         );
+      };
+      "OBJ_49" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_9";
+      };
+      "OBJ_5" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_6",
+            "OBJ_7",
+            "OBJ_20",
+            "OBJ_31",
+            "OBJ_34",
+            "OBJ_35",
+            "OBJ_36",
+            "OBJ_37",
+            "OBJ_38",
+            "OBJ_39",
+            "OBJ_40",
+            "OBJ_41",
+            "OBJ_42",
+            "OBJ_43"
+         );
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_50" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_10";
+      };
+      "OBJ_51" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_13";
+      };
+      "OBJ_52" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_14";
+      };
+      "OBJ_53" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_15";
+      };
+      "OBJ_54" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_16";
+      };
+      "OBJ_55" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_17";
+      };
+      "OBJ_56" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_19";
+      };
+      "OBJ_57" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_59" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_60",
+            "OBJ_61"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_6" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         path = "Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_60" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode_11.3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "5.1"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_61" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode_11.3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "5.1"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Release";
+      };
+      "OBJ_62" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_63"
+         );
+      };
+      "OBJ_63" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_65" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_66",
+            "OBJ_67"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_66" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_67" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_68" = {
+         isa = "PBXTargetDependency";
+         target = "SwiftPrettyPrint::SwiftPrettyPrintTests";
+      };
+      "OBJ_7" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_8",
+            "OBJ_11",
+            "OBJ_18"
+         );
+         name = "Sources";
+         path = "Sources";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_70" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_71",
+            "OBJ_72"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_71" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SwiftPrettyPrint.xcodeproj/SwiftPrettyPrintTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SwiftPrettyPrintTests";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_72" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SwiftPrettyPrint.xcodeproj/SwiftPrettyPrintTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SwiftPrettyPrintTests";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Release";
+      };
+      "OBJ_73" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_74",
+            "OBJ_75",
+            "OBJ_76",
+            "OBJ_77",
+            "OBJ_78",
+            "OBJ_79"
+         );
+      };
+      "OBJ_74" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_22";
+      };
+      "OBJ_75" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_23";
+      };
+      "OBJ_76" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_26";
+      };
+      "OBJ_77" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_27";
+      };
+      "OBJ_78" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_29";
+      };
+      "OBJ_79" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_30";
+      };
+      "OBJ_8" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_9",
+            "OBJ_10"
+         );
+         name = "API";
+         path = "API";
+         sourceTree = "<group>";
+      };
+      "OBJ_80" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_81"
+         );
+      };
+      "OBJ_81" = {
+         isa = "PBXBuildFile";
+         fileRef = "SwiftPrettyPrint::SwiftPrettyPrint::Product";
+      };
+      "OBJ_82" = {
+         isa = "PBXTargetDependency";
+         target = "SwiftPrettyPrint::SwiftPrettyPrint";
+      };
+      "OBJ_9" = {
+         isa = "PBXFileReference";
+         path = "Debug.swift";
+         sourceTree = "<group>";
+      };
+      "SwiftPrettyPrint::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_59";
+         buildPhases = (
+            "OBJ_62"
+         );
+         dependencies = (
+         );
+         name = "SwiftPrettyPrintPackageDescription";
+         productName = "SwiftPrettyPrintPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "SwiftPrettyPrint::SwiftPrettyPrint" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_45";
+         buildPhases = (
+            "OBJ_48",
+            "OBJ_57"
+         );
+         dependencies = (
+         );
+         name = "SwiftPrettyPrint";
+         productName = "SwiftPrettyPrint";
+         productReference = "SwiftPrettyPrint::SwiftPrettyPrint::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "SwiftPrettyPrint::SwiftPrettyPrint::Product" = {
+         isa = "PBXFileReference";
+         path = "SwiftPrettyPrint.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "SwiftPrettyPrint::SwiftPrettyPrintPackageTests::ProductTarget" = {
+         isa = "PBXAggregateTarget";
+         buildConfigurationList = "OBJ_65";
+         buildPhases = (
+         );
+         dependencies = (
+            "OBJ_68"
+         );
+         name = "SwiftPrettyPrintPackageTests";
+         productName = "SwiftPrettyPrintPackageTests";
+      };
+      "SwiftPrettyPrint::SwiftPrettyPrintTests" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_70";
+         buildPhases = (
+            "OBJ_73",
+            "OBJ_80"
+         );
+         dependencies = (
+            "OBJ_82"
+         );
+         name = "SwiftPrettyPrintTests";
+         productName = "SwiftPrettyPrintTests";
+         productReference = "SwiftPrettyPrint::SwiftPrettyPrintTests::Product";
+         productType = "com.apple.product-type.bundle.unit-test";
+      };
+      "SwiftPrettyPrint::SwiftPrettyPrintTests::Product" = {
+         isa = "PBXFileReference";
+         path = "SwiftPrettyPrintTests.xctest";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+   };
+   rootObject = "OBJ_1";
 }

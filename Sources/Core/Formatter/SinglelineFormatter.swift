@@ -5,7 +5,7 @@
 //  Created by Yusuke Hosonuma on 2020/02/26.
 //
 
-class SimpleFormatter: Formatter {
+class SinglelineFormatter: PrettyFormatter {
     func arrayString(elements: [String]) -> String {
         "[\(elements.joined(separator: ", "))]"
     }

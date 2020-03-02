@@ -24,7 +24,7 @@ extension Debug {
     @discardableResult
     public static func print(_ target: Any) -> String {
         withPrint {
-            Pretty(formatter: SimpleFormatter()).string(target, debug: false)
+            Pretty(formatter: SinglelineFormatter()).string(target, debug: false)
         }
     }
 
@@ -36,7 +36,7 @@ extension Debug {
     @discardableResult
     public static func prettyPrint(_ target: Any, option: Option = Debug.sharedOption) -> String {
         withPrint {
-            Pretty(formatter: PrettyFormatter(option: option)).string(target, debug: false)
+            Pretty(formatter: MultilineFormatter(option: option)).string(target, debug: false)
         }
     }
 
@@ -47,7 +47,7 @@ extension Debug {
     @discardableResult
     public static func debugPrint(_ target: Any) -> String {
         withPrint {
-            Pretty(formatter: SimpleFormatter()).string(target, debug: true)
+            Pretty(formatter: SinglelineFormatter()).string(target, debug: true)
         }
     }
 
@@ -59,7 +59,7 @@ extension Debug {
     @discardableResult
     public static func debugPrettyPrint(_ target: Any, option: Option = Debug.sharedOption) -> String {
         withPrint {
-            Pretty(formatter: PrettyFormatter(option: option)).string(target, debug: true)
+            Pretty(formatter: MultilineFormatter(option: option)).string(target, debug: true)
         }
     }
 }

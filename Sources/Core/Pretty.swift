@@ -1,7 +1,7 @@
 import Foundation
 
 struct Pretty {
-    let formatter: Formatter
+    let formatter: PrettyFormatter
 
     func string<T: Any>(_ target: T, debug: Bool) -> String {
         func _string(_ target: Any) -> String {
