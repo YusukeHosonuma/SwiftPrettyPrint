@@ -19,12 +19,21 @@ struct Pretty {
     ///   - debug: Enable debug-level output if `true` (like `debugPrint`)
     ///   - pretty: Enable pretty output if `true`
     func string<T: Any>(_ target: T, debug: Bool, pretty: Bool) -> String {
+        func _handleError(_ f: () throws -> String) -> String {
+            do {
+                return try f()
+            } catch {
+                dumpError(error: error)
+                return "\(error)"
+            }
+        }
+
         func _string(_ target: Any) -> String {
-            string(target, debug: debug, pretty: pretty) // fixed `debug` and `pretty`
+            string(target, debug: debug, pretty: pretty)
         }
 
         func _value(_ target: Any) -> String {
-            valueString(target, debug: debug) // fixed `debug`
+            _handleError { try valueString(target, debug: debug) }
         }
 
         let mirror = Mirror(reflecting: target)
@@ -47,22 +56,24 @@ struct Pretty {
             }
 
         case .dictionary:
-            if pretty {
-                let contents = extractKeyValues(from: target).map { key, val in
-                    let label = _value(key)
-                    let value = _string(val).indentTail(size: "\(label): ".count)
-                    return "\(label): \(value)"
-                }.sorted().joined(separator: ",\n")
+            return _handleError {
+                if pretty {
+                    let contents = try extractKeyValues(from: target).map { key, val in
+                        let label = _value(key)
+                        let value = _string(val).indentTail(size: "\(label): ".count)
+                        return "\(label): \(value)"
+                    }.sorted().joined(separator: ",\n")
 
-                return "[\n\(contents.indent(size: indent))\n]"
-            } else {
-                let contents = extractKeyValues(from: target).map { key, val in
-                    let label = _value(key)
-                    let value = _string(val)
-                    return "\(label): \(value)"
-                }.sorted().joined(separator: ", ")
+                    return "[\n\(contents.indent(size: indent))\n]"
+                } else {
+                    let contents = try extractKeyValues(from: target).map { key, val in
+                        let label = _value(key)
+                        let value = _string(val)
+                        return "\(label): \(value)"
+                    }.sorted().joined(separator: ", ")
 
-                return "[\(contents)]"
+                    return "[\(contents)]"
+                }
             }
 
         default:
@@ -79,15 +90,22 @@ struct Pretty {
             return _value(value)
         }
 
-        // Other
         let typeName = String(describing: mirror.subjectType)
 
-        let prefix = "\(typeName)("
-
+        // Swift.URL
         if typeName == "URL" {
-            let field = mirror.children.first?.value as! NSURL
-            return prefix + "\"" + field.absoluteString! + "\"" + ")"
+            return _handleError {
+                guard
+                    let field = mirror.children.first?.value as? NSURL,
+                    let urlString = field.absoluteString else {
+                    throw PrettyError.unknownError(target: target)
+                }
+
+                return #"URL("\#(urlString)")"#
+            }
         }
+
+        let prefix = "\(typeName)("
 
         let fields = mirror.children.map {
             "\($0.label ?? "-"): " + _string($0.value)
@@ -103,13 +121,12 @@ struct Pretty {
 
     // MARK: - util
 
-    func valueString<T>(_ target: T, debug: Bool) -> String {
+    func valueString<T>(_ target: T, debug: Bool) throws -> String {
         let mirror = Mirror(reflecting: target)
 
         // Note: this function currently supports Optional type that includes a child.
         guard mirror.children.count <= 1 else {
-            // TODO: change to safe-api when official release
-            preconditionFailure("valueString() is must value that not has members")
+            throw PrettyError.unknownError(target: target)
         }
 
         switch target {
@@ -135,12 +152,12 @@ struct Pretty {
             }
 
         default:
-            preconditionFailure("Not supported type")
+            throw PrettyError.notSupported(target: target)
         }
     }
 
-    func extractKeyValues(from dictionary: Any) -> [(Any, Any)] {
-        Mirror(reflecting: dictionary).children.map {
+    func extractKeyValues(from dictionary: Any) throws -> [(Any, Any)] {
+        try Mirror(reflecting: dictionary).children.map {
             // Note:
             // Each element $0 structure are like following:
             //
@@ -156,10 +173,25 @@ struct Pretty {
             guard
                 let key = root.children.first?.value,
                 let value = root.children.dropFirst().first?.value else {
-                preconditionFailure("Extract key or value is failed.")
+                throw PrettyError.failedExtractKeyValue(dictionary: dictionary)
             }
 
             return (key, value)
         }
+    }
+
+    func dumpError(error: Error) {
+        let message = """
+        
+        ---------------------------------------------------------
+        Fatal error in SwiftPrettyPrint.
+        ---------------------------------------------------------
+        \(error.localizedDescription)
+        Please report issue from below:
+        https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues
+        ---------------------------------------------------------
+        
+        """
+        print(message)
     }
 }

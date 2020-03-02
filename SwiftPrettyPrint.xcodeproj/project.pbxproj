@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E5222E5E2405141000C68300 /* PrettyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E5D2405141000C68300 /* PrettyError.swift */; };
 		E522E35623FFB58A00C42B78 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522E35523FFB58A00C42B78 /* Option.swift */; };
 		E522E35823FFB5C400C42B78 /* OptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522E35723FFB5C400C42B78 /* OptionTests.swift */; };
 		E522F4EB23FE6BDC007AD28A /* String+extensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E5222E5D2405141000C68300 /* PrettyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyError.swift; sourceTree = "<group>"; };
 		E522E35523FFB58A00C42B78 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		E522E35723FFB5C400C42B78 /* OptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTests.swift; sourceTree = "<group>"; };
 		E522F4EA23FE6BDC007AD28A /* String+extensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensionTests.swift"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_10 /* Pretty.swift */,
+				E5222E5D2405141000C68300 /* PrettyError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			buildActionMask = 0;
 			files = (
 				E522E35623FFB58A00C42B78 /* Option.swift in Sources */,
+				E5222E5E2405141000C68300 /* PrettyError.swift in Sources */,
 				OBJ_31 /* Debug.swift in Sources */,
 				OBJ_32 /* Pretty.swift in Sources */,
 				OBJ_33 /* String+extension.swift in Sources */,
