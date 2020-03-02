@@ -16,6 +16,12 @@ public class Debug {
     private init() {}
 }
 
+private func withPrint(f: () -> String) -> String {
+    let string = f()
+    Swift.print(string)
+    return string
+}
+
 // MARK: Standard API
 
 extension Debug {
@@ -25,10 +31,9 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func print(_ target: Any) -> String {
-        // Note: `option` is meaningless in `not-pretty` print currently.
-        let string = Pretty(option: Debug.sharedOption).string(target, debug: false, pretty: false)
-        Swift.print(string)
-        return string
+        withPrint {
+            Pretty(formatter: SinglelineFormatter()).string(target, debug: false)
+        }
     }
 
     /// Output pretty-formatted `target` to console.
@@ -38,9 +43,9 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func prettyPrint(_ target: Any, option: Option = Debug.sharedOption) -> String {
-        let string = Pretty(option: option).string(target, debug: false, pretty: true)
-        Swift.print(string)
-        return string
+        withPrint {
+            Pretty(formatter: MultilineFormatter(option: option)).string(target, debug: false)
+        }
     }
 
     /// Output debuggable `target` to console.
@@ -49,10 +54,9 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func debugPrint(_ target: Any) -> String {
-        // Note: `option` is meaningless in `not-pretty` print currently.
-        let string = Pretty(option: Debug.sharedOption).string(target, debug: true, pretty: false)
-        Swift.print(string)
-        return string
+        withPrint {
+            Pretty(formatter: SinglelineFormatter()).string(target, debug: true)
+        }
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
@@ -62,9 +66,9 @@ extension Debug {
     /// - Returns: String that is the same as output console.
     @discardableResult
     public static func debugPrettyPrint(_ target: Any, option: Option = Debug.sharedOption) -> String {
-        let string = Pretty(option: option).string(target, debug: true, pretty: true)
-        Swift.print(string)
-        return string
+        withPrint {
+            Pretty(formatter: MultilineFormatter(option: option)).string(target, debug: true)
+        }
     }
 }
 

@@ -26,18 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SwiftPrettyPrint::SwiftPrettyPrint"
-            BuildableName = "SwiftPrettyPrint.framework"
-            BlueprintName = "SwiftPrettyPrint"
-            ReferencedContainer = "container:SwiftPrettyPrint.xcodeproj">
-         </BuildableReference>
-      </CodeCoverageTargets>
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
