@@ -5,7 +5,27 @@ on:
     types: [prereleased]
 
 jobs:
-  release:
+  unit-test:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run Unit Test
+      run: make test
+
+    - name: Write result
+      if: always()
+      run: echo ${{ job.status }} > job-result.txt
+
+    - name: Upload job result for job slack-notify
+      if: always()
+      uses: actions/upload-artifact@v1
+      with:
+        name: result
+        path: job-result.txt
+
+  integration-test:
     runs-on: macos-latest
 
     steps:
@@ -16,17 +36,41 @@ jobs:
       with:
         path: vendor/bundle
         key: bundler-${{ hashFiles('Gemfile.lock') }}
-        restore-keys: |
-          bundler-${{ hashFiles('Gemfile.lock') }}
+        restore-keys: bundler-${{ hashFiles('Gemfile.lock') }}
 
-    - name: Setup
+    - name: Bundle install
       run: bundle
-
-    - name: Run Unit Test
-      run: make test
 
     - name: Run Integration Test
       run: make integration-test
+
+    - name: Write result
+      if: always()
+      run: echo ${{ job.status }} > job-result.txt
+
+    - name: Upload job result for job slack-notify
+      if: always()
+      uses: actions/upload-artifact@v1
+      with:
+        name: result
+        path: job-result.txt
+
+  deploy:
+    runs-on: macos-latest
+    needs: [unit-test, integration-test]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache bundler
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: bundler-${{ hashFiles('Gemfile.lock') }}
+        restore-keys: bundler-${{ hashFiles('Gemfile.lock') }}
+
+    - name: Setup
+      run: bundle
 
     - name: Lint
       run: make lint
@@ -49,7 +93,7 @@ jobs:
 
   slack-notify:
     runs-on: ubuntu-latest
-    needs: release
+    needs: deploy
     if: always()
 
     steps:
