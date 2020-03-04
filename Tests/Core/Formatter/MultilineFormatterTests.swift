@@ -8,140 +8,83 @@
 @testable import SwiftPrettyPrint
 import XCTest
 
-// TODO: This tests should organize because it is only moved from PrettyTests.
-
 class MultilineFormatterTests: XCTestCase {
-    let pretty = Pretty(formatter: MultilineFormatter(option: Debug.defaultOption))
+    var formatter: MultilineFormatter!
 
     override func setUp() {}
 
     override func tearDown() {}
 
-    func testObjectString() {
-        struct Dog {
-            var name: String
-            var owner: Owner
-            var age: Int?
-        }
-
-        struct Owner {
-            var name: String
-            var age: Int
-            var address: String?
-        }
-
-        let owner = Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")
-        let dog = Dog(name: "Pochi", owner: owner, age: nil)
-
-        //
-        // Struct
-        //
-
-        XCTAssertEqual(pretty.string(owner, debug: false),
-                       """
-                       Owner(name: "Nanachi",
-                             age: 20,
-                             address: "4th layer in Abyss")
-                       """)
-
-        XCTAssertEqual(pretty.string(owner, debug: true),
-                       """
-                       Owner(name: "Nanachi",
-                             age: 20,
-                             address: Optional("4th layer in Abyss"))
-                       """)
-
-        //
-        // Nested Struct
-        //
-
-        //
-        // TODO: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/25
-        //
-        // XCTAssertEqual(pretty.string(dog, debug: false, pretty: true),
-        //                """
-        //                Dog(name: "Pochi",
-        //                    owner: Owner(name: "Nanachi",
-        //                                 age: 20,
-        //                                 address: "4th layer Abyss"),
-        //                    age: 4)
-        //                """)
-    }
-
     func testArrayString() {
-        let array: [String?] = ["Hello", "World"]
+        let array: [String] = [#""Hello""#, #""World""#]
 
-        XCTAssertEqual(pretty.string(array, debug: false),
+        formatter = MultilineFormatter(option: Debug.Option(indent: 2))
+        XCTAssertEqual(formatter.arrayString(elements: array),
+                       """
+                       [
+                         "Hello",
+                         "World"
+                       ]
+                       """)
+
+        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
+        XCTAssertEqual(formatter.arrayString(elements: array),
                        """
                        [
                            "Hello",
                            "World"
                        ]
                        """)
+    }
 
-        XCTAssertEqual(pretty.string(array, debug: true),
+    func testDictionaryString() {
+        let keysAndValues: [(String, String)] = [
+            ("2", #""Two""#),
+            ("1", """
+            One(value: 1,
+                first: true)
+            """),
+        ]
+
+        formatter = MultilineFormatter(option: Debug.Option(indent: 2))
+        XCTAssertEqual(formatter.dictionaryString(keysAndValues: keysAndValues),
                        """
                        [
-                           Optional("Hello"),
-                           Optional("World")
+                         1: One(value: 1,
+                                first: true),
+                         2: "Two"
+                       ]
+                       """)
+
+        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
+        XCTAssertEqual(formatter.dictionaryString(keysAndValues: keysAndValues),
+                       """
+                       [
+                           1: One(value: 1,
+                                  first: true),
+                           2: "Two"
                        ]
                        """)
     }
 
-    func testDictionaryString() {
-        let dictionary: [Int: String?] = [
-            2: "Two",
-            1: "One",
+    func testObjectString() {
+        let fields: [(String, String)] = [
+            ("name", #""pochi""#),
+            ("owner", """
+            Owner(name: "Nanachi",
+                  age: 4)
+            """),
         ]
 
-        XCTAssertEqual(pretty.string(dictionary, debug: false),
-                       """
-                       [
-                           1: "One",
-                           2: "Two"
-                       ]
-                       """)
+        formatter = MultilineFormatter(option: Debug.Option(indent: 2))
 
-        XCTAssertEqual(pretty.string(dictionary, debug: true),
-                       """
-                       [
-                           1: Optional("One"),
-                           2: Optional("Two")
-                       ]
-                       """)
-
+        // Bug: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/25
         //
-        // Dictionary in Struct
-        //
-
-        struct Cat {
-            var id: String
-            var name: String?
-        }
-
-        let dictionaryInStruct: [String: Cat] = [
-            "mike": Cat(id: "mike", name: "ポチ"),
-            "tama": Cat(id: "tama", name: "タマ"),
-        ]
-
-        XCTAssertEqual(pretty.string(dictionaryInStruct, debug: false),
-                       """
-                       [
-                           "mike": Cat(id: "mike",
-                                       name: "ポチ"),
-                           "tama": Cat(id: "tama",
-                                       name: "タマ")
-                       ]
-                       """)
-
-        XCTAssertEqual(pretty.string(dictionaryInStruct, debug: true),
-                       """
-                       [
-                           "mike": Cat(id: "mike",
-                                       name: Optional("ポチ")),
-                           "tama": Cat(id: "tama",
-                                       name: Optional("タマ"))
-                       ]
-                       """)
+        // XCTAssertEqual(formatter.objectString(typeName: "Dog", fields: fields),
+        //                """
+        //                Dog(name: "pochi",
+        //                    owner: Owner(name: "Nanachi",
+        //                                 age: 4))
+        //                """)
     }
 }
