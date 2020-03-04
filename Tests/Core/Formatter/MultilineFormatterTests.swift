@@ -41,9 +41,9 @@ class MultilineFormatterTests: XCTestCase {
         let keysAndValues: [(String, String)] = [
             ("2", #""Two""#),
             ("1", """
-                  One(value: 1,
-                      first: true)
-                  """),
+            One(value: 1,
+                first: true)
+            """),
         ]
 
         formatter = MultilineFormatter(option: Debug.Option(indent: 2))
@@ -71,9 +71,9 @@ class MultilineFormatterTests: XCTestCase {
         let fields: [(String, String)] = [
             ("name", #""pochi""#),
             ("owner", """
-                      Owner(name: "Nanachi",
-                            age: 4)
-                      """),
+            Owner(name: "Nanachi",
+                  age: 4)
+            """),
         ]
 
         formatter = MultilineFormatter(option: Debug.Option(indent: 2))

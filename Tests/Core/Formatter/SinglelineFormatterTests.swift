@@ -11,11 +11,9 @@ import XCTest
 class SinglelineFormatterTests: XCTestCase {
     let formatter = SinglelineFormatter()
 
-    override func setUp() {
-    }
+    override func setUp() {}
 
-    override func tearDown() {
-    }
+    override func tearDown() {}
 
     func testArrayString() {
         let array: [String] = [#""Hello""#, #""World""#]
@@ -23,23 +21,23 @@ class SinglelineFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.arrayString(elements: array),
                        #"["Hello", "World"]"#)
     }
-    
+
     func testDictionaryString() {
         let keysAndValues: [(String, String)] = [
             ("2", #""Two""#),
             ("1", #""One""#),
         ]
-        
+
         XCTAssertEqual(formatter.dictionaryString(keysAndValues: keysAndValues),
                        #"[1: "One", 2: "Two"]"#) // sorted
     }
-    
+
     func testObjectString() {
         let fields: [(String, String)] = [
             ("name", #""pochi""#),
             ("age", "4"),
         ]
-        
+
         XCTAssertEqual(formatter.objectString(typeName: "Dog", fields: fields),
                        #"Dog(name: "pochi", age: 4)"#)
     }
