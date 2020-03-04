@@ -19,22 +19,22 @@ class MultilineFormatterTests: XCTestCase {
         let array: [String] = [#""Hello""#, #""World""#]
 
         formatter = MultilineFormatter(option: Debug.Option(indent: 2))
-        XCTAssertEqual(formatter.arrayString(elements: array),
-                       """
-                       [
-                         "Hello",
-                         "World"
-                       ]
-                       """)
-
-        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
-        XCTAssertEqual(formatter.arrayString(elements: array),
-                       """
-                       [
+        assertEqualLines(formatter.arrayString(elements: array),
+                         """
+                         [
                            "Hello",
                            "World"
-                       ]
-                       """)
+                         ]
+                         """)
+
+        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
+        assertEqualLines(formatter.arrayString(elements: array),
+                         """
+                         [
+                             "Hello",
+                             "World"
+                         ]
+                         """)
     }
 
     func testDictionaryString() {
@@ -47,24 +47,24 @@ class MultilineFormatterTests: XCTestCase {
         ]
 
         formatter = MultilineFormatter(option: Debug.Option(indent: 2))
-        XCTAssertEqual(formatter.dictionaryString(keysAndValues: keysAndValues),
-                       """
-                       [
-                         1: One(value: 1,
-                                first: true),
-                         2: "Two"
-                       ]
-                       """)
-
-        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
-        XCTAssertEqual(formatter.dictionaryString(keysAndValues: keysAndValues),
-                       """
-                       [
+        assertEqualLines(formatter.dictionaryString(keysAndValues: keysAndValues),
+                         """
+                         [
                            1: One(value: 1,
                                   first: true),
                            2: "Two"
-                       ]
-                       """)
+                         ]
+                         """)
+
+        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
+        assertEqualLines(formatter.dictionaryString(keysAndValues: keysAndValues),
+                         """
+                         [
+                             1: One(value: 1,
+                                    first: true),
+                             2: "Two"
+                         ]
+                         """)
     }
 
     func testObjectString() {
@@ -80,11 +80,11 @@ class MultilineFormatterTests: XCTestCase {
 
         // Bug: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/25
         //
-        // XCTAssertEqual(formatter.objectString(typeName: "Dog", fields: fields),
-        //                """
-        //                Dog(name: "pochi",
-        //                    owner: Owner(name: "Nanachi",
-        //                                 age: 4))
-        //                """)
+        // assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields),
+        //                 """
+        //                 Dog(name: "pochi",
+        //                     owner: Owner(name: "Nanachi",
+        //                                  age: 4))
+        //                 """)
     }
 }

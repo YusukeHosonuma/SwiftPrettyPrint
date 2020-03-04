@@ -82,91 +82,91 @@ class DebugTests: XCTestCase {
         // Struct
         //
 
-        XCTAssertEqual(Debug.prettyPrint(dog),
-                       """
-                       Dog(id: "pochi",
-                           name: "ポチ",
-                           nickname: nil,
-                           age: 3,
-                           homepage: https://www.google.com/)
-                       """)
+        assertEqualLines(Debug.prettyPrint(dog),
+                         """
+                         Dog(id: "pochi",
+                             name: "ポチ",
+                             nickname: nil,
+                             age: 3,
+                             homepage: https://www.google.com/)
+                         """)
 
-        XCTAssertEqual(Debug.debugPrettyPrint(dog),
-                       """
-                       Dog(id: DogId(rawValue: "pochi"),
-                           name: Optional("ポチ"),
-                           nickname: nil,
-                           age: 3,
-                           homepage: Optional(https://www.google.com/))
-                       """)
+        assertEqualLines(Debug.debugPrettyPrint(dog),
+                         """
+                         Dog(id: DogId(rawValue: "pochi"),
+                             name: Optional("ポチ"),
+                             nickname: nil,
+                             age: 3,
+                             homepage: Optional(https://www.google.com/))
+                         """)
 
-        XCTAssertEqual(Debug.prettyPrint([dog, dog]),
-                       """
-                       [
-                           Dog(id: "pochi",
-                               name: "ポチ",
-                               nickname: nil,
-                               age: 3,
-                               homepage: https://www.google.com/),
-                           Dog(id: "pochi",
-                               name: "ポチ",
-                               nickname: nil,
-                               age: 3,
-                               homepage: https://www.google.com/)
-                       ]
-                       """)
+        assertEqualLines(Debug.prettyPrint([dog, dog]),
+                         """
+                         [
+                             Dog(id: "pochi",
+                                 name: "ポチ",
+                                 nickname: nil,
+                                 age: 3,
+                                 homepage: https://www.google.com/),
+                             Dog(id: "pochi",
+                                 name: "ポチ",
+                                 nickname: nil,
+                                 age: 3,
+                                 homepage: https://www.google.com/)
+                         ]
+                         """)
 
-        XCTAssertEqual(Debug.debugPrettyPrint([dog, dog]),
-                       """
-                       [
-                           Dog(id: DogId(rawValue: "pochi"),
-                               name: Optional("ポチ"),
-                               nickname: nil,
-                               age: 3,
-                               homepage: Optional(https://www.google.com/)),
-                           Dog(id: DogId(rawValue: "pochi"),
-                               name: Optional("ポチ"),
-                               nickname: nil,
-                               age: 3,
-                               homepage: Optional(https://www.google.com/))
-                       ]
-                       """)
+        assertEqualLines(Debug.debugPrettyPrint([dog, dog]),
+                         """
+                         [
+                             Dog(id: DogId(rawValue: "pochi"),
+                                 name: Optional("ポチ"),
+                                 nickname: nil,
+                                 age: 3,
+                                 homepage: Optional(https://www.google.com/)),
+                             Dog(id: DogId(rawValue: "pochi"),
+                                 name: Optional("ポチ"),
+                                 nickname: nil,
+                                 age: 3,
+                                 homepage: Optional(https://www.google.com/))
+                         ]
+                         """)
 
         let dictionary: [String: Dog] = [
             "dog-1": dog,
             "dog-2": dog,
         ]
 
-        XCTAssertEqual(Debug.prettyPrint(dictionary),
-                       """
-                       [
-                           "dog-1": Dog(id: "pochi",
-                                        name: "ポチ",
-                                        nickname: nil,
-                                        age: 3,
-                                        homepage: https://www.google.com/),
-                           "dog-2": Dog(id: "pochi",
-                                        name: "ポチ",
-                                        nickname: nil,
-                                        age: 3,
-                                        homepage: https://www.google.com/)
-                       ]
-                       """)
+        assertEqualLines(Debug.prettyPrint(dictionary),
+                         """
+                         [
+                             "dog-1": Dog(id: "pochi",
+                                          name: "ポチ",
+                                          nickname: nil,
+                                          age: 3,
+                                          homepage: https://www.google.com/),
+                             "dog-2": Dog(id: "pochi",
+                                          name: "ポチ",
+                                          nickname: nil,
+                                          age: 3,
+                                          homepage: https://www.google.com/)
+                         ]
+                         """)
 
-        XCTAssertEqual(Debug.debugPrettyPrint(dictionary),
-                       """
-                       [
-                           "dog-1": Dog(id: DogId(rawValue: "pochi"),
-                                        name: Optional("ポチ"),
-                                        nickname: nil,
-                                        age: 3,
-                                        homepage: Optional(https://www.google.com/)),
-                           "dog-2": Dog(id: DogId(rawValue: "pochi"),
-                                        name: Optional("ポチ"),
-                                        nickname: nil,
-                                        age: 3,
-                                        homepage: Optional(https://www.google.com/))
-                       ]
-                       """)
+        assertEqualLines(Debug.debugPrettyPrint(dictionary),
+                         """
+                         [
+                             "dog-1": Dog(id: DogId(rawValue: "pochi"),
+                                          name: Optional("ポチ"),
+                                          nickname: nil,
+                                          age: 3,
+                                          homepage: Optional(https://www.google.com/)),
+                             "dog-2": Dog(id: DogId(rawValue: "pochi"),
+                                          name: Optional("ポチ"),
+                                          nickname: nil,
+                                          age: 3,
+                                          homepage: Optional(https://www.google.com/))
+                         ]
+                         """)
     }
 }

@@ -28,13 +28,13 @@ class String_extensionTests: XCTestCase {
           Orange
           Banana
         """
-        XCTAssertEqual(text.indentTail(size: 2), expected)
+        assertEqualLines(text.indentTail(size: 2), expected)
 
         expected = """
         Apple
             Orange
             Banana
         """
-        XCTAssertEqual(text.indentTail(size: 4), expected)
+        assertEqualLines(text.indentTail(size: 4), expected)
     }
 }
