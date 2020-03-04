@@ -16,7 +16,7 @@ sed -i "" -E "s/VERSION = \".+\"/VERSION = \"$VERSION\"/" $PODSPEC
 git checkout -b "bump/$VERSION"
 git add version.txt
 git add SwiftPrettyPrint.podspec
-git commit -m "bump version $VERSION"
+git commit --no-verify -m "bump version $VERSION"
 
 # push
 git push origin HEAD
