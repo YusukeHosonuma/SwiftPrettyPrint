@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		E558FC88240E658800B80F85 /* SinglelineFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E558FC87240E658800B80F85 /* SinglelineFormatterTests.swift */; };
+		E563B492240F3F8100C89700 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E563B491240F3F8100C89700 /* Assertions.swift */; };
 		OBJ_49 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Debug.swift */; };
 		OBJ_50 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Option.swift */; };
 		OBJ_51 /* MultilineFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* MultilineFormatter.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		E558FC87240E658800B80F85 /* SinglelineFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglelineFormatterTests.swift; sourceTree = "<group>"; };
+		E563B491240F3F8100C89700 /* Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		OBJ_13 /* MultilineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatter.swift; sourceTree = "<group>"; };
 		OBJ_14 /* PrettyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFormatter.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E563B490240F3F6A00C89700 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E563B491240F3F8100C89700 /* Assertions.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		OBJ_11 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +146,7 @@
 		OBJ_20 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E563B490240F3F6A00C89700 /* Helper */,
 				OBJ_21 /* API */,
 				OBJ_24 /* Core */,
 				OBJ_28 /* Extension */,
@@ -187,7 +198,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -205,7 +216,6 @@
 				OBJ_42 /* Gemfile.lock */,
 				OBJ_43 /* Brewfile */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -293,7 +303,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_31 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -338,6 +348,7 @@
 				OBJ_76 /* MultilineFormatterTests.swift in Sources */,
 				OBJ_77 /* PrettyTests.swift in Sources */,
 				OBJ_78 /* String+extensionTests.swift in Sources */,
+				E563B492240F3F8100C89700 /* Assertions.swift in Sources */,
 				OBJ_79 /* XCTestManifests.swift in Sources */,
 				E558FC88240E658800B80F85 /* SinglelineFormatterTests.swift in Sources */,
 			);
