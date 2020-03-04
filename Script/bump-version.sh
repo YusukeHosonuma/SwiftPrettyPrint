@@ -18,8 +18,12 @@ git add version.txt
 git add SwiftPrettyPrint.podspec
 git commit --no-verify -m "bump version $VERSION"
 
+# tag
+git tag $VERSION
+
 # push
 git push origin HEAD
+git push origin $VERSION
 
 # create PR
 gh pr create \
