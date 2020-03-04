@@ -2,6 +2,6 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/nicklockwood/SwiftFormat
-    rev: 0.44.2
+    rev: 0.44.4
     hooks:
     -   id: swiftformat
