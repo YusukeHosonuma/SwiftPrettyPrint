@@ -1,6 +1,8 @@
 EFAULT_GOAL := help
 HELP_INDENT := "10"
 
+version = ""
+
 # ref: https://postd.cc/auto-documented-makefile/
 .PHONY: help
 help:
@@ -38,6 +40,10 @@ release: ## cocoapods - release
 .PHONY: info
 info: ## cocoapods - show trunk information
 	bundle exec pod trunk info SwiftPrettyPrint
+
+.PHONY: bump-version
+bump-version: ## update .podspec and create PR (version is decided from `version.txt`)
+	./Script/bump-version.sh
 
 .PHONY: integration-test
 integration-test: ## Integration test by Example app
