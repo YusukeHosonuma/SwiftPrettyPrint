@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftParamTest",
+        "repositoryURL": "https://github.com/YusukeHosonuma/SwiftParamTest.git",
+        "state": {
+          "branch": null,
+          "revision": "061e3a0eb1b0c855114e4f2bface32de6ea14da1",
+          "version": "1.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
