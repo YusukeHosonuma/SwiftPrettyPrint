@@ -1,0 +1,35 @@
+name: Bump version
+
+on:
+  push:
+    paths:
+      - version.txt
+
+jobs:
+  bump-version:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: update .podspec
+      run: |
+        VERSION=$(cat version.txt)
+        sed -i "" -E "s/VERSION = \".+\"/VERSION = \"$VERSION\"/" SwiftPrettyPrint.podspec
+
+    - name: commit
+      run: |
+        VERSION=$(cat version.txt)
+        git add SwiftPrettyPrint.podspec
+        git commit --no-verify -m "bump version $VERSION"
+
+    - name: tag
+      run: |
+        VERSION=$(cat version.txt)
+        git tag $VERSION
+
+    - name: push
+      run: |
+        VERSION=$(cat version.txt)
+        git push origin HEAD
+        git push origin $VERSION
