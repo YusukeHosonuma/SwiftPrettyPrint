@@ -8,6 +8,7 @@
 
 @testable import SwiftPrettyPrint
 import XCTest
+import SwiftParamTest
 
 class PrettyTests: XCTestCase {
     let pretty = Pretty(formatter: SinglelineFormatter())
@@ -20,44 +21,36 @@ class PrettyTests: XCTestCase {
     /// Basic type
     ///
     func testString_BasicType() {
-        //
+        
         // String
-        //
+        assert(to: pretty.string).expect([
+            when(("Hello", false), then: #""Hello""#),
+            when(("Hello", true),  then: #""Hello""#),
+        ])
 
-        XCTAssertEqual(pretty.string("Hello", debug: false), #""Hello""#)
-        XCTAssertEqual(pretty.string("Hello", debug: true), #""Hello""#)
-
-        //
         // Int
-        //
+        assert(to: pretty.string).expect([
+            when((42, false), then: "42"),
+            when((42, true),  then: "42"),
+        ])
 
-        XCTAssertEqual(pretty.string(42, debug: false), "42")
-        XCTAssertEqual(pretty.string(42, debug: true), "42")
-
-        //
         // Optional.some
-        //
+        assert(to: pretty.string).expect([
+            when((Optional.some("Hello"), false), then: #""Hello""#),
+            when((Optional.some("Hello"), true),  then: #"Optional("Hello")"#),
+        ])
 
-        XCTAssertEqual(pretty.string(Optional.some("Hello"), debug: false), #""Hello""#)
-        XCTAssertEqual(pretty.string(Optional.some("Hello"), debug: true), #"Optional("Hello")"#)
-
-        //
         // Optional.none
-        //
-
-        XCTAssertEqual(pretty.string(nil as String?, debug: false), "nil")
-        XCTAssertEqual(pretty.string(nil as String?, debug: true), "nil")
-
-        //
+        assert(to: pretty.string).expect([
+            when((nil as String?, false), then: "nil"),
+            when((nil as String?, true),  then: "nil"),
+        ])
+        
         // URL
-        //
-
-        XCTAssertEqual(pretty.string(URL(string: "https://www.google.com/")!, debug: false),
-                       "https://www.google.com/")
-        XCTAssertEqual(pretty.string(URL(string: "https://www.google.com/")!, debug: true),
-                       #"URL("https://www.google.com/")"#)
-
-        // TODO: add test pattern
+        assert(to: pretty.string).expect([
+            when((URL(string: "https://www.google.com/")!, false), then: "https://www.google.com/"),
+            when((URL(string: "https://www.google.com/")!, true),  then: #"URL("https://www.google.com/")"#),
+        ])
     }
 
     ///
@@ -79,25 +72,17 @@ class PrettyTests: XCTestCase {
         let owner = Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")
         let dog = Dog(name: "Pochi", owner: owner, age: nil)
 
-        //
-        // Struct
-        //
-
-        XCTAssertEqual(pretty.string(owner, debug: false),
-                       #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
-
-        XCTAssertEqual(pretty.string(owner, debug: true),
-                       #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
-
-        //
-        // Nested Struct
-        //
-
-        XCTAssertEqual(pretty.string(dog, debug: false),
-                       #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
-
-        XCTAssertEqual(pretty.string(dog, debug: true),
-                       #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
+        // struct
+        assert(to: pretty.string).expect([
+            when((owner, false), then: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#),
+            when((owner, true),  then: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#),
+        ])
+        
+        // nested struct
+        assert(to: pretty.string).expect([
+            when((dog, false), then: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#),
+            when((dog, true),  then: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#),
+        ])
     }
 
     ///
@@ -105,12 +90,11 @@ class PrettyTests: XCTestCase {
     ///
     func testString_Array() {
         let array: [String?] = ["Hello", "World"]
-
-        XCTAssertEqual(pretty.string(array, debug: false),
-                       #"["Hello", "World"]"#)
-
-        XCTAssertEqual(pretty.string(array, debug: true),
-                       #"[Optional("Hello"), Optional("World")]"#)
+        
+        assert(to: pretty.string).expect([
+            when((array, false), then: #"["Hello", "World"]"#),
+            when((array, true),  then: #"[Optional("Hello"), Optional("World")]"#),
+        ])
 
         // TODO: add tests for nested Array
     }
@@ -124,15 +108,12 @@ class PrettyTests: XCTestCase {
             1: "One",
         ]
 
-        XCTAssertEqual(pretty.string(dictionary, debug: false),
-                       #"[1: "One", 2: "Two"]"#)
+        // Dictinary
+        assert(to: pretty.string).expect([
+            when((dictionary, false), then: #"[1: "One", 2: "Two"]"#),
+            when((dictionary, true),  then: #"[1: Optional("One"), 2: Optional("Two")]"#),
+        ])
 
-        XCTAssertEqual(pretty.string(dictionary, debug: true),
-                       #"[1: Optional("One"), 2: Optional("Two")]"#)
-
-        //
-        // Dictionary in Struct
-        //
 
         struct Cat {
             var id: String
@@ -144,11 +125,11 @@ class PrettyTests: XCTestCase {
             "tama": Cat(id: "tama", name: "タマ"),
         ]
 
-        XCTAssertEqual(pretty.string(dictionaryInStruct, debug: false),
-                       #"["mike": Cat(id: "mike", name: "ポチ"), "tama": Cat(id: "tama", name: "タマ")]"#)
-
-        XCTAssertEqual(pretty.string(dictionaryInStruct, debug: true),
-                       #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#)
+        // Dictionary in Struct
+        assert(to: pretty.string).expect([
+            when((dictionaryInStruct, false), then: #"["mike": Cat(id: "mike", name: "ポチ"), "tama": Cat(id: "tama", name: "タマ")]"#),
+            when((dictionaryInStruct, true),  then: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#),
+        ])
     }
 
     func testExtractKeyValues() throws {
