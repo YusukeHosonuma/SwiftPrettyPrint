@@ -39,10 +39,6 @@ release: ## cocoapods - release
 info: ## cocoapods - show trunk information
 	bundle exec pod trunk info SwiftPrettyPrint
 
-.PHONY: bump-version
-bump-version: ## update .podspec and create PR (version is decided from `version.txt`)
-	./Script/bump-version.sh
-
 .PHONY: integration-test
 integration-test: ## Integration test by Example app
 	cd ./Example && \
