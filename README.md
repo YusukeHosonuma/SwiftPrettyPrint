@@ -138,13 +138,16 @@ You can use operator based alias API that like Ruby.
 This is no need to enclose in parenthese that convenient to long expression.
 
 ```swift
-Debug.p >> 42
+Debug.p >>> 42
 // => 42
 
-Debug.p >> String(string.reversed()).hasSuffix("eH")
+Debug.p >>> 42 + 1 // It can also be applied to expression
+// => 43
+
+Debug.p >>> String(string.reversed()).hasSuffix("eH")
 // => true
 
-Debug.pp >> ["Hello", "World"]
+Debug.pp >>> ["Hello", "World"]
 // =>
 // [
 //     "Hello",
@@ -152,12 +155,12 @@ Debug.pp >> ["Hello", "World"]
 // ]
 ```
 
-| Operator syntax   | Equatable to                 |
-|-------------------|------------------------------|
-| `Debug.p >> 42`   | `Debug.print(42)`            |
-| `Debug.pp >> 42`  | `Debug.prettyPrint(42)`      |
-| `Debug.pd >> 42`  | `Debug.debugPrint(42)`       |
-| `Debug.ppd >> 42` | `Debug.debugPrettyPrint(42)` |
+| Operator syntax    | Equatable to                 |
+|--------------------|------------------------------|
+| `Debug.p >>> 42`   | `Debug.print(42)`            |
+| `Debug.pp >>> 42`  | `Debug.prettyPrint(42)`      |
+| `Debug.pd >>> 42`  | `Debug.debugPrint(42)`       |
+| `Debug.ppd >>> 42` | `Debug.debugPrettyPrint(42)` |
 
 ## Develoopment
 

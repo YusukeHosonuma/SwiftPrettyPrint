@@ -10,7 +10,6 @@
 // Provide a simplicity description for print.
 //
 // No need to enclose in parenthese unlike `print()` or `debugPrint()`.
-// This is convenient for print to written expression.
 //
 // For example:
 //
@@ -22,8 +21,11 @@
 // Debug.print(string.hasPrefix("Hello"))
 //
 // // when use `p` - not needs enclose in parenthese
-// Debug.p >> string.hasPrefix("Hello")
+// Debug.p >>> string.hasPrefix("Hello")
 // ```
+//
+// Also the operator `>>>` has lower precedence than all standard operators in Swift,
+// Therefore could be a apply to expression too.
 //
 // ----------------------------------------------------------------------------
 
@@ -39,22 +41,28 @@ extension Debug {
     public static var ppd: PPD { PPD() }
 }
 
+precedencegroup PrintPrecedence {
+    lowerThan: FunctionArrowPrecedence
+}
+
+infix operator >>>: PrintPrecedence
+
 @discardableResult
-public func >> (_: Debug.P, target: Any) -> String {
+public func >>> (_: Debug.P, target: Any) -> String {
     Debug.print(target)
 }
 
 @discardableResult
-public func >> (_: Debug.PD, target: Any) -> String {
+public func >>> (_: Debug.PD, target: Any) -> String {
     Debug.debugPrint(target)
 }
 
 @discardableResult
-public func >> (_: Debug.PP, target: Any) -> String {
+public func >>> (_: Debug.PP, target: Any) -> String {
     Debug.prettyPrint(target)
 }
 
 @discardableResult
-public func >> (_: Debug.PPD, target: Any) -> String {
+public func >>> (_: Debug.PPD, target: Any) -> String {
     Debug.debugPrettyPrint(target)
 }

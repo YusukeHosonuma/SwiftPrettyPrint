@@ -16,19 +16,23 @@ class AliasTests: XCTestCase {
     func testExample() {
         let array: [String?] = ["Hello", "World"]
 
-        XCTAssertEqual(Debug.p >> array, #"["Hello", "World"]"#)
-        XCTAssertEqual(Debug.pd >> array, #"[Optional("Hello"), Optional("World")]"#)
-        XCTAssertEqual(Debug.pp >> array, """
+        XCTAssertEqual(Debug.p >>> array, #"["Hello", "World"]"#)
+        XCTAssertEqual(Debug.pd >>> array, #"[Optional("Hello"), Optional("World")]"#)
+        XCTAssertEqual(Debug.pp >>> array, """
         [
             "Hello",
             "World"
         ]
         """)
-        XCTAssertEqual(Debug.ppd >> array, """
+        XCTAssertEqual(Debug.ppd >>> array, """
         [
             Optional("Hello"),
             Optional("World")
         ]
         """)
+
+        // Note:
+        // could be a apply to expression because the operator `>>>` has lower precedense than all standard operators in Swift.
+        XCTAssertEqual(Debug.p >>> 42 + 1, "43")
     }
 }
