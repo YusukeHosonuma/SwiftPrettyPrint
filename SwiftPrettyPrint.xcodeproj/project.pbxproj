@@ -628,10 +628,10 @@
       "OBJ_42" = {
          isa = "PBXGroup";
          children = (
-            "SwiftParamTest::SwiftParamTest::Product",
             "SwiftPrettyPrint::SwiftPrettyPrint::Product",
             "SwiftPrettyPrint::SwiftPrettyPrintTests::Product",
-            "Curry::Curry::Product"
+            "Curry::Curry::Product",
+            "SwiftParamTest::SwiftParamTest::Product"
          );
          name = "Products";
          path = "";
