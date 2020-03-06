@@ -1,5 +1,5 @@
 //
-//  Alias.swift
+//  Operator.swift
 //  SwiftPrettyPrint
 //
 //  Created by Yusuke Hosonuma on 2020/03/06.

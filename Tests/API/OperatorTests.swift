@@ -1,5 +1,5 @@
 //
-//  AliasTests.swift
+//  OperatorTests.swift
 //  SwiftPrettyPrintTests
 //
 //  Created by Yusuke Hosonuma on 2020/03/06.
@@ -8,7 +8,7 @@
 import SwiftPrettyPrint
 import XCTest
 
-class AliasTests: XCTestCase {
+class OperatorTests: XCTestCase {
     override func setUp() {}
 
     override func tearDown() {}
