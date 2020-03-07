@@ -34,12 +34,15 @@ class MultilineFormatter: PrettyFormatter {
 
     func objectString(typeName: String, fields: [(String, String)]) -> String {
         let prefix = "\(typeName)("
+        let body: String
 
         if fields.count == 1, let field = fields.first {
-            return prefix + "\(field.0): \(field.1)" + ")"
+            body = "\(field.0): \(field.1)"
         } else {
             let contents = fields.map { "\($0): \($1)" }.joined(separator: ",\n")
-            return prefix + contents.indentTail(size: prefix.count) + ")"
+            body = contents.indentTail(size: prefix.count)
         }
+
+        return prefix + body + ")"
     }
 }
