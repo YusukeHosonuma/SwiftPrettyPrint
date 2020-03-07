@@ -10,9 +10,14 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/YusukeHosonuma/SwiftParamTest.git", from: "1.1.0"),
+        .package(url: "https://github.com/thoughtbot/Curry.git", from: "4.0.2"),
     ],
     targets: [
         .target(name: "SwiftPrettyPrint", dependencies: [], path: "Sources"),
-        .testTarget(name: "SwiftPrettyPrintTests", dependencies: ["SwiftPrettyPrint", "SwiftParamTest"], path: "Tests"),
+        .testTarget(
+            name: "SwiftPrettyPrintTests",
+            dependencies: ["SwiftPrettyPrint", "SwiftParamTest", "Curry"],
+            path: "Tests"
+        ),
     ]
 )

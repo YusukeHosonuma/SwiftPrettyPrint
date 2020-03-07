@@ -9,6 +9,7 @@
 @testable import SwiftPrettyPrint
 import XCTest
 import SwiftParamTest
+import Curry
 
 class PrettyTests: XCTestCase {
     let pretty = Pretty(formatter: SinglelineFormatter())
@@ -23,33 +24,33 @@ class PrettyTests: XCTestCase {
     func testString_BasicType() {
         
         // String
-        assert(to: pretty.string).expect([
-            when(("Hello", false), then: #""Hello""#),
-            when(("Hello", true),  then: #""Hello""#),
+        assert(to: curry(pretty.string)("Hello")).expect([
+            when(false, then: #""Hello""#),
+            when(true,  then: #""Hello""#),
         ])
 
         // Int
-        assert(to: pretty.string).expect([
-            when((42, false), then: "42"),
-            when((42, true),  then: "42"),
+        assert(to: curry(pretty.string)(42)).expect([
+            when(false, then: "42"),
+            when(true,  then: "42"),
         ])
 
         // Optional.some
-        assert(to: pretty.string).expect([
-            when((Optional.some("Hello"), false), then: #""Hello""#),
-            when((Optional.some("Hello"), true),  then: #"Optional("Hello")"#),
+        assert(to: curry(pretty.string)(Optional.some("Hello"))).expect([
+            when(false, then: #""Hello""#),
+            when(true, then: #"Optional("Hello")"#),
         ])
 
         // Optional.none
-        assert(to: pretty.string).expect([
-            when((nil as String?, false), then: "nil"),
-            when((nil as String?, true),  then: "nil"),
+        assert(to: curry(pretty.string)(nil as String?)).expect([
+            when(false, then: "nil"),
+            when(true,  then: "nil"),
         ])
         
         // URL
-        assert(to: pretty.string).expect([
-            when((URL(string: "https://www.google.com/")!, false), then: "https://www.google.com/"),
-            when((URL(string: "https://www.google.com/")!, true),  then: #"URL("https://www.google.com/")"#),
+        assert(to: curry(pretty.string)(URL(string: "https://www.google.com/")!)).expect([
+            when(false, then: "https://www.google.com/"),
+            when(true,  then: #"URL("https://www.google.com/")"#),
         ])
     }
 
@@ -73,15 +74,15 @@ class PrettyTests: XCTestCase {
         let dog = Dog(name: "Pochi", owner: owner, age: nil)
 
         // struct
-        assert(to: pretty.string).expect([
-            when((owner, false), then: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#),
-            when((owner, true),  then: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#),
+        assert(to: curry(pretty.string)(owner)).expect([
+            when(false, then: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#),
+            when(true,  then: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#),
         ])
         
         // nested struct
-        assert(to: pretty.string).expect([
-            when((dog, false), then: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#),
-            when((dog, true),  then: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#),
+        assert(to: curry(pretty.string)(dog)).expect([
+            when(false, then: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#),
+            when(true,  then: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#),
         ])
     }
 
@@ -91,9 +92,9 @@ class PrettyTests: XCTestCase {
     func testString_Array() {
         let array: [String?] = ["Hello", "World"]
         
-        assert(to: pretty.string).expect([
-            when((array, false), then: #"["Hello", "World"]"#),
-            when((array, true),  then: #"[Optional("Hello"), Optional("World")]"#),
+        assert(to: curry(pretty.string)(array)).expect([
+            when(false, then: #"["Hello", "World"]"#),
+            when(true,  then: #"[Optional("Hello"), Optional("World")]"#),
         ])
 
         // TODO: add tests for nested Array
@@ -109,9 +110,9 @@ class PrettyTests: XCTestCase {
         ]
 
         // Dictinary
-        assert(to: pretty.string).expect([
-            when((dictionary, false), then: #"[1: "One", 2: "Two"]"#),
-            when((dictionary, true),  then: #"[1: Optional("One"), 2: Optional("Two")]"#),
+        assert(to: curry(pretty.string)(dictionary)).expect([
+            when(false, then: #"[1: "One", 2: "Two"]"#),
+            when(true,  then: #"[1: Optional("One"), 2: Optional("Two")]"#),
         ])
 
 
@@ -126,9 +127,9 @@ class PrettyTests: XCTestCase {
         ]
 
         // Dictionary in Struct
-        assert(to: pretty.string).expect([
-            when((dictionaryInStruct, false), then: #"["mike": Cat(id: "mike", name: "ポチ"), "tama": Cat(id: "tama", name: "タマ")]"#),
-            when((dictionaryInStruct, true),  then: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#),
+        assert(to: curry(pretty.string)(dictionaryInStruct)).expect([
+            when(false, then: #"["mike": Cat(id: "mike", name: "ポチ"), "tama": Cat(id: "tama", name: "タマ")]"#),
+            when(true,  then: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#),
         ])
     }
 
