@@ -9,11 +9,11 @@
 /* Begin PBXAggregateTarget section */
 		"SwiftPrettyPrint::SwiftPrettyPrintPackageTests::ProductTarget" /* SwiftPrettyPrintPackageTests */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_106 /* Build configuration list for PBXAggregateTarget "SwiftPrettyPrintPackageTests" */;
+			buildConfigurationList = OBJ_109 /* Build configuration list for PBXAggregateTarget "SwiftPrettyPrintPackageTests" */;
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_109 /* PBXTargetDependency */,
+				OBJ_112 /* PBXTargetDependency */,
 			);
 			name = SwiftPrettyPrintPackageTests;
 			productName = SwiftPrettyPrintPackageTests;
@@ -21,56 +21,58 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		OBJ_104 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_115 /* DebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* DebugTests.swift */; };
-		OBJ_116 /* MultilineFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* MultilineFormatterTests.swift */; };
-		OBJ_117 /* SinglelineFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* SinglelineFormatterTests.swift */; };
-		OBJ_118 /* PrettyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* PrettyTests.swift */; };
-		OBJ_119 /* String+extensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* String+extensionTests.swift */; };
-		OBJ_120 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* Assertions.swift */; };
-		OBJ_121 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* Util.swift */; };
-		OBJ_122 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* XCTestManifests.swift */; };
-		OBJ_124 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Curry::Curry::Product" /* Curry.framework */; };
-		OBJ_125 /* SwiftParamTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftParamTest::SwiftParamTest::Product" /* SwiftParamTest.framework */; };
-		OBJ_126 /* SwiftPrettyPrint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */; };
-		OBJ_63 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* Curry.swift */; };
-		OBJ_70 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Package.swift */; };
-		OBJ_76 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* Core.swift */; };
-		OBJ_77 /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* DSL.swift */; };
-		OBJ_84 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* Package.swift */; };
-		OBJ_90 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Debug.swift */; };
-		OBJ_91 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Option.swift */; };
-		OBJ_92 /* MultilineFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* MultilineFormatter.swift */; };
-		OBJ_93 /* PrettyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* PrettyFormatter.swift */; };
-		OBJ_94 /* SinglelineFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* SinglelineFormatter.swift */; };
-		OBJ_95 /* Pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Pretty.swift */; };
-		OBJ_96 /* PrettyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* PrettyError.swift */; };
-		OBJ_97 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* String+extension.swift */; };
+		OBJ_100 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* String+extension.swift */; };
+		OBJ_107 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_118 /* DebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* DebugTests.swift */; };
+		OBJ_119 /* OperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* OperatorTests.swift */; };
+		OBJ_120 /* MultilineFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* MultilineFormatterTests.swift */; };
+		OBJ_121 /* SinglelineFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* SinglelineFormatterTests.swift */; };
+		OBJ_122 /* PrettyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* PrettyTests.swift */; };
+		OBJ_123 /* String+extensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* String+extensionTests.swift */; };
+		OBJ_124 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* Assertions.swift */; };
+		OBJ_125 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* Util.swift */; };
+		OBJ_126 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* XCTestManifests.swift */; };
+		OBJ_128 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Curry::Curry::Product" /* Curry.framework */; };
+		OBJ_129 /* SwiftParamTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftParamTest::SwiftParamTest::Product" /* SwiftParamTest.framework */; };
+		OBJ_130 /* SwiftPrettyPrint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */; };
+		OBJ_65 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* Curry.swift */; };
+		OBJ_72 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* Package.swift */; };
+		OBJ_78 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* Core.swift */; };
+		OBJ_79 /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* DSL.swift */; };
+		OBJ_86 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Package.swift */; };
+		OBJ_92 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Debug.swift */; };
+		OBJ_93 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Operator.swift */; };
+		OBJ_94 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Option.swift */; };
+		OBJ_95 /* MultilineFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* MultilineFormatter.swift */; };
+		OBJ_96 /* PrettyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* PrettyFormatter.swift */; };
+		OBJ_97 /* SinglelineFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* SinglelineFormatter.swift */; };
+		OBJ_98 /* Pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Pretty.swift */; };
+		OBJ_99 /* PrettyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* PrettyError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E58D816C241226E50081E667 /* PBXContainerItemProxy */ = {
+		E58D817424134C950081E667 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Curry::Curry";
 			remoteInfo = Curry;
 		};
-		E58D816D241226E50081E667 /* PBXContainerItemProxy */ = {
+		E58D817524134C950081E667 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftParamTest::SwiftParamTest";
 			remoteInfo = SwiftParamTest;
 		};
-		E58D816E241226E50081E667 /* PBXContainerItemProxy */ = {
+		E58D817624134C950081E667 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPrettyPrint::SwiftPrettyPrint";
 			remoteInfo = SwiftPrettyPrint;
 		};
-		E58D816F241226E70081E667 /* PBXContainerItemProxy */ = {
+		E58D817724134C970081E667 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -81,37 +83,39 @@
 
 /* Begin PBXFileReference section */
 		"Curry::Curry::Product" /* Curry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Curry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_10 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
-		OBJ_13 /* MultilineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatter.swift; sourceTree = "<group>"; };
-		OBJ_14 /* PrettyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFormatter.swift; sourceTree = "<group>"; };
-		OBJ_15 /* SinglelineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglelineFormatter.swift; sourceTree = "<group>"; };
-		OBJ_16 /* Pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretty.swift; sourceTree = "<group>"; };
-		OBJ_17 /* PrettyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyError.swift; sourceTree = "<group>"; };
-		OBJ_19 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
-		OBJ_22 /* DebugTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTests.swift; sourceTree = "<group>"; };
-		OBJ_25 /* MultilineFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatterTests.swift; sourceTree = "<group>"; };
-		OBJ_26 /* SinglelineFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglelineFormatterTests.swift; sourceTree = "<group>"; };
-		OBJ_27 /* PrettyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyTests.swift; sourceTree = "<group>"; };
-		OBJ_29 /* String+extensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensionTests.swift"; sourceTree = "<group>"; };
-		OBJ_31 /* Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
-		OBJ_32 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		OBJ_33 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		OBJ_36 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/hosonumayuusuke/go/src/github.com/YusukeHosonuma/SwiftPrettyPrint/.build/checkouts/Curry/Package.swift; sourceTree = "<group>"; };
-		OBJ_37 /* Curry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
-		OBJ_39 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/hosonumayuusuke/go/src/github.com/YusukeHosonuma/SwiftPrettyPrint/.build/checkouts/SwiftParamTest/Package.swift; sourceTree = "<group>"; };
-		OBJ_40 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
-		OBJ_41 /* DSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSL.swift; sourceTree = "<group>"; };
-		OBJ_47 /* Example */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Example; sourceTree = SOURCE_ROOT; };
-		OBJ_48 /* Image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Image; sourceTree = SOURCE_ROOT; };
-		OBJ_49 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = SOURCE_ROOT; };
-		OBJ_50 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		OBJ_51 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		OBJ_52 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		OBJ_53 /* SwiftPrettyPrint.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftPrettyPrint.podspec; sourceTree = "<group>"; };
-		OBJ_54 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
-		OBJ_55 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
-		OBJ_56 /* Brewfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Brewfile; sourceTree = "<group>"; };
-		OBJ_57 /* version.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = version.txt; sourceTree = "<group>"; };
+		OBJ_10 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
+		OBJ_11 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		OBJ_14 /* MultilineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatter.swift; sourceTree = "<group>"; };
+		OBJ_15 /* PrettyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFormatter.swift; sourceTree = "<group>"; };
+		OBJ_16 /* SinglelineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglelineFormatter.swift; sourceTree = "<group>"; };
+		OBJ_17 /* Pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretty.swift; sourceTree = "<group>"; };
+		OBJ_18 /* PrettyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyError.swift; sourceTree = "<group>"; };
+		OBJ_20 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
+		OBJ_23 /* DebugTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTests.swift; sourceTree = "<group>"; };
+		OBJ_24 /* OperatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorTests.swift; sourceTree = "<group>"; };
+		OBJ_27 /* MultilineFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_28 /* SinglelineFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglelineFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_29 /* PrettyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyTests.swift; sourceTree = "<group>"; };
+		OBJ_31 /* String+extensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensionTests.swift"; sourceTree = "<group>"; };
+		OBJ_33 /* Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
+		OBJ_34 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		OBJ_35 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_38 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/hosonumayuusuke/go/src/github.com/YusukeHosonuma/SwiftPrettyPrint/.build/checkouts/Curry/Package.swift; sourceTree = "<group>"; };
+		OBJ_39 /* Curry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
+		OBJ_41 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/hosonumayuusuke/go/src/github.com/YusukeHosonuma/SwiftPrettyPrint/.build/checkouts/SwiftParamTest/Package.swift; sourceTree = "<group>"; };
+		OBJ_42 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		OBJ_43 /* DSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSL.swift; sourceTree = "<group>"; };
+		OBJ_49 /* Example */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Example; sourceTree = SOURCE_ROOT; };
+		OBJ_50 /* Image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Image; sourceTree = SOURCE_ROOT; };
+		OBJ_51 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = SOURCE_ROOT; };
+		OBJ_52 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		OBJ_53 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		OBJ_54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		OBJ_55 /* SwiftPrettyPrint.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftPrettyPrint.podspec; sourceTree = "<group>"; };
+		OBJ_56 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
+		OBJ_57 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
+		OBJ_58 /* Brewfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Brewfile; sourceTree = "<group>"; };
+		OBJ_59 /* version.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = version.txt; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		"SwiftParamTest::SwiftParamTest::Product" /* SwiftParamTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftParamTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,31 +124,31 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_123 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_124 /* Curry.framework in Frameworks */,
-				OBJ_125 /* SwiftParamTest.framework in Frameworks */,
-				OBJ_126 /* SwiftPrettyPrint.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_64 /* Frameworks */ = {
+		OBJ_101 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_78 /* Frameworks */ = {
+		OBJ_127 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_128 /* Curry.framework in Frameworks */,
+				OBJ_129 /* SwiftParamTest.framework in Frameworks */,
+				OBJ_130 /* SwiftPrettyPrint.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_66 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_98 /* Frameworks */ = {
+		OBJ_80 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
@@ -154,126 +158,127 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		OBJ_11 /* Core */ = {
+		OBJ_12 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_12 /* Formatter */,
-				OBJ_16 /* Pretty.swift */,
-				OBJ_17 /* PrettyError.swift */,
+				OBJ_13 /* Formatter */,
+				OBJ_17 /* Pretty.swift */,
+				OBJ_18 /* PrettyError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		OBJ_12 /* Formatter */ = {
+		OBJ_13 /* Formatter */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_13 /* MultilineFormatter.swift */,
-				OBJ_14 /* PrettyFormatter.swift */,
-				OBJ_15 /* SinglelineFormatter.swift */,
+				OBJ_14 /* MultilineFormatter.swift */,
+				OBJ_15 /* PrettyFormatter.swift */,
+				OBJ_16 /* SinglelineFormatter.swift */,
 			);
 			path = Formatter;
 			sourceTree = "<group>";
 		};
-		OBJ_18 /* Extension */ = {
+		OBJ_19 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_19 /* String+extension.swift */,
+				OBJ_20 /* String+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		OBJ_20 /* Tests */ = {
+		OBJ_21 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_21 /* API */,
-				OBJ_23 /* Core */,
-				OBJ_28 /* Extension */,
-				OBJ_30 /* Helper */,
-				OBJ_33 /* XCTestManifests.swift */,
+				OBJ_22 /* API */,
+				OBJ_25 /* Core */,
+				OBJ_30 /* Extension */,
+				OBJ_32 /* Helper */,
+				OBJ_35 /* XCTestManifests.swift */,
 			);
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_21 /* API */ = {
+		OBJ_22 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_22 /* DebugTests.swift */,
+				OBJ_23 /* DebugTests.swift */,
+				OBJ_24 /* OperatorTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
 		};
-		OBJ_23 /* Core */ = {
+		OBJ_25 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_24 /* Formatter */,
-				OBJ_27 /* PrettyTests.swift */,
+				OBJ_26 /* Formatter */,
+				OBJ_29 /* PrettyTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		OBJ_24 /* Formatter */ = {
+		OBJ_26 /* Formatter */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_25 /* MultilineFormatterTests.swift */,
-				OBJ_26 /* SinglelineFormatterTests.swift */,
+				OBJ_27 /* MultilineFormatterTests.swift */,
+				OBJ_28 /* SinglelineFormatterTests.swift */,
 			);
 			path = Formatter;
 			sourceTree = "<group>";
 		};
-		OBJ_28 /* Extension */ = {
+		OBJ_30 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_29 /* String+extensionTests.swift */,
+				OBJ_31 /* String+extensionTests.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		OBJ_30 /* Helper */ = {
+		OBJ_32 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_31 /* Assertions.swift */,
-				OBJ_32 /* Util.swift */,
+				OBJ_33 /* Assertions.swift */,
+				OBJ_34 /* Util.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		OBJ_34 /* Dependencies */ = {
+		OBJ_36 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_35 /* Curry 4.0.2 */,
-				OBJ_38 /* SwiftParamTest 1.1.0 */,
+				OBJ_37 /* Curry 4.0.2 */,
+				OBJ_40 /* SwiftParamTest 1.1.0 */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		OBJ_35 /* Curry 4.0.2 */ = {
+		OBJ_37 /* Curry 4.0.2 */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_36 /* Package.swift */,
-				OBJ_37 /* Curry.swift */,
+				OBJ_38 /* Package.swift */,
+				OBJ_39 /* Curry.swift */,
 			);
 			name = "Curry 4.0.2";
 			path = .build/checkouts/Curry/Source;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_38 /* SwiftParamTest 1.1.0 */ = {
+		OBJ_40 /* SwiftParamTest 1.1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_39 /* Package.swift */,
-				OBJ_40 /* Core.swift */,
-				OBJ_41 /* DSL.swift */,
+				OBJ_41 /* Package.swift */,
+				OBJ_42 /* Core.swift */,
+				OBJ_43 /* DSL.swift */,
 			);
 			name = "SwiftParamTest 1.1.0";
 			path = .build/checkouts/SwiftParamTest/Sources;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_42 /* Products */ = {
+		OBJ_44 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				"SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */,
 				"SwiftPrettyPrint::SwiftPrettyPrintTests::Product" /* SwiftPrettyPrintTests.xctest */,
-				"Curry::Curry::Product" /* Curry.framework */,
 				"SwiftParamTest::SwiftParamTest::Product" /* SwiftParamTest.framework */,
+				"Curry::Curry::Product" /* Curry.framework */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -283,20 +288,20 @@
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
-				OBJ_20 /* Tests */,
-				OBJ_34 /* Dependencies */,
-				OBJ_42 /* Products */,
-				OBJ_47 /* Example */,
-				OBJ_48 /* Image */,
-				OBJ_49 /* vendor */,
-				OBJ_50 /* LICENSE */,
-				OBJ_51 /* Makefile */,
-				OBJ_52 /* README.md */,
-				OBJ_53 /* SwiftPrettyPrint.podspec */,
-				OBJ_54 /* Gemfile */,
-				OBJ_55 /* Gemfile.lock */,
-				OBJ_56 /* Brewfile */,
-				OBJ_57 /* version.txt */,
+				OBJ_21 /* Tests */,
+				OBJ_36 /* Dependencies */,
+				OBJ_44 /* Products */,
+				OBJ_49 /* Example */,
+				OBJ_50 /* Image */,
+				OBJ_51 /* vendor */,
+				OBJ_52 /* LICENSE */,
+				OBJ_53 /* Makefile */,
+				OBJ_54 /* README.md */,
+				OBJ_55 /* SwiftPrettyPrint.podspec */,
+				OBJ_56 /* Gemfile */,
+				OBJ_57 /* Gemfile.lock */,
+				OBJ_58 /* Brewfile */,
+				OBJ_59 /* version.txt */,
 			);
 			name = "";
 			sourceTree = "<group>";
@@ -305,8 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_8 /* API */,
-				OBJ_11 /* Core */,
-				OBJ_18 /* Extension */,
+				OBJ_12 /* Core */,
+				OBJ_19 /* Extension */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -315,7 +320,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* Debug.swift */,
-				OBJ_10 /* Option.swift */,
+				OBJ_10 /* Operator.swift */,
+				OBJ_11 /* Option.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -325,10 +331,10 @@
 /* Begin PBXNativeTarget section */
 		"Curry::Curry" /* Curry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_59 /* Build configuration list for PBXNativeTarget "Curry" */;
+			buildConfigurationList = OBJ_61 /* Build configuration list for PBXNativeTarget "Curry" */;
 			buildPhases = (
-				OBJ_62 /* Sources */,
-				OBJ_64 /* Frameworks */,
+				OBJ_64 /* Sources */,
+				OBJ_66 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -341,9 +347,9 @@
 		};
 		"Curry::SwiftPMPackageDescription" /* CurryPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_66 /* Build configuration list for PBXNativeTarget "CurryPackageDescription" */;
+			buildConfigurationList = OBJ_68 /* Build configuration list for PBXNativeTarget "CurryPackageDescription" */;
 			buildPhases = (
-				OBJ_69 /* Sources */,
+				OBJ_71 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -355,9 +361,9 @@
 		};
 		"SwiftParamTest::SwiftPMPackageDescription" /* SwiftParamTestPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_80 /* Build configuration list for PBXNativeTarget "SwiftParamTestPackageDescription" */;
+			buildConfigurationList = OBJ_82 /* Build configuration list for PBXNativeTarget "SwiftParamTestPackageDescription" */;
 			buildPhases = (
-				OBJ_83 /* Sources */,
+				OBJ_85 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -369,10 +375,10 @@
 		};
 		"SwiftParamTest::SwiftParamTest" /* SwiftParamTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_72 /* Build configuration list for PBXNativeTarget "SwiftParamTest" */;
+			buildConfigurationList = OBJ_74 /* Build configuration list for PBXNativeTarget "SwiftParamTest" */;
 			buildPhases = (
-				OBJ_75 /* Sources */,
-				OBJ_78 /* Frameworks */,
+				OBJ_77 /* Sources */,
+				OBJ_80 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -385,9 +391,9 @@
 		};
 		"SwiftPrettyPrint::SwiftPMPackageDescription" /* SwiftPrettyPrintPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_100 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintPackageDescription" */;
+			buildConfigurationList = OBJ_103 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintPackageDescription" */;
 			buildPhases = (
-				OBJ_103 /* Sources */,
+				OBJ_106 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -399,10 +405,10 @@
 		};
 		"SwiftPrettyPrint::SwiftPrettyPrint" /* SwiftPrettyPrint */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_86 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrint" */;
+			buildConfigurationList = OBJ_88 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrint" */;
 			buildPhases = (
-				OBJ_89 /* Sources */,
-				OBJ_98 /* Frameworks */,
+				OBJ_91 /* Sources */,
+				OBJ_101 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -415,17 +421,17 @@
 		};
 		"SwiftPrettyPrint::SwiftPrettyPrintTests" /* SwiftPrettyPrintTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_111 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintTests" */;
+			buildConfigurationList = OBJ_114 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintTests" */;
 			buildPhases = (
-				OBJ_114 /* Sources */,
-				OBJ_123 /* Frameworks */,
+				OBJ_117 /* Sources */,
+				OBJ_127 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_127 /* PBXTargetDependency */,
-				OBJ_128 /* PBXTargetDependency */,
-				OBJ_129 /* PBXTargetDependency */,
+				OBJ_131 /* PBXTargetDependency */,
+				OBJ_132 /* PBXTargetDependency */,
+				OBJ_133 /* PBXTargetDependency */,
 			);
 			name = SwiftPrettyPrintTests;
 			productName = SwiftPrettyPrintTests;
@@ -449,7 +455,7 @@
 				en,
 			);
 			mainGroup = OBJ_5 /*  */;
-			productRefGroup = OBJ_42 /* Products */;
+			productRefGroup = OBJ_44 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -466,104 +472,106 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_103 /* Sources */ = {
+		OBJ_106 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_104 /* Package.swift in Sources */,
+				OBJ_107 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_114 /* Sources */ = {
+		OBJ_117 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_115 /* DebugTests.swift in Sources */,
-				OBJ_116 /* MultilineFormatterTests.swift in Sources */,
-				OBJ_117 /* SinglelineFormatterTests.swift in Sources */,
-				OBJ_118 /* PrettyTests.swift in Sources */,
-				OBJ_119 /* String+extensionTests.swift in Sources */,
-				OBJ_120 /* Assertions.swift in Sources */,
-				OBJ_121 /* Util.swift in Sources */,
-				OBJ_122 /* XCTestManifests.swift in Sources */,
+				OBJ_118 /* DebugTests.swift in Sources */,
+				OBJ_119 /* OperatorTests.swift in Sources */,
+				OBJ_120 /* MultilineFormatterTests.swift in Sources */,
+				OBJ_121 /* SinglelineFormatterTests.swift in Sources */,
+				OBJ_122 /* PrettyTests.swift in Sources */,
+				OBJ_123 /* String+extensionTests.swift in Sources */,
+				OBJ_124 /* Assertions.swift in Sources */,
+				OBJ_125 /* Util.swift in Sources */,
+				OBJ_126 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_62 /* Sources */ = {
+		OBJ_64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_63 /* Curry.swift in Sources */,
+				OBJ_65 /* Curry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_69 /* Sources */ = {
+		OBJ_71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_70 /* Package.swift in Sources */,
+				OBJ_72 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_75 /* Sources */ = {
+		OBJ_77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_76 /* Core.swift in Sources */,
-				OBJ_77 /* DSL.swift in Sources */,
+				OBJ_78 /* Core.swift in Sources */,
+				OBJ_79 /* DSL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_83 /* Sources */ = {
+		OBJ_85 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_84 /* Package.swift in Sources */,
+				OBJ_86 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_89 /* Sources */ = {
+		OBJ_91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_90 /* Debug.swift in Sources */,
-				OBJ_91 /* Option.swift in Sources */,
-				OBJ_92 /* MultilineFormatter.swift in Sources */,
-				OBJ_93 /* PrettyFormatter.swift in Sources */,
-				OBJ_94 /* SinglelineFormatter.swift in Sources */,
-				OBJ_95 /* Pretty.swift in Sources */,
-				OBJ_96 /* PrettyError.swift in Sources */,
-				OBJ_97 /* String+extension.swift in Sources */,
+				OBJ_92 /* Debug.swift in Sources */,
+				OBJ_93 /* Operator.swift in Sources */,
+				OBJ_94 /* Option.swift in Sources */,
+				OBJ_95 /* MultilineFormatter.swift in Sources */,
+				OBJ_96 /* PrettyFormatter.swift in Sources */,
+				OBJ_97 /* SinglelineFormatter.swift in Sources */,
+				OBJ_98 /* Pretty.swift in Sources */,
+				OBJ_99 /* PrettyError.swift in Sources */,
+				OBJ_100 /* String+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_109 /* PBXTargetDependency */ = {
+		OBJ_112 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPrettyPrint::SwiftPrettyPrintTests" /* SwiftPrettyPrintTests */;
-			targetProxy = E58D816F241226E70081E667 /* PBXContainerItemProxy */;
+			targetProxy = E58D817724134C970081E667 /* PBXContainerItemProxy */;
 		};
-		OBJ_127 /* PBXTargetDependency */ = {
+		OBJ_131 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Curry::Curry" /* Curry */;
-			targetProxy = E58D816C241226E50081E667 /* PBXContainerItemProxy */;
+			targetProxy = E58D817424134C950081E667 /* PBXContainerItemProxy */;
 		};
-		OBJ_128 /* PBXTargetDependency */ = {
+		OBJ_132 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftParamTest::SwiftParamTest" /* SwiftParamTest */;
-			targetProxy = E58D816D241226E50081E667 /* PBXContainerItemProxy */;
+			targetProxy = E58D817524134C950081E667 /* PBXContainerItemProxy */;
 		};
-		OBJ_129 /* PBXTargetDependency */ = {
+		OBJ_133 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPrettyPrint::SwiftPrettyPrint" /* SwiftPrettyPrint */;
-			targetProxy = E58D816E241226E50081E667 /* PBXContainerItemProxy */;
+			targetProxy = E58D817624134C950081E667 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		OBJ_101 /* Debug */ = {
+		OBJ_104 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -572,7 +580,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_102 /* Release */ = {
+		OBJ_105 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -581,19 +589,19 @@
 			};
 			name = Release;
 		};
-		OBJ_107 /* Debug */ = {
+		OBJ_110 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		OBJ_108 /* Release */ = {
+		OBJ_111 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		OBJ_112 /* Debug */ = {
+		OBJ_115 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -618,7 +626,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_113 /* Release */ = {
+		OBJ_116 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -694,7 +702,7 @@
 			};
 			name = Release;
 		};
-		OBJ_60 /* Debug */ = {
+		OBJ_62 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -719,7 +727,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_61 /* Release */ = {
+		OBJ_63 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -744,7 +752,7 @@
 			};
 			name = Release;
 		};
-		OBJ_67 /* Debug */ = {
+		OBJ_69 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -753,7 +761,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_68 /* Release */ = {
+		OBJ_70 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -762,7 +770,7 @@
 			};
 			name = Release;
 		};
-		OBJ_73 /* Debug */ = {
+		OBJ_75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -790,7 +798,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_74 /* Release */ = {
+		OBJ_76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -818,7 +826,7 @@
 			};
 			name = Release;
 		};
-		OBJ_81 /* Debug */ = {
+		OBJ_83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -827,7 +835,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_82 /* Release */ = {
+		OBJ_84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -836,7 +844,7 @@
 			};
 			name = Release;
 		};
-		OBJ_87 /* Debug */ = {
+		OBJ_89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -864,7 +872,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_88 /* Release */ = {
+		OBJ_90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -895,29 +903,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		OBJ_100 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintPackageDescription" */ = {
+		OBJ_103 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_101 /* Debug */,
-				OBJ_102 /* Release */,
+				OBJ_104 /* Debug */,
+				OBJ_105 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_106 /* Build configuration list for PBXAggregateTarget "SwiftPrettyPrintPackageTests" */ = {
+		OBJ_109 /* Build configuration list for PBXAggregateTarget "SwiftPrettyPrintPackageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_107 /* Debug */,
-				OBJ_108 /* Release */,
+				OBJ_110 /* Debug */,
+				OBJ_111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_111 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintTests" */ = {
+		OBJ_114 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrintTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_112 /* Debug */,
-				OBJ_113 /* Release */,
+				OBJ_115 /* Debug */,
+				OBJ_116 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -931,47 +939,47 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_59 /* Build configuration list for PBXNativeTarget "Curry" */ = {
+		OBJ_61 /* Build configuration list for PBXNativeTarget "Curry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_60 /* Debug */,
-				OBJ_61 /* Release */,
+				OBJ_62 /* Debug */,
+				OBJ_63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_66 /* Build configuration list for PBXNativeTarget "CurryPackageDescription" */ = {
+		OBJ_68 /* Build configuration list for PBXNativeTarget "CurryPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_67 /* Debug */,
-				OBJ_68 /* Release */,
+				OBJ_69 /* Debug */,
+				OBJ_70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_72 /* Build configuration list for PBXNativeTarget "SwiftParamTest" */ = {
+		OBJ_74 /* Build configuration list for PBXNativeTarget "SwiftParamTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_73 /* Debug */,
-				OBJ_74 /* Release */,
+				OBJ_75 /* Debug */,
+				OBJ_76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_80 /* Build configuration list for PBXNativeTarget "SwiftParamTestPackageDescription" */ = {
+		OBJ_82 /* Build configuration list for PBXNativeTarget "SwiftParamTestPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_81 /* Debug */,
-				OBJ_82 /* Release */,
+				OBJ_83 /* Debug */,
+				OBJ_84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_86 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrint" */ = {
+		OBJ_88 /* Build configuration list for PBXNativeTarget "SwiftPrettyPrint" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_87 /* Debug */,
-				OBJ_88 /* Release */,
+				OBJ_89 /* Debug */,
+				OBJ_90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
