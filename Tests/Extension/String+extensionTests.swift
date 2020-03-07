@@ -8,6 +8,7 @@
 
 @testable import SwiftPrettyPrint
 import XCTest
+import SwiftParamTest
 
 class String_extensionTests: XCTestCase {
     override func setUp() {}
@@ -15,26 +16,27 @@ class String_extensionTests: XCTestCase {
     override func tearDown() {}
 
     func testIndentTail() {
-        XCTAssertEqual("Single line".indentTail(size: 4), "Single line")
-
         let text = """
         Apple
         Orange
         Banana
         """
-
-        var expected = """
-        Apple
-          Orange
-          Banana
-        """
-        assertEqualLines(text.indentTail(size: 2), expected)
-
-        expected = """
-        Apple
-            Orange
-            Banana
-        """
-        assertEqualLines(text.indentTail(size: 4), expected)
+        
+        assert(to: uncurry(String.indentTail), with: assertEqualLines).expect([
+            // Single-line
+            when(("Apple", 4), then: "Apple"),
+            
+            // Multi-line
+            when((text,    2), then: """
+                                     Apple
+                                       Orange
+                                       Banana
+                                     """),
+            when((text,    4), then: """
+                                     Apple
+                                         Orange
+                                         Banana
+                                     """),
+        ])
     }
 }
