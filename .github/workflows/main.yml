@@ -16,19 +16,13 @@ jobs:
     - name: Run Unit Test
       run: make test
 
-    # Note:
-    # Test is executed in two times.
-    # There should be a better way.
-    #
-    # Ref: https://github.com/codecov/example-swift
-    - name: Test for coverage
+    - name: Convert coverage file
       run: |
-        xcodebuild \
-          -scheme SwiftPrettyPrint-Package \
-          -project SwiftPrettyPrint.xcodeproj \
-          -sdk iphonesimulator \
-          -destination 'platform=iOS Simulator,name=iPhone 11' \
-          test
+        xcrun llvm-cov export \
+            .build/debug/SwiftPrettyPrintPackageTests.xctest/Contents/MacOS/SwiftPrettyPrintPackageTests \
+            -instr-profile .build/debug/codecov/default.profdata \
+            -ignore-filename-regex=".build|Tests" \
+            -format="lcov" > info.lcov
 
     - name: Upload to codecov.io
       run: bash <(curl -s https://codecov.io/bash)

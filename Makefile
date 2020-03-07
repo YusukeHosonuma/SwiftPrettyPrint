@@ -16,8 +16,8 @@ build: ## swift - build
 	swift build
 
 .PHONY: test
-test: ## swift - test
-	swift test
+test: ## swift - test (with coverage)
+	swift test --enable-code-coverage
 
 .PHONY: xcode
 xcode: ## swift - generate xcode project
