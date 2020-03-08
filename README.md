@@ -131,14 +131,36 @@ Debug.prettyPrint(["Hello", "World"], option: Debug.Option(indent: 2))
 // ]
 ```
 
-## Alias API - `p()` and `pp()`
+## Operator-based API
 
-You can use `p()` and `pp()` that like Ruby's API.
+You can use operator based alias API that like Ruby.
 
-- `p(_:, debug: Bool = false)`
-  - Equatable to `print()` and `debugPrint()`
-- `pp(_:, debug: Bool = false)`
-  - Equatable to `prettyPrint()` and `debugPrettyPrint()`
+This is no need to enclose in parenthese that convenient to long expression.
+
+```swift
+Debug.p >>> 42
+// => 42
+
+Debug.p >>> 42 + 1 // It can also be applied to expression
+// => 43
+
+Debug.p >>> String(string.reversed()).hasSuffix("eH")
+// => true
+
+Debug.pp >>> ["Hello", "World"]
+// =>
+// [
+//     "Hello",
+//     "World"
+// ]
+```
+
+| Operator syntax    | Equatable to                 |
+|--------------------|------------------------------|
+| `Debug.p >>> 42`   | `Debug.print(42)`            |
+| `Debug.pp >>> 42`  | `Debug.prettyPrint(42)`      |
+| `Debug.pd >>> 42`  | `Debug.debugPrint(42)`       |
+| `Debug.ppd >>> 42` | `Debug.debugPrettyPrint(42)` |
 
 ## Develoopment
 
