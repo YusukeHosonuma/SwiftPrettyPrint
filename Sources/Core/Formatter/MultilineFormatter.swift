@@ -39,7 +39,9 @@ class MultilineFormatter: PrettyFormatter {
         if fields.count == 1, let field = fields.first {
             body = "\(field.0): \(field.1)"
         } else {
-            body = fields.map(indentInsertedKeyValueString(_:)).joined(separator: ",\n")
+            body = fields.map(indentInsertedKeyValueString(_:))
+                .joined(separator: ",\n")
+                .indentTail(size: prefix.count)
         }
 
         return prefix + body + ")"
