@@ -34,13 +34,15 @@ class MultilineFormatter: PrettyFormatter {
 
     func objectString(typeName: String, fields: [(String, String)]) -> String {
         let prefix = "\(typeName)("
+        let body: String
 
         if fields.count == 1, let field = fields.first {
-            return prefix + "\(field.0): \(field.1)" + ")"
+            body = "\(field.0): \(field.1)"
         } else {
-            let contents = fields.map(indentInsertedKeyValueString(_:)).joined(separator: ",\n")
-            return prefix + contents.indentTail(size: prefix.count) + ")"
+            body = fields.map(indentInsertedKeyValueString(_:)).joined(separator: ",\n")
         }
+
+        return prefix + body + ")"
     }
 
     /// transform key value pair to single string inserted indent according to key
