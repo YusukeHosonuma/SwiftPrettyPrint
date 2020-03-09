@@ -62,8 +62,7 @@ class MultilineFormatter: PrettyFormatter {
     ///
     /// - Parameter source: key value pair
     private func indentInsertedKeyValueString(_ source: (String, String)) -> String {
-        let indentInsertedNewLineCharactor = "\n" + String(repeating: " ", count: "\(source.0): ".count)
-        let indentInserted = source.1.replacingOccurrences(of: "\n", with: indentInsertedNewLineCharactor)
+        let indentInserted = source.1.indentTail(size: "\(source.0): ".count)
         return "\(source.0): \(indentInserted)"
     }
 }
