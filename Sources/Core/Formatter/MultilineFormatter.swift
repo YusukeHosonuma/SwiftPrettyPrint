@@ -38,8 +38,28 @@ class MultilineFormatter: PrettyFormatter {
         if fields.count == 1, let field = fields.first {
             return prefix + "\(field.0): \(field.1)" + ")"
         } else {
-            let contents = fields.map { "\($0): \($1)" }.joined(separator: ",\n")
+            let contents = fields.map(indentInsertedKeyValueString(_:)).joined(separator: ",\n")
             return prefix + contents.indentTail(size: prefix.count) + ")"
         }
+    }
+
+    /// transform key value pair to single string inserted indent according to key
+    ///
+    /// ex:
+    /// ("owner", """
+    /// Owner(name: "Nanachi",
+    ///       age: 4)
+    /// """)
+    ///
+    /// goes to
+    ///
+    /// owner: Owner(name: "Nanachi",
+    ///              age: 4))
+    ///
+    /// - Parameter source: key value pair
+    private func indentInsertedKeyValueString(_ source: (String, String)) -> String {
+        let indentInsertedNewLineCharactor = "\n" + String(repeating: " ", count: "\(source.0): ".count)
+        let indentInserted = source.1.replacingOccurrences(of: "\n", with: indentInsertedNewLineCharactor)
+        return "\(source.0): \(indentInserted)"
     }
 }
