@@ -61,8 +61,8 @@ class MultilineFormatter: PrettyFormatter {
     ///              age: 4))
     ///
     /// - Parameter source: key value pair
-    private func indentInsertedKeyValueString(_ source: (String, String)) -> String {
-        let indentInserted = source.1.indentTail(size: "\(source.0): ".count)
-        return "\(source.0): \(indentInserted)"
+    private func indentInsertedKeyValueString(_ source: (label: String, value: String)) -> String {
+        let indentInserted = source.value.indentTail(size: "\(source.label): ".count)
+        return "\(source.label): \(indentInserted)"
     }
 }
