@@ -32,22 +32,9 @@ class MultilineFormatter: PrettyFormatter {
         """
     }
 
-    func objectString(typeName: String, fields: [(String, String)]) -> String {
-        let prefix = "\(typeName)("
-        let body: String
-
-        if fields.count == 1, let field = fields.first {
-            body = "\(field.0): \(field.1)"
-        } else {
-            body = fields.map(indentInsertedKeyValueString(_:))
-                .joined(separator: ",\n")
-                .indentTail(size: prefix.count)
-        }
-
-        return prefix + body + ")"
-    }
-
-    /// transform key value pair to single string inserted indent according to key
+    /// NOTE:
+    /// transform fields to single string
+    /// insert indent according to key
     ///
     /// ex:
     /// ("owner", """
@@ -60,9 +47,21 @@ class MultilineFormatter: PrettyFormatter {
     /// owner: Owner(name: "Nanachi",
     ///              age: 4))
     ///
-    /// - Parameter source: key value pair
-    private func indentInsertedKeyValueString(_ source: (label: String, value: String)) -> String {
-        let indentInserted = source.value.indentTail(size: "\(source.label): ".count)
-        return "\(source.label): \(indentInserted)"
+    func objectString(
+        typeName: String, fields: [(String, String)]
+    ) -> String {
+        let prefix = "\(typeName)("
+        let body: String
+
+        if fields.count == 1, let field = fields.first {
+            body = "\(field.0): \(field.1)"
+        } else {
+            body = fields
+                .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
+                .joined(separator: ",\n")
+                .indentTail(size: prefix.count)
+        }
+
+        return prefix + body + ")"
     }
 }
