@@ -22,7 +22,7 @@ struct Pretty {
 
         let mirror = Mirror(reflecting: target)
 
-        // Optional / Collection / Dictionary
+        // Optional / Collection / Dictionary / Tuple
         switch mirror.displayStyle {
         case .optional:
             return _value(target)
@@ -38,6 +38,10 @@ struct Pretty {
                 }
                 return formatter.dictionaryString(keysAndValues: keysAndValues)
             }
+
+        case .tuple:
+            let elements = mirror.children.map { _string($0.value) }
+            return formatter.tupleString(elements: elements)
 
         default:
             break

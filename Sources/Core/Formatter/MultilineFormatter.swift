@@ -32,6 +32,14 @@ class MultilineFormatter: PrettyFormatter {
         """
     }
 
+    func tupleString(elements: [String]) -> String {
+        """
+        (
+        \(elements.joined(separator: ",\n").indent(size: option.indent))
+        )
+        """
+    }
+
     func objectString(typeName: String, fields: [(String, String)]) -> String {
         let prefix = "\(typeName)("
         let body: String

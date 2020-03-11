@@ -132,6 +132,19 @@ class PrettyTests: XCTestCase {
             when(true,  then: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#),
         ])
     }
+    
+    ///
+    /// Tuple
+    ///
+    func testString_Tuple() {
+        let value = (1, ("one", URL(string: "https://www.example.com/")!))
+        assert(to:
+            curry(pretty.string)(value))
+            .expect([
+                when(false, then: #"(1, ("one", https://www.example.com/))"#),
+                when(true, then: #"(1, ("one", URL("https://www.example.com/")))"#),
+            ])
+    }
 
     func testExtractKeyValues() throws {
         let dictionary: [String: Int] = [

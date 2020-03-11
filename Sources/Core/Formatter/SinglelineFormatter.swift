@@ -15,6 +15,10 @@ class SinglelineFormatter: PrettyFormatter {
         return "[\(contents)]"
     }
 
+    func tupleString(elements: [String]) -> String {
+        "(\(elements.joined(separator: ", ")))"
+    }
+
     func objectString(typeName: String, fields: [(String, String)]) -> String {
         let contents = fields.map { "\($0): \($1)" }.joined(separator: ", ")
         return "\(typeName)(" + contents + ")"
