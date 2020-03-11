@@ -140,45 +140,38 @@ class PrettyTests: XCTestCase {
         // simple enum
         do {
             enum Fruit {
-                case apple, orange
+                case apple
             }
             
-            let fruit: Fruit = .apple
-            
-            XCTAssertEqual(pretty.string(fruit, debug: false),
-                           ".apple")
-            XCTAssertEqual(pretty.string(fruit, debug: true),
-                           "Fruit.apple")
+            assert(to: curry(pretty.string)(Fruit.apple)).expect([
+                when(false, then: ".apple"),
+                when(true,  then: "Fruit.apple"),
+            ])
         }
         
         // has raw-value
         do {
             enum Fruit: Int {
                 case apple  = 0
-                case orange = 1
             }
 
-            let fruit: Fruit = .apple
-
-            XCTAssertEqual(pretty.string(fruit, debug: false),
-                           ".apple")
-            XCTAssertEqual(pretty.string(fruit, debug: true),
-                           "Fruit.apple")
+            assert(to: curry(pretty.string)(Fruit.apple)).expect([
+                when(false, then: ".apple"),
+                when(true,  then: "Fruit.apple"),
+            ])
         }
         
         // has associated-value (with no label)
         do {
             enum Fruit {
-                case apple(String)       // has one of it
-                case orange(String, Int) // has many of it
+                case apple(String)       // has one
+                case orange(String, Int) // has many
             }
 
-            let fruit: Fruit = .apple("りんご")
-
-            XCTAssertEqual(pretty.string(fruit, debug: false),
-                           #".apple("りんご")"#)
-            XCTAssertEqual(pretty.string(fruit, debug: true),
-                           #"Fruit.apple("りんご")"#)
+            assert(to: curry(pretty.string)(Fruit.apple("りんご"))).expect([
+                when(false, then: #".apple("りんご")"#),
+                when(true,  then: #"Fruit.apple("りんご")"#),
+            ])
             
             // TODO: wait for support `tuple`
             // ref: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/34
@@ -205,19 +198,12 @@ class PrettyTests: XCTestCase {
                 case orange(taste: Taste)
             }
 
-            var fruit: Fruit = .apple(.sweet)
-
-            XCTAssertEqual(pretty.string(fruit, debug: false),
-                           #".apple(.sweet)"#)
-            XCTAssertEqual(pretty.string(fruit, debug: true),
-                           #"Fruit.apple(Taste.sweet)"#)
-            
-            fruit = .apple(.sour(.high))
-            
-            XCTAssertEqual(pretty.string(fruit, debug: false),
-                           #".apple(.sour(.high))"#)
-            XCTAssertEqual(pretty.string(fruit, debug: true),
-                           #"Fruit.apple(Taste.sour(Level.high))"#)
+            assert(to: pretty.string).expect([
+                when((Fruit.apple(.sweet),       false), then: ".apple(.sweet)"),
+                when((Fruit.apple(.sweet),       true),  then: "Fruit.apple(Taste.sweet)"),
+                when((Fruit.apple(.sour(.high)), false), then: ".apple(.sour(.high))"),
+                when((Fruit.apple(.sour(.high)), true),  then: "Fruit.apple(Taste.sour(Level.high))"),
+            ])
 
             // TODO: wait for support `tuple`
             // ref: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/34
