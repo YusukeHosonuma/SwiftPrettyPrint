@@ -16,12 +16,6 @@ public class Debug {
     private init() {}
 }
 
-private func withPrint(f: () -> String) -> String {
-    let string = f()
-    Swift.print(string)
-    return string
-}
-
 // MARK: Standard API
 
 extension Debug {
