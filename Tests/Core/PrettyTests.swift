@@ -173,7 +173,7 @@ class PrettyTests: XCTestCase {
                 case orange(String, Int) // has many of it
             }
 
-            var fruit: Fruit = .apple("りんご")
+            let fruit: Fruit = .apple("りんご")
 
             XCTAssertEqual(pretty.string(fruit, debug: false),
                            #".apple("りんご")"#)
