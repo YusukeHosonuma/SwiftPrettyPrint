@@ -28,7 +28,9 @@ extension Debug {
     /// Output `target` to console.
     /// - Parameters:
     ///   - target: target
-    public static func print(_ target: Any) {
+    public static func print(
+        _ target: Any
+    ) {
         Swift.print(_print(target))
     }
 
@@ -36,7 +38,10 @@ extension Debug {
     /// - Parameters:
     ///   - target: target
     ///   - output: output
-    public static func print<Target: TextOutputStream>(_ target: Any, to output: inout Target) {
+    public static func print<Target: TextOutputStream>(
+        _ target: Any,
+        to output: inout Target
+    ) {
         Swift.print(_print(target), to: &output)
     }
 
@@ -44,7 +49,10 @@ extension Debug {
     /// - Parameters:
     ///   - target: target
     ///   - option: option (default: `Debug.sharedOption`)
-    public static func prettyPrint(_ target: Any, option: Option = Debug.sharedOption) {
+    public static func prettyPrint(
+        _ target: Any,
+        option: Option = Debug.sharedOption
+    ) {
         Swift.print(_prettyPrint(target, option: option))
     }
 
@@ -53,14 +61,20 @@ extension Debug {
     ///   - target: target
     ///   - option: option (default: `Debug.sharedOption`)
     ///   - output: output
-    public static func prettyPrint<Target: TextOutputStream>(_ target: Any, option: Option = Debug.sharedOption, to output: inout Target) {
+    public static func prettyPrint<Target: TextOutputStream>(
+        _ target: Any,
+        option: Option = Debug.sharedOption,
+        to output: inout Target
+    ) {
         Swift.print(_prettyPrint(target, option: option), to: &output)
     }
 
     /// Output debuggable `target` to console.
     /// - Parameters:
     ///   - target: target
-    public static func debugPrint(_ target: Any) {
+    public static func debugPrint(
+        _ target: Any
+    ) {
         Swift.print(_debugPrint(target))
     }
 
@@ -68,7 +82,10 @@ extension Debug {
     /// - Parameters:
     ///   - target: target
     ///   - output: output
-    public static func debugPrint<Target: TextOutputStream>(_ target: Any, to output: inout Target) {
+    public static func debugPrint<Target: TextOutputStream>(
+        _ target: Any,
+        to output: inout Target
+    ) {
         Swift.print(_debugPrint(target), to: &output)
     }
 
@@ -76,7 +93,10 @@ extension Debug {
     /// - Parameters:
     ///   - target: target
     ///   - option: option (default: `Debug.sharedOption`)
-    public static func debugPrettyPrint(_ target: Any, option: Option = Debug.sharedOption) {
+    public static func debugPrettyPrint(
+        _ target: Any,
+        option: Option = Debug.sharedOption
+    ) {
         Swift.print(_debugPrettyPrint(target, option: option))
     }
 
@@ -85,25 +105,39 @@ extension Debug {
     ///   - target: target
     ///   - option: option (default: `Debug.sharedOption`)
     ///   - output: output
-    public static func debugPrettyPrint<Target: TextOutputStream>(_ target: Any, option: Option = Debug.sharedOption, to output: inout Target) {
+    public static func debugPrettyPrint<Target: TextOutputStream>(
+        _ target: Any,
+        option: Option = Debug.sharedOption,
+        to output: inout Target
+    ) {
         Swift.print(_debugPrettyPrint(target, option: option), to: &output)
     }
 
     // MARK: - private
 
-    private static func _print(_ target: Any) -> String {
+    private static func _print(
+        _ target: Any
+    ) -> String {
         Pretty(formatter: SinglelineFormatter()).string(target, debug: false)
     }
 
-    private static func _prettyPrint(_ target: Any, option: Option) -> String {
+    private static func _prettyPrint(
+        _ target: Any,
+        option: Option
+    ) -> String {
         Pretty(formatter: MultilineFormatter(option: option)).string(target, debug: false)
     }
 
-    private static func _debugPrint(_ target: Any) -> String {
+    private static func _debugPrint(
+        _ target: Any
+    ) -> String {
         Pretty(formatter: SinglelineFormatter()).string(target, debug: true)
     }
 
-    private static func _debugPrettyPrint(_ target: Any, option: Option) -> String {
+    private static func _debugPrettyPrint(
+        _ target: Any,
+        option: Option
+    ) -> String {
         Pretty(formatter: MultilineFormatter(option: option)).string(target, debug: true)
     }
 }
