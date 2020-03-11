@@ -132,6 +132,101 @@ class PrettyTests: XCTestCase {
             when(true,  then: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#),
         ])
     }
+    
+    ///
+    /// enum
+    ///
+    func testString_enum() {
+        // simple enum
+        do {
+            enum Fruit {
+                case apple, orange
+            }
+            
+            let fruit: Fruit = .apple
+            
+            XCTAssertEqual(pretty.string(fruit, debug: false),
+                           ".apple")
+            XCTAssertEqual(pretty.string(fruit, debug: true),
+                           "Fruit.apple")
+        }
+        
+        // has raw-value
+        do {
+            enum Fruit: Int {
+                case apple  = 0
+                case orange = 1
+            }
+
+            let fruit: Fruit = .apple
+
+            XCTAssertEqual(pretty.string(fruit, debug: false),
+                           ".apple")
+            XCTAssertEqual(pretty.string(fruit, debug: true),
+                           "Fruit.apple")
+        }
+        
+        // has associated-value (with no label)
+        do {
+            enum Fruit {
+                case apple(String)       // has one of it
+                case orange(String, Int) // has many of it
+            }
+
+            var fruit: Fruit = .apple("りんご")
+
+            XCTAssertEqual(pretty.string(fruit, debug: false),
+                           #".apple("りんご")"#)
+            XCTAssertEqual(pretty.string(fruit, debug: true),
+                           #"Fruit.apple("りんご")"#)
+            
+            // TODO: wait for support `tuple`
+            // ref: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/34
+            //
+            // fruit = .orange("みかん", 42)
+            // XCTAssertEqual(pretty.string(fruit, debug: false),
+            //                #".orange("みかん", 42)"#)
+        }
+        
+        // nested-enum
+        do {
+            enum Level {
+                case high
+                case low
+            }
+            
+            enum Taste {
+                case sweet
+                case sour(Level)
+            }
+            
+            enum Fruit {
+                case apple(Taste)
+                case orange(taste: Taste)
+            }
+
+            var fruit: Fruit = .apple(.sweet)
+
+            XCTAssertEqual(pretty.string(fruit, debug: false),
+                           #".apple(.sweet)"#)
+            XCTAssertEqual(pretty.string(fruit, debug: true),
+                           #"Fruit.apple(Taste.sweet)"#)
+            
+            fruit = .apple(.sour(.high))
+            
+            XCTAssertEqual(pretty.string(fruit, debug: false),
+                           #".apple(.sour(.high))"#)
+            XCTAssertEqual(pretty.string(fruit, debug: true),
+                           #"Fruit.apple(Taste.sour(Level.high))"#)
+
+            // TODO: wait for support `tuple`
+            // ref: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/34
+            //
+            // fruit = .orange(taste: .sour)
+            // XCTAssertEqual(pretty.string(fruit, debug: false),
+            //                #".orange(taste: .sour)"#)
+        }
+    }
 
     func testExtractKeyValues() throws {
         let dictionary: [String: Int] = [

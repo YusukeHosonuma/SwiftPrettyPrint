@@ -21,8 +21,8 @@ struct Pretty {
         }
 
         let mirror = Mirror(reflecting: target)
+        let typeName = String(describing: mirror.subjectType)
 
-        // Optional / Collection / Dictionary
         switch mirror.displayStyle {
         case .optional:
             return _value(target)
@@ -39,6 +39,26 @@ struct Pretty {
                 return formatter.dictionaryString(keysAndValues: keysAndValues)
             }
 
+        case .enum:
+            if mirror.children.count == 0 {
+                if debug {
+                    return "\(typeName).\(target)"
+                } else {
+                    return ".\(target)"
+                }
+            } else {
+                let valueName = "\(target)"[..<"\(target)".firstIndex(of: "(")!] // TODO:
+
+                let prefix: String
+                if debug {
+                    prefix = "\(typeName).\(valueName)"
+                } else {
+                    prefix = ".\(valueName)"
+                }
+
+                return "\(prefix)(" + _string(mirror.children.first!.value) + ")"
+            }
+
         default:
             break
         }
@@ -52,8 +72,6 @@ struct Pretty {
         if !debug, mirror.children.count == 1, let value = mirror.children.first?.value {
             return _value(value)
         }
-
-        let typeName = String(describing: mirror.subjectType)
 
         // Swift.URL
         if typeName == "URL" {
