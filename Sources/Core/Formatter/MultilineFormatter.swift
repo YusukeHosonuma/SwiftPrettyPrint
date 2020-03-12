@@ -40,15 +40,34 @@ class MultilineFormatter: PrettyFormatter {
         """
     }
 
-    func objectString(typeName: String, fields: [(String, String)]) -> String {
+    /// NOTE:
+    /// transform fields to single string
+    /// insert indent according to key
+    ///
+    /// ex:
+    /// ("owner", """
+    /// Owner(name: "Nanachi",
+    ///       age: 4)
+    /// """)
+    ///
+    /// goes to
+    ///
+    /// owner: Owner(name: "Nanachi",
+    ///              age: 4))
+    ///
+    func objectString(
+        typeName: String, fields: [(String, String)]
+    ) -> String {
         let prefix = "\(typeName)("
         let body: String
 
         if fields.count == 1, let field = fields.first {
             body = "\(field.0): \(field.1)"
         } else {
-            let contents = fields.map { "\($0): \($1)" }.joined(separator: ",\n")
-            body = contents.indentTail(size: prefix.count)
+            body = fields
+                .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
+                .joined(separator: ",\n")
+                .indentTail(size: prefix.count)
         }
 
         return prefix + body + ")"

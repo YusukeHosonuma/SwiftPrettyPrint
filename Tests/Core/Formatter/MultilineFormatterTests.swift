@@ -106,14 +106,11 @@ class MultilineFormatterTests: XCTestCase {
         ]
 
         formatter = MultilineFormatter(option: Debug.Option(indent: 2))
-
-        // Bug: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/25
-        //
-        // assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields),
-        //                 """
-        //                 Dog(name: "pochi",
-        //                     owner: Owner(name: "Nanachi",
-        //                                  age: 4))
-        //                 """)
+         assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields),
+                         """
+                         Dog(name: "pochi",
+                             owner: Owner(name: "Nanachi",
+                                          age: 4))
+                         """)
     }
 }
