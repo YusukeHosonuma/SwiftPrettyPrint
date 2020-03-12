@@ -162,6 +162,24 @@ Debug.pp >>> ["Hello", "World"]
 | `Debug.pd >>> 42`  | `Debug.debugPrint(42)`       |
 | `Debug.ppd >>> 42` | `Debug.debugPrettyPrint(42)` |
 
+## Xcode Code Snippets
+
+![Xcode Code Snippets](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/xcode-snippet.gif)
+
+Copy `.codesnippet` files to the following directory from [.xcode](.xcode) directory:
+
+```text
+~/Library/Developer/Xcode/UserData/CodeSnippets/
+```
+
+and restart Xcode.
+
+Or run the following command from the root of the repository:
+
+```text
+$ make snippets
+```
+
 ## Develoopment
 
 Require:

@@ -1,5 +1,7 @@
 EFAULT_GOAL := help
-HELP_INDENT := "10"
+HELP_INDENT := "20"
+
+SNIPDIR = $(HOME)/Library/Developer/Xcode/UserData/CodeSnippets/
 
 # ref: https://postd.cc/auto-documented-makefile/
 .PHONY: help
@@ -44,6 +46,13 @@ integration-test: ## Integration test by Example app
 	cd ./Example && \
 	bundle exec pod update && \
 	bundle exec fastlane test
+
+.PHONY: snippets
+snippets: $(SNIPDIR) ## Install code snippets
+	cp ./.xcode/*.codesnippet $(SNIPDIR)
+
+$(SNIPDIR):
+	mkdir -p $(SNIPDIR)
 
 # ----------------
 # Trouble shooting
