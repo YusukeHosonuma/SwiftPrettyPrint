@@ -66,6 +66,35 @@ class MultilineFormatterTests: XCTestCase {
                          ]
                          """)
     }
+    
+    func testTupleString() {
+        let tupleElements: [String] = [
+            "\"first\"", """
+            One(value: 1,
+                first: true)
+            """
+        ]
+
+        formatter = MultilineFormatter(option: Debug.Option(indent: 2))
+        assertEqualLines(formatter.tupleString(elements: tupleElements),
+                         """
+                         (
+                           "first",
+                           One(value: 1,
+                               first: true)
+                         )
+                         """)
+
+        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
+        assertEqualLines(formatter.tupleString(elements: tupleElements),
+                         """
+                         (
+                             "first",
+                             One(value: 1,
+                                 first: true)
+                         )
+                         """)
+    }
 
     func testObjectString() {
         let fields: [(String, String)] = [
