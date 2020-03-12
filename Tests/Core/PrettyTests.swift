@@ -137,9 +137,9 @@ class PrettyTests: XCTestCase {
     /// Tuple
     ///
     func testString_Tuple() {
-        let value = (1, ("one", URL(string: "https://www.example.com/")!))
+        let tuple = (1, ("one", URL(string: "https://www.example.com/")!))
         assert(to:
-            curry(pretty.string)(value))
+            curry(pretty.string)(tuple))
             .expect([
                 when(false, then: #"(1, ("one", https://www.example.com/))"#),
                 when(true, then: #"(1, ("one", URL("https://www.example.com/")))"#),
