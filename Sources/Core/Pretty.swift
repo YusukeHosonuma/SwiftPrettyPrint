@@ -22,7 +22,6 @@ struct Pretty {
 
         let mirror = Mirror(reflecting: target)
 
-        // Optional / Collection / Dictionary / Tuple
         switch mirror.displayStyle {
         case .optional:
             return _value(target)
