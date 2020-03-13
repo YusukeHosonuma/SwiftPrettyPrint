@@ -37,7 +37,7 @@ class SinglelineFormatterTests: XCTestCase {
         assert(to: formatter.tupleString).expect([
             when([], then: #"()"#),
             when(["\"one\""], then: #"("one")"#),
-            when(["\"one\"", "\"two\""], then: #"("one", "two")"#),
+            when(["\"one\"", "2"], then: #"("one", 2)"#),
         ])
     }
     
