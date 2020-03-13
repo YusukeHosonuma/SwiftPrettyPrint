@@ -22,21 +22,21 @@ class String_extensionTests: XCTestCase {
         Banana
         """
         
-        assert(to: uncurry(String.indentTail), with: assertEqualLines).expect([
+        assert(to: uncurry(String.indentTail), with: assertEqualLines) {
             // Single-line
-            when(("Apple", 4), then: "Apple"),
+            args(("Apple", 4), expect: "Apple")
             
             // Multi-line
-            when((text,    2), then: """
-                                     Apple
-                                       Orange
-                                       Banana
-                                     """),
-            when((text,    4), then: """
-                                     Apple
-                                         Orange
-                                         Banana
-                                     """),
-        ])
+            args((text, 2), expect: """
+                                    Apple
+                                      Orange
+                                      Banana
+                                    """)
+            args((text, 4), expect: """
+                                    Apple
+                                        Orange
+                                        Banana
+                                    """)
+        }
     }
 }
