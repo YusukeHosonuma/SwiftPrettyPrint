@@ -21,7 +21,7 @@ private struct DogId {
     var rawValue: String
 }
 
-// TODO: organize test to comprehensive
+// TODO: should reduce test patterns, because exhaustive tests are written by `PrettyTests`
 
 class DebugTests: XCTestCase {
     fileprivate let dog = Dog(id: DogId(rawValue: "pochi"),
@@ -35,72 +35,88 @@ class DebugTests: XCTestCase {
     override func tearDown() {}
 
     func testPrint() {
-        //
-        // Struct
-        //
-
         let expectString =
             #"Dog(id: "pochi", name: "ポチ", nickname: nil, age: 3, homepage: https://www.google.com/)"#
 
         let expectDebugString =
             #"Dog(id: DogId(rawValue: "pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))"#
 
-        XCTAssertEqual(Debug.print(dog),
-                       expectString)
+        //
+        // Struct
+        //
+        do {
+            var result = ""
+            Debug.print(dog, to: &result)
+            XCTAssertEqual(result, expectString + "\n")
 
-        XCTAssertEqual(Debug.debugPrint(dog),
-                       expectDebugString)
+            result = ""
+            Debug.debugPrint(dog, to: &result)
+            XCTAssertEqual(result, expectDebugString + "\n")
+        }
 
         //
         // Array
         //
+        do {
+            var result = ""
+            Debug.print([dog, dog], to: &result)
+            XCTAssertEqual(result, "[\(expectString), \(expectString)]" + "\n")
 
-        XCTAssertEqual(Debug.print([dog, dog]),
-                       "[\(expectString), \(expectString)]")
-
-        XCTAssertEqual(Debug.debugPrint([dog, dog]),
-                       "[\(expectDebugString), \(expectDebugString)]")
+            result = ""
+            Debug.debugPrint([dog, dog], to: &result)
+            XCTAssertEqual(result, "[\(expectDebugString), \(expectDebugString)]" + "\n")
+        }
 
         //
         // Dictionary
         //
+        do {
+            let dictionary: [String: Dog] = [
+                "dog-1": dog,
+                "dog-2": dog,
+            ]
+            
+            var result = ""
+            Debug.print(dictionary, to: &result)
+            XCTAssertEqual(result, #"["dog-1": \#(expectString), "dog-2": \#(expectString)]"# + "\n")
 
-        let dictionary: [String: Dog] = [
-            "dog-1": dog,
-            "dog-2": dog,
-        ]
+            result = ""
+            Debug.debugPrint(dictionary, to: &result)
+            XCTAssertEqual(result,
+                           #"["dog-1": \#(expectDebugString), "dog-2": \#(expectDebugString)]"# + "\n")
 
-        XCTAssertEqual(Debug.print(dictionary),
-                       #"["dog-1": \#(expectString), "dog-2": \#(expectString)]"#)
-
-        XCTAssertEqual(Debug.debugPrint(dictionary),
-                       #"["dog-1": \#(expectDebugString), "dog-2": \#(expectDebugString)]"#)
+        }
     }
 
     func testPretyPrint() {
         //
         // Struct
         //
-
-        assertEqualLines(Debug.prettyPrint(dog),
+        var result = ""
+        Debug.prettyPrint(dog, to: &result)
+        assertEqualLines(result,
                          """
                          Dog(id: "pochi",
                              name: "ポチ",
                              nickname: nil,
                              age: 3,
                              homepage: https://www.google.com/)
-                         """)
+                         """ + "\n")
 
-        assertEqualLines(Debug.debugPrettyPrint(dog),
+        result = ""
+        Debug.debugPrettyPrint(dog, to: &result)
+        assertEqualLines(result,
                          """
                          Dog(id: DogId(rawValue: "pochi"),
                              name: Optional("ポチ"),
                              nickname: nil,
                              age: 3,
                              homepage: Optional(https://www.google.com/))
-                         """)
-
-        assertEqualLines(Debug.prettyPrint([dog, dog]),
+                         """ + "\n")
+        
+        result = ""
+        Debug.prettyPrint([dog, dog], to: &result)
+        assertEqualLines(result,
                          """
                          [
                              Dog(id: "pochi",
@@ -114,9 +130,11 @@ class DebugTests: XCTestCase {
                                  age: 3,
                                  homepage: https://www.google.com/)
                          ]
-                         """)
+                         """ + "\n")
 
-        assertEqualLines(Debug.debugPrettyPrint([dog, dog]),
+        result = ""
+        Debug.debugPrettyPrint([dog, dog], to: &result)
+        assertEqualLines(result,
                          """
                          [
                              Dog(id: DogId(rawValue: "pochi"),
@@ -130,14 +148,16 @@ class DebugTests: XCTestCase {
                                  age: 3,
                                  homepage: Optional(https://www.google.com/))
                          ]
-                         """)
+                         """ + "\n")
 
         let dictionary: [String: Dog] = [
             "dog-1": dog,
             "dog-2": dog,
         ]
 
-        assertEqualLines(Debug.prettyPrint(dictionary),
+        result = ""
+        Debug.prettyPrint(dictionary, to: &result)
+        assertEqualLines(result,
                          """
                          [
                              "dog-1": Dog(id: "pochi",
@@ -151,9 +171,11 @@ class DebugTests: XCTestCase {
                                           age: 3,
                                           homepage: https://www.google.com/)
                          ]
-                         """)
-
-        assertEqualLines(Debug.debugPrettyPrint(dictionary),
+                         """ + "\n")
+        
+        result = ""
+        Debug.debugPrettyPrint(dictionary, to: &result)
+        assertEqualLines(result,
                          """
                          [
                              "dog-1": Dog(id: DogId(rawValue: "pochi"),
@@ -167,6 +189,6 @@ class DebugTests: XCTestCase {
                                           age: 3,
                                           homepage: Optional(https://www.google.com/))
                          ]
-                         """)
+                         """ + "\n")
     }
 }
