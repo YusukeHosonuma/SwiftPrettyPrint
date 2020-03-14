@@ -68,11 +68,11 @@ class MultilineFormatterTests: XCTestCase {
     }
     
     func testTupleString() {
-        let tupleElements: [String] = [
-            "\"first\"", """
+        let tupleElements: [(String?, String)] = [
+            (".0", "\"first\""), ("label","""
             One(value: 1,
                 first: true)
-            """
+            """)
         ]
 
         formatter = MultilineFormatter(option: Debug.Option(indent: 2))
@@ -80,8 +80,8 @@ class MultilineFormatterTests: XCTestCase {
                          """
                          (
                            "first",
-                           One(value: 1,
-                               first: true)
+                           label: One(value: 1,
+                                      first: true)
                          )
                          """)
 
@@ -90,8 +90,8 @@ class MultilineFormatterTests: XCTestCase {
                          """
                          (
                              "first",
-                             One(value: 1,
-                                 first: true)
+                             label: One(value: 1,
+                                        first: true)
                          )
                          """)
     }

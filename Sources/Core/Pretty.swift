@@ -39,7 +39,7 @@ struct Pretty {
             }
 
         case .tuple:
-            let elements = mirror.children.map { _string($0.value) }
+            let elements = mirror.children.map { (label: $0.label, value: _string($0.value)) }
             return formatter.tupleString(elements: elements)
 
         default:

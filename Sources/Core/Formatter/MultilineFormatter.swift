@@ -32,10 +32,20 @@ class MultilineFormatter: PrettyFormatter {
         """
     }
 
-    func tupleString(elements: [String]) -> String {
-        """
+    func tupleString(elements: [(String?, String)]) -> String {
+        // if the labels of tuples are not specificated, they are like ".1" (not nil).
+        // Using "." as the first charactor of the label of tuple is prohibited.
+        let labelValuePairs: [String] = elements.map { label, value in
+            if let label = label, label.first != "." {
+                return label + ": " + value.indentTail(size: "\(label): ".count)
+            } else {
+                return value
+            }
+        }
+
+        return """
         (
-        \(elements.joined(separator: ",\n").indent(size: option.indent))
+        \(labelValuePairs.joined(separator: ",\n").indent(size: option.indent))
         )
         """
     }

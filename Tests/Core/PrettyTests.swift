@@ -144,6 +144,14 @@ class PrettyTests: XCTestCase {
                 when(false, then: #"(1, ("one", https://www.example.com/))"#),
                 when(true, then: #"(1, ("one", URL("https://www.example.com/")))"#),
             ])
+        
+        let labeledTuple = (vintage: 2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])
+        assert(to:
+            curry(pretty.string)(labeledTuple))
+            .expect([
+                when(false, then: #"(vintage: 2019, region: "Chili", variety: "Chardonnay", taste: ["round", "smooth", "young"])"#),
+                when(true, then: #"(vintage: 2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])"#),
+            ])
     }
 
     func testExtractKeyValues() throws {

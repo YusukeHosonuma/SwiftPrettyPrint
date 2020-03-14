@@ -36,8 +36,8 @@ class SinglelineFormatterTests: XCTestCase {
     func testTupleString() {
         assert(to: formatter.tupleString).expect([
             when([], then: #"()"#),
-            when(["\"one\""], then: #"("one")"#),
-            when(["\"one\"", "2"], then: #"("one", 2)"#),
+            when([(Optional(".0"), "\"one\"")], then: #"("one")"#),
+            when([(Optional(".0"), "\"one\""), (Optional(".1"), "2")], then: #"("one", 2)"#),
         ])
     }
     
