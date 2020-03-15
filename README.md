@@ -162,6 +162,28 @@ Debug.pp >>> ["Hello", "World"]
 | `Debug.pd >>> 42`  | `Debug.debugPrint(42)`       |
 | `Debug.ppd >>> 42` | `Debug.debugPrettyPrint(42)` |
 
+## Specify label
+
+You can specify prefix label (e.g. variable name) as like following.
+
+```swift
+let array = ["Hello", "World"]
+
+Debug.print(label: "🍎array", array)
+// => 🍎array: ["Hello", "World"]
+
+Debug.prettyPrint(label: "🍊array", array)
+// =>
+// 🍊array:
+// [
+//     "Hello",
+//     "World"
+// ]
+
+Debug.p("🍌array") >>> array
+// => 🍌array: ["Hello", "World"]
+```
+
 ## Xcode Code Snippets
 
 ![Xcode Code Snippets](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/xcode-snippet.gif)
