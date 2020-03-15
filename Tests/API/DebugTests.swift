@@ -192,8 +192,12 @@ class DebugTests: XCTestCase {
                          """ + "\n")
     }
     
-    func testMultipleValues() {
+    func testMultipleValuesAndSeparator() {
         let array = ["Hello", "World"]
+
+        //
+        // not specify `separator` (default)
+        //
         
         var result = ""
         Debug.print(array, 42, to: &result)
@@ -209,7 +213,7 @@ class DebugTests: XCTestCase {
             [
                 "Hello",
                 "World"
-            ],
+            ]
             42
             """ + "\n")
 
@@ -219,7 +223,39 @@ class DebugTests: XCTestCase {
             [
                 "Hello",
                 "World"
-            ],
+            ]
+            42
+            """ + "\n")
+        
+        //
+        // specify `separator`
+        //
+        
+        result = ""
+        Debug.print(array, 42, separator: "!!", to: &result)
+        XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
+
+        result = ""
+        Debug.debugPrint(array, 42, separator: "!!", to: &result)
+        XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
+
+        result = ""
+        Debug.prettyPrint(array, 42, separator: "!!\n", to: &result)
+        XCTAssertEqual(result, """
+            [
+                "Hello",
+                "World"
+            ]!!
+            42
+            """ + "\n")
+
+        result = ""
+        Debug.debugPrettyPrint(array, 42, separator: "!!\n", to: &result)
+        XCTAssertEqual(result, """
+            [
+                "Hello",
+                "World"
+            ]!!
             42
             """ + "\n")
     }
