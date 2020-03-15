@@ -24,7 +24,7 @@ class SinglelineFormatter: PrettyFormatter {
             }
         }
 
-        return "(\(labelValuePairs.joined(separator: ", ")))"
+        return "(" + labelValuePairs.joined(separator: ", ") + ")"
     }
 
     func objectString(typeName: String, fields: [(String, String)]) -> String {
