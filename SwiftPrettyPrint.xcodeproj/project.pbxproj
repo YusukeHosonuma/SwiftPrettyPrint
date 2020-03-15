@@ -24,7 +24,6 @@
 		OBJ_100 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* String+extension.swift */; };
 		OBJ_107 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_118 /* DebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* DebugTests.swift */; };
-		OBJ_119 /* OperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* OperatorTests.swift */; };
 		OBJ_120 /* MultilineFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* MultilineFormatterTests.swift */; };
 		OBJ_121 /* SinglelineFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* SinglelineFormatterTests.swift */; };
 		OBJ_122 /* PrettyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* PrettyTests.swift */; };
@@ -92,7 +91,6 @@
 		OBJ_18 /* PrettyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyError.swift; sourceTree = "<group>"; };
 		OBJ_20 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		OBJ_23 /* DebugTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTests.swift; sourceTree = "<group>"; };
-		OBJ_24 /* OperatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorTests.swift; sourceTree = "<group>"; };
 		OBJ_27 /* MultilineFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatterTests.swift; sourceTree = "<group>"; };
 		OBJ_28 /* SinglelineFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglelineFormatterTests.swift; sourceTree = "<group>"; };
 		OBJ_29 /* PrettyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyTests.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_23 /* DebugTests.swift */,
-				OBJ_24 /* OperatorTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -283,7 +280,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -303,7 +300,6 @@
 				OBJ_58 /* Brewfile */,
 				OBJ_59 /* version.txt */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -454,7 +450,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_44 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -485,7 +481,6 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_118 /* DebugTests.swift in Sources */,
-				OBJ_119 /* OperatorTests.swift in Sources */,
 				OBJ_120 /* MultilineFormatterTests.swift in Sources */,
 				OBJ_121 /* SinglelineFormatterTests.swift in Sources */,
 				OBJ_122 /* PrettyTests.swift in Sources */,

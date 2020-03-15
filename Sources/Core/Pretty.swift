@@ -21,6 +21,7 @@ struct Pretty {
         }
 
         let mirror = Mirror(reflecting: target)
+        let typeName = String(describing: mirror.subjectType)
 
         switch mirror.displayStyle {
         case .optional:
@@ -51,6 +52,11 @@ struct Pretty {
             }
             return formatter.tupleString(elements: elements)
 
+        case .enum:
+            return handleError {
+                try enumString(target, debug: debug)
+            }
+
         default:
             break
         }
@@ -64,8 +70,6 @@ struct Pretty {
         if !debug, mirror.children.count == 1, let value = mirror.children.first?.value {
             return _value(value)
         }
-
-        let typeName = String(describing: mirror.subjectType)
 
         // Swift.URL
         if typeName == "URL" {
@@ -86,8 +90,6 @@ struct Pretty {
         }
         return formatter.objectString(typeName: typeName, fields: fields)
     }
-
-    // MARK: - util
 
     func valueString<T>(_ target: T, debug: Bool) throws -> String {
         let mirror = Mirror(reflecting: target)
@@ -145,6 +147,38 @@ struct Pretty {
             }
 
             return (key, value)
+        }
+    }
+
+    private func enumString(_ target: Any, debug: Bool) throws -> String {
+        let mirror = Mirror(reflecting: target)
+        let typeName = String(describing: mirror.subjectType)
+
+        if mirror.children.count == 0 {
+            if debug {
+                return "\(typeName).\(target)"
+            } else {
+                return ".\(target)"
+            }
+        } else {
+            guard let index = "\(target)".firstIndex(of: "(") else {
+                throw PrettyError.unknownError(target: target)
+            }
+
+            let valueName = "\(target)"[..<index]
+
+            let prefix: String
+            if debug {
+                prefix = "\(typeName).\(valueName)"
+            } else {
+                prefix = ".\(valueName)"
+            }
+
+            guard let childValue = mirror.children.first?.value else {
+                throw PrettyError.unknownError(target: target)
+            }
+
+            return "\(prefix)(" + string(childValue, debug: debug) + ")"
         }
     }
 

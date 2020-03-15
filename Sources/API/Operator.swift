@@ -47,22 +47,18 @@ precedencegroup PrintPrecedence {
 
 infix operator >>>: PrintPrecedence
 
-@discardableResult
-public func >>> (_: Debug.P, target: Any) -> String {
+public func >>> (_: Debug.P, target: Any) {
     Debug.print(target)
 }
 
-@discardableResult
-public func >>> (_: Debug.PD, target: Any) -> String {
+public func >>> (_: Debug.PD, target: Any) {
     Debug.debugPrint(target)
 }
 
-@discardableResult
-public func >>> (_: Debug.PP, target: Any) -> String {
+public func >>> (_: Debug.PP, target: Any) {
     Debug.prettyPrint(target)
 }
 
-@discardableResult
-public func >>> (_: Debug.PPD, target: Any) -> String {
+public func >>> (_: Debug.PPD, target: Any) {
     Debug.debugPrettyPrint(target)
 }
