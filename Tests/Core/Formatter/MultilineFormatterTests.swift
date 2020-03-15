@@ -70,7 +70,7 @@ class MultilineFormatterTests: XCTestCase {
     func testTupleString() {
         let tupleElements: [(String?, String)] = [
             (
-                ".0",
+                Optional(nil),
                 "\"first\""
             ),
             (
