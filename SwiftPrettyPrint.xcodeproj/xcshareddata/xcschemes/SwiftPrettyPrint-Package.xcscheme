@@ -32,9 +32,9 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SwiftPrettyPrint::SwiftPrettyPrintTests"
-            BuildableName = "SwiftPrettyPrintTests.xctest"
-            BlueprintName = "SwiftPrettyPrintTests"
+            BlueprintIdentifier = "SwiftPrettyPrint::SwiftPrettyPrint"
+            BuildableName = "SwiftPrettyPrint.framework"
+            BlueprintName = "SwiftPrettyPrint"
             ReferencedContainer = "container:SwiftPrettyPrint.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

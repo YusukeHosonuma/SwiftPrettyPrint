@@ -34,11 +34,13 @@ class SinglelineFormatterTests: XCTestCase {
     }
     
     func testTupleString() {
-        assert(to: formatter.tupleString).expect([
-            when([], then: #"()"#),
-            when([(Optional(nil), #""one""#)], then: #"("one")"#),
-            when([(Optional("first"), #""one""#), (Optional(nil), "2")], then: #"(first: "one", 2)"#),
-        ])
+        typealias T = [(String?, String)]
+        
+        assert(to: formatter.tupleString) {
+            args([]                                 as T, expect: #"()"#)
+            args([(nil, #""one""#)]                 as T, expect: #"("one")"#)
+            args([("first", #""one""#), (nil, "2")] as T, expect: #"(first: "one", 2)"#)
+        }
     }
     
     func testObjectString() {
