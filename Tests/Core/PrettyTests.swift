@@ -134,6 +134,27 @@ class PrettyTests: XCTestCase {
     }
     
     ///
+    /// Tuple
+    ///
+    func testString_Tuple() {
+        let tuple = (1, ("one", URL(string: "https://www.example.com/")!))
+        assert(to:
+            curry(pretty.string)(tuple))
+            .expect([
+                when(false, then: #"(1, ("one", https://www.example.com/))"#),
+                when(true, then: #"(1, ("one", URL("https://www.example.com/")))"#),
+            ])
+        
+        let labeledTuple = (2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])
+        assert(to:
+            curry(pretty.string)(labeledTuple))
+            .expect([
+                when(false, then: #"(2019, region: "Chili", variety: "Chardonnay", taste: ["round", "smooth", "young"])"#),
+                when(true, then: #"(2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])"#),
+            ])
+    }
+    
+    ///
     /// enum
     ///
     func testString_enum() {

@@ -32,6 +32,22 @@ class MultilineFormatter: PrettyFormatter {
         """
     }
 
+    func tupleString(elements: [(String?, String)]) -> String {
+        let labelValuePairs: [String] = elements.map { label, value in
+            if let label = label {
+                return label + ": " + value.indentTail(size: "\(label): ".count)
+            } else {
+                return value
+            }
+        }
+
+        return """
+        (
+        \(labelValuePairs.joined(separator: ",\n").indent(size: option.indent))
+        )
+        """
+    }
+
     /// NOTE:
     /// transform fields to single string
     /// insert indent according to key

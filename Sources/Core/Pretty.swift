@@ -39,6 +39,19 @@ struct Pretty {
                 return formatter.dictionaryString(keysAndValues: keysAndValues)
             }
 
+        case .tuple:
+            let elements: [(String?, String)] = mirror.children.map {
+                let label: String?
+                // if the labels of tuples are not specificated, it assigns the label like ".1" (not nil).
+                // Specifing "." as the first charactor of the label of tuple is prohibited.
+                if let nonNilLabel = $0.label, nonNilLabel.first != "." {
+                    label = nonNilLabel
+                } else { label = nil }
+
+                return (label: label, value: _string($0.value))
+            }
+            return formatter.tupleString(elements: elements)
+
         case .enum:
             return handleError {
                 try enumString(target, debug: debug)

@@ -7,6 +7,7 @@
 
 @testable import SwiftPrettyPrint
 import XCTest
+import SwiftParamTest
 
 class SinglelineFormatterTests: XCTestCase {
     let formatter = SinglelineFormatter()
@@ -31,7 +32,15 @@ class SinglelineFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.dictionaryString(keysAndValues: keysAndValues),
                        #"[1: "One", 2: "Two"]"#) // sorted
     }
-
+    
+    func testTupleString() {
+        assert(to: formatter.tupleString).expect([
+            when([], then: #"()"#),
+            when([(Optional(nil), #""one""#)], then: #"("one")"#),
+            when([(Optional("first"), #""one""#), (Optional(nil), "2")], then: #"(first: "one", 2)"#),
+        ])
+    }
+    
     func testObjectString() {
         let fields: [(String, String)] = [
             ("name", #""pochi""#),
