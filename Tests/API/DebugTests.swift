@@ -33,14 +33,14 @@ class DebugTests: XCTestCase {
     override func setUp() {}
 
     override func tearDown() {}
-
+    
     func testPrint() {
         let expectString =
             #"Dog(id: "pochi", name: "ポチ", nickname: nil, age: 3, homepage: https://www.google.com/)"#
 
         let expectDebugString =
             #"Dog(id: DogId(rawValue: "pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))"#
-
+        
         //
         // Struct
         //
@@ -190,5 +190,73 @@ class DebugTests: XCTestCase {
                                           homepage: Optional(https://www.google.com/))
                          ]
                          """ + "\n")
+    }
+    
+    func testMultipleValuesAndSeparator() {
+        let array = ["Hello", "World"]
+
+        //
+        // not specify `separator` (default)
+        //
+        
+        var result = ""
+        Debug.print(array, 42, to: &result)
+        XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
+
+        result = ""
+        Debug.debugPrint(array, 42, to: &result)
+        XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
+
+        result = ""
+        Debug.prettyPrint(array, 42, to: &result)
+        XCTAssertEqual(result, """
+            [
+                "Hello",
+                "World"
+            ]
+            42
+            """ + "\n")
+
+        result = ""
+        Debug.debugPrettyPrint(array, 42, to: &result)
+        XCTAssertEqual(result, """
+            [
+                "Hello",
+                "World"
+            ]
+            42
+            """ + "\n")
+        
+        //
+        // specify `separator`
+        //
+        
+        result = ""
+        Debug.print(array, 42, separator: "!!", to: &result)
+        XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
+
+        result = ""
+        Debug.debugPrint(array, 42, separator: "!!", to: &result)
+        XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
+
+        result = ""
+        Debug.prettyPrint(array, 42, separator: "!!\n", to: &result)
+        XCTAssertEqual(result, """
+            [
+                "Hello",
+                "World"
+            ]!!
+            42
+            """ + "\n")
+
+        result = ""
+        Debug.debugPrettyPrint(array, 42, separator: "!!\n", to: &result)
+        XCTAssertEqual(result, """
+            [
+                "Hello",
+                "World"
+            ]!!
+            42
+            """ + "\n")
     }
 }
