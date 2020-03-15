@@ -173,7 +173,7 @@ class PrettyTests: XCTestCase {
             enum Fruit: Int {
                 case apple  = 0
             }
-
+            
             assert(to: curry(pretty.string)(Fruit.apple)) {
                 args(false, expect: ".apple")
                 args(true,  expect: "Fruit.apple")
