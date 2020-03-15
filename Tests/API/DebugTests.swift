@@ -192,6 +192,38 @@ class DebugTests: XCTestCase {
                          """ + "\n")
     }
     
+    func testLabel() {
+        let array = ["Hello", "World"]
+        
+        var result = ""
+        Debug.print(label: "array", array, to: &result)
+        XCTAssertEqual(result, #"array: ["Hello", "World"]"# + "\n")
+        
+        result = ""
+        Debug.debugPrint(label: "array", array, to: &result)
+        XCTAssertEqual(result, #"array: ["Hello", "World"]"# + "\n")
+        
+        result = ""
+        Debug.prettyPrint(label: "array", array, to: &result)
+        XCTAssertEqual(result, """
+            array:
+            [
+                "Hello",
+                "World"
+            ]
+            """ + "\n")
+        
+        result = ""
+        Debug.debugPrettyPrint(label: "array", array, to: &result)
+        XCTAssertEqual(result, """
+            array:
+            [
+                "Hello",
+                "World"
+            ]
+            """ + "\n")
+    }
+    
     func testMultipleValuesAndSeparator() {
         let array = ["Hello", "World"]
 
