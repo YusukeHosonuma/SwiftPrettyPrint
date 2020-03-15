@@ -19,119 +19,127 @@ public class Debug {
 // MARK: Standard API
 
 extension Debug {
-    /// Output `target` to console.
+    /// Output `targets` to console.
     /// - Parameters:
-    ///   - target: target
+    ///   - targets: targets
     public static func print(
-        _ target: Any
+        _ targets: Any...
     ) {
-        Swift.print(_print(target))
+        Swift.print(_print(targets))
     }
 
-    /// Output `target` to `output`.
+    /// Output `targets` to `output`.
     /// - Parameters:
-    ///   - target: target
+    ///   - target: targets
     ///   - output: output
     public static func print<Target: TextOutputStream>(
-        _ target: Any,
+        _ targets: Any...,
         to output: inout Target
     ) {
-        Swift.print(_print(target), to: &output)
+        Swift.print(_print(targets), to: &output)
     }
 
-    /// Output pretty-formatted `target` to console.
+    /// Output pretty-formatted `targets` to console.
     /// - Parameters:
-    ///   - target: target
+    ///   - targets: targets
     ///   - option: option (default: `Debug.sharedOption`)
     public static func prettyPrint(
-        _ target: Any,
+        _ targets: Any...,
         option: Option = Debug.sharedOption
     ) {
-        Swift.print(_prettyPrint(target, option: option))
+        Swift.print(_prettyPrint(targets, option: option))
     }
 
-    /// Output pretty-formatted `target` to console.
+    /// Output pretty-formatted `targets` to console.
     /// - Parameters:
-    ///   - target: target
+    ///   - targets: targets
     ///   - option: option (default: `Debug.sharedOption`)
     ///   - output: output
     public static func prettyPrint<Target: TextOutputStream>(
-        _ target: Any,
+        _ targets: Any...,
         option: Option = Debug.sharedOption,
         to output: inout Target
     ) {
-        Swift.print(_prettyPrint(target, option: option), to: &output)
+        Swift.print(_prettyPrint(targets, option: option), to: &output)
     }
 
-    /// Output debuggable `target` to console.
+    /// Output debuggable `targets` to console.
     /// - Parameters:
-    ///   - target: target
+    ///   - targets: targets
     public static func debugPrint(
-        _ target: Any
+        _ targets: Any...
     ) {
-        Swift.print(_debugPrint(target))
+        Swift.print(_debugPrint(targets))
     }
 
-    /// Output debuggable `target` to console.
+    /// Output debuggable `targets` to console.
     /// - Parameters:
-    ///   - target: target
+    ///   - targets: targets
     ///   - output: output
     public static func debugPrint<Target: TextOutputStream>(
-        _ target: Any,
+        _ targets: Any...,
         to output: inout Target
     ) {
-        Swift.print(_debugPrint(target), to: &output)
+        Swift.print(_debugPrint(targets), to: &output)
     }
 
-    /// Output debuggable and pretty-formatted `target` to console.
+    /// Output debuggable and pretty-formatted `targets` to console.
     /// - Parameters:
-    ///   - target: target
+    ///   - targets: targets
     ///   - option: option (default: `Debug.sharedOption`)
     public static func debugPrettyPrint(
-        _ target: Any,
+        _ targets: Any...,
         option: Option = Debug.sharedOption
     ) {
-        Swift.print(_debugPrettyPrint(target, option: option))
+        Swift.print(_debugPrettyPrint(targets, option: option))
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
     /// - Parameters:
-    ///   - target: target
+    ///   - targets: targets
     ///   - option: option (default: `Debug.sharedOption`)
     ///   - output: output
     public static func debugPrettyPrint<Target: TextOutputStream>(
-        _ target: Any,
+        _ targets: Any...,
         option: Option = Debug.sharedOption,
         to output: inout Target
     ) {
-        Swift.print(_debugPrettyPrint(target, option: option), to: &output)
+        Swift.print(_debugPrettyPrint(targets, option: option), to: &output)
     }
 
     // MARK: - private
 
     private static func _print(
-        _ target: Any
+        _ targets: [Any]
     ) -> String {
-        Pretty(formatter: SinglelineFormatter()).string(target, debug: false)
+        targets.map {
+            Pretty(formatter: SinglelineFormatter()).string($0, debug: false)
+        }.joined(separator: " ")
     }
 
     private static func _prettyPrint(
-        _ target: Any,
+        _ targets: [Any],
         option: Option
     ) -> String {
-        Pretty(formatter: MultilineFormatter(option: option)).string(target, debug: false)
+        targets.map {
+            Pretty(formatter: MultilineFormatter(option: option)).string($0, debug: false)
+        }.joined(separator: ",\n")
     }
 
     private static func _debugPrint(
-        _ target: Any
+        _ targets: [Any]
     ) -> String {
-        Pretty(formatter: SinglelineFormatter()).string(target, debug: true)
+        targets.map {
+            Pretty(formatter: SinglelineFormatter()).string($0, debug: true)
+        }.joined(separator: " ")
     }
 
     private static func _debugPrettyPrint(
-        _ target: Any,
+        _ targets: [Any],
         option: Option
     ) -> String {
-        Pretty(formatter: MultilineFormatter(option: option)).string(target, debug: true)
+        targets.map {
+            Pretty(formatter: MultilineFormatter(option: option)).string($0, debug: true)
+        }.joined(separator: ",\n")
     }
 }

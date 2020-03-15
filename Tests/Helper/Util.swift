@@ -10,3 +10,8 @@ func uncurry<T1, T2, R>(_ f: @escaping (T1) -> (T2) -> R) -> (T1, T2) -> R {
         f(t1)(t2)
     }
 }
+func uncurry<T1, R>(_ f: @escaping (T1) -> () -> R) -> (T1) -> R {
+    { (t1) -> R in
+        f(t1)()
+    }
+}
