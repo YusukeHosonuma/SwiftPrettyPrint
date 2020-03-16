@@ -190,8 +190,8 @@ class PrettyTests: XCTestCase {
 
             assert(to: pretty.string) {
                 // has one
-                args((Fruit.apple("りんご"),      false), expect: #".apple("りんご")"#)
-                args((Fruit.apple("りんご"),      true),  expect: #"Fruit.apple("りんご")"#)
+                args((Fruit.apple("りんご"), false), expect: #".apple("りんご")"#)
+                args((Fruit.apple("りんご"), true),  expect: #"Fruit.apple("りんご")"#)
 
                 // has many (representation as a tuple)
                 args((Fruit.orange("みかん", 42), false), expect: #".orange("みかん", 42)"#)
@@ -222,12 +222,12 @@ class PrettyTests: XCTestCase {
 
             assert(to: pretty.string) {
                 // nested one
-                args((Fruit.apple(.sweet),              false), expect: ".apple(.sweet)")
-                args((Fruit.apple(.sweet),              true),  expect: "Fruit.apple(Taste.sweet)")
+                args((Fruit.apple(.sweet), false), expect: ".apple(.sweet)")
+                args((Fruit.apple(.sweet), true),  expect: "Fruit.apple(Taste.sweet)")
                 
                 // nested two
-                args((Fruit.apple(.sour(.high)),        false), expect: ".apple(.sour(.high))")
-                args((Fruit.apple(.sour(.high)),        true),  expect: "Fruit.apple(Taste.sour(Level.high))")
+                args((Fruit.apple(.sour(.high)), false), expect: ".apple(.sour(.high))")
+                args((Fruit.apple(.sour(.high)), true),  expect: "Fruit.apple(Taste.sour(Level.high))")
 
                 // nested two with label
                 args((Fruit.orange(taste: .sour(.low)), false), expect: ".orange(taste: .sour(.low))")
