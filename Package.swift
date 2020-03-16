@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "SwiftPrettyPrint", targets: ["SwiftPrettyPrint"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/YusukeHosonuma/SwiftParamTest.git", from: "2.0.0"),
+        .package(url: "https://github.com/YusukeHosonuma/SwiftParamTest.git", from: "2.1.0"),
         .package(url: "https://github.com/thoughtbot/Curry.git", from: "4.0.2"),
     ],
     targets: [

@@ -22,7 +22,7 @@ class String_extensionTests: XCTestCase {
         Banana
         """
         
-        assert(to: uncurry(String.indentTail), with: assertEqualLines) {
+        assert(to: String.indentTail, with: assertEqualLines) {
             // Single-line
             args(("Apple", 4), expect: "Apple")
             
