@@ -24,33 +24,33 @@ class PrettyTests: XCTestCase {
     func testString_BasicType() {
         
         // String
-        assert(to: curry(pretty.string)("Hello")) {
-            args(false, expect: #""Hello""#)
-            args(true,  expect: #""Hello""#)
+        assert(to: pretty.string) {
+            args(("Hello", false), expect: #""Hello""#)
+            args(("Hello", true),  expect: #""Hello""#)
         }
 
         // Int
-        assert(to: curry(pretty.string)(42)) {
-            args(false, expect: "42")
-            args(true,  expect: "42")
+        assert(to: pretty.string) {
+            args((42, false), expect: "42")
+            args((42, true),  expect: "42")
         }
 
-        // Optional.some
-            assert(to: curry(pretty.string)(Optional.some("Hello"))) {
-            args(false, expect: #""Hello""#)
-            args(true, expect: #"Optional("Hello")"#)
-        }
-
-        // Optional.none
-        assert(to: curry(pretty.string)(nil as String?)) {
-            args(false, expect: "nil")
-            args(true,  expect: "nil")
+        // Optional
+        assert(to: pretty.string) {
+            // .some
+            args(("Hello" as String?, false), expect: #""Hello""#)
+            args(("Hello" as String?, true),  expect: #"Optional("Hello")"#)
+            
+            // .none
+            args((nil as String?, false), expect: "nil")
+            args((nil as String?, true),  expect: "nil")
         }
         
         // URL
-        assert(to: curry(pretty.string)(URL(string: "https://www.google.com/")!)) {
-            args(false, expect: "https://www.google.com/")
-            args(true,  expect: #"URL("https://www.google.com/")"#)
+        let url = URL(string: "https://www.google.com/")!
+        assert(to: pretty.string) {
+            args((url, false), expect: "https://www.google.com/")
+            args((url, true),  expect: #"URL("https://www.google.com/")"#)
         }
     }
 
@@ -74,16 +74,16 @@ class PrettyTests: XCTestCase {
         let owner = Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")
         let dog = Dog(name: "Pochi", owner: owner, age: nil)
 
-        // struct
-        assert(to: curry(pretty.string)(owner)) {
-            args(false, expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
-            args(true,  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
+        // single
+        assert(to: pretty.string) {
+            args((owner, false), expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
+            args((owner, true),  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
         }
         
-        // nested struct
-        assert(to: curry(pretty.string)(dog)) {
-            args(false, expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
-            args(true,  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
+        // nested
+        assert(to: pretty.string) {
+            args((dog, false), expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
+            args((dog, true),  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
         }
     }
 
@@ -110,7 +110,6 @@ class PrettyTests: XCTestCase {
             var name: String
             var owner: Owner
             var age: Int?
-            
             init(name: String, owner: Owner, age: Int?) {
                 self.name = name
                 self.owner = owner
@@ -120,17 +119,17 @@ class PrettyTests: XCTestCase {
 
         let owner = Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")
         let dog = Dog(name: "Pochi", owner: owner, age: nil)
-
-        // struct
-        assert(to: curry(pretty.string)(owner)) {
-            args(false, expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
-            args(true,  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
+        
+        // single
+        assert(to: pretty.string) {
+            args((owner, false), expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
+            args((owner, true),  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
         }
         
-        // nested struct
-        assert(to: curry(pretty.string)(dog)) {
-            args(false, expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
-            args(true,  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
+        // nested
+        assert(to: pretty.string) {
+            args((dog, false), expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
+            args((dog, true),  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
         }
     }
 
@@ -139,19 +138,6 @@ class PrettyTests: XCTestCase {
     ///
     func testString_Set() {
         let set: Set<Int?> = [7, 42]
-        
-        // print(set)
-        // => [Optional(7), Optional(42)]
-
-        // debugPrint(set)
-        // => Set([Optional(7), Optional(42)])
-
-        // dump(set)
-        // ▿ 3 members
-        //   ▿ Optional(7)
-        //     - some: 7
-        //   ▿ Optional(42)
-        //     - some: 42
 
         // Note:
         // sorted by string ascending
@@ -165,14 +151,14 @@ class PrettyTests: XCTestCase {
     /// Collection
     ///
     func testString_Collection() {
-        let array: [String?] = ["Hello", "World"]
+        let array: [Int?] = [7, 42]
         
-        assert(to: curry(pretty.string)(array)) {
-            args(false, expect: #"["Hello", "World"]"#)
-            args(true,  expect: #"[Optional("Hello"), Optional("World")]"#)
+        // Note:
+        // not sorted unlike `Set`
+        assert(to: pretty.string) {
+            args((array, false), expect: #"[7, 42]"#)
+            args((array, true),  expect: #"[Optional(7), Optional(42)]"#)
         }
-
-        // TODO: add tests for nested Array
     }
 
     ///
@@ -185,11 +171,10 @@ class PrettyTests: XCTestCase {
         ]
 
         // Dictinary
-        assert(to: curry(pretty.string)(dictionary)) {
-            args(false, expect: #"[1: "One", 2: "Two"]"#)
-            args(true,  expect: #"[1: Optional("One"), 2: Optional("Two")]"#)
+        assert(to: pretty.string) {
+            args((dictionary, false), expect: #"[1: "One", 2: "Two"]"#)
+            args((dictionary, true),  expect: #"[1: Optional("One"), 2: Optional("Two")]"#)
         }
-
 
         struct Cat {
             var id: String
@@ -202,9 +187,9 @@ class PrettyTests: XCTestCase {
         ]
 
         // Dictionary in Struct
-        assert(to: curry(pretty.string)(dictionaryInStruct)) {
-            args(false, expect: #"["mike": Cat(id: "mike", name: "ポチ"), "tama": Cat(id: "tama", name: "タマ")]"#)
-            args(true,  expect: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#)
+        assert(to: pretty.string) {
+            args((dictionaryInStruct, false), expect: #"["mike": Cat(id: "mike", name: "ポチ"), "tama": Cat(id: "tama", name: "タマ")]"#)
+            args((dictionaryInStruct, true),  expect: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#)
         }
     }
     
@@ -214,47 +199,35 @@ class PrettyTests: XCTestCase {
     func testString_Tuple() {
         let tuple = (1, ("one", URL(string: "https://www.example.com/")!))
         
-        assert(to: curry(pretty.string)(tuple)) {
-            args(false, expect: #"(1, ("one", https://www.example.com/))"#)
-            args(true,  expect: #"(1, ("one", URL("https://www.example.com/")))"#)
+        assert(to: pretty.string) {
+            args((tuple, false), expect: #"(1, ("one", https://www.example.com/))"#)
+            args((tuple, true),  expect: #"(1, ("one", URL("https://www.example.com/")))"#)
         }
         
         let labeledTuple = (2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])
 
-        assert(to: curry(pretty.string)(labeledTuple)) {
-            args(false, expect: #"(2019, region: "Chili", variety: "Chardonnay", taste: ["round", "smooth", "young"])"#)
-            args(true,  expect: #"(2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])"#)
+        assert(to: pretty.string) {
+            args((labeledTuple, false), expect: #"(2019, region: "Chili", variety: "Chardonnay", taste: ["round", "smooth", "young"])"#)
+            args((labeledTuple, true),  expect: #"(2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])"#)
         }
     }
     
     ///
-    /// enum
+    /// Enum
     ///
-    func testString_enum() {
-        // simple enum
-        do {
-            enum Fruit {
-                case apple
-            }
-            
-            assert(to: curry(pretty.string)(Fruit.apple)) {
-                args(false, expect: ".apple")
-                args(true,  expect: "Fruit.apple")
-            }
-        }
-        
+    func testString_Enum() {
         // has raw-value
         do {
             enum Fruit: Int {
-                case apple  = 0
+                case apple = 0
             }
             
-            assert(to: curry(pretty.string)(Fruit.apple)) {
-                args(false, expect: ".apple")
-                args(true,  expect: "Fruit.apple")
+            assert(to: pretty.string) {
+                args((Fruit.apple, false), expect: ".apple")
+                args((Fruit.apple, true),  expect: "Fruit.apple")
             }
         }
-        
+                
         // has associated-value (with no label)
         do {
             enum Fruit {
