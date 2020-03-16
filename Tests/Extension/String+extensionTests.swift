@@ -40,8 +40,8 @@ class String_extensionTests: XCTestCase {
         }
     }
     
-    func testRemoveEnclosedParenthese() {
-        assert(to: String.removeEnclosedParenthese) {
+    func testRemoveEnclosedParentheses() {
+        assert(to: String.removeEnclosedParentheses) {
             // removed
             args("()",    expect: "")
             args("(x)",   expect: "x")

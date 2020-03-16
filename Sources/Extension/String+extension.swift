@@ -23,7 +23,7 @@ extension String {
             .joined(separator: "\n")
     }
 
-    func removeEnclosedParenthese() -> String {
+    func removeEnclosedParentheses() -> String {
         var s = self
         if first == "(", last == ")" {
             s.removeFirst()

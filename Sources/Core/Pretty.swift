@@ -182,7 +182,7 @@ struct Pretty {
 
             // Note:
             //
-            // Remove enclosed parenthese when `childValue` are tuple.
+            // Remove enclosed parentheses when `childValue` are tuple.
             // (representation as `tuple` when `enum` has two or more associated-value or labeled)
             //
             // e.g.
@@ -190,7 +190,7 @@ struct Pretty {
             // - `Fruit.orange(juicy: true)` - `body` is `(juicy: 42)` of tuple
             //
 
-            return "\(prefix)(" + body.removeEnclosedParenthese() + ")"
+            return "\(prefix)(" + body.removeEnclosedParentheses() + ")"
         }
     }
 
