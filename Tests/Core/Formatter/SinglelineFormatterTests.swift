@@ -16,10 +16,10 @@ class SinglelineFormatterTests: XCTestCase {
 
     override func tearDown() {}
 
-    func testArrayString() {
+    func testCollectionString() {
         let array: [String] = [#""Hello""#, #""World""#]
 
-        XCTAssertEqual(formatter.arrayString(elements: array),
+        XCTAssertEqual(formatter.collectionString(elements: array),
                        #"["Hello", "World"]"#)
     }
 

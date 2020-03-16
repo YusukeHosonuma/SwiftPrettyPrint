@@ -6,7 +6,7 @@
 //
 
 class SinglelineFormatter: PrettyFormatter {
-    func arrayString(elements: [String]) -> String {
+    func collectionString(elements: [String]) -> String {
         "[\(elements.joined(separator: ", "))]"
     }
 

@@ -23,42 +23,55 @@ struct Pretty {
         let mirror = Mirror(reflecting: target)
         let typeName = String(describing: mirror.subjectType)
 
-        switch mirror.displayStyle {
-        case .optional:
-            return _value(target)
+        if let displayStyle = mirror.displayStyle {
+            switch displayStyle {
+            case .optional:
+                return _value(target)
 
-        case .collection:
-            let elements = mirror.children.map { _string($0.value) }
-            return formatter.arrayString(elements: elements)
+            case .collection:
+                let elements = mirror.children.map { _string($0.value) }
+                return formatter.collectionString(elements: elements)
 
-        case .dictionary:
-            return handleError {
-                let keysAndValues: [(String, String)] = try extractKeyValues(from: target).map { key, value in
-                    (_value(key), _string(value))
+            case .dictionary:
+                return handleError {
+                    let keysAndValues: [(String, String)] = try extractKeyValues(from: target).map { key, value in
+                        (_value(key), _string(value))
+                    }
+                    return formatter.dictionaryString(keysAndValues: keysAndValues)
                 }
-                return formatter.dictionaryString(keysAndValues: keysAndValues)
+
+            case .tuple:
+                let elements: [(String?, String)] = mirror.children.map {
+                    let label: String?
+                    // if the labels of tuples are not specificated, it assigns the label like ".1" (not nil).
+                    // Specifing "." as the first charactor of the label of tuple is prohibited.
+                    if let nonNilLabel = $0.label, nonNilLabel.first != "." {
+                        label = nonNilLabel
+                    } else { label = nil }
+
+                    return (label: label, value: _string($0.value))
+                }
+                return formatter.tupleString(elements: elements)
+
+            case .enum:
+                return handleError {
+                    try enumString(target, debug: debug)
+                }
+
+            case .set:
+                let elements = mirror.children.map { _string($0.value) }.sorted()
+                let content = formatter.collectionString(elements: elements)
+
+                if debug {
+                    return "Set(" + content + ")"
+                } else {
+                    return content
+                }
+
+            case .struct, .class: fallthrough
+            @unknown default:
+                break
             }
-
-        case .tuple:
-            let elements: [(String?, String)] = mirror.children.map {
-                let label: String?
-                // if the labels of tuples are not specificated, it assigns the label like ".1" (not nil).
-                // Specifing "." as the first charactor of the label of tuple is prohibited.
-                if let nonNilLabel = $0.label, nonNilLabel.first != "." {
-                    label = nonNilLabel
-                } else { label = nil }
-
-                return (label: label, value: _string($0.value))
-            }
-            return formatter.tupleString(elements: elements)
-
-        case .enum:
-            return handleError {
-                try enumString(target, debug: debug)
-            }
-
-        default:
-            break
         }
 
         // Empty

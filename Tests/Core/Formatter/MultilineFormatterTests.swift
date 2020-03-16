@@ -15,11 +15,11 @@ class MultilineFormatterTests: XCTestCase {
 
     override func tearDown() {}
 
-    func testArrayString() {
+    func testCollectionString() {
         let array: [String] = [#""Hello""#, #""World""#]
 
         formatter = MultilineFormatter(option: Debug.Option(indent: 2))
-        assertEqualLines(formatter.arrayString(elements: array),
+        assertEqualLines(formatter.collectionString(elements: array),
                          """
                          [
                            "Hello",
@@ -28,7 +28,7 @@ class MultilineFormatterTests: XCTestCase {
                          """)
 
         formatter = MultilineFormatter(option: Debug.Option(indent: 4))
-        assertEqualLines(formatter.arrayString(elements: array),
+        assertEqualLines(formatter.collectionString(elements: array),
                          """
                          [
                              "Hello",
