@@ -185,19 +185,22 @@ class PrettyTests: XCTestCase {
             enum Fruit {
                 case apple(String)       // has one
                 case orange(String, Int) // has many
+                case banana(juicy: Bool) // with label
             }
 
-            assert(to: curry(pretty.string)(Fruit.apple("りんご"))) {
-                args(false, expect: #".apple("りんご")"#)
-                args(true,  expect: #"Fruit.apple("りんご")"#)
+            assert(to: pretty.string) {
+                // has one
+                args((Fruit.apple("りんご"),      false), expect: #".apple("りんご")"#)
+                args((Fruit.apple("りんご"),      true),  expect: #"Fruit.apple("りんご")"#)
+
+                // has many (representation as a tuple)
+                args((Fruit.orange("みかん", 42), false), expect: #".orange("みかん", 42)"#)
+                args((Fruit.orange("みかん", 42), true),  expect: #"Fruit.orange("みかん", 42)"#)
+                
+                // with label (representation as a tuple)
+                args((Fruit.banana(juicy: true), false), expect: #".banana(juicy: true)"#)
+                args((Fruit.banana(juicy: true), true),  expect: #"Fruit.banana(juicy: true)"#)
             }
-            
-            // TODO: wait for support `tuple`
-            // ref: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/34
-            //
-            // fruit = .orange("みかん", 42)
-            // XCTAssertEqual(pretty.string(fruit, debug: false),
-            //                #".orange("みかん", 42)"#)
         }
         
         // nested-enum
@@ -218,18 +221,18 @@ class PrettyTests: XCTestCase {
             }
 
             assert(to: pretty.string) {
-                args((Fruit.apple(.sweet),       false), expect: ".apple(.sweet)")
-                args((Fruit.apple(.sweet),       true),  expect: "Fruit.apple(Taste.sweet)")
-                args((Fruit.apple(.sour(.high)), false), expect: ".apple(.sour(.high))")
-                args((Fruit.apple(.sour(.high)), true),  expect: "Fruit.apple(Taste.sour(Level.high))")
-            }
+                // nested one
+                args((Fruit.apple(.sweet),              false), expect: ".apple(.sweet)")
+                args((Fruit.apple(.sweet),              true),  expect: "Fruit.apple(Taste.sweet)")
+                
+                // nested two
+                args((Fruit.apple(.sour(.high)),        false), expect: ".apple(.sour(.high))")
+                args((Fruit.apple(.sour(.high)),        true),  expect: "Fruit.apple(Taste.sour(Level.high))")
 
-            // TODO: wait for support `tuple`
-            // ref: https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues/34
-            //
-            // fruit = .orange(taste: .sour)
-            // XCTAssertEqual(pretty.string(fruit, debug: false),
-            //                #".orange(taste: .sour)"#)
+                // nested two with label
+                args((Fruit.orange(taste: .sour(.low)), false), expect: ".orange(taste: .sour(.low))")
+                args((Fruit.orange(taste: .sour(.low)), true),  expect: "Fruit.orange(taste: Taste.sour(Level.low))")
+            }
         }
     }
 
