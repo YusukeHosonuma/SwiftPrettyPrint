@@ -22,4 +22,13 @@ extension String {
         return ([head] + lines.dropFirst().map { $0.indent(size: size) })
             .joined(separator: "\n")
     }
+
+    func removeEnclosedParentheses() -> String {
+        var s = self
+        if first == "(", last == ")" {
+            s.removeFirst()
+            s.removeLast()
+        }
+        return s
+    }
 }

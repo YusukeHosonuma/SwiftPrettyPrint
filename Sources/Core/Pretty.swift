@@ -178,7 +178,19 @@ struct Pretty {
                 throw PrettyError.unknownError(target: target)
             }
 
-            return "\(prefix)(" + string(childValue, debug: debug) + ")"
+            let body = string(childValue, debug: debug)
+
+            // Note:
+            //
+            // Remove enclosed parentheses when `childValue` are tuple.
+            // (representation as `tuple` when `enum` has two or more associated-value or labeled)
+            //
+            // e.g.
+            // - `Fruit.orange("みかん", 42)` - `body` is `("みかん", 42)` of tuple
+            // - `Fruit.orange(juicy: true)` - `body` is `(juicy: 42)` of tuple
+            //
+
+            return "\(prefix)(" + body.removeEnclosedParentheses() + ")"
         }
     }
 

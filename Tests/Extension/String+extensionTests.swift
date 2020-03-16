@@ -39,4 +39,19 @@ class String_extensionTests: XCTestCase {
                                     """)
         }
     }
+    
+    func testRemoveEnclosedParentheses() {
+        assert(to: String.removeEnclosedParentheses) {
+            // removed
+            args("()",    expect: "")
+            args("(x)",   expect: "x")
+            args("((x))", expect: "(x)")
+
+            // not removed
+            args("(",  expect: "(")
+            args(")",  expect: ")")
+            args("(x", expect: "(x")
+            args("x)", expect: "x)")
+        }
+    }
 }
