@@ -178,7 +178,7 @@ struct Pretty {
                 throw PrettyError.unknownError(target: target)
             }
 
-            var body = string(childValue, debug: debug)
+            let body = string(childValue, debug: debug)
 
             // Note:
             //
@@ -189,12 +189,8 @@ struct Pretty {
             // - `Fruit.orange("みかん", 42)` - `body` is `("みかん", 42)` of tuple
             // - `Fruit.orange(juicy: true)` - `body` is `(juicy: 42)` of tuple
             //
-            if body.first == "(", body.last == ")" {
-                body.removeFirst()
-                body.removeLast()
-            }
 
-            return "\(prefix)(" + body + ")"
+            return "\(prefix)(" + body.removeEnclosedParenthese() + ")"
         }
     }
 
