@@ -58,16 +58,17 @@ class PrettyTests: XCTestCase {
     /// Struct
     ///
     func testString_Struct() {
-        struct Dog {
-            var name: String
-            var owner: Owner
-            var age: Int?
-        }
-
+        
         struct Owner {
             var name: String
             var age: Int
             var address: String?
+        }
+
+        struct Dog {
+            var name: String
+            var owner: Owner
+            var age: Int?
         }
 
         let owner = Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")
@@ -87,9 +88,83 @@ class PrettyTests: XCTestCase {
     }
 
     ///
-    /// Array
+    /// Class
     ///
-    func testString_Array() {
+    func testString_Class() {
+        
+        // Note:
+        // data structure and expected behavior is same to Struct.
+        
+        class Owner {
+            var name: String
+            var age: Int
+            var address: String?
+            init(name: String, age: Int, address: String?) {
+                self.name = name
+                self.age = age
+                self.address = address
+            }
+        }
+        
+        class Dog {
+            var name: String
+            var owner: Owner
+            var age: Int?
+            
+            init(name: String, owner: Owner, age: Int?) {
+                self.name = name
+                self.owner = owner
+                self.age = age
+            }
+        }
+
+        let owner = Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")
+        let dog = Dog(name: "Pochi", owner: owner, age: nil)
+
+        // struct
+        assert(to: curry(pretty.string)(owner)) {
+            args(false, expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
+            args(true,  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
+        }
+        
+        // nested struct
+        assert(to: curry(pretty.string)(dog)) {
+            args(false, expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
+            args(true,  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
+        }
+    }
+
+    ///
+    /// Set
+    ///
+    func testString_Set() {
+        let set: Set<Int?> = [7, 42]
+        
+        // print(set)
+        // => [Optional(7), Optional(42)]
+
+        // debugPrint(set)
+        // => Set([Optional(7), Optional(42)])
+
+        // dump(set)
+        // ▿ 3 members
+        //   ▿ Optional(7)
+        //     - some: 7
+        //   ▿ Optional(42)
+        //     - some: 42
+
+        // Note:
+        // sorted by string ascending
+        assert(to: pretty.string) {
+            args((set, false), expect: #"[42, 7]"#)
+            args((set, true),  expect: #"Set([Optional(42), Optional(7)])"#)
+        }
+    }
+    
+    ///
+    /// Collection
+    ///
+    func testString_Collection() {
         let array: [String?] = ["Hello", "World"]
         
         assert(to: curry(pretty.string)(array)) {

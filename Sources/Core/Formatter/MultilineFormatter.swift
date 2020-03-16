@@ -12,7 +12,7 @@ class MultilineFormatter: PrettyFormatter {
         self.option = option
     }
 
-    func arrayString(elements: [String]) -> String {
+    func collectionString(elements: [String]) -> String {
         """
         [
         \(elements.joined(separator: ",\n").indent(size: option.indent))
