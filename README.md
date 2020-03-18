@@ -106,31 +106,6 @@ let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: 
 Debug.print(dog)
 ```
 
-## Format options
-
-You can configure format option, shared or passed by arguments:
-
-```swift
-// Global option
-Debug.sharedOption = Debug.Option(indent: 4)
-
-// Use `sharedOption`
-Debug.prettyPrint(["Hello", "World"])
-// =>
-// [
-//     "Hello",
-//     "World"
-// ]
-
-// Use option that is passed by argument
-Debug.prettyPrint(["Hello", "World"], option: Debug.Option(indent: 2))
-// =>
-// [
-//   "Hello",
-//   "World"
-// ]
-```
-
 ## Operator-based API
 
 You can use operator based alias API that like Ruby.
@@ -162,26 +137,57 @@ Debug.pp >>> ["Hello", "World"]
 | `Debug.pd >>> 42`  | `Debug.debugPrint(42)`       |
 | `Debug.ppd >>> 42` | `Debug.debugPrettyPrint(42)` |
 
-## Specify label
+## Format options
 
-You can specify prefix label (e.g. variable name) as like following.
+You can configure format option, shared or passed by arguments.
+
+### Indent size
+
+You can specify indent size in pretty-print as like following:
 
 ```swift
-let array = ["Hello", "World"]
+// Global option
+Debug.sharedOption = Debug.Option(prefix: nil, indent: 4)
 
-Debug.print(label: "🍎array", array)
-// => 🍎array: ["Hello", "World"]
-
-Debug.prettyPrint(label: "🍊array", array)
+// Use `sharedOption`
+Debug.prettyPrint(["Hello", "World"])
 // =>
-// 🍊array:
 // [
 //     "Hello",
 //     "World"
 // ]
 
-Debug.p("🍌array") >>> array
-// => 🍌array: ["Hello", "World"]
+// Use option that is passed by argument
+Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indent: 2))
+// =>
+// [
+//   "Hello",
+//   "World"
+// ]
+```
+
+### Prefix and Label
+
+You can specify global prefix and label (e.g. variable name) as like following:
+
+```swift
+Debug.sharedOption = Debug.Option(prefix: "🍎", indent: 4)
+
+let array = ["Hello", "World"]
+
+Debug.print(label: "array", array)
+// => 🍎array: ["Hello", "World"]
+
+Debug.prettyPrint(label: "array", array)
+// =>
+// 🍎array:
+// [
+//     "Hello",
+//     "World"
+// ]
+
+Debug.p("array") >>> array
+// => 🍎array: ["Hello", "World"]
 ```
 
 ## Xcode Code Snippets
