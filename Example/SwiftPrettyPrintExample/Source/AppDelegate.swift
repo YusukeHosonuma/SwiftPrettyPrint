@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // -------------------------
         // Configure format-options
         // -------------------------
-        Debug.sharedOption = Debug.Option(indent: 4)
+        Debug.sharedOption = Debug.Option(prefix: "🍎", indent: 4)
 
         // --------
         // Example
@@ -23,10 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
 
         Debug.print(dog)
-        // => Dog(id: "pochi", price: 10.0, name: "ポチ")
+        // => 🍎 Dog(id: "pochi", price: 10.0, name: "ポチ")
 
         Debug.prettyPrint([dog, dog])
         // =>
+        // 🍎
         // [
         //     Dog(id: "pochi",
         //         price: 10.0,
@@ -36,8 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //         name: "ポチ")
         // ]
 
-        Debug.prettyPrint(["one": dog, "two": dog], option: Debug.Option(indent: 2))
+        Debug.prettyPrint(["one": dog, "two": dog], option: Debug.Option(prefix: "🍊", indent: 2))
         // =>
+        // 🍊
         // [
         //   "one": Dog(id: "pochi",
         //              price: 10.0,
@@ -48,10 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ]
 
         Debug.debugPrint(dog)
-        // => Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: Optional("ポチ"))
+        // => 🍎 Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: Optional("ポチ"))
 
         Debug.debugPrettyPrint(dog)
         // =>
+        // 🍎
         // Dog(id: DogId(rawValue: "pochi"),
         //     price: Price(rawValue: 10.0),
         //     name: Optional("ポチ"))
