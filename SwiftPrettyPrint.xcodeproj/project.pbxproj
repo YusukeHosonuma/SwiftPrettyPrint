@@ -22,6 +22,8 @@
 
 /* Begin PBXBuildFile section */
 		E5614E902421DCC80040D1AC /* OptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5614E8F2421DCC80040D1AC /* OptionTests.swift */; };
+		E5614E92242213EA0040D1AC /* UtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5614E91242213EA0040D1AC /* UtilTests.swift */; };
+		E5614E95242219E90040D1AC /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5614E93242214550040D1AC /* Util.swift */; };
 		OBJ_100 /* PrettyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* PrettyFormatter.swift */; };
 		OBJ_101 /* SinglelineFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* SinglelineFormatter.swift */; };
 		OBJ_102 /* Pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Pretty.swift */; };
@@ -85,6 +87,8 @@
 /* Begin PBXFileReference section */
 		"Curry::Curry::Product" /* Curry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Curry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5614E8F2421DCC80040D1AC /* OptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTests.swift; sourceTree = "<group>"; };
+		E5614E91242213EA0040D1AC /* UtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTests.swift; sourceTree = "<group>"; };
+		E5614E93242214550040D1AC /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		OBJ_14 /* MultilineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatter.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				OBJ_13 /* Formatter */,
 				OBJ_17 /* Pretty.swift */,
 				OBJ_18 /* PrettyError.swift */,
+				E5614E93242214550040D1AC /* Util.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			children = (
 				OBJ_25 /* Formatter */,
 				OBJ_28 /* PrettyTests.swift */,
+				E5614E91242213EA0040D1AC /* UtilTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -501,6 +507,7 @@
 				OBJ_126 /* String+extensionTests.swift in Sources */,
 				E5614E902421DCC80040D1AC /* OptionTests.swift in Sources */,
 				OBJ_127 /* Assertions.swift in Sources */,
+				E5614E92242213EA0040D1AC /* UtilTests.swift in Sources */,
 				OBJ_129 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +558,7 @@
 				OBJ_100 /* PrettyFormatter.swift in Sources */,
 				OBJ_101 /* SinglelineFormatter.swift in Sources */,
 				OBJ_102 /* Pretty.swift in Sources */,
+				E5614E95242219E90040D1AC /* Util.swift in Sources */,
 				OBJ_103 /* PrettyError.swift in Sources */,
 				OBJ_104 /* String+extension.swift in Sources */,
 			);

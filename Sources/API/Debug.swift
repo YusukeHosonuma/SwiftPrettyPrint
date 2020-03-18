@@ -153,11 +153,7 @@ extension Debug {
         separator: String,
         option: Option
     ) -> String {
-        var prefix = label.map { "\($0): " } ?? ""
-        if let string = option.prefix {
-            prefix = "\(string) \(prefix)"
-        }
-        return prefix +
+        prefixLabel(option.prefix, label) +
             targets.map {
                 Pretty(formatter: SinglelineFormatter()).string($0, debug: false)
             }.joined(separator: separator)
@@ -169,15 +165,7 @@ extension Debug {
         separator: String,
         option: Option
     ) -> String {
-        var prefix = label.map { "\($0):\n" } ?? ""
-        if let string = option.prefix {
-            if prefix == "" {
-                prefix = string + "\n"
-            } else {
-                prefix = "\(string) \(prefix)"
-            }
-        }
-        return prefix +
+        prefixLabelPretty(option.prefix, label) +
             targets.map {
                 Pretty(formatter: MultilineFormatter(option: option)).string($0, debug: false)
             }.joined(separator: separator)
@@ -189,11 +177,7 @@ extension Debug {
         separator: String,
         option: Option
     ) -> String {
-        var prefix = label.map { "\($0): " } ?? ""
-        if let string = option.prefix {
-            prefix = "\(string) \(prefix)"
-        }
-        return prefix +
+        prefixLabel(option.prefix, label) +
             targets.map {
                 Pretty(formatter: SinglelineFormatter()).string($0, debug: true)
             }.joined(separator: separator)
@@ -205,15 +189,7 @@ extension Debug {
         separator: String,
         option: Option
     ) -> String {
-        var prefix = label.map { "\($0):\n" } ?? ""
-        if let string = option.prefix {
-            if prefix == "" {
-                prefix = string + "\n"
-            } else {
-                prefix = "\(string) \(prefix)"
-            }
-        }
-        return prefix +
+        prefixLabelPretty(option.prefix, label) +
             targets.map {
                 Pretty(formatter: MultilineFormatter(option: option)).string($0, debug: true)
             }.joined(separator: separator)
