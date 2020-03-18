@@ -18,7 +18,7 @@ class MultilineFormatterTests: XCTestCase {
     func testCollectionString() {
         let array: [String] = [#""Hello""#, #""World""#]
 
-        formatter = MultilineFormatter(option: Debug.Option(indent: 2))
+        formatter = MultilineFormatter(option: option(indent: 2))
         assertEqualLines(formatter.collectionString(elements: array),
                          """
                          [
@@ -27,7 +27,7 @@ class MultilineFormatterTests: XCTestCase {
                          ]
                          """)
 
-        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
+        formatter = MultilineFormatter(option: option(indent: 4))
         assertEqualLines(formatter.collectionString(elements: array),
                          """
                          [
@@ -46,7 +46,7 @@ class MultilineFormatterTests: XCTestCase {
             """),
         ]
 
-        formatter = MultilineFormatter(option: Debug.Option(indent: 2))
+        formatter = MultilineFormatter(option: option(indent: 2))
         assertEqualLines(formatter.dictionaryString(keysAndValues: keysAndValues),
                          """
                          [
@@ -56,7 +56,7 @@ class MultilineFormatterTests: XCTestCase {
                          ]
                          """)
 
-        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
+        formatter = MultilineFormatter(option: option(indent: 4))
         assertEqualLines(formatter.dictionaryString(keysAndValues: keysAndValues),
                          """
                          [
@@ -82,7 +82,7 @@ class MultilineFormatterTests: XCTestCase {
             )
         ]
 
-        formatter = MultilineFormatter(option: Debug.Option(indent: 2))
+        formatter = MultilineFormatter(option: option(indent: 2))
         assertEqualLines(formatter.tupleString(elements: tupleElements),
                          """
                          (
@@ -92,7 +92,7 @@ class MultilineFormatterTests: XCTestCase {
                          )
                          """)
 
-        formatter = MultilineFormatter(option: Debug.Option(indent: 4))
+        formatter = MultilineFormatter(option: option(indent: 4))
         assertEqualLines(formatter.tupleString(elements: tupleElements),
                          """
                          (
@@ -112,12 +112,18 @@ class MultilineFormatterTests: XCTestCase {
             """),
         ]
 
-        formatter = MultilineFormatter(option: Debug.Option(indent: 2))
-         assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields),
+        formatter = MultilineFormatter(option: option(indent: 2))
+        assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields),
                          """
                          Dog(name: "pochi",
                              owner: Owner(name: "Nanachi",
                                           age: 4))
                          """)
+    }
+    
+    // MARK: - Helper
+        
+    private func option(indent: Int) -> Debug.Option {
+        Debug.Option(prefix: "", indent: indent)
     }
 }
