@@ -14,12 +14,12 @@ setup: ## Install requirement development tools to system and setup (not include
 	pre-commit install
 
 .PHONY: build
-build: ## swift - build
+build: ## Run build
 	swift build
 
 .PHONY: test
-test: ## swift - test (with coverage)
-	swift test --enable-code-coverage
+test: ## Run test (with coverage)
+	swift test --enable-test-discovery --enable-code-coverage
 
 .PHONY: xcode
 xcode: ## swift - generate xcode project
