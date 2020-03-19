@@ -3,5 +3,6 @@ import XCTest
 import SwiftPrettyPrintTests
 
 var tests = [XCTestCaseEntry]()
-tests += SwiftPrettyPrintTests.allTests()
+tests += SwiftPrettyPrintTests.__allTests()
+
 XCTMain(tests)
