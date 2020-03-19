@@ -29,6 +29,16 @@ jobs:
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
+  unit-test-in-linux:
+    runs-on: ubuntu-latest
+    container: swift:5.1
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run Unit Test
+      run: make test
+
   integration-test:
     runs-on: macos-latest
 
