@@ -1,5 +1,5 @@
 PODS:
-  - SwiftPrettyPrint (0.0.3)
+  - SwiftPrettyPrint (0.0.5)
 
 DEPENDENCIES:
   - SwiftPrettyPrint (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SwiftPrettyPrint: ddd52ab3d5f2688417eee427358b291c47ddc66e
+  SwiftPrettyPrint: 499977071a87fb53d40fe05f42e07e355b5a69f9
 
 PODFILE CHECKSUM: e57c1331f81ff220ccc169627a83df5238a8e57f
 

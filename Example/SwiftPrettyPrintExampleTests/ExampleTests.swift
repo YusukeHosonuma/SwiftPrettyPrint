@@ -20,6 +20,6 @@ class SwiftPrettyPrintExampleTests: XCTestCase {
         var result = ""
         Debug.print(dog, to: &result)
         XCTAssertEqual(result,
-                       #"Dog(id: "pochi", price: 10.0, name: "ポチ")"# + "\n")
+                       #"🍎 Dog(id: "pochi", price: 10.0, name: "ポチ")"# + "\n")
     }
 }
