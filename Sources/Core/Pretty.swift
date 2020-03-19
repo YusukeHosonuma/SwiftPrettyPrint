@@ -74,6 +74,15 @@ struct Pretty {
             }
         }
 
+        // Swift.URL
+        if let url = target as? URL {
+            if debug {
+                return #"URL("\#(url.absoluteString)")"#
+            } else {
+                return url.absoluteString
+            }
+        }
+
         // Empty
         if mirror.children.count == 0 {
             return _value(target)
@@ -82,19 +91,6 @@ struct Pretty {
         // ValueObject
         if !debug, mirror.children.count == 1, let value = mirror.children.first?.value {
             return _value(value)
-        }
-
-        // Swift.URL
-        if typeName == "URL" {
-            return handleError {
-                guard
-                    let field = mirror.children.first?.value as? NSURL,
-                    let urlString = field.absoluteString else {
-                    throw PrettyError.unknownError(target: target)
-                }
-
-                return #"URL("\#(urlString)")"#
-            }
         }
 
         // Object
