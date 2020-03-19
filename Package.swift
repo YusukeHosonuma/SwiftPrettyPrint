@@ -16,8 +16,7 @@ let package = Package(
         .target(name: "SwiftPrettyPrint", dependencies: [], path: "Sources"),
         .testTarget(
             name: "SwiftPrettyPrintTests",
-            dependencies: ["SwiftPrettyPrint", "SwiftParamTest", "Curry"],
-            path: "Tests"
+            dependencies: ["SwiftPrettyPrint", "SwiftParamTest", "Curry"]
         ),
     ]
 )

@@ -33,14 +33,14 @@ class DebugTests: XCTestCase {
     override func setUp() {}
 
     override func tearDown() {}
-    
+
     func testPrint() {
         let expectString =
             #"Dog(id: "pochi", name: "ポチ", nickname: nil, age: 3, homepage: https://www.google.com/)"#
 
         let expectDebugString =
             #"Dog(id: DogId(rawValue: "pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))"#
-        
+
         //
         // Struct
         //
@@ -75,7 +75,7 @@ class DebugTests: XCTestCase {
                 "dog-1": dog,
                 "dog-2": dog,
             ]
-            
+
             var result = ""
             Debug.print(dictionary, to: &result)
             XCTAssertEqual(result, #"["dog-1": \#(expectString), "dog-2": \#(expectString)]"# + "\n")
@@ -113,7 +113,7 @@ class DebugTests: XCTestCase {
                              age: 3,
                              homepage: Optional(https://www.google.com/))
                          """ + "\n")
-        
+
         result = ""
         Debug.prettyPrint([dog, dog], to: &result)
         assertEqualLines(result,
@@ -172,7 +172,7 @@ class DebugTests: XCTestCase {
                                           homepage: https://www.google.com/)
                          ]
                          """ + "\n")
-        
+
         result = ""
         Debug.debugPrettyPrint(dictionary, to: &result)
         assertEqualLines(result,
@@ -191,18 +191,18 @@ class DebugTests: XCTestCase {
                          ]
                          """ + "\n")
     }
-    
+
     func testLabel() {
         let array = ["Hello", "World"]
-        
+
         var result = ""
         Debug.print(label: "array", array, to: &result)
         XCTAssertEqual(result, #"array: ["Hello", "World"]"# + "\n")
-        
+
         result = ""
         Debug.debugPrint(label: "array", array, to: &result)
         XCTAssertEqual(result, #"array: ["Hello", "World"]"# + "\n")
-        
+
         result = ""
         Debug.prettyPrint(label: "array", array, to: &result)
         XCTAssertEqual(result, """
@@ -212,7 +212,7 @@ class DebugTests: XCTestCase {
                 "World"
             ]
             """ + "\n")
-        
+
         result = ""
         Debug.debugPrettyPrint(label: "array", array, to: &result)
         XCTAssertEqual(result, """
@@ -223,14 +223,14 @@ class DebugTests: XCTestCase {
             ]
             """ + "\n")
     }
-    
+
     func testMultipleValuesAndSeparator() {
         let array = ["Hello", "World"]
 
         //
         // not specify `separator` (default)
         //
-        
+
         var result = ""
         Debug.print(array, 42, to: &result)
         XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
@@ -258,11 +258,11 @@ class DebugTests: XCTestCase {
             ]
             42
             """ + "\n")
-        
+
         //
         // specify `separator`
         //
-        
+
         result = ""
         Debug.print(array, 42, separator: "!!", to: &result)
         XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
