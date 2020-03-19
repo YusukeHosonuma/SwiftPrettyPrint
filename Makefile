@@ -54,6 +54,25 @@ snippets: $(SNIPDIR) ## Install code snippets
 $(SNIPDIR):
 	mkdir -p $(SNIPDIR)
 
+#
+# for Linux
+#
+
+.PHONY: linux
+linux: ## Run and login docker container
+	docker run --rm -it \
+		--volume "$(CURDIR):/src" \
+		--workdir "/src" \
+		swift:5.1
+
+.PHONY: linux-test
+linux-test: ## Run tests on linux in docker
+	docker run --rm \
+		--volume "$(CURDIR):/src" \
+		--workdir "/src" \
+		swift:5.1 \
+		swift test --enable-test-discovery
+
 # ----------------
 # Trouble shooting
 # ----------------
