@@ -97,3 +97,6 @@ vendor/bundle
 # Homebrew
 
 Brewfile.lock.json
+
+# .DS_Store
+.DS_Store
