@@ -107,18 +107,26 @@ class MultilineFormatterTests: XCTestCase {
         let fields: [(String, String)] = [
             ("name", #""pochi""#),
             ("owner", """
-            Owner(name: "Nanachi",
-                  age: 4)
+            Owner(
+                 name: "Nanachi",
+                 age: 4
+            )
             """),
         ]
 
+        let expected =
+        """
+        Dog(
+           name: "pochi",
+           owner: Owner(
+                       name: "Nanachi",
+                       age: 4
+                  )
+        )
+        """
+
         formatter = MultilineFormatter(option: option(indent: 2))
-        assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields),
-                         """
-                         Dog(name: "pochi",
-                             owner: Owner(name: "Nanachi",
-                                          age: 4))
-                         """)
+        assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields), expected)
     }
     
     // MARK: - Helper
