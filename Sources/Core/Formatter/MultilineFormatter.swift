@@ -66,18 +66,20 @@ class MultilineFormatter: PrettyFormatter {
     func objectString(
         typeName: String, fields: [(String, String)]
     ) -> String {
-        let prefix = "\(typeName)("
         let body: String
-
         if fields.count == 1, let field = fields.first {
             body = "\(field.0): \(field.1)"
         } else {
             body = fields
                 .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
                 .joined(separator: ",\n")
-                .indentTail(size: prefix.count)
+                .indentTail(size: "\(typeName)".count)
         }
 
-        return prefix + body + ")"
+        return """
+        \(typeName)(
+        \(body)
+        )
+        """
     }
 }
