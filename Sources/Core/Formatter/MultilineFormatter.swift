@@ -35,7 +35,7 @@ class MultilineFormatter: PrettyFormatter {
     func tupleString(elements: [(String?, String)]) -> String {
         let labelValuePairs: [String] = elements.map { label, value in
             if let label = label {
-                return label + ": " + value.indentTail(size: "\(label): ".count)
+                return "\(label): \(value)"
             } else {
                 return value
             }

@@ -94,39 +94,70 @@ class MultilineFormatterTests: XCTestCase {
     }
     
     func testTupleString() {
-        let tupleElements: [(String?, String)] = [
-            (
-                Optional(nil),
-                "\"first\""
+        func f(indent: Int, tupleElements: [(String?, String)]) -> String {
+            let formatter = MultilineFormatter(option: option(indent: indent))
+            return formatter.tupleString(elements: tupleElements)
+        }
+        
+        assert(to: f, with: assertEqualLines) {
+            // indent = 2
+            args((
+                indent: 2,
+                tupleElements: [
+                    (
+                        Optional(nil),
+                        "\"first\""
+                    ),
+                    (
+                        "label",
+                        """
+                        One(
+                          value: 1,
+                          first: true
+                        )
+                        """
+                    )
+                ]
             ),
+            expect: """
             (
-                "label",
-                """
-                One(value: 1,
-                    first: true)
-                """
+              "first",
+              label: One(
+                value: 1,
+                first: true
+              )
             )
-        ]
-
-        formatter = MultilineFormatter(option: option(indent: 2))
-        assertEqualLines(formatter.tupleString(elements: tupleElements),
-                         """
-                         (
-                           "first",
-                           label: One(value: 1,
-                                      first: true)
-                         )
-                         """)
-
-        formatter = MultilineFormatter(option: option(indent: 4))
-        assertEqualLines(formatter.tupleString(elements: tupleElements),
-                         """
-                         (
-                             "first",
-                             label: One(value: 1,
-                                        first: true)
-                         )
-                         """)
+            """)
+            
+            // indent = 4
+            args((
+                indent: 4,
+                tupleElements: [
+                    (
+                        Optional(nil),
+                        "\"first\""
+                    ),
+                    (
+                        "label",
+                        """
+                        One(
+                            value: 1,
+                            first: true
+                        )
+                        """
+                    )
+                ]
+            ),
+            expect: """
+            (
+                "first",
+                label: One(
+                    value: 1,
+                    first: true
+                )
+            )
+            """)
+        }
     }
 
     func testObjectString() {
