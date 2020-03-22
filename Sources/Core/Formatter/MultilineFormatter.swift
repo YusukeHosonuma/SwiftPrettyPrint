@@ -60,8 +60,10 @@ class MultilineFormatter: PrettyFormatter {
     ///
     /// goes to
     ///
-    /// owner: Owner(name: "Nanachi",
-    ///              age: 4))
+    /// owner: Owner(
+    ///            name: "Nanachi",
+    ///            age: 4)
+    ///        )
     ///
     func objectString(
         typeName: String, fields: [(String, String)]
