@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // -------------------------
         // Configure format-options
         // -------------------------
-        Debug.sharedOption = Debug.Option(prefix: "🍎", indent: 4)
+        Debug.sharedOption = Debug.Option(prefix: "🍎", indentSize: 4)
 
         // --------
         // Example
@@ -29,24 +29,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // =>
         // 🍎
         // [
-        //     Dog(id: "pochi",
+        //     Dog(
+        //         id: "pochi",
         //         price: 10.0,
-        //         name: "ポチ"),
-        //     Dog(id: "pochi",
+        //         name: "ポチ"
+        //     ),
+        //     Dog(
+        //         id: "pochi",
         //         price: 10.0,
-        //         name: "ポチ")
+        //         name: "ポチ"
+        //     )
         // ]
 
-        Debug.prettyPrint(["one": dog, "two": dog], option: Debug.Option(prefix: "🍊", indent: 2))
+        Debug.prettyPrint(["one": dog, "two": dog], option: Debug.Option(prefix: "🍊", indentSize: 2))
         // =>
         // 🍊
         // [
-        //   "one": Dog(id: "pochi",
-        //              price: 10.0,
-        //              name: "ポチ"),
-        //   "two": Dog(id: "pochi",
-        //              price: 10.0,
-        //              name: "ポチ")
+        //   "one": Dog(
+        //     id: "pochi",
+        //     price: 10.0,
+        //     name: "ポチ"
+        //   ),
+        //   "two": Dog(
+        //     id: "pochi",
+        //     price: 10.0,
+        //     name: "ポチ"
+        //   )
         // ]
 
         Debug.debugPrint(dog)
@@ -55,9 +63,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Debug.debugPrettyPrint(dog)
         // =>
         // 🍎
-        // Dog(id: DogId(rawValue: "pochi"),
+        // Dog(
+        //     id: DogId(rawValue: "pochi"),
         //     price: Price(rawValue: 10.0),
-        //     name: Optional("ポチ"))
+        //     name: Optional("ポチ")
+        // )
 
         // -------------------
         // Swift standard API
