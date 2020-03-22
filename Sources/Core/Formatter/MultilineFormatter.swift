@@ -67,7 +67,7 @@ class MultilineFormatter: PrettyFormatter {
         typeName: String, fields: [(String, String)]
     ) -> String {
         if fields.count == 1, let field = fields.first {
-            return "\(typeName)(\(field.0): \(field.1))"
+            return "\(typeName)(" + "\(field.0): \(field.1)" + ")"
         } else {
             let body = fields
                 .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
