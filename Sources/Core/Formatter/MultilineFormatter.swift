@@ -6,10 +6,10 @@
 //
 
 class MultilineFormatter: PrettyFormatter {
-    private let option: Debug.Option
+    private let indentSize: Int
 
-    init(option: Debug.Option) {
-        self.option = option
+    init(indentSize: Int) {
+        self.indentSize = indentSize
     }
 
     func collectionString(elements: [String]) -> String {
@@ -17,7 +17,7 @@ class MultilineFormatter: PrettyFormatter {
 
         return """
         [
-        \(contents.indent(size: option.indent))
+        \(contents.indent(size: indentSize))
         ]
         """
     }
@@ -31,7 +31,7 @@ class MultilineFormatter: PrettyFormatter {
 
         return """
         [
-        \(contents.indent(size: option.indent))
+        \(contents.indent(size: indentSize))
         ]
         """
     }
@@ -49,7 +49,7 @@ class MultilineFormatter: PrettyFormatter {
 
         return """
         (
-        \(contents.indent(size: option.indent))
+        \(contents.indent(size: indentSize))
         )
         """
     }
@@ -80,7 +80,7 @@ class MultilineFormatter: PrettyFormatter {
             let body = fields
                 .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
                 .joined(separator: ",\n")
-                .indent(size: option.indent)
+                .indent(size: indentSize)
 
             return """
             \(typeName)(

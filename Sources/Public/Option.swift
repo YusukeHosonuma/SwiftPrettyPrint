@@ -9,11 +9,11 @@
 extension Debug {
     public struct Option {
         public var prefix: String?
-        public var indent: Int
+        public var indentSize: Int
 
-        public init(prefix: String?, indent: Int) {
+        public init(prefix: String?, indentSize: Int) {
             self.prefix = prefix
-            self.indent = indent
+            self.indentSize = indentSize
         }
     }
 }

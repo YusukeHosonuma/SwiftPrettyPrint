@@ -8,7 +8,7 @@
 
 public class Debug {
     /// Default format option
-    public static let defaultOption = Option(prefix: nil, indent: 4)
+    public static let defaultOption = Option(prefix: nil, indentSize: 4)
 
     /// Global format option
     public static var sharedOption: Option = Debug.defaultOption
@@ -167,7 +167,7 @@ extension Debug {
     ) -> String {
         prefixLabelPretty(option.prefix, label) +
             targets.map {
-                Pretty(formatter: MultilineFormatter(option: option)).string($0, debug: false)
+                Pretty(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: false)
             }.joined(separator: separator)
     }
 
@@ -191,7 +191,7 @@ extension Debug {
     ) -> String {
         prefixLabelPretty(option.prefix, label) +
             targets.map {
-                Pretty(formatter: MultilineFormatter(option: option)).string($0, debug: true)
+                Pretty(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: true)
             }.joined(separator: separator)
     }
 }

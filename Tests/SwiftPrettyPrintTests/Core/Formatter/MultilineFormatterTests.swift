@@ -19,7 +19,7 @@ class MultilineFormatterTests: XCTestCase {
     func testCollectionString() {
         let array: [String] = [#""Hello""#, #""World""#]
 
-        formatter = MultilineFormatter(option: option(indent: 2))
+        formatter = MultilineFormatter(indentSize: 2)
         assertEqualLines(formatter.collectionString(elements: array),
                          """
                          [
@@ -28,7 +28,7 @@ class MultilineFormatterTests: XCTestCase {
                          ]
                          """)
 
-        formatter = MultilineFormatter(option: option(indent: 4))
+        formatter = MultilineFormatter(indentSize: 4)
         assertEqualLines(formatter.collectionString(elements: array),
                          """
                          [
@@ -39,8 +39,8 @@ class MultilineFormatterTests: XCTestCase {
     }
 
     func testDictionaryString() {
-        func f(indent: Int, keysAndValues: [(String, String)]) -> String {
-            let formatter = MultilineFormatter(option: option(indent: indent))
+        func f(indentSize: Int, keysAndValues: [(String, String)]) -> String {
+            let formatter = MultilineFormatter(indentSize: indentSize)
             return formatter.dictionaryString(keysAndValues: keysAndValues)
         }
         
@@ -94,8 +94,8 @@ class MultilineFormatterTests: XCTestCase {
     }
     
     func testTupleString() {
-        func f(indent: Int, tupleElements: [(String?, String)]) -> String {
-            let formatter = MultilineFormatter(option: option(indent: indent))
+        func f(indentSize: Int, tupleElements: [(String?, String)]) -> String {
+            let formatter = MultilineFormatter(indentSize: indentSize)
             return formatter.tupleString(elements: tupleElements)
         }
         
@@ -182,7 +182,7 @@ class MultilineFormatterTests: XCTestCase {
         )
         """
 
-        formatter = MultilineFormatter(option: option(indent: 2))
+        formatter = MultilineFormatter(indentSize: 2)
         assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields), expected)
 
 
@@ -207,13 +207,13 @@ class MultilineFormatterTests: XCTestCase {
         )
         """
 
-        formatter = MultilineFormatter(option: option(indent: 4))
+        formatter = MultilineFormatter(indentSize: 4)
         assertEqualLines(formatter.objectString(typeName: "Dog", fields: fields), expected)
     }
     
     // MARK: - Helper
         
     private func option(indent: Int) -> Debug.Option {
-        Debug.Option(prefix: "", indent: indent)
+        Debug.Option(prefix: "", indentSize: indent)
     }
 }
