@@ -108,8 +108,8 @@ class MultilineFormatterTests: XCTestCase {
             ("name", #""pochi""#),
             ("owner", """
             Owner(
-                 name: "Nanachi",
-                 age: 4
+                name: "Nanachi",
+                age: 4
             )
             """),
         ]
@@ -117,11 +117,11 @@ class MultilineFormatterTests: XCTestCase {
         let expected =
         """
         Dog(
-           name: "pochi",
-           owner: Owner(
-                       name: "Nanachi",
-                       age: 4
-                  )
+          name: "pochi",
+          owner: Owner(
+                     name: "Nanachi",
+                     age: 4
+                 )
         )
         """
 

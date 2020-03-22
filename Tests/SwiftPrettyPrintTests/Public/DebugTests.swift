@@ -97,11 +97,11 @@ class DebugTests: XCTestCase {
         assertEqualLines(result,
                          """
                          Dog(
-                            id: "pochi",
-                            name: "ポチ",
-                            nickname: nil,
-                            age: 3,
-                            homepage: https://www.google.com/
+                             id: "pochi",
+                             name: "ポチ",
+                             nickname: nil,
+                             age: 3,
+                             homepage: https://www.google.com/
                          )
                          """ + "\n")
 
@@ -110,11 +110,11 @@ class DebugTests: XCTestCase {
         assertEqualLines(result,
                          """
                          Dog(
-                            id: DogId(rawValue: "pochi"),
-                            name: Optional("ポチ"),
-                            nickname: nil,
-                            age: 3,
-                            homepage: Optional(https://www.google.com/)
+                             id: DogId(rawValue: "pochi"),
+                             name: Optional("ポチ"),
+                             nickname: nil,
+                             age: 3,
+                             homepage: Optional(https://www.google.com/)
                          )
                          """ + "\n")
 
@@ -124,18 +124,18 @@ class DebugTests: XCTestCase {
                          """
                          [
                              Dog(
-                                id: "pochi",
-                                name: "ポチ",
-                                nickname: nil,
-                                age: 3,
-                                homepage: https://www.google.com/
+                                 id: "pochi",
+                                 name: "ポチ",
+                                 nickname: nil,
+                                 age: 3,
+                                 homepage: https://www.google.com/
                              ),
                              Dog(
-                                id: "pochi",
-                                name: "ポチ",
-                                nickname: nil,
-                                age: 3,
-                                homepage: https://www.google.com/
+                                 id: "pochi",
+                                 name: "ポチ",
+                                 nickname: nil,
+                                 age: 3,
+                                 homepage: https://www.google.com/
                              )
                          ]
                          """ + "\n")
@@ -146,18 +146,18 @@ class DebugTests: XCTestCase {
                          """
                          [
                              Dog(
-                                id: DogId(rawValue: "pochi"),
-                                name: Optional("ポチ"),
-                                nickname: nil,
-                                age: 3,
-                                homepage: Optional(https://www.google.com/)
+                                 id: DogId(rawValue: "pochi"),
+                                 name: Optional("ポチ"),
+                                 nickname: nil,
+                                 age: 3,
+                                 homepage: Optional(https://www.google.com/)
                              ),
                              Dog(
-                                id: DogId(rawValue: "pochi"),
-                                name: Optional("ポチ"),
-                                nickname: nil,
-                                age: 3,
-                                homepage: Optional(https://www.google.com/)
+                                 id: DogId(rawValue: "pochi"),
+                                 name: Optional("ポチ"),
+                                 nickname: nil,
+                                 age: 3,
+                                 homepage: Optional(https://www.google.com/)
                              )
                          ]
                          """ + "\n")
@@ -173,18 +173,18 @@ class DebugTests: XCTestCase {
                          """
                          [
                              "dog-1": Dog(
-                                         id: "pochi",
-                                         name: "ポチ",
-                                         nickname: nil,
-                                         age: 3,
-                                         homepage: https://www.google.com/
+                                          id: "pochi",
+                                          name: "ポチ",
+                                          nickname: nil,
+                                          age: 3,
+                                          homepage: https://www.google.com/
                                       ),
                              "dog-2": Dog(
-                                         id: "pochi",
-                                         name: "ポチ",
-                                         nickname: nil,
-                                         age: 3,
-                                         homepage: https://www.google.com/
+                                          id: "pochi",
+                                          name: "ポチ",
+                                          nickname: nil,
+                                          age: 3,
+                                          homepage: https://www.google.com/
                                       )
                          ]
                          """ + "\n")
@@ -195,18 +195,18 @@ class DebugTests: XCTestCase {
                          """
                          [
                              "dog-1": Dog(
-                                         id: DogId(rawValue: "pochi"),
-                                         name: Optional("ポチ"),
-                                         nickname: nil,
-                                         age: 3,
-                                         homepage: Optional(https://www.google.com/)
+                                          id: DogId(rawValue: "pochi"),
+                                          name: Optional("ポチ"),
+                                          nickname: nil,
+                                          age: 3,
+                                          homepage: Optional(https://www.google.com/)
                                       ),
                              "dog-2": Dog(
-                                         id: DogId(rawValue: "pochi"),
-                                         name: Optional("ポチ"),
-                                         nickname: nil,
-                                         age: 3,
-                                         homepage: Optional(https://www.google.com/)
+                                          id: DogId(rawValue: "pochi"),
+                                          name: Optional("ポチ"),
+                                          nickname: nil,
+                                          age: 3,
+                                          homepage: Optional(https://www.google.com/)
                                       )
                          ]
                          """ + "\n")
