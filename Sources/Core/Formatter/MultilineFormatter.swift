@@ -72,7 +72,7 @@ class MultilineFormatter: PrettyFormatter {
             let body = fields
                 .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
                 .joined(separator: ",\n")
-                .indent(size: "\(typeName)".count)
+                .indent(size: option.indent)
 
             return """
             \(typeName)(
