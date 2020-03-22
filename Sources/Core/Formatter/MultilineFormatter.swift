@@ -13,17 +13,21 @@ class MultilineFormatter: PrettyFormatter {
     }
 
     func collectionString(elements: [String]) -> String {
-        """
+        let contents = elements.joined(separator: ",\n")
+
+        return """
         [
-        \(elements.joined(separator: ",\n").indent(size: option.indent))
+        \(contents.indent(size: option.indent))
         ]
         """
     }
 
     func dictionaryString(keysAndValues: [(String, String)]) -> String {
-        let contents = keysAndValues.map { key, value in
+        let lines = keysAndValues.map { key, value in
             "\(key): \(value)"
-        }.sorted().joined(separator: ",\n")
+        }.sorted()
+
+        let contents = lines.joined(separator: ",\n")
 
         return """
         [
@@ -33,7 +37,7 @@ class MultilineFormatter: PrettyFormatter {
     }
 
     func tupleString(elements: [(String?, String)]) -> String {
-        let labelValuePairs: [String] = elements.map { label, value in
+        let lines: [String] = elements.map { label, value in
             if let label = label {
                 return "\(label): \(value)"
             } else {
@@ -41,9 +45,11 @@ class MultilineFormatter: PrettyFormatter {
             }
         }
 
+        let contents = lines.joined(separator: ",\n")
+
         return """
         (
-        \(labelValuePairs.joined(separator: ",\n").indent(size: option.indent))
+        \(contents.indent(size: option.indent))
         )
         """
     }
