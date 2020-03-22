@@ -7,6 +7,7 @@
 
 @testable import SwiftPrettyPrint
 import XCTest
+import SwiftParamTest
 
 class MultilineFormatterTests: XCTestCase {
     var formatter: MultilineFormatter!
@@ -38,33 +39,58 @@ class MultilineFormatterTests: XCTestCase {
     }
 
     func testDictionaryString() {
-        let keysAndValues: [(String, String)] = [
-            ("2", #""Two""#),
-            ("1", """
-            One(value: 1,
-                first: true)
-            """),
-        ]
-
-        formatter = MultilineFormatter(option: option(indent: 2))
-        assertEqualLines(formatter.dictionaryString(keysAndValues: keysAndValues),
-                         """
-                         [
-                           1: One(value: 1,
-                                  first: true),
-                           2: "Two"
-                         ]
-                         """)
-
-        formatter = MultilineFormatter(option: option(indent: 4))
-        assertEqualLines(formatter.dictionaryString(keysAndValues: keysAndValues),
-                         """
-                         [
-                             1: One(value: 1,
-                                    first: true),
-                             2: "Two"
-                         ]
-                         """)
+        func f(indent: Int, keysAndValues: [(String, String)]) -> String {
+            let formatter = MultilineFormatter(option: option(indent: indent))
+            return formatter.dictionaryString(keysAndValues: keysAndValues)
+        }
+        
+        assert(to: f, with: assertEqualLines) {
+            // indent = 2
+            args((
+                indent: 2,
+                keysAndValues: [
+                    ("2", #""Two""#),
+                    ("1", """
+                      One(
+                        value: 1,
+                        first: true
+                      )
+                      """),
+                ]
+            ),
+            expect: """
+            [
+              1: One(
+                value: 1,
+                first: true
+              ),
+              2: "Two"
+            ]
+            """)
+            
+            // indent = 4
+            args((
+                indent: 4,
+                keysAndValues: [
+                    ("2", #""Two""#),
+                    ("1", """
+                      One(
+                          value: 1,
+                          first: true
+                      )
+                      """),
+                ]
+            ),
+            expect: """
+            [
+                1: One(
+                    value: 1,
+                    first: true
+                ),
+                2: "Two"
+            ]
+            """)
+        }
     }
     
     func testTupleString() {

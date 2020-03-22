@@ -22,7 +22,7 @@ class MultilineFormatter: PrettyFormatter {
 
     func dictionaryString(keysAndValues: [(String, String)]) -> String {
         let contents = keysAndValues.map { key, value in
-            "\(key): \(value.indentTail(size: "\(key): ".count))"
+            "\(key): \(value)"
         }.sorted().joined(separator: ",\n")
 
         return """
