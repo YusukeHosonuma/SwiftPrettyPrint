@@ -96,22 +96,26 @@ class DebugTests: XCTestCase {
         Debug.prettyPrint(dog, to: &result)
         assertEqualLines(result,
                          """
-                         Dog(id: "pochi",
+                         Dog(
+                             id: "pochi",
                              name: "ポチ",
                              nickname: nil,
                              age: 3,
-                             homepage: https://www.google.com/)
+                             homepage: https://www.google.com/
+                         )
                          """ + "\n")
 
         result = ""
         Debug.debugPrettyPrint(dog, to: &result)
         assertEqualLines(result,
                          """
-                         Dog(id: DogId(rawValue: "pochi"),
+                         Dog(
+                             id: DogId(rawValue: "pochi"),
                              name: Optional("ポチ"),
                              nickname: nil,
                              age: 3,
-                             homepage: Optional(https://www.google.com/))
+                             homepage: Optional(https://www.google.com/)
+                         )
                          """ + "\n")
 
         result = ""
@@ -119,16 +123,20 @@ class DebugTests: XCTestCase {
         assertEqualLines(result,
                          """
                          [
-                             Dog(id: "pochi",
+                             Dog(
+                                 id: "pochi",
                                  name: "ポチ",
                                  nickname: nil,
                                  age: 3,
-                                 homepage: https://www.google.com/),
-                             Dog(id: "pochi",
+                                 homepage: https://www.google.com/
+                             ),
+                             Dog(
+                                 id: "pochi",
                                  name: "ポチ",
                                  nickname: nil,
                                  age: 3,
-                                 homepage: https://www.google.com/)
+                                 homepage: https://www.google.com/
+                             )
                          ]
                          """ + "\n")
 
@@ -137,16 +145,20 @@ class DebugTests: XCTestCase {
         assertEqualLines(result,
                          """
                          [
-                             Dog(id: DogId(rawValue: "pochi"),
+                             Dog(
+                                 id: DogId(rawValue: "pochi"),
                                  name: Optional("ポチ"),
                                  nickname: nil,
                                  age: 3,
-                                 homepage: Optional(https://www.google.com/)),
-                             Dog(id: DogId(rawValue: "pochi"),
+                                 homepage: Optional(https://www.google.com/)
+                             ),
+                             Dog(
+                                 id: DogId(rawValue: "pochi"),
                                  name: Optional("ポチ"),
                                  nickname: nil,
                                  age: 3,
-                                 homepage: Optional(https://www.google.com/))
+                                 homepage: Optional(https://www.google.com/)
+                             )
                          ]
                          """ + "\n")
 
@@ -160,16 +172,20 @@ class DebugTests: XCTestCase {
         assertEqualLines(result,
                          """
                          [
-                             "dog-1": Dog(id: "pochi",
+                             "dog-1": Dog(
+                                          id: "pochi",
                                           name: "ポチ",
                                           nickname: nil,
                                           age: 3,
-                                          homepage: https://www.google.com/),
-                             "dog-2": Dog(id: "pochi",
+                                          homepage: https://www.google.com/
+                                      ),
+                             "dog-2": Dog(
+                                          id: "pochi",
                                           name: "ポチ",
                                           nickname: nil,
                                           age: 3,
-                                          homepage: https://www.google.com/)
+                                          homepage: https://www.google.com/
+                                      )
                          ]
                          """ + "\n")
 
@@ -178,16 +194,20 @@ class DebugTests: XCTestCase {
         assertEqualLines(result,
                          """
                          [
-                             "dog-1": Dog(id: DogId(rawValue: "pochi"),
+                             "dog-1": Dog(
+                                          id: DogId(rawValue: "pochi"),
                                           name: Optional("ポチ"),
                                           nickname: nil,
                                           age: 3,
-                                          homepage: Optional(https://www.google.com/)),
-                             "dog-2": Dog(id: DogId(rawValue: "pochi"),
+                                          homepage: Optional(https://www.google.com/)
+                                      ),
+                             "dog-2": Dog(
+                                          id: DogId(rawValue: "pochi"),
                                           name: Optional("ポチ"),
                                           nickname: nil,
                                           age: 3,
-                                          homepage: Optional(https://www.google.com/))
+                                          homepage: Optional(https://www.google.com/)
+                                      )
                          ]
                          """ + "\n")
     }

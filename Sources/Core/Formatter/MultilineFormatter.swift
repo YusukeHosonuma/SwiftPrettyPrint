@@ -60,24 +60,27 @@ class MultilineFormatter: PrettyFormatter {
     ///
     /// goes to
     ///
-    /// owner: Owner(name: "Nanachi",
-    ///              age: 4))
+    /// owner: Owner(
+    ///            name: "Nanachi",
+    ///            age: 4)
+    ///        )
     ///
     func objectString(
         typeName: String, fields: [(String, String)]
     ) -> String {
-        let prefix = "\(typeName)("
-        let body: String
-
         if fields.count == 1, let field = fields.first {
-            body = "\(field.0): \(field.1)"
+            return "\(typeName)(" + "\(field.0): \(field.1)" + ")"
         } else {
-            body = fields
+            let body = fields
                 .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
                 .joined(separator: ",\n")
-                .indentTail(size: prefix.count)
-        }
+                .indent(size: option.indent)
 
-        return prefix + body + ")"
+            return """
+            \(typeName)(
+            \(body)
+            )
+            """
+        }
     }
 }
