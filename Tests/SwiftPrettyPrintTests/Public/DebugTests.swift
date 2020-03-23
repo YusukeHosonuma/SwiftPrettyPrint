@@ -208,7 +208,6 @@ class DebugTests: XCTestCase {
                                  age: 3,
                                  homepage: Optional(URL("https://www.google.com/"))
                              )
-
                          ]
                          """ + "\n")
     }
