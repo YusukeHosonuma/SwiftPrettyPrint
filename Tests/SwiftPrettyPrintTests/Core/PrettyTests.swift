@@ -35,6 +35,18 @@ class PrettyTests: XCTestCase {
             args((42, true),  expect: "42")
         }
 
+        // Float
+        assert(to: pretty.string) {
+            args((10.4 as Float, false), expect: "10.4")
+            args((10.4 as Float, true),  expect: "10.4")
+        }
+
+        // Double
+        assert(to: pretty.string) {
+            args((10.4 as Double, false), expect: "10.4")
+            args((10.4 as Double, true),  expect: "10.4")
+        }
+        
         // Optional
         assert(to: pretty.string) {
             // .some

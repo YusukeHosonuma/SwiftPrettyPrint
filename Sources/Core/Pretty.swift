@@ -140,6 +140,12 @@ struct Pretty {
         case let value as Int:
             return "\(value)"
 
+        case let value as Float:
+            return "\(value)"
+
+        case let value as Double:
+            return "\(value)"
+
         case let value as Bool:
             return "\(value)"
 
