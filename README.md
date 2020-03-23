@@ -229,6 +229,10 @@ release    cocoapods - release
 info       cocoapods - show trunk information
 ```
 
-## Contributors
+## Author
 
-- [@sahara-ooga](https://github.com/sahara-ooga)
+Developed by **Penginmura**.
+
+- [Yusuke Hosonuma](https://github.com/YusukeHosonuma)
+- [sahara-ooga](https://github.com/sahara-ooga)
+- [Kazutoshi Miyasaka](https://github.com/po-miyasaka)
