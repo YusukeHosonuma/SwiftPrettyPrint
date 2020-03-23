@@ -39,7 +39,7 @@ class DebugTests: XCTestCase {
             #"Dog(id: "pochi", name: "ポチ", nickname: nil, age: 3, homepage: https://www.google.com/)"#
 
         let expectDebugString =
-            #"Dog(id: DogId(rawValue: "pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(https://www.google.com/))"#
+            #"Dog(id: DogId(rawValue: "pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(URL("https://www.google.com/")))"#
 
         //
         // Struct
@@ -114,7 +114,7 @@ class DebugTests: XCTestCase {
                              name: Optional("ポチ"),
                              nickname: nil,
                              age: 3,
-                             homepage: Optional(https://www.google.com/)
+                             homepage: Optional(URL("https://www.google.com/"))
                          )
                          """ + "\n")
 
@@ -150,14 +150,14 @@ class DebugTests: XCTestCase {
                                  name: Optional("ポチ"),
                                  nickname: nil,
                                  age: 3,
-                                 homepage: Optional(https://www.google.com/)
+                                 homepage: Optional(URL("https://www.google.com/"))
                              ),
                              Dog(
                                  id: DogId(rawValue: "pochi"),
                                  name: Optional("ポチ"),
                                  nickname: nil,
                                  age: 3,
-                                 homepage: Optional(https://www.google.com/)
+                                 homepage: Optional(URL("https://www.google.com/"))
                              )
                          ]
                          """ + "\n")
@@ -199,15 +199,16 @@ class DebugTests: XCTestCase {
                                  name: Optional("ポチ"),
                                  nickname: nil,
                                  age: 3,
-                                 homepage: Optional(https://www.google.com/)
+                                 homepage: Optional(URL("https://www.google.com/"))
                              ),
                              "dog-2": Dog(
                                  id: DogId(rawValue: "pochi"),
                                  name: Optional("ポチ"),
                                  nickname: nil,
                                  age: 3,
-                                 homepage: Optional(https://www.google.com/)
+                                 homepage: Optional(URL("https://www.google.com/"))
                              )
+
                          ]
                          """ + "\n")
     }

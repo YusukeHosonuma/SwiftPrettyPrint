@@ -16,17 +16,21 @@ struct Pretty {
             string(target, debug: debug)
         }
 
-        func _value(_ target: Any) -> String {
-            handleError { try valueString(target, debug: debug) }
-        }
-
         let mirror = Mirror(reflecting: target)
         let typeName = String(describing: mirror.subjectType)
 
         if let displayStyle = mirror.displayStyle {
             switch displayStyle {
             case .optional:
-                return _value(target)
+                if let value = mirror.children.first?.value {
+                    if debug {
+                        return "Optional(" + _string(value) + ")"
+                    } else {
+                        return _string(value)
+                    }
+                } else {
+                    return "nil"
+                }
 
             case .collection:
                 let elements = mirror.children.map { _string($0.value) }
@@ -35,7 +39,7 @@ struct Pretty {
             case .dictionary:
                 return handleError {
                     let keysAndValues: [(String, String)] = try extractKeyValues(from: target).map { key, value in
-                        (_value(key), _string(value))
+                        (_string(key), _string(value))
                     }
                     return formatter.dictionaryString(keysAndValues: keysAndValues)
                 }
@@ -74,23 +78,14 @@ struct Pretty {
             }
         }
 
-        // Swift.URL
-        if let url = target as? URL {
-            if debug {
-                return #"URL("\#(url.absoluteString)")"#
-            } else {
-                return url.absoluteString
-            }
-        }
-
-        // Empty
-        if mirror.children.count == 0 {
-            return _value(target)
+        // Premitive
+        if let value = asPremitiveString(target, debug: debug) {
+            return value
         }
 
         // ValueObject
-        if !debug, mirror.children.count == 1, let value = mirror.children.first?.value {
-            return _value(value)
+        if let value = asValueString(target, debug: debug) {
+            return value
         }
 
         // Object
@@ -98,41 +93,6 @@ struct Pretty {
             ($0.label ?? "-", _string($0.value))
         }
         return formatter.objectString(typeName: typeName, fields: fields)
-    }
-
-    func valueString<T>(_ target: T, debug: Bool) throws -> String {
-        let mirror = Mirror(reflecting: target)
-
-        // Note: this function currently supports Optional type that includes a child.
-        guard mirror.children.count <= 1 else {
-            throw PrettyError.unknownError(target: target)
-        }
-
-        switch target {
-        case let value as CustomDebugStringConvertible where debug:
-            return value.debugDescription
-
-        case let value as CustomStringConvertible:
-            if let string = value as? String {
-                return "\"\(string)\""
-            } else {
-                return value.description
-            }
-
-        case let value as T?:
-            if let value = value {
-                if let string = value as? String {
-                    return "\"\(string)\""
-                } else {
-                    return "\(value)"
-                }
-            } else {
-                return "nil"
-            }
-
-        default:
-            throw PrettyError.notSupported(target: target)
-        }
     }
 
     func extractKeyValues(from dictionary: Any) throws -> [(Any, Any)] {
@@ -156,6 +116,43 @@ struct Pretty {
             }
 
             return (key, value)
+        }
+    }
+
+    private func asValueString<T>(_ target: T, debug: Bool) -> String? {
+        // Note:
+        // The conditions for being a `ValueObject`:
+        // - has only one field
+        // - that field is `Premitive`
+
+        let mirror = Mirror(reflecting: target)
+
+        guard !debug, mirror.children.count == 1 else { return nil }
+
+        return mirror.children.first.flatMap { asPremitiveString($0.value, debug: debug) }
+    }
+
+    private func asPremitiveString<T>(_ target: T, debug: Bool) -> String? {
+        switch target {
+        case let value as String:
+            return #""\#(value)""#
+
+        case let value as Int:
+            return "\(value)"
+
+        case let value as Bool:
+            return "\(value)"
+
+        case let url as URL:
+            if debug {
+                return #"URL("\#(url.absoluteString)")"#
+            } else {
+                return url.absoluteString
+            }
+
+        default:
+            // TODO: support other premitive type that not has child
+            return nil
         }
     }
 
