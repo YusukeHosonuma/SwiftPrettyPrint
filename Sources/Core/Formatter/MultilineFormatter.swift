@@ -78,7 +78,7 @@ class MultilineFormatter: PrettyFormatter {
             return "\(typeName)(" + "\(field.0): \(field.1)" + ")"
         } else {
             let body = fields
-                .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
+                .map { label, value in "\(label): \(value)" }
                 .joined(separator: ",\n")
                 .indent(size: indentSize)
 

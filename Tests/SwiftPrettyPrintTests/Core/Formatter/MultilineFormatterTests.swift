@@ -176,9 +176,9 @@ class MultilineFormatterTests: XCTestCase {
         Dog(
           name: "pochi",
           owner: Owner(
-                   name: "Nanachi",
-                   age: 4
-                 )
+            name: "Nanachi",
+            age: 4
+          )
         )
         """
 
@@ -201,9 +201,9 @@ class MultilineFormatterTests: XCTestCase {
         Dog(
             name: "pochi",
             owner: Owner(
-                       name: "Nanachi",
-                       age: 4
-                   )
+                name: "Nanachi",
+                age: 4
+            )
         )
         """
 
