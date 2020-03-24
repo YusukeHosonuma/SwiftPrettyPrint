@@ -137,18 +137,6 @@ struct Pretty {
         case let value as String:
             return #""\#(value)""#
 
-        case let value as Int:
-            return "\(value)"
-
-        case let value as Float:
-            return "\(value)"
-
-        case let value as Double:
-            return "\(value)"
-
-        case let value as Bool:
-            return "\(value)"
-
         case let url as URL:
             if debug {
                 return #"URL("\#(url.absoluteString)")"#
@@ -156,9 +144,37 @@ struct Pretty {
                 return url.absoluteString
             }
 
+        case let date as Date:
+            if debug {
+                return #"Date("\#(date)")"#
+            } else {
+                return "\(date)"
+            }
+
         default:
-            // TODO: support other premitive type that not has child
-            return nil
+            if debug {
+                switch target {
+                case let value as CustomDebugStringConvertible:
+                    return value.debugDescription
+
+                case let value as CustomStringConvertible:
+                    return value.description
+
+                default:
+                    return nil
+                }
+            } else {
+                switch target {
+                case let value as CustomStringConvertible:
+                    return value.description
+
+                case let value as CustomDebugStringConvertible:
+                    return value.debugDescription
+
+                default:
+                    return nil
+                }
+            }
         }
     }
 

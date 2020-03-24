@@ -19,50 +19,76 @@ class PrettyTests: XCTestCase {
     override func tearDown() {}
 
     ///
-    /// Basic type
+    /// Basic type that support explicitly
     ///
-    func testString_BasicType() {
+    func testBasicType_supportExplicitly() {
         
         // String
         assert(to: pretty.string) {
             args(("Hello", false), expect: #""Hello""#)
-            args(("Hello", true),  expect: #""Hello""#)
+            args(("Hello", true),  expect: #""Hello""#) // not display type because obvious
         }
 
+        // URL
+        let url = URL(string: "https://www.google.com/")!
+        assert(to: pretty.string) {
+            args((url, false), expect: #"https://www.google.com/"#)
+            args((url, true),  expect: #"URL("https://www.google.com/")"#)
+        }
+        
+        // Date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.locale = Locale(identifier: "ja_JP")
+        let date = formatter.date(from: "2020-03-24 20:43")!
+        
+        assert(to: pretty.string) {
+            args((date, false), expect: #"2020-03-24 11:43:00 +0000"#)
+            args((date, true),  expect: #"Date("2020-03-24 11:43:00 +0000")"#)
+        }
+    }
+    
+    ///
+    /// Basic type that support not explicitly
+    ///
+    func testBasicType_supportNotExplicitly() {
+        
         // Int
         assert(to: pretty.string) {
             args((42, false), expect: "42")
-            args((42, true),  expect: "42")
+            args((42, true),  expect: "42") // not display type because obvious
         }
 
         // Float
         assert(to: pretty.string) {
             args((10.4 as Float, false), expect: "10.4")
-            args((10.4 as Float, true),  expect: "10.4")
+            args((10.4 as Float, true),  expect: "10.4") // not display type because obvious
         }
 
         // Double
         assert(to: pretty.string) {
             args((10.4 as Double, false), expect: "10.4")
-            args((10.4 as Double, true),  expect: "10.4")
+            args((10.4 as Double, true),  expect: "10.4") // not display type because obvious
         }
         
-        // Optional
+        // Bool
         assert(to: pretty.string) {
-            // .some
-            args(("Hello" as String?, false), expect: #""Hello""#)
-            args(("Hello" as String?, true),  expect: #"Optional("Hello")"#)
-            
-            // .none
-            args((nil as String?, false), expect: "nil")
-            args((nil as String?, true),  expect: "nil")
+            args((true,  false), expect: "true")
+            args((true,  true),  expect: "true") // not display type because obvious
+            args((false, false), expect: "false")
+            args((false, true),  expect: "false") // not display type because obvious
+        }
+
+        // Range
+        assert(to: pretty.string) {
+            args((1..<10, false), expect: "1..<10")
+            args((1..<10, true),  expect: "Range(1..<10)")
         }
         
-        // URL
-        let url = URL(string: "https://www.google.com/")!
+        // ClosedRange
         assert(to: pretty.string) {
-            args((url, false), expect: "https://www.google.com/")
-            args((url, true),  expect: #"URL("https://www.google.com/")"#)
+            args((1...10, false), expect: "1...10")
+            args((1...10, true),  expect: "ClosedRange(1...10)")
         }
     }
     
@@ -151,6 +177,20 @@ class PrettyTests: XCTestCase {
         }
     }
 
+    func testString_Optional() {
+        
+        // Optional
+        assert(to: pretty.string) {
+            // .some
+            args(("Hello" as String?, false), expect: #""Hello""#)
+            args(("Hello" as String?, true),  expect: #"Optional("Hello")"#)
+            
+            // .none
+            args((nil as String?, false), expect: "nil")
+            args((nil as String?, true),  expect: "nil")
+        }
+    }
+    
     ///
     /// Class
     ///
