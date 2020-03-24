@@ -35,6 +35,18 @@ class PrettyTests: XCTestCase {
             args((42, true),  expect: "42")
         }
 
+        // Float
+        assert(to: pretty.string) {
+            args((10.4 as Float, false), expect: "10.4")
+            args((10.4 as Float, true),  expect: "10.4")
+        }
+
+        // Double
+        assert(to: pretty.string) {
+            args((10.4 as Double, false), expect: "10.4")
+            args((10.4 as Double, true),  expect: "10.4")
+        }
+        
         // Optional
         assert(to: pretty.string) {
             // .some
@@ -53,7 +65,59 @@ class PrettyTests: XCTestCase {
             args((url, true),  expect: #"URL("https://www.google.com/")"#)
         }
     }
-
+    
+    /// ValueObject
+    func testString_ValueObject() {
+        
+        // value-object
+        struct A {
+            let string: String
+        }
+        
+        // not value-object (has two fields)
+        struct B {
+            let a: A
+            let string: String
+        }
+        
+        // not value-object (`B` is not value-object)
+        struct C {
+            let b: B
+        }
+        
+        // not value-object (`B` is not value-object)
+        struct D {
+            let c: C
+        }
+        
+        do {
+            let a = A(string: "a")
+            let b = B(a: a, string: "b")
+            let c = C(b: b)
+            let d = D(c: c)
+            
+            assert(to: pretty.string) {
+                args((a, false), expect: #""a""#)
+                args((a, true),  expect: #"A(string: "a")"#)
+            }
+            
+            assert(to: pretty.string) {
+                args((b, false), expect: #"B(a: "a", string: "b")"#)
+                args((b, true),  expect: #"B(a: A(string: "a"), string: "b")"#)
+            }
+            
+            assert(to: pretty.string) {
+                args((c, false), expect: #"C(b: B(a: "a", string: "b"))"#)
+                args((c, true),  expect: #"C(b: B(a: A(string: "a"), string: "b"))"#)
+            }
+            
+            assert(to: pretty.string) {
+                args((d, false), expect: #"D(c: C(b: B(a: "a", string: "b")))"#)
+                args((d, true),  expect: #"D(c: C(b: B(a: A(string: "a"), string: "b")))"#)
+            }
+        }
+    }
+    
     ///
     /// Struct
     ///

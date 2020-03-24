@@ -39,7 +39,6 @@
 		OBJ_131 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* Assertions.swift */; };
 		OBJ_132 /* DebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* DebugTests.swift */; };
 		OBJ_133 /* OptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* OptionTests.swift */; };
-		OBJ_134 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* XCTestManifests.swift */; };
 		OBJ_136 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Curry::Curry::Product" /* Curry.framework */; };
 		OBJ_137 /* SwiftParamTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftParamTest::SwiftParamTest::Product" /* SwiftParamTest.framework */; };
 		OBJ_138 /* SwiftPrettyPrint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPrettyPrint::SwiftPrettyPrint::Product" /* SwiftPrettyPrint.framework */; };
@@ -54,6 +53,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E538BC7B2428AE18003F8629 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftPrettyPrint::SwiftPrettyPrintTests";
+			remoteInfo = SwiftPrettyPrintTests;
+		};
 		E5A1BA6F24230BFC00127402 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -97,7 +103,6 @@
 		OBJ_33 /* Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
 		OBJ_35 /* DebugTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTests.swift; sourceTree = "<group>"; };
 		OBJ_36 /* OptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTests.swift; sourceTree = "<group>"; };
-		OBJ_37 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_40 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/hosonumayuusuke/go/src/github.com/YusukeHosonuma/SwiftPrettyPrint/.build/checkouts/Curry/Package.swift; sourceTree = "<group>"; };
 		OBJ_41 /* Curry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
 		OBJ_43 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/hosonumayuusuke/go/src/github.com/YusukeHosonuma/SwiftPrettyPrint/.build/checkouts/SwiftParamTest/Package.swift; sourceTree = "<group>"; };
@@ -190,7 +195,6 @@
 				OBJ_30 /* Extension */,
 				OBJ_32 /* Helper */,
 				OBJ_34 /* Public */,
-				OBJ_37 /* XCTestManifests.swift */,
 			);
 			name = SwiftPrettyPrintTests;
 			path = Tests/SwiftPrettyPrintTests;
@@ -291,7 +295,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -311,7 +315,6 @@
 				OBJ_63 /* Brewfile */,
 				OBJ_64 /* version.txt */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -473,7 +476,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_49 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -511,7 +514,6 @@
 				OBJ_131 /* Assertions.swift in Sources */,
 				OBJ_132 /* DebugTests.swift in Sources */,
 				OBJ_133 /* OptionTests.swift in Sources */,
-				OBJ_134 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,7 +575,7 @@
 		OBJ_120 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPrettyPrint::SwiftPrettyPrintTests" /* SwiftPrettyPrintTests */;
-			targetProxy = "SwiftPrettyPrint::SwiftPrettyPrintTests" /* SwiftPrettyPrintTests */;
+			targetProxy = E538BC7B2428AE18003F8629 /* PBXContainerItemProxy */;
 		};
 		OBJ_139 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
