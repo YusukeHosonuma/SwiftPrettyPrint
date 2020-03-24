@@ -22,6 +22,7 @@ class DebugTests: XCTestCase {
             let double: Double
             let bool: Bool
             let url: URL
+            let date: Date
             
             init(
                 string: String,
@@ -29,7 +30,8 @@ class DebugTests: XCTestCase {
                 float: Float,
                 double: Double,
                 bool: Bool,
-                url: URL
+                url: URL,
+                date: Date
             ) {
                 self.string = string
                 self.int = int
@@ -37,6 +39,7 @@ class DebugTests: XCTestCase {
                 self.double = double
                 self.bool = bool
                 self.url = url
+                self.date = date
             }
         }
         
@@ -90,6 +93,10 @@ class DebugTests: XCTestCase {
             return s
         }
 
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.locale = Locale(identifier: "ja_JP")
+        
         let target =
         Struct(
             optional: "string",
@@ -106,16 +113,17 @@ class DebugTests: XCTestCase {
                 float: 1.0,
                 double: 2.0,
                 bool: true,
-                url: URL(string: "https://github.com/YusukeHosonuma/SwiftPrettyPrint")!
+                url: URL(string: "https://github.com/YusukeHosonuma/SwiftPrettyPrint")!,
+                date: formatter.date(from: "2020-03-24 20:43")!
             ),
             valueObject: ValueObject(id: 1)
         )
         
         assertEqualLines(_print(target),
-                         #"[DEBUG] Struct(optional: "string", array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enumOne: .one, enumTwo: .two(1), enumThree: .three(string: "string"), set: [1, 2, nil], klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: https://github.com/YusukeHosonuma/SwiftPrettyPrint), valueObject: 1)"# + "\n")
+                         #"[DEBUG] Struct(optional: "string", array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enumOne: .one, enumTwo: .two(1), enumThree: .three(string: "string"), set: [1, 2, nil], klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: https://github.com/YusukeHosonuma/SwiftPrettyPrint, date: 2020-03-24 11:43:00 +0000), valueObject: 1)"# + "\n")
 
         assertEqualLines(_debugPrint(target),
-                         #"[DEBUG] Struct(optional: Optional("string"), array: [Optional(1), Optional(2), nil], dictionary: ["one": Optional(1), "two": Optional(2)], tuple: (1, string: "string"), enumOne: Enum.one, enumTwo: Enum.two(1), enumThree: Enum.three(string: "string"), set: Set([Optional(1), Optional(2), nil]), klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")), valueObject: ValueObject(id: 1))"# + "\n")
+                         #"[DEBUG] Struct(optional: Optional("string"), array: [Optional(1), Optional(2), nil], dictionary: ["one": Optional(1), "two": Optional(2)], tuple: (1, string: "string"), enumOne: Enum.one, enumTwo: Enum.two(1), enumThree: Enum.three(string: "string"), set: Set([Optional(1), Optional(2), nil]), klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint"), date: Date("2020-03-24 11:43:00 +0000")), valueObject: ValueObject(id: 1))"# + "\n")
 
         assertEqualLines(_prettyPrint(target),
         """
@@ -151,7 +159,8 @@ class DebugTests: XCTestCase {
                 float: 1.0,
                 double: 2.0,
                 bool: true,
-                url: https://github.com/YusukeHosonuma/SwiftPrettyPrint
+                url: https://github.com/YusukeHosonuma/SwiftPrettyPrint,
+                date: 2020-03-24 11:43:00 +0000
             ),
             valueObject: 1
         )
@@ -191,7 +200,8 @@ class DebugTests: XCTestCase {
                 float: 1.0,
                 double: 2.0,
                 bool: true,
-                url: URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")
+                url: URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint"),
+                date: Date("2020-03-24 11:43:00 +0000")
             ),
             valueObject: ValueObject(id: 1)
         )
