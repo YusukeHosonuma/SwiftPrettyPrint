@@ -15,7 +15,7 @@ class OptionTests: XCTestCase {
     override func tearDown() {}
 
     func testExample() {
-        let option = Debug.Option(prefix: "<DEBUG>", indent: 2)
+        let option = Debug.Option(prefix: "<DEBUG>", indentSize: 2)
         
         func _print(label: String? = nil, _ target: Any) -> String {
             var s = ""

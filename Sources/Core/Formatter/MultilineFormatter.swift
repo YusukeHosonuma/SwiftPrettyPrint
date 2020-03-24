@@ -6,44 +6,50 @@
 //
 
 class MultilineFormatter: PrettyFormatter {
-    private let option: Debug.Option
+    private let indentSize: Int
 
-    init(option: Debug.Option) {
-        self.option = option
+    init(indentSize: Int) {
+        self.indentSize = indentSize
     }
 
     func collectionString(elements: [String]) -> String {
-        """
+        let contents = elements.joined(separator: ",\n")
+
+        return """
         [
-        \(elements.joined(separator: ",\n").indent(size: option.indent))
+        \(contents.indent(size: indentSize))
         ]
         """
     }
 
     func dictionaryString(keysAndValues: [(String, String)]) -> String {
-        let contents = keysAndValues.map { key, value in
-            "\(key): \(value.indentTail(size: "\(key): ".count))"
-        }.sorted().joined(separator: ",\n")
+        let lines = keysAndValues.map { key, value in
+            "\(key): \(value)"
+        }.sorted()
+
+        let contents = lines.joined(separator: ",\n")
 
         return """
         [
-        \(contents.indent(size: option.indent))
+        \(contents.indent(size: indentSize))
         ]
         """
     }
 
     func tupleString(elements: [(String?, String)]) -> String {
-        let labelValuePairs: [String] = elements.map { label, value in
+        let lines: [String] = elements.map { label, value in
             if let label = label {
-                return label + ": " + value.indentTail(size: "\(label): ".count)
+                return "\(label): \(value)"
             } else {
                 return value
             }
         }
 
+        let contents = lines.joined(separator: ",\n")
+
         return """
         (
-        \(labelValuePairs.joined(separator: ",\n").indent(size: option.indent))
+        \(contents.indent(size: indentSize))
         )
         """
     }
@@ -74,7 +80,7 @@ class MultilineFormatter: PrettyFormatter {
             let body = fields
                 .map { label, value in "\(label): \(value.indentTail(size: "\(label): ".count))" }
                 .joined(separator: ",\n")
-                .indent(size: option.indent)
+                .indent(size: indentSize)
 
             return """
             \(typeName)(

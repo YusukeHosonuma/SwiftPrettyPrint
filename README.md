@@ -147,7 +147,7 @@ You can specify indent size in pretty-print as like following:
 
 ```swift
 // Global option
-Debug.sharedOption = Debug.Option(prefix: nil, indent: 4)
+Debug.sharedOption = Debug.Option(prefix: nil, indentSize: 4)
 
 // Use `sharedOption`
 Debug.prettyPrint(["Hello", "World"])
@@ -158,7 +158,7 @@ Debug.prettyPrint(["Hello", "World"])
 // ]
 
 // Use option that is passed by argument
-Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indent: 2))
+Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indentSize: 2))
 // =>
 // [
 //   "Hello",
@@ -171,7 +171,7 @@ Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indent: 
 You can specify global prefix and label (e.g. variable name) as like following:
 
 ```swift
-Debug.sharedOption = Debug.Option(prefix: "🍎", indent: 4)
+Debug.sharedOption = Debug.Option(prefix: "🍎", indentSize: 4)
 
 let array = ["Hello", "World"]
 
