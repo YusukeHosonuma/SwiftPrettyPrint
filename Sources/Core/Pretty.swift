@@ -9,7 +9,8 @@
 import Foundation
 
 struct Pretty {
-    let formatter: PrettyFormatter
+    var formatter: PrettyFormatter
+    var timeZone: TimeZone = .current
 
     func string<T: Any>(_ target: T, debug: Bool) -> String {
         func _string(_ target: Any) -> String {
@@ -146,9 +147,15 @@ struct Pretty {
 
         case let date as Date:
             if debug {
-                return #"Date("\#(date)")"#
+                let f = DateFormatter()
+                f.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
+                f.timeZone = timeZone
+                return #"Date("\#(f.string(from: date))")"#
             } else {
-                return "\(date)"
+                let f = DateFormatter()
+                f.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                f.timeZone = timeZone
+                return f.string(from: date)
             }
 
         default:

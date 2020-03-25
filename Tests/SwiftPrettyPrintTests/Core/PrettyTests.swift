@@ -32,19 +32,23 @@ class PrettyTests: XCTestCase {
         // URL
         let url = URL(string: "https://www.google.com/")!
         assert(to: pretty.string) {
-            args((url, false), expect: #"https://www.google.com/"#)
+            args((url, false), expect: "https://www.google.com/")
             args((url, true),  expect: #"URL("https://www.google.com/")"#)
         }
         
         // Date
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        formatter.locale = Locale(identifier: "ja_JP")
-        let date = formatter.date(from: "2020-03-24 20:43")!
-        
-        assert(to: pretty.string) {
-            args((date, false), expect: #"2020-03-24 11:43:00 +0000"#)
-            args((date, true),  expect: #"Date("2020-03-24 11:43:00 +0000")"#)
+        do {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
+            let date = formatter.date(from: "2020-03-24 10:00:00 +0900")!
+
+            let pretty = Pretty(formatter: SinglelineFormatter(),
+                                timeZone: TimeZone(identifier: "Asia/Tokyo")!)
+
+            assert(to: pretty.string) {
+                args((date, false), expect: "2020-03-24 10:00:00")
+                args((date, true),  expect: #"Date("2020-03-24 10:00:00 +09:00")"#)
+            }
         }
     }
     
