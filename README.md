@@ -17,93 +17,141 @@ Pretty print that is **Human-readable output** than `print()` and `debugPrint()`
 
 `print` and `debugPrint` is implemented by standard library of Swift.
 But both function is not readable output string to console sometime.
-This is especially when using struct as ValueObject.
 
-For example:
+For example, if you have the following types and value:
 
 ```swift
-struct Dog {
-    var id: DogId
-    var price: Price
-    var name: String?
+enum Enum {
+    case foo(Int)
 }
 
-struct DogId {
-    var rawValue: String
+struct ID {
+    let id: Int
 }
 
-struct Price {
-    var rawValue: Double
+struct Struct {
+    var array: [Int?]
+    var dictionary: [String: Int]
+    var tuple: (Int, string: String)
+    var `enum`: Enum
+    var id: ID
 }
 
-let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
-
-print(dog)
-// => Dog(id: SwiftPrettyPrint.DogId(rawValue: "pochi"), price: SwiftPrettyPrint.Price(rawValue: 10.0), name: Optional("ポチ"))
-
-debugPrint(dog)
-// => SwiftPrettyPrint.Dog(id: SwiftPrettyPrint.DogId(rawValue: "pochi"), price: SwiftPrettyPrint.Price(rawValue: 10.0), name: Optional("ポチ"))
+let value = Struct(array: [1, 2, nil],
+                   dictionary: ["one": 1, "two": 2],
+                   tuple: (1, string: "string"),
+                   enum: .foo(42),
+                   id: ID(id: 7))
 ```
 
-This output is enough information for debug,
-but not human-readable for when forcusing on the values.
+### Use Standard library of Swift
+
+If you use the standard library, you get the following results.
+
+```swift
+print(value)
+// Struct(array: [Optional(1), Optional(2), nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: SwiftPrettyPrintExample.Enum.foo(42), id: SwiftPrettyPrintExample.ID(id: 7))
+
+debugPrint(value)
+// SwiftPrettyPrintExample.Struct(array: [Optional(1), Optional(2), nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: SwiftPrettyPrintExample.Enum.foo(42), id: SwiftPrettyPrintExample.ID(id: 7))
+
+dump(value)
+// ▿ SwiftPrettyPrintExample.Struct
+//   ▿ array: 3 elements
+//     ▿ Optional(1)
+//       - some: 1
+//     ▿ Optional(2)
+//       - some: 2
+//     - nil
+//   ▿ dictionary: 2 key/value pairs
+//     ▿ (2 elements)
+//       - key: "one"
+//       - value: 1
+//     ▿ (2 elements)
+//       - key: "two"
+//       - value: 2
+//   ▿ tuple: (2 elements)
+//     - .0: 1
+//     - string: "string"
+//   ▿ enum: SwiftPrettyPrintExample.Enum.foo
+//     - foo: 42
+//   ▿ id: SwiftPrettyPrintExample.ID
+//     - id: 7
+```
+
+This output is enough information for debug, but **not human-readable**.
+
+### Use SwiftPrettyPrint
 
 With SwiftPrittyPrint it looks like this:
 
 ```swift
-Debug.print(dog)
-// => Dog(id: "pochi", price: 10.0, name: "ポチ")
+Debug.print(value)
+// Struct(array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: .foo(42), id: 7)
 
-Debug.debugPrint(dog)
-// => Dog(id: DogId(rawValue: "pochi"), price: Price(10.0), name: Optional("ポチ"))
+Debug.debugPrint(value)
+// Struct(array: [Optional(1), Optional(2), nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: Enum.foo(42), id: ID(id: 7))
+
+Debug.prettyPrint(value)
+// Struct(
+//     array: [
+//         1,
+//         2,
+//         nil
+//     ],
+//     dictionary: [
+//         "one": 1,
+//         "two": 2
+//     ],
+//     tuple: (
+//         1,
+//         string: "string"
+//     ),
+//     enum: .foo(42),
+//     id: 7
+// )
+
+Debug.debugPrettyPrint(value)
+// Struct(
+//     array: [
+//         Optional(1),
+//         Optional(2),
+//         nil
+//     ],
+//     dictionary: [
+//         "one": 1,
+//         "two": 2
+//     ],
+//     tuple: (
+//         1,
+//         string: "string"
+//     ),
+//     enum: Enum.foo(42),
+//     id: ID(id: 7)
+// )
 ```
 
-## Installation
-
-### CocoaPods (Recommended)
-
-```ruby
-pod "SwiftPrettyPrint", :configuration => "Debug" # enabled on `Debug` build only
-```
-
-Example app is in [Example](./Example).
-
-### Carthage
+Of cource, it can also be used with **LLDB**.
 
 ```text
-github "YusukeHosonuma/SwiftPrettyPrint"
-```
-
-### Swift Package Manager
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", from: "0.0.3"),
-]
-```
-
-or add from Xcode 10+.
-
-## Recommend Settings 📝
-
-If you don't want to write import statement, I recommended to create `Debug.swift` in each targets.
-
-```swift
-// Note:
-// Enabled on `debug` configuration only.
-// Therefore compile error in `release` build when remaining `Debug` in sources.
-
-#if canImport(SwiftPrettyPrint)
-    import SwiftPrettyPrint
-    typealias Debug = SwiftPrettyPrint.Debug
-#endif
-```
-
-This can be not need to `import` as follows:
-
-```swift
-let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
-Debug.print(dog)
+(lldb) e Debug.prettyPrint(value)
+Struct(
+    array: [
+        1,
+        2,
+        nil
+    ],
+    dictionary: [
+        "one": 1,
+        "two": 2
+    ],
+    tuple: (
+        1,
+        string: "string"
+    ),
+    enum: .foo(42),
+    id: 7
+)
 ```
 
 ## Operator-based API
@@ -189,6 +237,55 @@ Debug.prettyPrint(label: "array", array)
 Debug.p("array") >>> array
 // => 🍎array: ["Hello", "World"]
 ```
+
+## Installation
+
+### CocoaPods (Recommended)
+
+```ruby
+pod "SwiftPrettyPrint", :configuration => "Debug" # enabled on `Debug` build only
+```
+
+Example app is in [Example](./Example).
+
+### Carthage
+
+```text
+github "YusukeHosonuma/SwiftPrettyPrint"
+```
+
+### Swift Package Manager
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", from: "0.0.3"),
+]
+```
+
+or add from Xcode 10+.
+
+## Recommend Settings 📝
+
+You don't want to write an `import` statement when debagging.
+
+We recommend to create `Debug.swift` and write as following:
+
+```swift
+#if canImport(SwiftPrettyPrint)
+    import SwiftPrettyPrint
+    typealias Debug = SwiftPrettyPrint.Debug // You can use short alias such as `D` too.
+#endif
+```
+
+or
+
+```swift
+#if canImport(SwiftPrettyPrint)
+    @_exported import SwiftPrettyPrint // Note: `@_exported` is not official
+#endif
+```
+
+This can be not need to write `import` in each sources.
 
 ## Xcode Code Snippets
 
