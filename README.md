@@ -89,7 +89,7 @@ With SwiftPrittyPrint it looks like this:
 Debug.print(value)
 // Struct(array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: .foo(42), id: 7)
 
-Debug.debugPrint(value)
+Debug.printDebug(value)
 // Struct(array: [Optional(1), Optional(2), nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: Enum.foo(42), id: ID(id: 7))
 
 Debug.prettyPrint(value)
@@ -111,7 +111,7 @@ Debug.prettyPrint(value)
 //     id: 7
 // )
 
-Debug.debugPrettyPrint(value)
+Debug.prettyPrintDebug(value)
 // Struct(
 //     array: [
 //         Optional(1),
@@ -161,16 +161,16 @@ You can use operator based alias API that like Ruby.
 This is no need to enclose in parenthese that convenient to long expression.
 
 ```swift
-Debug.p >>> 42
+p >>> 42
 // => 42
 
-Debug.p >>> 42 + 1 // It can also be applied to expression
+p >>> 42 + 1 // It can also be applied to expression
 // => 43
 
-Debug.p >>> String(string.reversed()).hasSuffix("eH")
+p >>> String(string.reversed()).hasSuffix("eH")
 // => true
 
-Debug.pp >>> ["Hello", "World"]
+pp >>> ["Hello", "World"]
 // =>
 // [
 //     "Hello",
@@ -178,12 +178,12 @@ Debug.pp >>> ["Hello", "World"]
 // ]
 ```
 
-| Operator syntax    | Equatable to                 |
-|--------------------|------------------------------|
-| `Debug.p >>> 42`   | `Debug.print(42)`            |
-| `Debug.pp >>> 42`  | `Debug.prettyPrint(42)`      |
-| `Debug.pd >>> 42`  | `Debug.debugPrint(42)`       |
-| `Debug.ppd >>> 42` | `Debug.debugPrettyPrint(42)` |
+| Operator syntax | Equatable to                 |
+|-----------------|------------------------------|
+| `p >>> 42`      | `Debug.print(42)`            |
+| `pp >>> 42`     | `Debug.prettyPrint(42)`      |
+| `pd >>> 42`     | `Debug.printDebug(42)`       |
+| `ppd >>> 42`    | `Debug.prettyPrintDebug(42)` |
 
 ## Format options
 
@@ -219,23 +219,23 @@ Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indentSi
 You can specify global prefix and label (e.g. variable name) as like following:
 
 ```swift
-Debug.sharedOption = Debug.Option(prefix: "🍎", indentSize: 4)
+Debug.sharedOption = Debug.Option(prefix: "[DEBUG]", indentSize: 4)
 
 let array = ["Hello", "World"]
 
 Debug.print(label: "array", array)
-// => 🍎array: ["Hello", "World"]
+// => [DEBUG] array: ["Hello", "World"]
 
 Debug.prettyPrint(label: "array", array)
 // =>
-// 🍎array:
+// [DEBUG] array:
 // [
 //     "Hello",
 //     "World"
 // ]
 
 Debug.p("array") >>> array
-// => 🍎array: ["Hello", "World"]
+// => [DEBUG] array: ["Hello", "World"]
 ```
 
 ## Installation
