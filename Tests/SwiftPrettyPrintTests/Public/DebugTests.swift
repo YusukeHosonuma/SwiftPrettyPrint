@@ -13,7 +13,6 @@ class DebugTests: XCTestCase {
     let helper = DebugHelper(option: Debug.Option(prefix: "[DEBUG]", indentSize: 4))
 
     override func setUp() {}
-
     override func tearDown() {}
 
     func testExample() {
@@ -66,7 +65,6 @@ class DebugTests: XCTestCase {
             var klass: Class
             var valueObject: ValueObject
         }
-
         
         let target =
         Struct(
