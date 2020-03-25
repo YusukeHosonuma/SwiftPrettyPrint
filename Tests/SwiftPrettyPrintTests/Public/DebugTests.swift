@@ -72,9 +72,9 @@ class DebugTests: XCTestCase {
             return s
         }
         
-        func _debugPrint(label: String? = nil, _ target: Any) -> String {
+        func _printDebug(label: String? = nil, _ target: Any) -> String {
             var s = ""
-            Debug.debugPrint(label: label, target, option: option, to: &s)
+            Debug.printDebug(label: label, target, option: option, to: &s)
             return s
         }
         
@@ -84,9 +84,9 @@ class DebugTests: XCTestCase {
             return s
         }
         
-        func _debugPrettyPrint(label: String? = nil, _ target: Any) -> String {
+        func _prettyPrintDebug(label: String? = nil, _ target: Any) -> String {
             var s = ""
-            Debug.debugPrettyPrint(label: label, target, option: option, to: &s)
+            Debug.prettyPrintDebug(label: label, target, option: option, to: &s)
             return s
         }
         
@@ -114,7 +114,7 @@ class DebugTests: XCTestCase {
         assertEqualLines(_print(target),
                          #"[DEBUG] Struct(optional: "string", array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enumOne: .one, enumTwo: .two(1), enumThree: .three(string: "string"), set: [1, 2, nil], klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: https://github.com/YusukeHosonuma/SwiftPrettyPrint), valueObject: 1)"# + "\n")
 
-        assertEqualLines(_debugPrint(target),
+        assertEqualLines(_printDebug(target),
                          #"[DEBUG] Struct(optional: Optional("string"), array: [Optional(1), Optional(2), nil], dictionary: ["one": Optional(1), "two": Optional(2)], tuple: (1, string: "string"), enumOne: Enum.one, enumTwo: Enum.two(1), enumThree: Enum.three(string: "string"), set: Set([Optional(1), Optional(2), nil]), klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")), valueObject: ValueObject(id: 1))"# + "\n")
 
         assertEqualLines(_prettyPrint(target),
@@ -157,7 +157,7 @@ class DebugTests: XCTestCase {
         )
         """ + "\n")
         
-        assertEqualLines(_debugPrettyPrint(target),
+        assertEqualLines(_prettyPrintDebug(target),
         """
         [DEBUG]
         Struct(
@@ -206,7 +206,7 @@ class DebugTests: XCTestCase {
         XCTAssertEqual(result, #"array: ["Hello", "World"]"# + "\n")
 
         result = ""
-        Debug.debugPrint(label: "array", array, to: &result)
+        Debug.printDebug(label: "array", array, to: &result)
         XCTAssertEqual(result, #"array: ["Hello", "World"]"# + "\n")
 
         result = ""
@@ -220,7 +220,7 @@ class DebugTests: XCTestCase {
             """ + "\n")
 
         result = ""
-        Debug.debugPrettyPrint(label: "array", array, to: &result)
+        Debug.prettyPrintDebug(label: "array", array, to: &result)
         XCTAssertEqual(result, """
             array:
             [
@@ -242,7 +242,7 @@ class DebugTests: XCTestCase {
         XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
 
         result = ""
-        Debug.debugPrint(array, 42, to: &result)
+        Debug.printDebug(array, 42, to: &result)
         XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
 
         result = ""
@@ -256,7 +256,7 @@ class DebugTests: XCTestCase {
             """ + "\n")
 
         result = ""
-        Debug.debugPrettyPrint(array, 42, to: &result)
+        Debug.prettyPrintDebug(array, 42, to: &result)
         XCTAssertEqual(result, """
             [
                 "Hello",
@@ -274,7 +274,7 @@ class DebugTests: XCTestCase {
         XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
 
         result = ""
-        Debug.debugPrint(array, 42, separator: "!!", to: &result)
+        Debug.printDebug(array, 42, separator: "!!", to: &result)
         XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
 
         result = ""
@@ -288,7 +288,7 @@ class DebugTests: XCTestCase {
             """ + "\n")
 
         result = ""
-        Debug.debugPrettyPrint(array, 42, separator: "!!\n", to: &result)
+        Debug.prettyPrintDebug(array, 42, separator: "!!\n", to: &result)
         XCTAssertEqual(result, """
             [
                 "Hello",

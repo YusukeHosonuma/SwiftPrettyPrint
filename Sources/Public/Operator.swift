@@ -65,7 +65,7 @@ public func >>> (_: (String) -> P, target: Any) {
 }
 
 public func >>> (_: (String) -> PD, target: Any) {
-    Debug.debugPrint(target)
+    Debug.printDebug(target)
 }
 
 public func >>> (_: (String) -> PP, target: Any) {
@@ -73,7 +73,7 @@ public func >>> (_: (String) -> PP, target: Any) {
 }
 
 public func >>> (_: (String) -> PPD, target: Any) {
-    Debug.debugPrettyPrint(target)
+    Debug.prettyPrintDebug(target)
 }
 
 // MARK: `Debug.p("xxx") >>>`
@@ -83,7 +83,7 @@ public func >>> (receiver: P, target: Any) {
 }
 
 public func >>> (receiver: PD, target: Any) {
-    Debug.debugPrint(label: receiver.label, target)
+    Debug.printDebug(label: receiver.label, target)
 }
 
 public func >>> (receiver: PP, target: Any) {
@@ -91,5 +91,5 @@ public func >>> (receiver: PP, target: Any) {
 }
 
 public func >>> (receiver: PPD, target: Any) {
-    Debug.debugPrettyPrint(label: receiver.label, target)
+    Debug.prettyPrintDebug(label: receiver.label, target)
 }

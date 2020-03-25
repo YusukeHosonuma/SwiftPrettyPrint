@@ -23,9 +23,9 @@ class OptionTests: XCTestCase {
             return s
         }
         
-        func _debugPrint(label: String? = nil, _ target: Any) -> String {
+        func _printDebug(label: String? = nil, _ target: Any) -> String {
             var s = ""
-            Debug.debugPrint(label: label, target, option: option, to: &s)
+            Debug.printDebug(label: label, target, option: option, to: &s)
             return s
         }
         
@@ -35,9 +35,9 @@ class OptionTests: XCTestCase {
             return s
         }
         
-        func _debugPrettyPrint(label: String? = nil, _ target: Any) -> String {
+        func _prettyPrintDebug(label: String? = nil, _ target: Any) -> String {
             var s = ""
-            Debug.debugPrettyPrint(label: label, target, option: option, to: &s)
+            Debug.prettyPrintDebug(label: label, target, option: option, to: &s)
             return s
         }
 
@@ -48,7 +48,7 @@ class OptionTests: XCTestCase {
                 
         assertEqualLines(_print(array),
                          "<DEBUG> [42, 7]" + "\n")
-        assertEqualLines(_debugPrint(array),
+        assertEqualLines(_printDebug(array),
                          "<DEBUG> [42, 7]" + "\n")
         assertEqualLines(_prettyPrint(array),
                          """
@@ -58,7 +58,7 @@ class OptionTests: XCTestCase {
                            7
                          ]
                          """ + "\n")
-        assertEqualLines(_debugPrettyPrint(array),
+        assertEqualLines(_prettyPrintDebug(array),
                          """
                          <DEBUG>
                          [
@@ -71,7 +71,7 @@ class OptionTests: XCTestCase {
                 
         assertEqualLines(_print(label: "array", array),
                          "<DEBUG> array: [42, 7]" + "\n")
-        assertEqualLines(_debugPrint(label: "array", array),
+        assertEqualLines(_printDebug(label: "array", array),
                          "<DEBUG> array: [42, 7]" + "\n")
         assertEqualLines(_prettyPrint(label: "array", array),
                          """
@@ -81,7 +81,7 @@ class OptionTests: XCTestCase {
                            7
                          ]
                          """ + "\n")
-        assertEqualLines(_debugPrettyPrint(label: "array", array),
+        assertEqualLines(_prettyPrintDebug(label: "array", array),
                          """
                          <DEBUG> array:
                          [
