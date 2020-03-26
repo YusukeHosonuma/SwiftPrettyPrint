@@ -24,16 +24,16 @@ class PrettyTests: XCTestCase {
     func testBasicType_supportExplicitly() {
         
         // String
-        assert(to: pretty.string) {
-            args(("Hello", false), expect: #""Hello""#)
-            args(("Hello", true),  expect: #""Hello""#) // not display type because obvious
+        assert(to: pretty.string, header: ["target", "debug"]) {
+            args("Hello", false, expect: #""Hello""#)
+            args("Hello", true,  expect: #""Hello""#) // not display type because obvious
         }
 
         // URL
         let url = URL(string: "https://www.google.com/")!
         assert(to: pretty.string) {
-            args((url, false), expect: "https://www.google.com/")
-            args((url, true),  expect: #"URL("https://www.google.com/")"#)
+            args(url, false, expect: "https://www.google.com/")
+            args(url, true,  expect: #"URL("https://www.google.com/")"#)
         }
         
         // Date
@@ -46,8 +46,8 @@ class PrettyTests: XCTestCase {
                                 timeZone: TimeZone(identifier: "Asia/Tokyo")!)
 
             assert(to: pretty.string) {
-                args((date, false), expect: "2020-03-24 10:00:00")
-                args((date, true),  expect: #"Date("2020-03-24 10:00:00 +09:00")"#)
+                args(date, false, expect: "2020-03-24 10:00:00")
+                args(date, true,  expect: #"Date("2020-03-24 10:00:00 +09:00")"#)
             }
         }
     }
@@ -59,40 +59,40 @@ class PrettyTests: XCTestCase {
         
         // Int
         assert(to: pretty.string) {
-            args((42, false), expect: "42")
-            args((42, true),  expect: "42") // not display type because obvious
+            args(42, false, expect: "42")
+            args(42, true,  expect: "42") // not display type because obvious
         }
 
         // Float
         assert(to: pretty.string) {
-            args((10.4 as Float, false), expect: "10.4")
-            args((10.4 as Float, true),  expect: "10.4") // not display type because obvious
+            args(10.4 as Float, false, expect: "10.4")
+            args(10.4 as Float, true,  expect: "10.4") // not display type because obvious
         }
 
         // Double
         assert(to: pretty.string) {
-            args((10.4 as Double, false), expect: "10.4")
-            args((10.4 as Double, true),  expect: "10.4") // not display type because obvious
+            args(10.4 as Double, false, expect: "10.4")
+            args(10.4 as Double, true,  expect: "10.4") // not display type because obvious
         }
         
         // Bool
         assert(to: pretty.string) {
-            args((true,  false), expect: "true")
-            args((true,  true),  expect: "true") // not display type because obvious
-            args((false, false), expect: "false")
-            args((false, true),  expect: "false") // not display type because obvious
+            args(true,  false, expect: "true")
+            args(true,  true,  expect: "true") // not display type because obvious
+            args(false, false, expect: "false")
+            args(false, true,  expect: "false") // not display type because obvious
         }
 
         // Range
         assert(to: pretty.string) {
-            args((1..<10, false), expect: "1..<10")
-            args((1..<10, true),  expect: "Range(1..<10)")
+            args(1..<10, false, expect: "1..<10")
+            args(1..<10, true,  expect: "Range(1..<10)")
         }
         
         // ClosedRange
         assert(to: pretty.string) {
-            args((1...10, false), expect: "1...10")
-            args((1...10, true),  expect: "ClosedRange(1...10)")
+            args(1...10, false, expect: "1...10")
+            args(1...10, true,  expect: "ClosedRange(1...10)")
         }
     }
     
@@ -127,23 +127,23 @@ class PrettyTests: XCTestCase {
             let d = D(c: c)
             
             assert(to: pretty.string) {
-                args((a, false), expect: #""a""#)
-                args((a, true),  expect: #"A(string: "a")"#)
+                args(a, false, expect: #""a""#)
+                args(a, true,  expect: #"A(string: "a")"#)
             }
             
             assert(to: pretty.string) {
-                args((b, false), expect: #"B(a: "a", string: "b")"#)
-                args((b, true),  expect: #"B(a: A(string: "a"), string: "b")"#)
+                args(b, false, expect: #"B(a: "a", string: "b")"#)
+                args(b, true,  expect: #"B(a: A(string: "a"), string: "b")"#)
             }
             
             assert(to: pretty.string) {
-                args((c, false), expect: #"C(b: B(a: "a", string: "b"))"#)
-                args((c, true),  expect: #"C(b: B(a: A(string: "a"), string: "b"))"#)
+                args(c, false, expect: #"C(b: B(a: "a", string: "b"))"#)
+                args(c, true,  expect: #"C(b: B(a: A(string: "a"), string: "b"))"#)
             }
             
             assert(to: pretty.string) {
-                args((d, false), expect: #"D(c: C(b: B(a: "a", string: "b")))"#)
-                args((d, true),  expect: #"D(c: C(b: B(a: A(string: "a"), string: "b")))"#)
+                args(d, false, expect: #"D(c: C(b: B(a: "a", string: "b")))"#)
+                args(d, true,  expect: #"D(c: C(b: B(a: A(string: "a"), string: "b")))"#)
             }
         }
     }
@@ -170,14 +170,14 @@ class PrettyTests: XCTestCase {
 
         // single
         assert(to: pretty.string) {
-            args((owner, false), expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
-            args((owner, true),  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
+            args(owner, false, expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
+            args(owner, true,  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
         }
         
         // nested
         assert(to: pretty.string) {
-            args((dog, false), expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
-            args((dog, true),  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
+            args(dog, false, expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
+            args(dog, true,  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
         }
     }
 
@@ -186,12 +186,12 @@ class PrettyTests: XCTestCase {
         // Optional
         assert(to: pretty.string) {
             // .some
-            args(("Hello" as String?, false), expect: #""Hello""#)
-            args(("Hello" as String?, true),  expect: #"Optional("Hello")"#)
+            args("Hello" as String?, false, expect: #""Hello""#)
+            args("Hello" as String?, true,  expect: #"Optional("Hello")"#)
             
             // .none
-            args((nil as String?, false), expect: "nil")
-            args((nil as String?, true),  expect: "nil")
+            args(nil as String?, false, expect: "nil")
+            args(nil as String?, true,  expect: "nil")
         }
     }
     
@@ -230,14 +230,14 @@ class PrettyTests: XCTestCase {
         
         // single
         assert(to: pretty.string) {
-            args((owner, false), expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
-            args((owner, true),  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
+            args(owner, false, expect: #"Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss")"#)
+            args(owner, true,  expect: #"Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss"))"#)
         }
         
         // nested
         assert(to: pretty.string) {
-            args((dog, false), expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
-            args((dog, true),  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
+            args(dog, false, expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: "4th layer in Abyss"), age: nil)"#)
+            args(dog, true,  expect: #"Dog(name: "Pochi", owner: Owner(name: "Nanachi", age: 20, address: Optional("4th layer in Abyss")), age: nil)"#)
         }
     }
 
@@ -250,8 +250,8 @@ class PrettyTests: XCTestCase {
         // Note:
         // sorted by string ascending
         assert(to: pretty.string) {
-            args((set, false), expect: #"[42, 7]"#)
-            args((set, true),  expect: #"Set([Optional(42), Optional(7)])"#)
+            args(set, false, expect: #"[42, 7]"#)
+            args(set, true,  expect: #"Set([Optional(42), Optional(7)])"#)
         }
     }
     
@@ -264,8 +264,8 @@ class PrettyTests: XCTestCase {
         // Note:
         // not sorted unlike `Set`
         assert(to: pretty.string) {
-            args((array, false), expect: #"[7, 42]"#)
-            args((array, true),  expect: #"[Optional(7), Optional(42)]"#)
+            args(array, false, expect: #"[7, 42]"#)
+            args(array, true,  expect: #"[Optional(7), Optional(42)]"#)
         }
     }
 
@@ -280,8 +280,8 @@ class PrettyTests: XCTestCase {
 
         // Dictinary
         assert(to: pretty.string) {
-            args((dictionary, false), expect: #"[1: "One", 2: "Two"]"#)
-            args((dictionary, true),  expect: #"[1: Optional("One"), 2: Optional("Two")]"#)
+            args(dictionary, false, expect: #"[1: "One", 2: "Two"]"#)
+            args(dictionary, true,  expect: #"[1: Optional("One"), 2: Optional("Two")]"#)
         }
 
         struct Cat {
@@ -296,8 +296,8 @@ class PrettyTests: XCTestCase {
 
         // Dictionary in Struct
         assert(to: pretty.string) {
-            args((dictionaryInStruct, false), expect: #"["mike": Cat(id: "mike", name: "ポチ"), "tama": Cat(id: "tama", name: "タマ")]"#)
-            args((dictionaryInStruct, true),  expect: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#)
+            args(dictionaryInStruct, false, expect: #"["mike": Cat(id: "mike", name: "ポチ"), "tama": Cat(id: "tama", name: "タマ")]"#)
+            args(dictionaryInStruct, true,  expect: #"["mike": Cat(id: "mike", name: Optional("ポチ")), "tama": Cat(id: "tama", name: Optional("タマ"))]"#)
         }
     }
     
@@ -308,15 +308,15 @@ class PrettyTests: XCTestCase {
         let tuple = (1, ("one", URL(string: "https://www.example.com/")!))
         
         assert(to: pretty.string) {
-            args((tuple, false), expect: #"(1, ("one", https://www.example.com/))"#)
-            args((tuple, true),  expect: #"(1, ("one", URL("https://www.example.com/")))"#)
+            args(tuple, false, expect: #"(1, ("one", https://www.example.com/))"#)
+            args(tuple, true,  expect: #"(1, ("one", URL("https://www.example.com/")))"#)
         }
         
         let labeledTuple = (2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])
 
         assert(to: pretty.string) {
-            args((labeledTuple, false), expect: #"(2019, region: "Chili", variety: "Chardonnay", taste: ["round", "smooth", "young"])"#)
-            args((labeledTuple, true),  expect: #"(2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])"#)
+            args(labeledTuple, false, expect: #"(2019, region: "Chili", variety: "Chardonnay", taste: ["round", "smooth", "young"])"#)
+            args(labeledTuple, true,  expect: #"(2019, region: "Chili", variety: Optional("Chardonnay"), taste: ["round", "smooth", "young"])"#)
         }
     }
     
@@ -331,8 +331,8 @@ class PrettyTests: XCTestCase {
             }
             
             assert(to: pretty.string) {
-                args((Fruit.apple, false), expect: ".apple")
-                args((Fruit.apple, true),  expect: "Fruit.apple")
+                args(Fruit.apple, false, expect: ".apple")
+                args(Fruit.apple, true,  expect: "Fruit.apple")
             }
         }
                 
@@ -346,16 +346,16 @@ class PrettyTests: XCTestCase {
 
             assert(to: pretty.string) {
                 // has one
-                args((Fruit.apple("りんご"), false), expect: #".apple("りんご")"#)
-                args((Fruit.apple("りんご"), true),  expect: #"Fruit.apple("りんご")"#)
+                args(Fruit.apple("りんご"), false, expect: #".apple("りんご")"#)
+                args(Fruit.apple("りんご"), true,  expect: #"Fruit.apple("りんご")"#)
 
                 // has many (representation as a tuple)
-                args((Fruit.orange("みかん", 42), false), expect: #".orange("みかん", 42)"#)
-                args((Fruit.orange("みかん", 42), true),  expect: #"Fruit.orange("みかん", 42)"#)
+                args(Fruit.orange("みかん", 42), false, expect: #".orange("みかん", 42)"#)
+                args(Fruit.orange("みかん", 42), true,  expect: #"Fruit.orange("みかん", 42)"#)
                 
                 // with label (representation as a tuple)
-                args((Fruit.banana(juicy: true), false), expect: #".banana(juicy: true)"#)
-                args((Fruit.banana(juicy: true), true),  expect: #"Fruit.banana(juicy: true)"#)
+                args(Fruit.banana(juicy: true), false, expect: #".banana(juicy: true)"#)
+                args(Fruit.banana(juicy: true), true,  expect: #"Fruit.banana(juicy: true)"#)
             }
         }
         
@@ -378,16 +378,16 @@ class PrettyTests: XCTestCase {
 
             assert(to: pretty.string) {
                 // nested one
-                args((Fruit.apple(.sweet), false), expect: ".apple(.sweet)")
-                args((Fruit.apple(.sweet), true),  expect: "Fruit.apple(Taste.sweet)")
+                args(Fruit.apple(.sweet), false, expect: ".apple(.sweet)")
+                args(Fruit.apple(.sweet), true,  expect: "Fruit.apple(Taste.sweet)")
                 
                 // nested two
-                args((Fruit.apple(.sour(.high)), false), expect: ".apple(.sour(.high))")
-                args((Fruit.apple(.sour(.high)), true),  expect: "Fruit.apple(Taste.sour(Level.high))")
+                args(Fruit.apple(.sour(.high)), false, expect: ".apple(.sour(.high))")
+                args(Fruit.apple(.sour(.high)), true,  expect: "Fruit.apple(Taste.sour(Level.high))")
 
                 // nested two with label
-                args((Fruit.orange(taste: .sour(.low)), false), expect: ".orange(taste: .sour(.low))")
-                args((Fruit.orange(taste: .sour(.low)), true),  expect: "Fruit.orange(taste: Taste.sour(Level.low))")
+                args(Fruit.orange(taste: .sour(.low)), false, expect: ".orange(taste: .sour(.low))")
+                args(Fruit.orange(taste: .sour(.low)), true,  expect: "Fruit.orange(taste: Taste.sour(Level.low))")
             }
         }
     }
