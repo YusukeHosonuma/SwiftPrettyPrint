@@ -24,19 +24,19 @@ class String_extensionTests: XCTestCase {
         
         assert(to: String.indentTail, with: assertEqualLines) {
             // Single-line
-            args(("Apple", 4), expect: "Apple")
+            args("Apple", 4, expect: "Apple")
             
             // Multi-line
-            args((text, 2), expect: """
-                                    Apple
+            args(text, 2, expect: """
+                                  Apple
+                                    Orange
+                                    Banana
+                                  """)
+            args(text, 4, expect: """
+                                  Apple
                                       Orange
                                       Banana
-                                    """)
-            args((text, 4), expect: """
-                                    Apple
-                                        Orange
-                                        Banana
-                                    """)
+                                  """)
         }
     }
     
