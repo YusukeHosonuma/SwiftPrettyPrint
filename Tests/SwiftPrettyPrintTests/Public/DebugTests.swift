@@ -14,7 +14,7 @@ class DebugTests: XCTestCase {
     override func tearDown() {}
 
     func testExample() {
-        // all premetive types (but not inclue `Date` because depends on timeZone of system)
+        // all premetive types (but not include `Date` because depends on timeZone of system)
         class Class {
             let string: String
             let int: Int
