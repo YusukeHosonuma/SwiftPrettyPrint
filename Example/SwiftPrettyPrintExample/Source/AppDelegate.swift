@@ -57,10 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //   )
         // ]
 
-        Debug.debugPrint(dog)
+        Debug.printDebug(dog)
         // => 🍎 Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: Optional("ポチ"))
 
-        Debug.debugPrettyPrint(dog)
+        Debug.prettyPrintDebug(dog)
         // =>
         // 🍎
         // Dog(

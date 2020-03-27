@@ -10,6 +10,8 @@ import SwiftPrettyPrint // Note: don't use `@testable`, because test to public A
 import XCTest
 
 class DebugTests: XCTestCase {
+    let helper = DebugHelper(option: Debug.Option(prefix: "[DEBUG]", indentSize: 4))
+
     override func setUp() {}
     override func tearDown() {}
 
@@ -63,32 +65,6 @@ class DebugTests: XCTestCase {
             var klass: Class
             var valueObject: ValueObject
         }
-
-        let option = Debug.Option(prefix: "[DEBUG]", indentSize: 4)
-        
-        func _print(label: String? = nil, _ target: Any) -> String {
-            var s = ""
-            Debug.print(label: label, target, option: option, to: &s)
-            return s
-        }
-        
-        func _debugPrint(label: String? = nil, _ target: Any) -> String {
-            var s = ""
-            Debug.debugPrint(label: label, target, option: option, to: &s)
-            return s
-        }
-        
-        func _prettyPrint(label: String? = nil, _ target: Any) -> String {
-            var s = ""
-            Debug.prettyPrint(label: label, target, option: option, to: &s)
-            return s
-        }
-        
-        func _debugPrettyPrint(label: String? = nil, _ target: Any) -> String {
-            var s = ""
-            Debug.debugPrettyPrint(label: label, target, option: option, to: &s)
-            return s
-        }
         
         let target =
         Struct(
@@ -111,13 +87,13 @@ class DebugTests: XCTestCase {
             valueObject: ValueObject(id: 1)
         )
         
-        assertEqualLines(_print(target),
+        assertEqualLines(helper.print(target),
                          #"[DEBUG] Struct(optional: "string", array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enumOne: .one, enumTwo: .two(1), enumThree: .three(string: "string"), set: [1, 2, nil], klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: https://github.com/YusukeHosonuma/SwiftPrettyPrint), valueObject: 1)"# + "\n")
 
-        assertEqualLines(_debugPrint(target),
+        assertEqualLines(helper.printDebug(target),
                          #"[DEBUG] Struct(optional: Optional("string"), array: [Optional(1), Optional(2), nil], dictionary: ["one": Optional(1), "two": Optional(2)], tuple: (1, string: "string"), enumOne: Enum.one, enumTwo: Enum.two(1), enumThree: Enum.three(string: "string"), set: Set([Optional(1), Optional(2), nil]), klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")), valueObject: ValueObject(id: 1))"# + "\n")
 
-        assertEqualLines(_prettyPrint(target),
+        assertEqualLines(helper.prettyPrint(target),
         """
         [DEBUG]
         Struct(
@@ -157,7 +133,7 @@ class DebugTests: XCTestCase {
         )
         """ + "\n")
         
-        assertEqualLines(_debugPrettyPrint(target),
+        assertEqualLines(helper.prettyPrintDebug(target),
         """
         [DEBUG]
         Struct(
@@ -200,29 +176,23 @@ class DebugTests: XCTestCase {
     
     func testLabel() {
         let array = ["Hello", "World"]
-
-        var result = ""
-        Debug.print(label: "array", array, to: &result)
-        XCTAssertEqual(result, #"array: ["Hello", "World"]"# + "\n")
-
-        result = ""
-        Debug.debugPrint(label: "array", array, to: &result)
-        XCTAssertEqual(result, #"array: ["Hello", "World"]"# + "\n")
-
-        result = ""
-        Debug.prettyPrint(label: "array", array, to: &result)
-        XCTAssertEqual(result, """
-            array:
+        
+        assertEqualLines(helper.print(label: "array", array),
+                         #"[DEBUG] array: ["Hello", "World"]"# + "\n")
+        
+        assertEqualLines(helper.printDebug(label: "array", array),
+                         #"[DEBUG] array: ["Hello", "World"]"# + "\n")
+        
+        assertEqualLines(helper.prettyPrint(label: "array", array), """
+            [DEBUG] array:
             [
                 "Hello",
                 "World"
             ]
             """ + "\n")
-
-        result = ""
-        Debug.debugPrettyPrint(label: "array", array, to: &result)
-        XCTAssertEqual(result, """
-            array:
+        
+        assertEqualLines(helper.prettyPrintDebug(label: "array", array), """
+            [DEBUG] array:
             [
                 "Hello",
                 "World"
@@ -242,7 +212,7 @@ class DebugTests: XCTestCase {
         XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
 
         result = ""
-        Debug.debugPrint(array, 42, to: &result)
+        Debug.printDebug(array, 42, to: &result)
         XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
 
         result = ""
@@ -256,7 +226,7 @@ class DebugTests: XCTestCase {
             """ + "\n")
 
         result = ""
-        Debug.debugPrettyPrint(array, 42, to: &result)
+        Debug.prettyPrintDebug(array, 42, to: &result)
         XCTAssertEqual(result, """
             [
                 "Hello",
@@ -274,7 +244,7 @@ class DebugTests: XCTestCase {
         XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
 
         result = ""
-        Debug.debugPrint(array, 42, separator: "!!", to: &result)
+        Debug.printDebug(array, 42, separator: "!!", to: &result)
         XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
 
         result = ""
@@ -288,7 +258,7 @@ class DebugTests: XCTestCase {
             """ + "\n")
 
         result = ""
-        Debug.debugPrettyPrint(array, 42, separator: "!!\n", to: &result)
+        Debug.prettyPrintDebug(array, 42, separator: "!!\n", to: &result)
         XCTAssertEqual(result, """
             [
                 "Hello",
