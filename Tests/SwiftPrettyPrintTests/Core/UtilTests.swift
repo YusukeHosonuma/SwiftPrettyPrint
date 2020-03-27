@@ -18,22 +18,28 @@ class UtilTests: XCTestCase {
     func testPrefixLabel() {
         // Note:
         // can't type inference in Function Builders API.
-        assert(to: prefixLabel, expect: [
-            args(("[DEBUG]", "x"), expect: "[DEBUG] x: "),
-            args(("[DEBUG]", nil), expect: "[DEBUG] "),
-            args((nil,       "x"), expect: "x: "),
-            args((nil,       nil), expect: ""),
-        ])
+        assert(to: prefixLabel,
+               header: ["prefix", "label"],
+               expect:
+        [
+            args("[DEBUG]", "x", expect: "[DEBUG] x: "),
+            args("[DEBUG]", nil, expect: "[DEBUG] "),
+            args(nil,       "x", expect: "x: "),
+            args(nil,       nil, expect: ""),
+        ] as [Row2<String?, String?, String>])
     }
     
     func testPrefixLabelPretty() {
         // Note:
         // can't type inference in Function Builders API.
-        assert(to: prefixLabelPretty, expect: [
-            args(("[DEBUG]", "x"), expect: "[DEBUG] x:\n"),
-            args(("[DEBUG]", nil), expect: "[DEBUG]\n"),
-            args((nil,       "x"), expect: "x:\n"),
-            args((nil,       nil), expect: ""),
-        ])
+        assert(to: prefixLabelPretty,
+               header: ["prefix", "label"],
+               expect:
+        [
+            args("[DEBUG]", "x", expect: "[DEBUG] x:\n"),
+            args("[DEBUG]", nil, expect: "[DEBUG]\n"),
+            args(nil,       "x", expect: "x:\n"),
+            args(nil,       nil, expect: ""),
+        ] as [Row2<String?, String?, String>])
     }
 }
