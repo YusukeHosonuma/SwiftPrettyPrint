@@ -6,12 +6,15 @@
 // Copyright (c) 2020 Yusuke Hosonuma.
 //
 
-public class Debug {
-    /// Default format option
-    public static let defaultOption = Option(prefix: nil, indentSize: 4)
+import os.log
+import Foundation
 
-    /// Global format option
-    public static var sharedOption: Option = Debug.defaultOption
+public class Debug {
+    #if DEBUG
+        public static var sharedOption: Option = .init(isConsoleUsed: false)
+    #else
+        public static var sharedOption: Option = .init(isConsoleUsed: true)
+    #endif
 
     private init() {}
 }
@@ -31,7 +34,7 @@ extension Debug {
         separator: String = " ",
         option: Option = Debug.sharedOption
     ) {
-        Swift.print(_print(label: label, targets, separator: separator, option: option))
+        print(message: _print(label: label, targets, separator: separator, option: option))
     }
 
     /// Output `targets` to `output`.
@@ -63,7 +66,7 @@ extension Debug {
         separator: String = "\n",
         option: Option = Debug.sharedOption
     ) {
-        Swift.print(_prettyPrint(label: label, targets, separator: separator, option: option))
+        print(message: _prettyPrint(label: label, targets, separator: separator, option: option))
     }
 
     /// Output pretty-formatted `targets` to console.
@@ -95,7 +98,7 @@ extension Debug {
         separator: String = " ",
         option: Option = Debug.sharedOption
     ) {
-        Swift.print(_printDebug(label: label, targets, separator: separator, option: option))
+        print(message: _printDebug(label: label, targets, separator: separator, option: option))
     }
 
     /// Output debuggable `targets` to console.
@@ -126,7 +129,7 @@ extension Debug {
         separator: String = "\n",
         option: Option = Debug.sharedOption
     ) {
-        Swift.print(_prettyPrintDebug(label: label, targets, separator: separator, option: option))
+        print(message: _prettyPrintDebug(label: label, targets, separator: separator, option: option))
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
@@ -146,6 +149,18 @@ extension Debug {
     }
 
     // MARK: - private
+
+    private static func print(message: String) {
+        if sharedOption.isConsoleUsed {
+            if #available(OSX 10.12, iOS 10.0, *) {
+                os_log("%@", type: .debug, message)
+            } else {
+                NSLog(message)
+            }
+        } else {
+            print(message)
+        }
+    }
 
     private static func _print(
         label: String?,

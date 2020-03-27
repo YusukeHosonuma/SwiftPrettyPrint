@@ -10,10 +10,12 @@ extension Debug {
     public struct Option {
         public var prefix: String?
         public var indentSize: Int
+        public var isConsoleUsed: Bool
 
-        public init(prefix: String?, indentSize: Int) {
+        public init(prefix: String? = nil, indentSize: Int = 4, isConsoleUsed: Bool = false) {
             self.prefix = prefix
             self.indentSize = indentSize
+            self.isConsoleUsed = isConsoleUsed
         }
     }
 }
