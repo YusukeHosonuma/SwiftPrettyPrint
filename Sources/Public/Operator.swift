@@ -29,46 +29,28 @@
 //
 // ----------------------------------------------------------------------------
 
-extension Debug {
-    public struct P {
-        var label: String
-    }
+public let p: (String) -> P = { label in P(label: label) }
+public let pp: (String) -> PP = { label in PP(label: label) }
+public let pd: (String) -> PD = { label in PD(label: label) }
+public let ppd: (String) -> PPD = { label in PPD(label: label) }
 
-    public struct PP {
-        var label: String
-    }
-
-    public struct PD {
-        var label: String
-    }
-
-    public struct PPD {
-        var label: String
-    }
-
-    public static var p: (String) -> P { _p }
-    public static var pp: (String) -> PP { _pp }
-    public static var pd: (String) -> PD { _pd }
-    public static var ppd: (String) -> PPD { _ppd }
-
-    // MARK: Internal
-
-    private static func _p(label: String) -> P {
-        P(label: label)
-    }
-
-    private static func _pp(label: String) -> PP {
-        PP(label: label)
-    }
-
-    private static func _pd(label: String) -> PD {
-        PD(label: label)
-    }
-
-    private static func _ppd(label: String) -> PPD {
-        PPD(label: label)
-    }
+public struct P {
+    var label: String
 }
+
+public struct PP {
+    var label: String
+}
+
+public struct PD {
+    var label: String
+}
+
+public struct PPD {
+    var label: String
+}
+
+// MARK: Operator
 
 precedencegroup PrintPrecedence {
     lowerThan: FunctionArrowPrecedence
@@ -78,36 +60,36 @@ infix operator >>>: PrintPrecedence
 
 // MARK: `Debug.p >>>`
 
-public func >>> (_: (String) -> Debug.P, target: Any) {
+public func >>> (_: (String) -> P, target: Any) {
     Debug.print(target)
 }
 
-public func >>> (_: (String) -> Debug.PD, target: Any) {
-    Debug.debugPrint(target)
+public func >>> (_: (String) -> PD, target: Any) {
+    Debug.printDebug(target)
 }
 
-public func >>> (_: (String) -> Debug.PP, target: Any) {
+public func >>> (_: (String) -> PP, target: Any) {
     Debug.prettyPrint(target)
 }
 
-public func >>> (_: (String) -> Debug.PPD, target: Any) {
-    Debug.debugPrettyPrint(target)
+public func >>> (_: (String) -> PPD, target: Any) {
+    Debug.prettyPrintDebug(target)
 }
 
 // MARK: `Debug.p("xxx") >>>`
 
-public func >>> (receiver: Debug.P, target: Any) {
+public func >>> (receiver: P, target: Any) {
     Debug.print(label: receiver.label, target)
 }
 
-public func >>> (receiver: Debug.PD, target: Any) {
-    Debug.debugPrint(label: receiver.label, target)
+public func >>> (receiver: PD, target: Any) {
+    Debug.printDebug(label: receiver.label, target)
 }
 
-public func >>> (receiver: Debug.PP, target: Any) {
+public func >>> (receiver: PP, target: Any) {
     Debug.prettyPrint(label: receiver.label, target)
 }
 
-public func >>> (receiver: Debug.PPD, target: Any) {
-    Debug.debugPrettyPrint(label: receiver.label, target)
+public func >>> (receiver: PPD, target: Any) {
+    Debug.prettyPrintDebug(label: receiver.label, target)
 }
