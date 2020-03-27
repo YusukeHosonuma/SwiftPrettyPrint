@@ -9,209 +9,195 @@
 import SwiftPrettyPrint // Note: don't use `@testable`, because test to public API
 import XCTest
 
-private struct Dog {
-    var id: DogId
-    var name: String?
-    var nickname: String?
-    var age: Int
-    var homepage: URL?
-}
-
-private struct DogId {
-    var rawValue: String
-}
-
-// TODO: should reduce test patterns, because exhaustive tests are written by `PrettyTests`
-
 class DebugTests: XCTestCase {
-    fileprivate let dog = Dog(id: DogId(rawValue: "pochi"),
-                              name: "ポチ",
-                              nickname: nil,
-                              age: 3,
-                              homepage: URL(string: "https://www.google.com/"))
-
     override func setUp() {}
-
     override func tearDown() {}
 
-    func testPrint() {
-        let expectString =
-            #"Dog(id: "pochi", name: "ポチ", nickname: nil, age: 3, homepage: https://www.google.com/)"#
-
-        let expectDebugString =
-            #"Dog(id: DogId(rawValue: "pochi"), name: Optional("ポチ"), nickname: nil, age: 3, homepage: Optional(URL("https://www.google.com/")))"#
-
-        //
-        // Struct
-        //
-        do {
-            var result = ""
-            Debug.print(dog, to: &result)
-            XCTAssertEqual(result, expectString + "\n")
-
-            result = ""
-            Debug.debugPrint(dog, to: &result)
-            XCTAssertEqual(result, expectDebugString + "\n")
+    func testExample() {
+        // all premetive types
+        class Class {
+            let string: String
+            let int: Int
+            let float: Float
+            let double: Double
+            let bool: Bool
+            let url: URL
+            
+            init(
+                string: String,
+                int: Int,
+                float: Float,
+                double: Double,
+                bool: Bool,
+                url: URL
+            ) {
+                self.string = string
+                self.int = int
+                self.float = float
+                self.double = double
+                self.bool = bool
+                self.url = url
+            }
+        }
+        
+        enum Enum {
+            case one
+            case two(Int)
+            case three(string: String)
+        }
+        
+        struct ValueObject {
+            let id: Int
+        }
+        
+        // all `Mirror.DisplayStyle` and `ValueObject`
+        struct Struct {
+            var optional: String?
+            var array: [Int?]
+            var dictionary: [String: Int?]
+            var tuple: (Int, string: String)
+            var enumOne: Enum
+            var enumTwo: Enum
+            var enumThree: Enum
+            var set: Set<Int?>
+            var klass: Class
+            var valueObject: ValueObject
         }
 
-        //
-        // Array
-        //
-        do {
-            var result = ""
-            Debug.print([dog, dog], to: &result)
-            XCTAssertEqual(result, "[\(expectString), \(expectString)]" + "\n")
-
-            result = ""
-            Debug.debugPrint([dog, dog], to: &result)
-            XCTAssertEqual(result, "[\(expectDebugString), \(expectDebugString)]" + "\n")
+        let option = Debug.Option(prefix: "[DEBUG]", indentSize: 4)
+        
+        func _print(label: String? = nil, _ target: Any) -> String {
+            var s = ""
+            Debug.print(label: label, target, option: option, to: &s)
+            return s
+        }
+        
+        func _debugPrint(label: String? = nil, _ target: Any) -> String {
+            var s = ""
+            Debug.debugPrint(label: label, target, option: option, to: &s)
+            return s
+        }
+        
+        func _prettyPrint(label: String? = nil, _ target: Any) -> String {
+            var s = ""
+            Debug.prettyPrint(label: label, target, option: option, to: &s)
+            return s
+        }
+        
+        func _debugPrettyPrint(label: String? = nil, _ target: Any) -> String {
+            var s = ""
+            Debug.debugPrettyPrint(label: label, target, option: option, to: &s)
+            return s
         }
 
-        //
-        // Dictionary
-        //
-        do {
-            let dictionary: [String: Dog] = [
-                "dog-1": dog,
-                "dog-2": dog,
-            ]
+        let target =
+        Struct(
+            optional: "string",
+            array: [1, 2, nil],
+            dictionary: ["one": 1, "two": 2],
+            tuple: (1, string: "string"),
+            enumOne: .one,
+            enumTwo: .two(1),
+            enumThree: .three(string: "string"),
+            set: [1, 2, nil],
+            klass: Class(
+                string: "string",
+                int: 1,
+                float: 1.0,
+                double: 2.0,
+                bool: true,
+                url: URL(string: "https://github.com/YusukeHosonuma/SwiftPrettyPrint")!
+            ),
+            valueObject: ValueObject(id: 1)
+        )
+        
+        assertEqualLines(_print(target),
+                         #"[DEBUG] Struct(optional: "string", array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enumOne: .one, enumTwo: .two(1), enumThree: .three(string: "string"), set: [1, 2, nil], klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: https://github.com/YusukeHosonuma/SwiftPrettyPrint), valueObject: 1)"# + "\n")
 
-            var result = ""
-            Debug.print(dictionary, to: &result)
-            XCTAssertEqual(result, #"["dog-1": \#(expectString), "dog-2": \#(expectString)]"# + "\n")
+        assertEqualLines(_debugPrint(target),
+                         #"[DEBUG] Struct(optional: Optional("string"), array: [Optional(1), Optional(2), nil], dictionary: ["one": Optional(1), "two": Optional(2)], tuple: (1, string: "string"), enumOne: Enum.one, enumTwo: Enum.two(1), enumThree: Enum.three(string: "string"), set: Set([Optional(1), Optional(2), nil]), klass: Class(string: "string", int: 1, float: 1.0, double: 2.0, bool: true, url: URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")), valueObject: ValueObject(id: 1))"# + "\n")
 
-            result = ""
-            Debug.debugPrint(dictionary, to: &result)
-            XCTAssertEqual(result,
-                           #"["dog-1": \#(expectDebugString), "dog-2": \#(expectDebugString)]"# + "\n")
-
-        }
+        assertEqualLines(_prettyPrint(target),
+        """
+        [DEBUG]
+        Struct(
+            optional: "string",
+            array: [
+                1,
+                2,
+                nil
+            ],
+            dictionary: [
+                "one": 1,
+                "two": 2
+            ],
+            tuple: (
+                1,
+                string: "string"
+            ),
+            enumOne: .one,
+            enumTwo: .two(1),
+            enumThree: .three(
+                string: "string"
+            ),
+            set: [
+                1,
+                2,
+                nil
+            ],
+            klass: Class(
+                string: "string",
+                int: 1,
+                float: 1.0,
+                double: 2.0,
+                bool: true,
+                url: https://github.com/YusukeHosonuma/SwiftPrettyPrint
+            ),
+            valueObject: 1
+        )
+        """ + "\n")
+        
+        assertEqualLines(_debugPrettyPrint(target),
+        """
+        [DEBUG]
+        Struct(
+            optional: Optional("string"),
+            array: [
+                Optional(1),
+                Optional(2),
+                nil
+            ],
+            dictionary: [
+                "one": Optional(1),
+                "two": Optional(2)
+            ],
+            tuple: (
+                1,
+                string: "string"
+            ),
+            enumOne: Enum.one,
+            enumTwo: Enum.two(1),
+            enumThree: Enum.three(
+                string: "string"
+            ),
+            set: Set([
+                Optional(1),
+                Optional(2),
+                nil
+            ]),
+            klass: Class(
+                string: "string",
+                int: 1,
+                float: 1.0,
+                double: 2.0,
+                bool: true,
+                url: URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")
+            ),
+            valueObject: ValueObject(id: 1)
+        )
+        """ + "\n")
     }
-
-    func testPretyPrint() {
-        //
-        // Struct
-        //
-        var result = ""
-        Debug.prettyPrint(dog, to: &result)
-        assertEqualLines(result,
-                         """
-                         Dog(
-                             id: "pochi",
-                             name: "ポチ",
-                             nickname: nil,
-                             age: 3,
-                             homepage: https://www.google.com/
-                         )
-                         """ + "\n")
-
-        result = ""
-        Debug.debugPrettyPrint(dog, to: &result)
-        assertEqualLines(result,
-                         """
-                         Dog(
-                             id: DogId(rawValue: "pochi"),
-                             name: Optional("ポチ"),
-                             nickname: nil,
-                             age: 3,
-                             homepage: Optional(URL("https://www.google.com/"))
-                         )
-                         """ + "\n")
-
-        result = ""
-        Debug.prettyPrint([dog, dog], to: &result)
-        assertEqualLines(result,
-                         """
-                         [
-                             Dog(
-                                 id: "pochi",
-                                 name: "ポチ",
-                                 nickname: nil,
-                                 age: 3,
-                                 homepage: https://www.google.com/
-                             ),
-                             Dog(
-                                 id: "pochi",
-                                 name: "ポチ",
-                                 nickname: nil,
-                                 age: 3,
-                                 homepage: https://www.google.com/
-                             )
-                         ]
-                         """ + "\n")
-
-        result = ""
-        Debug.debugPrettyPrint([dog, dog], to: &result)
-        assertEqualLines(result,
-                         """
-                         [
-                             Dog(
-                                 id: DogId(rawValue: "pochi"),
-                                 name: Optional("ポチ"),
-                                 nickname: nil,
-                                 age: 3,
-                                 homepage: Optional(URL("https://www.google.com/"))
-                             ),
-                             Dog(
-                                 id: DogId(rawValue: "pochi"),
-                                 name: Optional("ポチ"),
-                                 nickname: nil,
-                                 age: 3,
-                                 homepage: Optional(URL("https://www.google.com/"))
-                             )
-                         ]
-                         """ + "\n")
-
-        let dictionary: [String: Dog] = [
-            "dog-1": dog,
-            "dog-2": dog,
-        ]
-
-        result = ""
-        Debug.prettyPrint(dictionary, to: &result)
-        assertEqualLines(result,
-                         """
-                         [
-                             "dog-1": Dog(
-                                 id: "pochi",
-                                 name: "ポチ",
-                                 nickname: nil,
-                                 age: 3,
-                                 homepage: https://www.google.com/
-                             ),
-                             "dog-2": Dog(
-                                 id: "pochi",
-                                 name: "ポチ",
-                                 nickname: nil,
-                                 age: 3,
-                                 homepage: https://www.google.com/
-                             )
-                         ]
-                         """ + "\n")
-
-        result = ""
-        Debug.debugPrettyPrint(dictionary, to: &result)
-        assertEqualLines(result,
-                         """
-                         [
-                             "dog-1": Dog(
-                                 id: DogId(rawValue: "pochi"),
-                                 name: Optional("ポチ"),
-                                 nickname: nil,
-                                 age: 3,
-                                 homepage: Optional(URL("https://www.google.com/"))
-                             ),
-                             "dog-2": Dog(
-                                 id: DogId(rawValue: "pochi"),
-                                 name: Optional("ポチ"),
-                                 nickname: nil,
-                                 age: 3,
-                                 homepage: Optional(URL("https://www.google.com/"))
-                             )
-                         ]
-                         """ + "\n")
-    }
-
+    
     func testLabel() {
         let array = ["Hello", "World"]
 
