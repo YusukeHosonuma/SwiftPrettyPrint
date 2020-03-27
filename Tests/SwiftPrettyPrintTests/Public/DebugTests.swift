@@ -14,7 +14,7 @@ class DebugTests: XCTestCase {
     override func tearDown() {}
 
     func testExample() {
-        // all premetive types
+        // all premetive types (but not include `Date` because depends on timeZone of system)
         class Class {
             let string: String
             let int: Int
@@ -89,7 +89,7 @@ class DebugTests: XCTestCase {
             Debug.debugPrettyPrint(label: label, target, option: option, to: &s)
             return s
         }
-
+        
         let target =
         Struct(
             optional: "string",

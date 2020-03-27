@@ -9,7 +9,8 @@
 import Foundation
 
 struct Pretty {
-    let formatter: PrettyFormatter
+    var formatter: PrettyFormatter
+    var timeZone: TimeZone = .current
 
     func string<T: Any>(_ target: T, debug: Bool) -> String {
         func _string(_ target: Any) -> String {
@@ -137,18 +138,6 @@ struct Pretty {
         case let value as String:
             return #""\#(value)""#
 
-        case let value as Int:
-            return "\(value)"
-
-        case let value as Float:
-            return "\(value)"
-
-        case let value as Double:
-            return "\(value)"
-
-        case let value as Bool:
-            return "\(value)"
-
         case let url as URL:
             if debug {
                 return #"URL("\#(url.absoluteString)")"#
@@ -156,9 +145,43 @@ struct Pretty {
                 return url.absoluteString
             }
 
+        case let date as Date:
+            if debug {
+                let f = DateFormatter()
+                f.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
+                f.timeZone = timeZone
+                return #"Date("\#(f.string(from: date))")"#
+            } else {
+                let f = DateFormatter()
+                f.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                f.timeZone = timeZone
+                return f.string(from: date)
+            }
+
         default:
-            // TODO: support other premitive type that not has child
-            return nil
+            if debug {
+                switch target {
+                case let value as CustomDebugStringConvertible:
+                    return value.debugDescription
+
+                case let value as CustomStringConvertible:
+                    return value.description
+
+                default:
+                    return nil
+                }
+            } else {
+                switch target {
+                case let value as CustomStringConvertible:
+                    return value.description
+
+                case let value as CustomDebugStringConvertible:
+                    return value.debugDescription
+
+                default:
+                    return nil
+                }
+            }
         }
     }
 
