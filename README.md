@@ -284,7 +284,6 @@ or
     @_exported import SwiftPrettyPrint // Note: `@_exported` is not official
 #endif
 ```
-
 This can be not need to write `import` in each sources.
 
 ## Xcode Code Snippets
