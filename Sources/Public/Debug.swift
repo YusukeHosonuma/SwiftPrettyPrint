@@ -149,9 +149,9 @@ extension Debug {
     // MARK: - private
 
     private static func log(message: String) {
-        #if canImport(Foundation)
-            if sharedOption.isConsoleUsed, #available(OSX 10.12, iOS 10.0, *) {
-                os_log("%@", type: .debug, message)
+        #if canImport(os)
+            if sharedOption.isConsoleUsed, #available(OSX 10.14, iOS 12.0, *) {
+                os_log(.default, "%@", message)
                 return
             }
         #endif
