@@ -6,8 +6,9 @@
 // Copyright (c) 2020 Yusuke Hosonuma.
 //
 
-import Foundation
-import os.log
+#if canImport(os)
+    import os.log
+#endif
 
 public class Debug {
     /// Global format option
