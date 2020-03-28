@@ -151,11 +151,12 @@ extension Debug {
     private static func log(message: String) {
         #if canImport(os)
             if sharedOption.isConsoleUsed, #available(OSX 10.14, iOS 12.0, *) {
+                Swift.print("testtesttestos_log")
                 os_log(.default, "%@", message)
                 return
             }
         #endif
-
+        Swift.print("testtesttestprint")
         Swift.print(message)
     }
 
