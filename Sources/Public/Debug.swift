@@ -6,8 +6,8 @@
 // Copyright (c) 2020 Yusuke Hosonuma.
 //
 
-import os.log
 import Foundation
+import os.log
 
 public class Debug {
     /// Global format option
@@ -31,7 +31,7 @@ extension Debug {
         separator: String = " ",
         option: Option = Debug.sharedOption
     ) {
-        print(message: _print(label: label, targets, separator: separator, option: option))
+        log(message: _print(label: label, targets, separator: separator, option: option))
     }
 
     /// Output `targets` to `output`.
@@ -63,7 +63,7 @@ extension Debug {
         separator: String = "\n",
         option: Option = Debug.sharedOption
     ) {
-        print(message: _prettyPrint(label: label, targets, separator: separator, option: option))
+        log(message: _prettyPrint(label: label, targets, separator: separator, option: option))
     }
 
     /// Output pretty-formatted `targets` to console.
@@ -95,7 +95,7 @@ extension Debug {
         separator: String = " ",
         option: Option = Debug.sharedOption
     ) {
-        print(message: _printDebug(label: label, targets, separator: separator, option: option))
+        log(message: _printDebug(label: label, targets, separator: separator, option: option))
     }
 
     /// Output debuggable `targets` to console.
@@ -126,7 +126,7 @@ extension Debug {
         separator: String = "\n",
         option: Option = Debug.sharedOption
     ) {
-        print(message: _prettyPrintDebug(label: label, targets, separator: separator, option: option))
+        log(message: _prettyPrintDebug(label: label, targets, separator: separator, option: option))
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
@@ -147,16 +147,15 @@ extension Debug {
 
     // MARK: - private
 
-    private static func print(message: String) {
-        if sharedOption.isConsoleUsed {
-            if #available(OSX 10.12, iOS 10.0, *) {
+    private static func log(message: String) {
+        #if canImport(Foundation)
+            if sharedOption.isConsoleUsed, #available(OSX 10.12, iOS 10.0, *) {
                 os_log("%@", type: .debug, message)
-            } else {
-                NSLog(message)
+                return
             }
-        } else {
-            print(message)
-        }
+        #endif
+
+        Swift.print(message)
     }
 
     private static func _print(
