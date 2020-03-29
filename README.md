@@ -238,6 +238,15 @@ Debug.p("array") >>> array
 // => [DEBUG] array: ["Hello", "World"]
 ```
 
+### Outputting in Console.app
+
+Applying `true` to `Option.isConsoleUsed` makes the output be shown in `Console.app`
+
+```swift
+Debug.sharedOption = Debug.Option(isConsoleUsed: true)
+```
+> ![Console.app Image](https://user-images.githubusercontent.com/14083051/77843347-376cb580-71d7-11ea-8d70-3318b91c2e89.png)
+
 ## Installation
 
 ### CocoaPods (Recommended)
