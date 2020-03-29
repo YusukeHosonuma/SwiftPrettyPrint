@@ -32,7 +32,7 @@ extension Debug {
         separator: String = " ",
         option: Option = Debug.sharedOption
     ) {
-        log(message: _print(label: label, targets, separator: separator, option: option))
+        output(message: _print(label: label, targets, separator: separator, option: option))
     }
 
     /// Output `targets` to `output`.
@@ -64,7 +64,7 @@ extension Debug {
         separator: String = "\n",
         option: Option = Debug.sharedOption
     ) {
-        log(message: _prettyPrint(label: label, targets, separator: separator, option: option))
+        output(message: _prettyPrint(label: label, targets, separator: separator, option: option))
     }
 
     /// Output pretty-formatted `targets` to console.
@@ -96,7 +96,7 @@ extension Debug {
         separator: String = " ",
         option: Option = Debug.sharedOption
     ) {
-        log(message: _printDebug(label: label, targets, separator: separator, option: option))
+        output(message: _printDebug(label: label, targets, separator: separator, option: option))
     }
 
     /// Output debuggable `targets` to console.
@@ -127,7 +127,7 @@ extension Debug {
         separator: String = "\n",
         option: Option = Debug.sharedOption
     ) {
-        log(message: _prettyPrintDebug(label: label, targets, separator: separator, option: option))
+        output(message: _prettyPrintDebug(label: label, targets, separator: separator, option: option))
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
@@ -148,7 +148,7 @@ extension Debug {
 
     // MARK: - private
 
-    private static func log(message: String) {
+    private static func output(message: String) {
         #if canImport(os)
             if sharedOption.isConsoleUsed, #available(OSX 10.14, iOS 12.0, *) {
                 os_log(.default, "%@", message)
