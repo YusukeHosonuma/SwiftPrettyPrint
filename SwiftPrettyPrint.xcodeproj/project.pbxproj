@@ -32,7 +32,7 @@
 		OBJ_119 /* PrettyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* PrettyFormatter.swift */; };
 		OBJ_120 /* SinglelineFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SinglelineFormatter.swift */; };
 		OBJ_121 /* PrettyDescriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* PrettyDescriber.swift */; };
-		OBJ_122 /* PrettyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* PrettyError.swift */; };
+		OBJ_122 /* PrettyDescriberError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* PrettyDescriberError.swift */; };
 		OBJ_123 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Util.swift */; };
 		OBJ_124 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* String+extension.swift */; };
 		OBJ_125 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Debug.swift */; };
@@ -98,7 +98,7 @@
 		OBJ_11 /* PrettyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFormatter.swift; sourceTree = "<group>"; };
 		OBJ_12 /* SinglelineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglelineFormatter.swift; sourceTree = "<group>"; };
 		OBJ_13 /* PrettyDescriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyDescriber.swift; sourceTree = "<group>"; };
-		OBJ_14 /* PrettyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyError.swift; sourceTree = "<group>"; };
+		OBJ_14 /* PrettyDescriberError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyDescriberError.swift; sourceTree = "<group>"; };
 		OBJ_15 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		OBJ_17 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		OBJ_19 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -391,7 +391,7 @@
 			children = (
 				OBJ_9 /* Formatter */,
 				OBJ_13 /* PrettyDescriber.swift */,
-				OBJ_14 /* PrettyError.swift */,
+				OBJ_14 /* PrettyDescriberError.swift */,
 				OBJ_15 /* Util.swift */,
 			);
 			path = Core;
@@ -569,7 +569,7 @@
 				OBJ_119 /* PrettyFormatter.swift in Sources */,
 				OBJ_120 /* SinglelineFormatter.swift in Sources */,
 				OBJ_121 /* PrettyDescriber.swift in Sources */,
-				OBJ_122 /* PrettyError.swift in Sources */,
+				OBJ_122 /* PrettyDescriberError.swift in Sources */,
 				OBJ_123 /* Util.swift in Sources */,
 				OBJ_124 /* String+extension.swift in Sources */,
 				OBJ_125 /* Debug.swift in Sources */,

@@ -113,7 +113,7 @@ struct PrettyDescriber {
             guard
                 let key = root.children.first?.value,
                 let value = root.children.dropFirst().first?.value else {
-                throw PrettyError.failedExtractKeyValue(dictionary: dictionary)
+                throw PrettyDescriberError.failedExtractKeyValue(dictionary: dictionary)
             }
 
             return (key, value)
@@ -197,7 +197,7 @@ struct PrettyDescriber {
             }
         } else {
             guard let index = "\(target)".firstIndex(of: "(") else {
-                throw PrettyError.unknownError(target: target)
+                throw PrettyDescriberError.unknownError(target: target)
             }
 
             let valueName = "\(target)"[..<index]
@@ -210,7 +210,7 @@ struct PrettyDescriber {
             }
 
             guard let childValue = mirror.children.first?.value else {
-                throw PrettyError.unknownError(target: target)
+                throw PrettyDescriberError.unknownError(target: target)
             }
 
             let body = string(childValue, debug: debug)
