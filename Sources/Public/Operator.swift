@@ -18,10 +18,10 @@
 // string.hasPrefix("Hello")
 //
 // // when use `print()` - needs enclose in parenthese
-// Debug.print(string.hasPrefix("Hello"))
+// Pretty.print(string.hasPrefix("Hello"))
 //
 // // when use `p` - not needs enclose in parenthese
-// Debug.p >>> string.hasPrefix("Hello")
+// Pretty.p >>> string.hasPrefix("Hello")
 // ```
 //
 // Also the operator `>>>` has lower precedence than all standard operators in Swift,
@@ -58,38 +58,38 @@ precedencegroup PrintPrecedence {
 
 infix operator >>>: PrintPrecedence
 
-// MARK: `Debug.p >>>`
+// MARK: `p >>>`
 
 public func >>> (_: (String) -> P, target: Any) {
-    Debug.print(target)
+    Pretty.print(target)
 }
 
 public func >>> (_: (String) -> PD, target: Any) {
-    Debug.printDebug(target)
+    Pretty.printDebug(target)
 }
 
 public func >>> (_: (String) -> PP, target: Any) {
-    Debug.prettyPrint(target)
+    Pretty.prettyPrint(target)
 }
 
 public func >>> (_: (String) -> PPD, target: Any) {
-    Debug.prettyPrintDebug(target)
+    Pretty.prettyPrintDebug(target)
 }
 
-// MARK: `Debug.p("xxx") >>>`
+// MARK: `p("xxx") >>>`
 
 public func >>> (receiver: P, target: Any) {
-    Debug.print(label: receiver.label, target)
+    Pretty.print(label: receiver.label, target)
 }
 
 public func >>> (receiver: PD, target: Any) {
-    Debug.printDebug(label: receiver.label, target)
+    Pretty.printDebug(label: receiver.label, target)
 }
 
 public func >>> (receiver: PP, target: Any) {
-    Debug.prettyPrint(label: receiver.label, target)
+    Pretty.prettyPrint(label: receiver.label, target)
 }
 
 public func >>> (receiver: PPD, target: Any) {
-    Debug.prettyPrintDebug(label: receiver.label, target)
+    Pretty.prettyPrintDebug(label: receiver.label, target)
 }

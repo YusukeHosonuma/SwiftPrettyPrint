@@ -1,5 +1,5 @@
 //
-//  PrettyError.swift
+//  PrettyDescriberError.swift
 //  SwiftPrettyPrint
 //
 //  Created by Yusuke Hosonuma on 2020/02/25.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum PrettyError: Error {
+enum PrettyDescriberError: Error {
     case notSupported(target: Any)
     case failedExtractKeyValue(dictionary: Any)
     case unknownError(target: Any)
 }
 
-extension PrettyError: LocalizedError {
+extension PrettyDescriberError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case let .notSupported(target: target):
@@ -34,7 +34,7 @@ extension PrettyError: LocalizedError {
     }
 }
 
-extension PrettyError: CustomStringConvertible {
+extension PrettyDescriberError: CustomStringConvertible {
     var description: String {
         switch self {
         case .notSupported:

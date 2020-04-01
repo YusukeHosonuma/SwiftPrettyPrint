@@ -1,5 +1,5 @@
 //
-// Debug.swift
+// Pretty.swift
 // SwiftPrettyPrint
 //
 // Created by Yusuke Hosonuma on 2020/02/27.
@@ -9,8 +9,7 @@
 #if canImport(os)
     import os.log
 #endif
-
-public class Debug {
+public class Pretty {
     /// Global format option
     public static var sharedOption: Option = .init()
 
@@ -19,18 +18,18 @@ public class Debug {
 
 // MARK: Standard API
 
-extension Debug {
+extension Pretty {
     /// Output `targets` to console.
     /// - Parameters:
     ///   - label: label
     ///   - targets: targets
     ///   - separator: A string to print between each item.
-    ///   - option: option (default: `Debug.sharedOption`)
+    ///   - option: option (default: `Pretty.sharedOption`)
     public static func print(
         label: String? = nil,
         _ targets: Any...,
         separator: String = " ",
-        option: Option = Debug.sharedOption
+        option: Option = Pretty.sharedOption
     ) {
         output(message: _print(label: label, targets, separator: separator, option: option))
     }
@@ -40,13 +39,13 @@ extension Debug {
     ///   - label: label
     ///   - target: targets
     ///   - separator: A string to print between each item.
-    ///   - option: option (default: `Debug.sharedOption`)
+    ///   - option: option (default: `Pretty.sharedOption`)
     ///   - output: output
     public static func print<Target: TextOutputStream>(
         label: String? = nil,
         _ targets: Any...,
         separator: String = " ",
-        option: Option = Debug.sharedOption,
+        option: Option = Pretty.sharedOption,
         to output: inout Target
     ) {
         Swift.print(_print(label: label, targets, separator: separator, option: option), to: &output)
@@ -57,12 +56,12 @@ extension Debug {
     ///   - label: label
     ///   - targets: targets
     ///   - separator: A string to print between each item.
-    ///   - option: option (default: `Debug.sharedOption`)
+    ///   - option: option (default: `Pretty.sharedOption`)
     public static func prettyPrint(
         label: String? = nil,
         _ targets: Any...,
         separator: String = "\n",
-        option: Option = Debug.sharedOption
+        option: Option = Pretty.sharedOption
     ) {
         output(message: _prettyPrint(label: label, targets, separator: separator, option: option))
     }
@@ -72,13 +71,13 @@ extension Debug {
     ///   - label: label
     ///   - targets: targets
     ///   - separator: A string to print between each item.
-    ///   - option: option (default: `Debug.sharedOption`)
+    ///   - option: option (default: `Pretty.sharedOption`)
     ///   - output: output
     public static func prettyPrint<Target: TextOutputStream>(
         label: String? = nil,
         _ targets: Any...,
         separator: String = "\n",
-        option: Option = Debug.sharedOption,
+        option: Option = Pretty.sharedOption,
         to output: inout Target
     ) {
         Swift.print(_prettyPrint(label: label, targets, separator: separator, option: option), to: &output)
@@ -89,12 +88,12 @@ extension Debug {
     ///   - label: label
     ///   - targets: targets
     ///   - separator: A string to print between each item.
-    ///   - option: option (default: `Debug.sharedOption`)
+    ///   - option: option (default: `Pretty.sharedOption`)
     public static func printDebug(
         label: String? = nil,
         _ targets: Any...,
         separator: String = " ",
-        option: Option = Debug.sharedOption
+        option: Option = Pretty.sharedOption
     ) {
         output(message: _printDebug(label: label, targets, separator: separator, option: option))
     }
@@ -104,13 +103,13 @@ extension Debug {
     ///   - label: label
     ///   - targets: targets
     ///   - separator: A string to print between each item.
-    ///   - option: option (default: `Debug.sharedOption`)
+    ///   - option: option (default: `Pretty.sharedOption`)
     ///   - output: output
     public static func printDebug<Target: TextOutputStream>(
         label: String? = nil,
         _ targets: Any...,
         separator: String = " ",
-        option: Option = Debug.sharedOption,
+        option: Option = Pretty.sharedOption,
         to output: inout Target
     ) {
         Swift.print(_printDebug(label: label, targets, separator: separator, option: option), to: &output)
@@ -120,12 +119,12 @@ extension Debug {
     /// - Parameters:
     ///   - targets: targets
     ///   - separator: A string to print between each item.
-    ///   - option: option (default: `Debug.sharedOption`)
+    ///   - option: option (default: `Pretty.sharedOption`)
     public static func prettyPrintDebug(
         label: String? = nil,
         _ targets: Any...,
         separator: String = "\n",
-        option: Option = Debug.sharedOption
+        option: Option = Pretty.sharedOption
     ) {
         output(message: _prettyPrintDebug(label: label, targets, separator: separator, option: option))
     }
@@ -134,13 +133,13 @@ extension Debug {
     /// - Parameters:
     ///   - targets: targets
     ///   - separator: A string to print between each item.
-    ///   - option: option (default: `Debug.sharedOption`)
+    ///   - option: option (default: `Pretty.sharedOption`)
     ///   - output: output
     public static func prettyPrintDebug<Target: TextOutputStream>(
         label: String? = nil,
         _ targets: Any...,
         separator: String = "\n",
-        option: Option = Debug.sharedOption,
+        option: Option = Pretty.sharedOption,
         to output: inout Target
     ) {
         Swift.print(_prettyPrintDebug(label: label, targets, separator: separator, option: option), to: &output)
@@ -167,7 +166,7 @@ extension Debug {
     ) -> String {
         prefixLabel(option.prefix, label) +
             targets.map {
-                Pretty(formatter: SinglelineFormatter()).string($0, debug: false)
+                PrettyDescriber(formatter: SinglelineFormatter()).string($0, debug: false)
             }.joined(separator: separator)
     }
 
@@ -179,7 +178,7 @@ extension Debug {
     ) -> String {
         prefixLabelPretty(option.prefix, label) +
             targets.map {
-                Pretty(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: false)
+                PrettyDescriber(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: false)
             }.joined(separator: separator)
     }
 
@@ -191,7 +190,7 @@ extension Debug {
     ) -> String {
         prefixLabel(option.prefix, label) +
             targets.map {
-                Pretty(formatter: SinglelineFormatter()).string($0, debug: true)
+                PrettyDescriber(formatter: SinglelineFormatter()).string($0, debug: true)
             }.joined(separator: separator)
     }
 
@@ -203,7 +202,7 @@ extension Debug {
     ) -> String {
         prefixLabelPretty(option.prefix, label) +
             targets.map {
-                Pretty(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: true)
+                PrettyDescriber(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: true)
             }.joined(separator: separator)
     }
 }

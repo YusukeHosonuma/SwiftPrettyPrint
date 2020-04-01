@@ -2,7 +2,7 @@ name: Release to CocoaPods
 
 on:
   release:
-    types: [prereleased]
+    types: [published]
 
 jobs:
   unit-test:

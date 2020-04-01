@@ -9,14 +9,14 @@
 
 ![Logo](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/logo.png)
 
-Pretty print that is **Human-readable output** than `print()` and `debugPrint()` in Swift standard library.
+SwiftPrettyPrint gives **Human-readable output** than `print()`, `debugPrint()` and `dump()` in Swift standard library.
 
 ![Screenshot](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/screenshot.png)
 
 ## Motivation 💪
 
-`print` and `debugPrint` is implemented by standard library of Swift.
-But both function is not readable output string to console sometime.
+The `print()`, `debugPrint()` and `dump()` are implemented in standard library of Swift.
+But these functions output are not readable sometime.
 
 For example, if you have the following types and value:
 
@@ -86,13 +86,10 @@ This output is enough information for debug, but **not human-readable**.
 With SwiftPrittyPrint it looks like this:
 
 ```swift
-Debug.print(value)
+Pretty.print(value)
 // Struct(array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: .foo(42), id: 7)
 
-Debug.printDebug(value)
-// Struct(array: [Optional(1), Optional(2), nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: Enum.foo(42), id: ID(id: 7))
-
-Debug.prettyPrint(value)
+Pretty.prettyPrint(value)
 // Struct(
 //     array: [
 //         1,
@@ -110,31 +107,12 @@ Debug.prettyPrint(value)
 //     enum: .foo(42),
 //     id: 7
 // )
-
-Debug.prettyPrintDebug(value)
-// Struct(
-//     array: [
-//         Optional(1),
-//         Optional(2),
-//         nil
-//     ],
-//     dictionary: [
-//         "one": 1,
-//         "two": 2
-//     ],
-//     tuple: (
-//         1,
-//         string: "string"
-//     ),
-//     enum: Enum.foo(42),
-//     id: ID(id: 7)
-// )
 ```
 
 Of cource, it can also be used with **LLDB**.
 
 ```text
-(lldb) e Debug.prettyPrint(value)
+(lldb) e Pretty.prettyPrint(value)
 Struct(
     array: [
         1,
@@ -154,6 +132,48 @@ Struct(
 )
 ```
 
+## API
+
+SwiftPrettyPrint has four basic functions as follows:
+
+- `print(label: String?, _ targets: Any..., separator: String, option: Pretty.Option)`
+  - print in **one-line**.
+- `prettyPrint(label: String?, _ targets: Any..., separator: String, option: Pretty.Option)`
+  - print in **multiline**.
+- `printDebug(label: String?, _ targets: Any..., separator: String, option: Pretty.Option)`
+  - print in **one-line** with **type-information**.
+- `prettyPrintDebug(label: String?, _ targets: Any..., separator: String, option: Pretty.Option)`
+  - print in **multiline** with **type-information**.
+
+The only required argument is `targets`, it can usually be described as follows.
+
+```swift
+let array: [URL?] = [
+    URL(string: "https://github.com/YusukeHosonuma/SwiftPrettyPrint"),
+    nil
+]
+
+Pretty.print(array)
+// => [https://github.com/YusukeHosonuma/SwiftPrettyPrint, nil]
+
+Pretty.prettyPrint(array)
+// =>
+// [
+//     https://github.com/YusukeHosonuma/SwiftPrettyPrint,
+//     nil
+// ]
+
+Pretty.printDebug(array)
+// => [Optional(URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")), nil]
+
+Pretty.prettyPrintDebug(array)
+// =>
+// [
+//     Optional(URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")),
+//     nil
+// ]
+```
+
 ## Operator-based API
 
 You can use operator based alias API that like Ruby.
@@ -164,8 +184,8 @@ This is no need to enclose in parenthese that convenient to long expression.
 p >>> 42
 // => 42
 
-p >>> 42 + 1 // It can also be applied to expression
-// => 43
+p >>> 42 + 2 * 4 // It can also be applied to expression
+// => 50
 
 p >>> String(string.reversed()).hasSuffix("eH")
 // => true
@@ -180,10 +200,10 @@ pp >>> ["Hello", "World"]
 
 | Operator syntax | Equatable to                 |
 |-----------------|------------------------------|
-| `p >>> 42`      | `Debug.print(42)`            |
-| `pp >>> 42`     | `Debug.prettyPrint(42)`      |
-| `pd >>> 42`     | `Debug.printDebug(42)`       |
-| `ppd >>> 42`    | `Debug.prettyPrintDebug(42)` |
+| `p >>> 42`      | `Pretty.print(42)`            |
+| `pp >>> 42`     | `Pretty.prettyPrint(42)`      |
+| `pd >>> 42`     | `Pretty.printDebug(42)`       |
+| `ppd >>> 42`    | `Pretty.prettyPrintDebug(42)` |
 
 ## Format options
 
@@ -195,23 +215,31 @@ You can specify indent size in pretty-print as like following:
 
 ```swift
 // Global option
-Debug.sharedOption = Debug.Option(indentSize: 4)
+Pretty.sharedOption = Pretty.Option(indentSize: 4)
+
+let value = (bool: true, array: ["Hello", "World"])
 
 // Use `sharedOption`
-Debug.prettyPrint(["Hello", "World"])
+Pretty.prettyPrint(value)
 // =>
-// [
-//     "Hello",
-//     "World"
-// ]
+// (
+//     bool: true,
+//     array: [
+//         "Hello",
+//         "World"
+//     ]
+// )
 
 // Use option that is passed by argument
-Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indentSize: 2))
+Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 // =>
-// [
-//   "Hello",
-//   "World"
-// ]
+// (
+//   bool: true,
+//   array: [
+//     "Hello",
+//     "World"
+//   ]
+// )
 ```
 
 ### Prefix and Label
@@ -219,22 +247,14 @@ Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indentSi
 You can specify global prefix and label (e.g. variable name) as like following:
 
 ```swift
-Debug.sharedOption = Debug.Option(prefix: "[DEBUG]")
+Pretty.sharedOption = Pretty.Option(prefix: "[DEBUG]")
 
 let array = ["Hello", "World"]
 
-Debug.print(label: "array", array)
+Pretty.print(label: "array", array)
 // => [DEBUG] array: ["Hello", "World"]
 
-Debug.prettyPrint(label: "array", array)
-// =>
-// [DEBUG] array:
-// [
-//     "Hello",
-//     "World"
-// ]
-
-Debug.p("array") >>> array
+Pretty.p("array") >>> array
 // => [DEBUG] array: ["Hello", "World"]
 ```
 
@@ -252,7 +272,7 @@ Debug.sharedOption = Debug.Option(isConsoleUsed: true)
 ### CocoaPods (Recommended)
 
 ```ruby
-pod "SwiftPrettyPrint", :configuration => "Debug" # enabled on `Debug` build only
+pod "SwiftPrettyPrint", "~> 1.0.0", :configuration => "Debug" # enabled on `Debug` build only
 ```
 
 Example app is in [Example](./Example).
@@ -266,9 +286,7 @@ github "YusukeHosonuma/SwiftPrettyPrint"
 ### Swift Package Manager
 
 ```swift
-dependencies: [
-    .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", from: "0.0.3"),
-]
+.package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0"))
 ```
 
 or add from Xcode 10+.
@@ -277,41 +295,26 @@ or add from Xcode 10+.
 
 You don't want to write an `import` statement when debagging.
 
-We recommend to create `Debug.swift` and write as following:
+We recommend to create `Debug.swift` and declaration any type as `typealias` like following:
 
 ```swift
+// Debug.swift
 #if canImport(SwiftPrettyPrint)
     import SwiftPrettyPrint
-    typealias Debug = SwiftPrettyPrint.Debug // You can use short alias such as `D` too.
+    typealias Debug = SwiftPrettyPrint.Pretty // You can use short alias such as `D` too.
 #endif
 ```
 
-or
-
-```swift
-#if canImport(SwiftPrettyPrint)
-    @_exported import SwiftPrettyPrint // Note: `@_exported` is not official
-#endif
-```
 This can be not need to write `import` in each sources.
 
-## Xcode Code Snippets
-
-![Xcode Code Snippets](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/xcode-snippet.gif)
-
-Copy `.codesnippet` files to the following directory from [.xcode](.xcode) directory:
-
-```text
-~/Library/Developer/Xcode/UserData/CodeSnippets/
+```swift
+// AnySource.swift
+Debug.print(42)
+Debug.prettyPrint(label: "array", array)
 ```
 
-and restart Xcode.
-
-Or run the following command from the root of the repository:
-
-```text
-$ make snippets
-```
+Note:
+This is can't use to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
 
 ## Develoopment
 

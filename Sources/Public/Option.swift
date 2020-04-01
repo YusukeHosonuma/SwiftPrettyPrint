@@ -6,7 +6,7 @@
 // Copyright (c) 2020 Yusuke Hosonuma.
 //
 
-extension Debug {
+extension Pretty {
     public struct Option {
         public var prefix: String?
         public var indentSize: Int
