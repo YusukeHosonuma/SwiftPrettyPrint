@@ -136,7 +136,7 @@ Struct(
 
 SwiftPrettyPrint has four basic functions as follows:
 
-- `Pretty.print(label: String? = nil,_ targets: Any..., separator: String = " ", option: Option = Pretty.sharedOption)`
+- `Pretty.print(label: String? = nil, _ targets: Any..., separator: String = " ", option: Option = Pretty.sharedOption)`
   - print in **one-line**.
 - `Pretty.prettyPrint(label: String? = nil, _ targets: Any..., separator: String = "\n", option: Option = Pretty.sharedOption)`
   - print in **multiline**.
