@@ -9,7 +9,7 @@ import XCTest
 import SwiftPrettyPrint
 
 class OptionTests: XCTestCase {
-    let helper = DebugHelper(option: Debug.Option(prefix: "<DEBUG>", indentSize: 2))
+    let helper = DebugHelper(option: Pretty.Option(prefix: "<DEBUG>", indentSize: 2))
     
     override func setUp() {}
 

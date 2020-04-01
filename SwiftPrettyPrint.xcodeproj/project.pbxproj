@@ -35,7 +35,7 @@
 		OBJ_122 /* PrettyDescriberError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* PrettyDescriberError.swift */; };
 		OBJ_123 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Util.swift */; };
 		OBJ_124 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* String+extension.swift */; };
-		OBJ_125 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Debug.swift */; };
+		OBJ_125 /* Pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Pretty.swift */; };
 		OBJ_126 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Operator.swift */; };
 		OBJ_127 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Option.swift */; };
 		OBJ_134 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
@@ -101,7 +101,7 @@
 		OBJ_14 /* PrettyDescriberError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyDescriberError.swift; sourceTree = "<group>"; };
 		OBJ_15 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		OBJ_17 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
-		OBJ_19 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		OBJ_19 /* Pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretty.swift; sourceTree = "<group>"; };
 		OBJ_20 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		OBJ_21 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		OBJ_26 /* MultilineFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatterTests.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		OBJ_18 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_19 /* Debug.swift */,
+				OBJ_19 /* Pretty.swift */,
 				OBJ_20 /* Operator.swift */,
 				OBJ_21 /* Option.swift */,
 			);
@@ -572,7 +572,7 @@
 				OBJ_122 /* PrettyDescriberError.swift in Sources */,
 				OBJ_123 /* Util.swift in Sources */,
 				OBJ_124 /* String+extension.swift in Sources */,
-				OBJ_125 /* Debug.swift in Sources */,
+				OBJ_125 /* Pretty.swift in Sources */,
 				OBJ_126 /* Operator.swift in Sources */,
 				OBJ_127 /* Option.swift in Sources */,
 			);

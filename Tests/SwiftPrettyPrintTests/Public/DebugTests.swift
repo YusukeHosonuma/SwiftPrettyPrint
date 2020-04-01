@@ -10,7 +10,7 @@ import SwiftPrettyPrint // Note: don't use `@testable`, because test to public A
 import XCTest
 
 class DebugTests: XCTestCase {
-    let helper = DebugHelper(option: Debug.Option(prefix: "[DEBUG]", indentSize: 4))
+    let helper = DebugHelper(option: Pretty.Option(prefix: "[DEBUG]", indentSize: 4))
 
     override func setUp() {}
     override func tearDown() {}
@@ -208,15 +208,15 @@ class DebugTests: XCTestCase {
         //
 
         var result = ""
-        Debug.print(array, 42, to: &result)
+        Pretty.print(array, 42, to: &result)
         XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
 
         result = ""
-        Debug.printDebug(array, 42, to: &result)
+        Pretty.printDebug(array, 42, to: &result)
         XCTAssertEqual(result, #"["Hello", "World"] 42"# + "\n")
 
         result = ""
-        Debug.prettyPrint(array, 42, to: &result)
+        Pretty.prettyPrint(array, 42, to: &result)
         XCTAssertEqual(result, """
             [
                 "Hello",
@@ -226,7 +226,7 @@ class DebugTests: XCTestCase {
             """ + "\n")
 
         result = ""
-        Debug.prettyPrintDebug(array, 42, to: &result)
+        Pretty.prettyPrintDebug(array, 42, to: &result)
         XCTAssertEqual(result, """
             [
                 "Hello",
@@ -240,15 +240,15 @@ class DebugTests: XCTestCase {
         //
 
         result = ""
-        Debug.print(array, 42, separator: "!!", to: &result)
+        Pretty.print(array, 42, separator: "!!", to: &result)
         XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
 
         result = ""
-        Debug.printDebug(array, 42, separator: "!!", to: &result)
+        Pretty.printDebug(array, 42, separator: "!!", to: &result)
         XCTAssertEqual(result, #"["Hello", "World"]!!42"# + "\n")
 
         result = ""
-        Debug.prettyPrint(array, 42, separator: "!!\n", to: &result)
+        Pretty.prettyPrint(array, 42, separator: "!!\n", to: &result)
         XCTAssertEqual(result, """
             [
                 "Hello",
@@ -258,7 +258,7 @@ class DebugTests: XCTestCase {
             """ + "\n")
 
         result = ""
-        Debug.prettyPrintDebug(array, 42, separator: "!!\n", to: &result)
+        Pretty.prettyPrintDebug(array, 42, separator: "!!\n", to: &result)
         XCTAssertEqual(result, """
             [
                 "Hello",
