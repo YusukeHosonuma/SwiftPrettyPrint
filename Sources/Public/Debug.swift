@@ -155,7 +155,7 @@ extension Debug {
     ) -> String {
         prefixLabel(option.prefix, label) +
             targets.map {
-                Pretty(formatter: SinglelineFormatter()).string($0, debug: false)
+                PrettyDescriber(formatter: SinglelineFormatter()).string($0, debug: false)
             }.joined(separator: separator)
     }
 
@@ -167,7 +167,7 @@ extension Debug {
     ) -> String {
         prefixLabelPretty(option.prefix, label) +
             targets.map {
-                Pretty(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: false)
+                PrettyDescriber(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: false)
             }.joined(separator: separator)
     }
 
@@ -179,7 +179,7 @@ extension Debug {
     ) -> String {
         prefixLabel(option.prefix, label) +
             targets.map {
-                Pretty(formatter: SinglelineFormatter()).string($0, debug: true)
+                PrettyDescriber(formatter: SinglelineFormatter()).string($0, debug: true)
             }.joined(separator: separator)
     }
 
@@ -191,7 +191,7 @@ extension Debug {
     ) -> String {
         prefixLabelPretty(option.prefix, label) +
             targets.map {
-                Pretty(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: true)
+                PrettyDescriber(formatter: MultilineFormatter(indentSize: option.indentSize)).string($0, debug: true)
             }.joined(separator: separator)
     }
 }
