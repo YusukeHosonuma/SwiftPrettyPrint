@@ -148,9 +148,9 @@ extension Debug {
 
     // MARK: - private
 
-    private static func output(message: String) {
+    private static func output(message: String, option: Option = sharedOption) {
         #if canImport(os)
-            if sharedOption.isConsoleUsed, #available(OSX 10.14, iOS 12.0, *) {
+            if option.outputDestination == .consoleApp, #available(OSX 10.14, iOS 12.0, *) {
                 os_log(.default, "%@", message)
                 return
             }

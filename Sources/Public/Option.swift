@@ -10,12 +10,20 @@ extension Debug {
     public struct Option {
         public var prefix: String?
         public var indentSize: Int
-        public var isConsoleUsed: Bool
+        public var outputDestination: OutputDestination
 
-        public init(prefix: String? = nil, indentSize: Int = 4, isConsoleUsed: Bool = false) {
+        public init(prefix: String? = nil, indentSize: Int = 4, outputDestination: OutputDestination = .xcodeDebugConsole) {
             self.prefix = prefix
             self.indentSize = indentSize
-            self.isConsoleUsed = isConsoleUsed
+            self.outputDestination = outputDestination
+        }
+
+        public enum OutputDestination {
+            /// using os.log
+            case consoleApp
+
+            /// using print
+            case xcodeDebugConsole
         }
     }
 }
