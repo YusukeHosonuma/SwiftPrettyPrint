@@ -136,13 +136,13 @@ Struct(
 
 SwiftPrettyPrint has four basic functions as follows:
 
-- `Pretty.print(label: String? = nil, _ targets: Any..., separator: String = " ", option: Option = Pretty.sharedOption)`
+- `print(label: String?, _ targets: Any..., separator: String, option: Pretty.Option)`
   - print in **one-line**.
-- `Pretty.prettyPrint(label: String? = nil, _ targets: Any..., separator: String = "\n", option: Option = Pretty.sharedOption)`
+- `prettyPrint(label: String?, _ targets: Any..., separator: String, option: Pretty.Option)`
   - print in **multiline**.
-- `Pretty.printDebug(label: String? = nil, _ targets: Any..., separator: String = " ", option: Option = Pretty.sharedOption)`
+- `printDebug(label: String?, _ targets: Any..., separator: String, option: Pretty.Option)`
   - print in **one-line** with **type-information**.
-- `Pretty.prettyPrintDebug(label: String? = nil, _ targets: Any..., separator: String = "\n", option: Option = Pretty.sharedOption)`
+- `prettyPrintDebug(label: String?, _ targets: Any..., separator: String, option: Pretty.Option)`
   - print in **multiline** with **type-information**.
 
 The only required argument is `targets`, it can usually be described as follows.
