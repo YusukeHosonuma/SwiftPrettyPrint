@@ -289,24 +289,6 @@ Debug.prettyPrint(label: "array", array)
 Note:
 This is can't use to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
 
-## Xcode Code Snippets
-
-![Xcode Code Snippets](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/xcode-snippet.gif)
-
-Copy `.codesnippet` files to the following directory from [.xcode](.xcode) directory:
-
-```text
-~/Library/Developer/Xcode/UserData/CodeSnippets/
-```
-
-and restart Xcode.
-
-Or run the following command from the root of the repository:
-
-```text
-$ make snippets
-```
-
 ## Develoopment
 
 Require:
