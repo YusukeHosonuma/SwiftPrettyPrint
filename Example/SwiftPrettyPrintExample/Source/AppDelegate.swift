@@ -6,7 +6,6 @@
 // Copyright (c) 2020 Yusuke Hosonuma.
 //
 
-import SwiftPrettyPrint
 import UIKit
 
 @UIApplicationMain
