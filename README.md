@@ -86,13 +86,13 @@ This output is enough information for debug, but **not human-readable**.
 With SwiftPrittyPrint it looks like this:
 
 ```swift
-Debug.print(value)
+Pretty.print(value)
 // Struct(array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: .foo(42), id: 7)
 
-Debug.printDebug(value)
+Pretty.printDebug(value)
 // Struct(array: [Optional(1), Optional(2), nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: Enum.foo(42), id: ID(id: 7))
 
-Debug.prettyPrint(value)
+Pretty.prettyPrint(value)
 // Struct(
 //     array: [
 //         1,
@@ -111,7 +111,7 @@ Debug.prettyPrint(value)
 //     id: 7
 // )
 
-Debug.prettyPrintDebug(value)
+Pretty.prettyPrintDebug(value)
 // Struct(
 //     array: [
 //         Optional(1),
@@ -134,7 +134,7 @@ Debug.prettyPrintDebug(value)
 Of cource, it can also be used with **LLDB**.
 
 ```text
-(lldb) e Debug.prettyPrint(value)
+(lldb) e Pretty.prettyPrint(value)
 Struct(
     array: [
         1,
@@ -180,10 +180,10 @@ pp >>> ["Hello", "World"]
 
 | Operator syntax | Equatable to                 |
 |-----------------|------------------------------|
-| `p >>> 42`      | `Debug.print(42)`            |
-| `pp >>> 42`     | `Debug.prettyPrint(42)`      |
-| `pd >>> 42`     | `Debug.printDebug(42)`       |
-| `ppd >>> 42`    | `Debug.prettyPrintDebug(42)` |
+| `p >>> 42`      | `Pretty.print(42)`            |
+| `pp >>> 42`     | `Pretty.prettyPrint(42)`      |
+| `pd >>> 42`     | `Pretty.printDebug(42)`       |
+| `ppd >>> 42`    | `Pretty.prettyPrintDebug(42)` |
 
 ## Format options
 
@@ -195,10 +195,10 @@ You can specify indent size in pretty-print as like following:
 
 ```swift
 // Global option
-Debug.sharedOption = Debug.Option(prefix: nil, indentSize: 4)
+Pretty.sharedOption = Pretty.Option(prefix: nil, indentSize: 4)
 
 // Use `sharedOption`
-Debug.prettyPrint(["Hello", "World"])
+Pretty.prettyPrint(["Hello", "World"])
 // =>
 // [
 //     "Hello",
@@ -206,7 +206,7 @@ Debug.prettyPrint(["Hello", "World"])
 // ]
 
 // Use option that is passed by argument
-Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indentSize: 2))
+Pretty.prettyPrint(["Hello", "World"], option: Pretty.Option(prefix: nil, indentSize: 2))
 // =>
 // [
 //   "Hello",
@@ -219,14 +219,14 @@ Debug.prettyPrint(["Hello", "World"], option: Debug.Option(prefix: nil, indentSi
 You can specify global prefix and label (e.g. variable name) as like following:
 
 ```swift
-Debug.sharedOption = Debug.Option(prefix: "[DEBUG]", indentSize: 4)
+Pretty.sharedOption = Pretty.Option(prefix: "[DEBUG]", indentSize: 4)
 
 let array = ["Hello", "World"]
 
-Debug.print(label: "array", array)
+Pretty.print(label: "array", array)
 // => [DEBUG] array: ["Hello", "World"]
 
-Debug.prettyPrint(label: "array", array)
+Pretty.prettyPrint(label: "array", array)
 // =>
 // [DEBUG] array:
 // [
@@ -234,7 +234,7 @@ Debug.prettyPrint(label: "array", array)
 //     "World"
 // ]
 
-Debug.p("array") >>> array
+Pretty.p("array") >>> array
 // => [DEBUG] array: ["Hello", "World"]
 ```
 
@@ -268,23 +268,26 @@ or add from Xcode 10+.
 
 You don't want to write an `import` statement when debagging.
 
-We recommend to create `Debug.swift` and write as following:
+We recommend to create `Debug.swift` and declaration any type as `typealias` like following:
 
 ```swift
+// Debug.swifts
 #if canImport(SwiftPrettyPrint)
     import SwiftPrettyPrint
-    typealias Debug = SwiftPrettyPrint.Debug // You can use short alias such as `D` too.
+    typealias Debug = SwiftPrettyPrint.Pretty // You can use short alias such as `D` too.
 #endif
 ```
 
-or
+This can be not need to write `import` in each sources.
 
 ```swift
-#if canImport(SwiftPrettyPrint)
-    @_exported import SwiftPrettyPrint // Note: `@_exported` is not official
-#endif
+// AnySource.swift
+Debug.print(42)
+Debug.prettyPrint(label: "array", array)
 ```
-This can be not need to write `import` in each sources.
+
+Note:
+This is can't use to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
 
 ## Xcode Code Snippets
 

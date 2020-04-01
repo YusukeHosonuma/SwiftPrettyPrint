@@ -213,7 +213,7 @@ class MultilineFormatterTests: XCTestCase {
     
     // MARK: - Helper
         
-    private func option(indent: Int) -> Debug.Option {
-        Debug.Option(prefix: "", indentSize: indent)
+    private func option(indent: Int) -> Pretty.Option {
+        Pretty.Option(prefix: "", indentSize: indent)
     }
 }

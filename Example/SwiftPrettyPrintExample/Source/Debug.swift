@@ -12,5 +12,5 @@
 
 #if canImport(SwiftPrettyPrint)
     import SwiftPrettyPrint
-    typealias Debug = SwiftPrettyPrint.Debug
+    typealias Debug = SwiftPrettyPrint.Pretty
 #endif
