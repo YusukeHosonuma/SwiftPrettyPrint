@@ -271,7 +271,7 @@ You don't want to write an `import` statement when debagging.
 We recommend to create `Debug.swift` and declaration any type as `typealias` like following:
 
 ```swift
-// Debug.swifts
+// Debug.swift
 #if canImport(SwiftPrettyPrint)
     import SwiftPrettyPrint
     typealias Debug = SwiftPrettyPrint.Pretty // You can use short alias such as `D` too.
