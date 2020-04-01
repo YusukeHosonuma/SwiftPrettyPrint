@@ -9,14 +9,14 @@
 
 ![Logo](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/logo.png)
 
-Pretty print that is **Human-readable output** than `print()` and `debugPrint()` in Swift standard library.
+SwiftPrettyPrint gives **Human-readable output** than `print()`, `debugPrint()` and `dump()` in Swift standard library.
 
 ![Screenshot](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/screenshot.png)
 
 ## Motivation 💪
 
-`print` and `debugPrint` is implemented by standard library of Swift.
-But both function is not readable output string to console sometime.
+The `print()`, `debugPrint()` and `dump()` are implemented in standard library of Swift.
+But these functions output are not readable sometime.
 
 For example, if you have the following types and value:
 
@@ -89,9 +89,6 @@ With SwiftPrittyPrint it looks like this:
 Pretty.print(value)
 // Struct(array: [1, 2, nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: .foo(42), id: 7)
 
-Pretty.printDebug(value)
-// Struct(array: [Optional(1), Optional(2), nil], dictionary: ["one": 1, "two": 2], tuple: (1, string: "string"), enum: Enum.foo(42), id: ID(id: 7))
-
 Pretty.prettyPrint(value)
 // Struct(
 //     array: [
@@ -109,25 +106,6 @@ Pretty.prettyPrint(value)
 //     ),
 //     enum: .foo(42),
 //     id: 7
-// )
-
-Pretty.prettyPrintDebug(value)
-// Struct(
-//     array: [
-//         Optional(1),
-//         Optional(2),
-//         nil
-//     ],
-//     dictionary: [
-//         "one": 1,
-//         "two": 2
-//     ],
-//     tuple: (
-//         1,
-//         string: "string"
-//     ),
-//     enum: Enum.foo(42),
-//     id: ID(id: 7)
 // )
 ```
 
@@ -154,6 +132,48 @@ Struct(
 )
 ```
 
+## API
+
+SwiftPrettyPrint has four basic functions as follows:
+
+- `Pretty.print(label: String? = nil, _ targets: Any..., separator: String = " ", option: Option = Pretty.sharedOption)`
+  - print in **one-line**.
+- `Pretty.prettyPrint(label: String? = nil, _ targets: Any..., separator: String = "\n", option: Option = Pretty.sharedOption)`
+  - print in **multiline**.
+- `Pretty.printDebug(label: String? = nil, _ targets: Any..., separator: String = " ", option: Option = Pretty.sharedOption)`
+  - print in **one-line** with **type-information**.
+- `Pretty.prettyPrintDebug(label: String? = nil, _ targets: Any..., separator: String = "\n", option: Option = Pretty.sharedOption)`
+  - print in **multiline** with **type-information**.
+
+The only required argument is `targets`, it can usually be described as follows.
+
+```swift
+let array: [URL?] = [
+    URL(string: "https://github.com/YusukeHosonuma/SwiftPrettyPrint"),
+    nil
+]
+
+Pretty.print(array)
+// => [https://github.com/YusukeHosonuma/SwiftPrettyPrint, nil]
+
+Pretty.prettyPrint(array)
+// =>
+// [
+//     https://github.com/YusukeHosonuma/SwiftPrettyPrint,
+//     nil
+// ]
+
+Pretty.printDebug(array)
+// => [Optional(URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")), nil]
+
+Pretty.prettyPrintDebug(array)
+// =>
+// [
+//     Optional(URL("https://github.com/YusukeHosonuma/SwiftPrettyPrint")),
+//     nil
+// ]
+```
+
 ## Operator-based API
 
 You can use operator based alias API that like Ruby.
@@ -164,8 +184,8 @@ This is no need to enclose in parenthese that convenient to long expression.
 p >>> 42
 // => 42
 
-p >>> 42 + 1 // It can also be applied to expression
-// => 43
+p >>> 42 + 2 * 4 // It can also be applied to expression
+// => 50
 
 p >>> String(string.reversed()).hasSuffix("eH")
 // => true
@@ -197,21 +217,29 @@ You can specify indent size in pretty-print as like following:
 // Global option
 Pretty.sharedOption = Pretty.Option(prefix: nil, indentSize: 4)
 
+let value = (bool: true, array: ["Hello", "World"])
+
 // Use `sharedOption`
-Pretty.prettyPrint(["Hello", "World"])
+Pretty.prettyPrint(value)
 // =>
-// [
-//     "Hello",
-//     "World"
-// ]
+// (
+//     bool: true,
+//     array: [
+//         "Hello",
+//         "World"
+//     ]
+// )
 
 // Use option that is passed by argument
-Pretty.prettyPrint(["Hello", "World"], option: Pretty.Option(prefix: nil, indentSize: 2))
+Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 // =>
-// [
-//   "Hello",
-//   "World"
-// ]
+// (
+//   bool: true,
+//   array: [
+//     "Hello",
+//     "World"
+//   ]
+// )
 ```
 
 ### Prefix and Label
@@ -226,14 +254,6 @@ let array = ["Hello", "World"]
 Pretty.print(label: "array", array)
 // => [DEBUG] array: ["Hello", "World"]
 
-Pretty.prettyPrint(label: "array", array)
-// =>
-// [DEBUG] array:
-// [
-//     "Hello",
-//     "World"
-// ]
-
 Pretty.p("array") >>> array
 // => [DEBUG] array: ["Hello", "World"]
 ```
@@ -243,7 +263,7 @@ Pretty.p("array") >>> array
 ### CocoaPods (Recommended)
 
 ```ruby
-pod "SwiftPrettyPrint", :configuration => "Debug" # enabled on `Debug` build only
+pod "SwiftPrettyPrint", "~> 1.0.0", :configuration => "Debug" # enabled on `Debug` build only
 ```
 
 Example app is in [Example](./Example).
@@ -257,9 +277,7 @@ github "YusukeHosonuma/SwiftPrettyPrint"
 ### Swift Package Manager
 
 ```swift
-dependencies: [
-    .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", from: "0.0.3"),
-]
+.package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0"))
 ```
 
 or add from Xcode 10+.
