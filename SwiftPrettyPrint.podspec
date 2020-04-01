@@ -1,4 +1,4 @@
-VERSION = "0.0.6"
+VERSION = "0.0.7"
 
 Pod::Spec.new do |spec|
   spec.name         = "SwiftPrettyPrint"
