@@ -31,7 +31,7 @@ extension Pretty {
         separator: String = " ",
         option: Option = Pretty.sharedOption
     ) {
-        output(message: _print(label: label, targets, separator: separator, option: option))
+        output(message: _print(label: label, targets, separator: separator, option: option), option: option)
     }
 
     /// Output `targets` to `output`.
@@ -63,7 +63,7 @@ extension Pretty {
         separator: String = "\n",
         option: Option = Pretty.sharedOption
     ) {
-        output(message: _prettyPrint(label: label, targets, separator: separator, option: option))
+        output(message: _prettyPrint(label: label, targets, separator: separator, option: option), option: option)
     }
 
     /// Output pretty-formatted `targets` to console.
@@ -95,7 +95,7 @@ extension Pretty {
         separator: String = " ",
         option: Option = Pretty.sharedOption
     ) {
-        output(message: _printDebug(label: label, targets, separator: separator, option: option))
+        output(message: _printDebug(label: label, targets, separator: separator, option: option), option: option)
     }
 
     /// Output debuggable `targets` to console.
@@ -126,7 +126,7 @@ extension Pretty {
         separator: String = "\n",
         option: Option = Pretty.sharedOption
     ) {
-        output(message: _prettyPrintDebug(label: label, targets, separator: separator, option: option))
+        output(message: _prettyPrintDebug(label: label, targets, separator: separator, option: option), option: option)
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
@@ -147,9 +147,9 @@ extension Pretty {
 
     // MARK: - private
 
-    private static func output(message: String, option: Option = sharedOption) {
+    private static func output(message: String, option: Option) {
         #if canImport(os)
-            if option.outputDestination == .consoleApp, #available(OSX 10.14, iOS 12.0, *) {
+            if option.outputDestination == .osLog, #available(OSX 10.14, iOS 12.0, *) {
                 os_log(.default, "%@", message)
                 return
             }
