@@ -2,6 +2,8 @@ name: Bump version
 
 on:
   push:
+    branches:
+      - master
     paths:
       - version.txt
 
