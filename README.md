@@ -272,7 +272,7 @@ Debug.sharedOption = Debug.Option(outputDestination: .consoleApp)
 let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
 
 Debug.print(dog)
-// => 2020-04-02 11:51:10.766231+0900 SwiftPrettyPrintExample[41397:2843004] 🍎 Dog(id: "pochi", price: 10.0, name: "ポチ")
+// => 2020-04-02 11:51:10.766231+0900 SwiftPrettyPrintExample[41397:2843004] Dog(id: "pochi", price: 10.0, name: "ポチ")
 ```
 
 ## Installation
