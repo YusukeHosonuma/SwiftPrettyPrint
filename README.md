@@ -215,7 +215,7 @@ You can specify indent size in pretty-print as like following:
 
 ```swift
 // Global option
-Pretty.sharedOption = Pretty.Option(prefix: nil, indentSize: 4)
+Pretty.sharedOption = Pretty.Option(indentSize: 4)
 
 let value = (bool: true, array: ["Hello", "World"])
 
@@ -247,7 +247,7 @@ Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 You can specify global prefix and label (e.g. variable name) as like following:
 
 ```swift
-Pretty.sharedOption = Pretty.Option(prefix: "[DEBUG]", indentSize: 4)
+Pretty.sharedOption = Pretty.Option(prefix: "[DEBUG]")
 
 let array = ["Hello", "World"]
 
@@ -256,6 +256,23 @@ Pretty.print(label: "array", array)
 
 Pretty.p("array") >>> array
 // => [DEBUG] array: ["Hello", "World"]
+```
+
+### Outputting in Console.app
+
+Applying `.osLog` to `Option.outputStrategy` makes the output be shown in `Console.app`
+
+> ![Console.app Image](https://user-images.githubusercontent.com/14083051/77843347-376cb580-71d7-11ea-8d70-3318b91c2e89.png)
+
+The output in xcode-debug-console will be the following.  
+
+```swift
+Debug.sharedOption = Debug.Option(outputStrategy: .osLog)
+
+let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
+
+Debug.print(dog)
+// => 2020-04-02 11:51:10.766231+0900 SwiftPrettyPrintExample[41397:2843004] Dog(id: "pochi", price: 10.0, name: "ポチ")
 ```
 
 ## Installation
