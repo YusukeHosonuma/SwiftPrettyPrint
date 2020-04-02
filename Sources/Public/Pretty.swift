@@ -150,7 +150,7 @@ extension Pretty {
 
     private static func output(message: String, option: Option) {
         #if canImport(os)
-            if option.outputDestination == .osLog, #available(OSX 10.14, iOS 12.0, *) {
+            if option.outputStrategy == .osLog, #available(OSX 10.14, iOS 12.0, *) {
                 os_log(.default, "%@", message)
                 return
             }

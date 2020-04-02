@@ -10,12 +10,12 @@ extension Pretty {
     public struct Option {
         public var prefix: String?
         public var indentSize: Int
-        public var outputDestination: OutputStrategy
+        public var outputStrategy: OutputStrategy
 
-        public init(prefix: String? = nil, indentSize: Int = 4, outputDestination: OutputStrategy = .print) {
+        public init(prefix: String? = nil, indentSize: Int = 4, outputStrategy: OutputStrategy = .print) {
             self.prefix = prefix
             self.indentSize = indentSize
-            self.outputDestination = outputDestination
+            self.outputStrategy = outputStrategy
         }
 
         public enum OutputStrategy {
