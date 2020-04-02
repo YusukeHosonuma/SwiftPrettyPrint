@@ -9,6 +9,7 @@
 #if canImport(os)
     import os.log
 #endif
+
 public class Pretty {
     /// Global format option
     public static var sharedOption: Option = .init()
