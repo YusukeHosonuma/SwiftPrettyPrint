@@ -260,14 +260,14 @@ Pretty.p("array") >>> array
 
 ### Outputting in Console.app
 
-Applying `.consoleApp` to `Option.outputDestination` makes the output be shown in `Console.app`
+Applying `.osLog` to `Option.outputStrategy` makes the output be shown in `Console.app`
 
 > ![Console.app Image](https://user-images.githubusercontent.com/14083051/77843347-376cb580-71d7-11ea-8d70-3318b91c2e89.png)
 
 The output in xcode-debug-console will be the following.  
 
 ```swift
-Debug.sharedOption = Debug.Option(outputDestination: .consoleApp)
+Debug.sharedOption = Debug.Option(outputStrategy: .osLog)
 
 let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
 
