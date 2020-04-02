@@ -9,16 +9,16 @@
 
 ![Logo](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/logo.png)
 
-SwiftPrettyPrint gives **Human-readable output** than `print()`, `debugPrint()` and `dump()` in Swift standard library.
+SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()` and `dump()` in Swift standard library.
 
 ![Screenshot](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/master/Image/screenshot.png)
 
 ## Motivation 💪
 
 The `print()`, `debugPrint()` and `dump()` are implemented in standard library of Swift.
-But these functions output are not readable sometime.
+But outputs of these functions are difficult to read sometimes.
 
-For example, if you have the following types and value:
+For example, there are following types and a value:
 
 ```swift
 enum Enum {
@@ -46,7 +46,7 @@ let value = Struct(array: [1, 2, nil],
 
 ### Use Standard library of Swift
 
-If you use the standard library, you get the following results.
+When you use the standard library, you get the following results.
 
 ```swift
 print(value)
@@ -79,11 +79,11 @@ dump(value)
 //     - id: 7
 ```
 
-This output is enough information for debug, but **not human-readable**.
+These outputs are enough informations for debugging, but **not human-readable** outputs.
 
 ### Use SwiftPrettyPrint
 
-With SwiftPrittyPrint it looks like this:
+With the SwiftPrittyPrint, it looks like this:
 
 ```swift
 Pretty.print(value)
@@ -109,7 +109,7 @@ Pretty.prettyPrint(value)
 // )
 ```
 
-Of cource, it can also be used with **LLDB**.
+Of course, we also can use the SwiftPrettyPrint with **LLDB**.
 
 ```text
 (lldb) e Pretty.prettyPrint(value)
@@ -176,9 +176,9 @@ Pretty.prettyPrintDebug(array)
 
 ## Operator-based API
 
-You can use operator based alias API that like Ruby.
+You can use operator based alias APIs that like Ruby.
 
-This is no need to enclose in parenthese that convenient to long expression.
+This isn't needed to enclose in parentheses that convenient to long expression.
 
 ```swift
 p >>> 42
@@ -207,11 +207,11 @@ pp >>> ["Hello", "World"]
 
 ## Format options
 
-You can configure format option, shared or passed by arguments.
+You can configure format options, shared or passed by arguments.
 
 ### Indent size
 
-You can specify indent size in pretty-print as like following:
+You can specify indent size in pretty-print like following:
 
 ```swift
 // Global option
@@ -244,7 +244,7 @@ Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 
 ### Prefix and Label
 
-You can specify global prefix and label (e.g. variable name) as like following:
+You can specify a global prefix and a label (e.g. variable name) like following:
 
 ```swift
 Pretty.sharedOption = Pretty.Option(prefix: "[DEBUG]")
@@ -260,11 +260,11 @@ Pretty.p("array") >>> array
 
 ### Outputting in Console.app
 
-Applying `.osLog` to `Option.outputStrategy` makes the output be shown in `Console.app`
+Applying `.osLog` to `Option.outputStrategy` makes the output be shown in `Console.app`:
 
 > ![Console.app Image](https://user-images.githubusercontent.com/14083051/77843347-376cb580-71d7-11ea-8d70-3318b91c2e89.png)
 
-The output in xcode-debug-console will be the following.  
+The outputs in xcode-debug-console will be the following.
 
 ```swift
 Debug.sharedOption = Debug.Option(outputStrategy: .osLog)
@@ -283,7 +283,7 @@ Debug.print(dog)
 pod "SwiftPrettyPrint", "~> 1.0.0", :configuration => "Debug" # enabled on `Debug` build only
 ```
 
-Example app is in [Example](./Example).
+The example app is [here](./Example).
 
 ### Carthage
 
@@ -301,9 +301,9 @@ or add from Xcode 10+.
 
 ## Recommend Settings 📝
 
-You don't want to write an `import` statement when debagging.
+If you don't want to write an `import` statement when debugging.
 
-We recommend to create `Debug.swift` and declaration any type as `typealias` like following:
+We recommend to create `Debug.swift` and to declaration any type as `typealias` like following:
 
 ```swift
 // Debug.swift
@@ -313,7 +313,7 @@ We recommend to create `Debug.swift` and declaration any type as `typealias` lik
 #endif
 ```
 
-This can be not need to write `import` in each sources.
+You don't need to write a `import` statement in each sources any longer.
 
 ```swift
 // AnySource.swift
@@ -322,7 +322,7 @@ Debug.prettyPrint(label: "array", array)
 ```
 
 Note:
-This is can't use to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
+This can't be used to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
 
 ## Develoopment
 
