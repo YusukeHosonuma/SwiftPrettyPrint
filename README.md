@@ -324,7 +324,7 @@ Debug.prettyPrint(label: "array", array)
 Note:
 This can't be used to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
 
-## Develoopment
+## Development
 
 Require:
 
