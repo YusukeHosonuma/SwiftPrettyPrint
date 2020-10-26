@@ -299,7 +299,25 @@ Add the following line to the dependencies in your `Package.swift` file:
 .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0"))
 ```
 
-or use Xcode integration. This function is available since Xcode 10.
+Finally, include "SwiftPrettyPrint" as a dependency for your executable target:
+
+```swift
+let package = Package(
+    // name, platforms, products, etc.
+    dependencies: [
+        .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0")),
+        // other dependencies
+    ],
+    targets: [
+        .target(name: "<your-target-name>", dependencies: [
+            .product(name: "SwiftPrettyPrint", package: "SwiftPrettyPrint"),
+        ]),
+        // other targets
+    ]
+)
+```
+
+Alternatively, use Xcode integration. This function is available since Xcode 10.
 
 ## Recommend Settings 📝
 
