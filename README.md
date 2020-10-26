@@ -293,11 +293,13 @@ github "YusukeHosonuma/SwiftPrettyPrint"
 
 ### Swift Package Manager
 
+Add the following line to the dependencies in your `Package.swift` file:
+
 ```swift
 .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0"))
 ```
 
-or add from Xcode 10+.
+or use Xcode integration. This function is available since Xcode 10.
 
 ## Recommend Settings 📝
 
