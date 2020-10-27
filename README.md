@@ -293,11 +293,29 @@ github "YusukeHosonuma/SwiftPrettyPrint"
 
 ### Swift Package Manager
 
+Add the following line to the dependencies in your `Package.swift` file:
+
 ```swift
 .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0"))
 ```
 
-or add from Xcode 10+.
+Finally, include "SwiftPrettyPrint" as a dependency for your any target:
+
+```swift
+let package = Package(
+    // name, platforms, products, etc.
+    dependencies: [
+        .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0")),
+        // other dependencies
+    ],
+    targets: [
+        .target(name: "<your-target-name>", dependencies: ["SwiftPrettyPrint"]),
+        // other targets
+    ]
+)
+```
+
+Alternatively, use Xcode integration. This function is available since Xcode 10.
 
 ## Recommend Settings 📝
 
