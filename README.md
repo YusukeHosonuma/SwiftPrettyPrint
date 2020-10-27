@@ -309,9 +309,7 @@ let package = Package(
         // other dependencies
     ],
     targets: [
-        .target(name: "<your-target-name>", dependencies: [
-            .product(name: "SwiftPrettyPrint", package: "SwiftPrettyPrint"),
-        ]),
+        .target(name: "<your-target-name>", dependencies: ["SwiftPrettyPrint"]),
         // other targets
     ]
 )
