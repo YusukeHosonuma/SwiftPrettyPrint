@@ -19,9 +19,9 @@
     @available(OSX 10.15, *)
     extension Publisher {
         public func prettyPrint(format: Format = .multiline) -> Publishers.HandleEvents<Self> {
-            handleEvents {
+            handleEvents(receiveSubscription: {
                 Swift.print("receive subscription: \($0)")
-            } receiveOutput: {
+            }, receiveOutput: {
                 switch format {
                 case .singleline:
                     Swift.print("receive value: ", terminator: "")
@@ -31,13 +31,13 @@
                     Swift.print("receive value:")
                     Pretty.prettyPrint($0)
                 }
-            } receiveCompletion: {
+            }, receiveCompletion: {
                 Swift.print("receive \($0)")
-            } receiveCancel: {
+            }, receiveCancel: {
                 Swift.print("cancel")
-            } receiveRequest: {
+            }, receiveRequest: {
                 Swift.print("request \($0)")
-            }
+            })
         }
     }
 
