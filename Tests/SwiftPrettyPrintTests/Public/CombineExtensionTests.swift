@@ -14,6 +14,7 @@ import Combine
 
 // Note:
 // Original `print` operator output is:
+// https://developer.apple.com/documentation/combine/publisher/print(_:to:)
 //
 // ```
 // receive subscription: ([[1, 2], [3, 4]])
