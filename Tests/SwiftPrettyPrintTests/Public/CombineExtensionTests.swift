@@ -23,7 +23,15 @@ import Combine
 // receive finished
 // ```
 
-final class CombineExtensionInternalTests: XCTestCase {
+final class StringRecorder: TextOutputStream {
+    var contents: String = ""
+    
+    func write(_ string: String) {
+        contents.append(string)
+    }
+}
+
+final class CombineExtensionTests: XCTestCase {
     var cancellables: [AnyCancellable] = []
     
     let array = [
@@ -46,13 +54,15 @@ final class CombineExtensionInternalTests: XCTestCase {
         
         wait(for: [exp], timeout: 3)
         
-        assertEqualLines(recorder.string, """
-            receive subscription: [[1, 2], [3, 4]]
-            request unlimited
+        // Note:
+        // Order of first and second line is unstable.
+        XCTAssert(recorder.contents.contains("receive subscription: [[1, 2], [3, 4]]"))
+        XCTAssert(recorder.contents.contains("request unlimited"))
+        assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
+            """
             receive value: [1, 2]
             receive value: [3, 4]
             receive finished
-
             """)
     }
 
@@ -71,9 +81,12 @@ final class CombineExtensionInternalTests: XCTestCase {
         
         wait(for: [exp], timeout: 3)
         
-        assertEqualLines(recorder.string, """
-            receive subscription: [[1, 2], [3, 4]]
-            request unlimited
+        // Note:
+        // Order of first and second line is unstable.
+        XCTAssert(recorder.contents.contains("receive subscription: [[1, 2], [3, 4]]"))
+        XCTAssert(recorder.contents.contains("request unlimited"))
+        assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
+            """
             receive value:
             [
                 1,
@@ -85,7 +98,6 @@ final class CombineExtensionInternalTests: XCTestCase {
                 4
             ]
             receive finished
-
             """)
     }
 }

@@ -10,34 +10,45 @@
 
     import Combine
 
-    // TODO: Auto generate from `CombineExtension.swift`.
-
-    // ❗Important:
-    // Please copy from `CombineExtensionInternal.swift` and remove all `to:` argument.
-
     @available(iOS 13.0, *)
     @available(OSX 10.15, *)
     extension Publisher {
-        public func prettyPrint(format: Format = .multiline) -> Publishers.HandleEvents<Self> {
+        public func prettyPrint<Output: TextOutputStream>(format: Format = .multiline, to out: Output? = nil) -> Publishers.HandleEvents<Self> {
             handleEvents(receiveSubscription: {
-                Swift.print("receive subscription: \($0)")
+                _print("receive subscription: \($0)", to: out)
             }, receiveOutput: {
                 switch format {
                 case .singleline:
-                    Swift.print("receive value: ", terminator: "")
-                    Pretty.print($0)
+                    _print("receive value: ", terminator: "", to: out)
+                    if var out = out {
+                        Pretty.print($0, to: &out)
+                    } else {
+                        Pretty.print($0)
+                    }
 
                 case .multiline:
-                    Swift.print("receive value:")
-                    Pretty.prettyPrint($0)
+                    _print("receive value:", to: out)
+                    if var out = out {
+                        Pretty.prettyPrint($0, to: &out)
+                    } else {
+                        Pretty.prettyPrint($0)
+                    }
                 }
             }, receiveCompletion: {
-                Swift.print("receive \($0)")
+                _print("receive \($0)", to: out)
             }, receiveCancel: {
-                Swift.print("cancel")
+                _print("cancel", to: out)
             }, receiveRequest: {
-                Swift.print("request \($0)")
+                _print("request \($0)", to: out)
             })
+        }
+    }
+
+    private func _print<Output: TextOutputStream>(_ value: Any, terminator: String = "\n", to: Output?) {
+        if var to = to {
+            Swift.print(value, terminator: terminator, to: &to)
+        } else {
+            Swift.print(value, terminator: terminator)
         }
     }
 

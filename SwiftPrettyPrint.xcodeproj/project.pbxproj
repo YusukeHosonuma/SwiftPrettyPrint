@@ -21,10 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		70105D30256FE081009833C5 /* CombineExtensionInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70105D2F256FE081009833C5 /* CombineExtensionInternal.swift */; };
 		70105D5B256FE289009833C5 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70105D5A256FE289009833C5 /* Format.swift */; };
 		703ADA64256FCCD0007BDAC3 /* CombineExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703ADA63256FCCD0007BDAC3 /* CombineExtension.swift */; };
-		703ADA6E256FCD01007BDAC3 /* CombineExtensionInternalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703ADA6D256FCD01007BDAC3 /* CombineExtensionInternalTests.swift */; };
+		703ADA6E256FCD01007BDAC3 /* CombineExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703ADA6D256FCD01007BDAC3 /* CombineExtensionTests.swift */; };
 		OBJ_100 /* FunctionBuilderDSLAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* FunctionBuilderDSLAssert.swift */; };
 		OBJ_101 /* ParameterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* ParameterBuilder.swift */; };
 		OBJ_102 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* Operator.swift */; };
@@ -97,10 +96,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		70105D2F256FE081009833C5 /* CombineExtensionInternal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExtensionInternal.swift; sourceTree = "<group>"; };
 		70105D5A256FE289009833C5 /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 		703ADA63256FCCD0007BDAC3 /* CombineExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExtension.swift; sourceTree = "<group>"; };
-		703ADA6D256FCD01007BDAC3 /* CombineExtensionInternalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExtensionInternalTests.swift; sourceTree = "<group>"; };
+		703ADA6D256FCD01007BDAC3 /* CombineExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExtensionTests.swift; sourceTree = "<group>"; };
 		"Curry::Curry::Product" /* Curry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Curry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* MultilineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFormatter.swift; sourceTree = "<group>"; };
 		OBJ_11 /* PrettyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFormatter.swift; sourceTree = "<group>"; };
@@ -187,22 +185,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		70105D2E256FE04C009833C5 /* Combine */ = {
-			isa = PBXGroup;
-			children = (
-				70105D2F256FE081009833C5 /* CombineExtensionInternal.swift */,
-			);
-			path = Combine;
-			sourceTree = "<group>";
-		};
-		70105D49256FE17C009833C5 /* Combine */ = {
-			isa = PBXGroup;
-			children = (
-				703ADA6D256FCD01007BDAC3 /* CombineExtensionInternalTests.swift */,
-			);
-			path = Combine;
-			sourceTree = "<group>";
-		};
 		OBJ_16 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,7 +216,6 @@
 		OBJ_23 /* SwiftPrettyPrintTests */ = {
 			isa = PBXGroup;
 			children = (
-				70105D49256FE17C009833C5 /* Combine */,
 				OBJ_24 /* Core */,
 				OBJ_30 /* Extension */,
 				OBJ_32 /* Helper */,
@@ -283,6 +264,7 @@
 		OBJ_35 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				703ADA6D256FCD01007BDAC3 /* CombineExtensionTests.swift */,
 				OBJ_36 /* DebugTests.swift */,
 				OBJ_37 /* OperatorTests.swift */,
 				OBJ_38 /* OptionTests.swift */,
@@ -404,7 +386,6 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				70105D2E256FE04C009833C5 /* Combine */,
 				OBJ_8 /* Core */,
 				OBJ_16 /* Extension */,
 				OBJ_18 /* Public */,
@@ -592,7 +573,6 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_117 /* MultilineFormatter.swift in Sources */,
-				70105D30256FE081009833C5 /* CombineExtensionInternal.swift in Sources */,
 				70105D5B256FE289009833C5 /* Format.swift in Sources */,
 				OBJ_118 /* PrettyFormatter.swift in Sources */,
 				703ADA64256FCCD0007BDAC3 /* CombineExtension.swift in Sources */,
@@ -623,7 +603,7 @@
 				OBJ_145 /* SinglelineFormatterTests.swift in Sources */,
 				OBJ_146 /* PrettyDescriberTests.swift in Sources */,
 				OBJ_147 /* UtilTests.swift in Sources */,
-				703ADA6E256FCD01007BDAC3 /* CombineExtensionInternalTests.swift in Sources */,
+				703ADA6E256FCD01007BDAC3 /* CombineExtensionTests.swift in Sources */,
 				OBJ_148 /* String+extensionTests.swift in Sources */,
 				OBJ_149 /* Assertions.swift in Sources */,
 				OBJ_150 /* DebugHelper.swift in Sources */,
