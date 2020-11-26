@@ -5,35 +5,40 @@
 //  Created by Yusuke Hosonuma on 2020/11/26.
 //
 
-import Combine
+// Linux is not supported to Combine framework.
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
 
-// TODO: Auto generate from `CombineExtension.swift`.
+    import Combine
 
-// ❗Important:
-// Please copy from `CombineExtensionInternal.swift` and remove all `to:` argument.
+    // TODO: Auto generate from `CombineExtension.swift`.
 
-@available(iOS 13.0, *)
-@available(OSX 10.15, *)
-extension Publisher {
-    public func prettyPrint(format: Format = .multiline) -> Publishers.HandleEvents<Self> {
-        handleEvents {
-            Swift.print("receive subscription: \($0)")
-        } receiveOutput: {
-            switch format {
-            case .singleline:
-                Swift.print("receive value: ", terminator: "")
-                Pretty.print($0)
+    // ❗Important:
+    // Please copy from `CombineExtensionInternal.swift` and remove all `to:` argument.
 
-            case .multiline:
-                Swift.print("receive value:")
-                Pretty.prettyPrint($0)
+    @available(iOS 13.0, *)
+    @available(OSX 10.15, *)
+    extension Publisher {
+        public func prettyPrint(format: Format = .multiline) -> Publishers.HandleEvents<Self> {
+            handleEvents {
+                Swift.print("receive subscription: \($0)")
+            } receiveOutput: {
+                switch format {
+                case .singleline:
+                    Swift.print("receive value: ", terminator: "")
+                    Pretty.print($0)
+
+                case .multiline:
+                    Swift.print("receive value:")
+                    Pretty.prettyPrint($0)
+                }
+            } receiveCompletion: {
+                Swift.print("receive \($0)")
+            } receiveCancel: {
+                Swift.print("cancel")
+            } receiveRequest: {
+                Swift.print("request \($0)")
             }
-        } receiveCompletion: {
-            Swift.print("receive \($0)")
-        } receiveCancel: {
-            Swift.print("cancel")
-        } receiveRequest: {
-            Swift.print("request \($0)")
         }
     }
-}
+
+#endif

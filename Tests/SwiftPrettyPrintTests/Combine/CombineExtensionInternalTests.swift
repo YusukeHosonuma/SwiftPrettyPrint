@@ -5,6 +5,9 @@
 //  Created by Yusuke Hosonuma on 2020/11/26.
 //
 
+// Linux is not supported to Combine framework.
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+
 import XCTest
 import Combine
 @testable import SwiftPrettyPrint
@@ -86,3 +89,5 @@ final class CombineExtensionInternalTests: XCTestCase {
             """)
     }
 }
+
+#endif
