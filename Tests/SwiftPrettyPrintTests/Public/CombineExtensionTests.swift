@@ -67,6 +67,56 @@ final class CombineExtensionTests: XCTestCase {
             """)
     }
     
+    func testWhen() throws {
+        let tests: [(line: UInt, when: [CombineOperatorOption.When], expected: String)] = [
+            (
+                line: #line,
+                when: [.output],
+                expected: """
+                receive value: [1, 2]
+                receive value: [3, 4]
+
+                """
+            ),
+            (
+                line: #line,
+                when: [.completion],
+                expected: """
+                receive finished
+
+                """
+            ),
+            (
+                line: #line,
+                when: [.output, .completion],
+                expected: """
+                receive value: [1, 2]
+                receive value: [3, 4]
+                receive finished
+
+                """
+            )
+        ]
+        
+        for test in tests {
+            let recorder = StringRecorder()
+            let exp = expectation(description: "")
+            
+            array
+                .publisher
+                .prettyPrint(when: test.when, format: .singleline, to: recorder)
+                .handleEvents(receiveCompletion: { _ in
+                    exp.fulfill()
+                })
+                .sink { value in }
+                .store(in: &cancellables)
+            
+            wait(for: [exp], timeout: 3)
+
+            assertEqualLines(recorder.contents, test.expected, line: test.line)
+        }
+    }
+    
     func testSingleline() throws {
         let recorder = StringRecorder()
         let exp = expectation(description: "")

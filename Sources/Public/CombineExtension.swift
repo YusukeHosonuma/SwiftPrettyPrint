@@ -15,10 +15,14 @@
     extension Publisher {
         public func prettyPrint<Output: TextOutputStream>(
             _ prefix: String = "",
-            format: Format = .multiline,
+            when: [CombineOperatorOption.When] = CombineOperatorOption.When.allCases,
+            format: CombineOperatorOption.Format = .multiline,
             to out: Output? = nil
         ) -> Publishers.HandleEvents<Self> {
-            func _print(_ value: Any, terminator: String = "\n") {
+            // Use local function for capture arguments.
+            func _print(_ value: Any, type: CombineOperatorOption.When, terminator: String = "\n") {
+                guard when.contains(type) else { return }
+
                 let message = prefix.isEmpty
                     ? "\(value)"
                     : "\(prefix): \(value)"
@@ -31,31 +35,27 @@
             }
 
             return handleEvents(receiveSubscription: {
-                _print("receive subscription: \($0)")
+                _print("receive subscription: \($0)", type: .subscription)
             }, receiveOutput: {
                 switch format {
                 case .singleline:
-                    _print("receive value: ", terminator: "")
-                    if var out = out {
-                        Pretty.print($0, to: &out)
-                    } else {
-                        Pretty.print($0)
-                    }
+                    var s: String = ""
+                    Swift.print("receive value: ", terminator: "", to: &s)
+                    Pretty.print($0, to: &s)
+                    _print(s, type: .output, terminator: "")
 
                 case .multiline:
-                    _print("receive value:")
-                    if var out = out {
-                        Pretty.prettyPrint($0, to: &out)
-                    } else {
-                        Pretty.prettyPrint($0)
-                    }
+                    var s: String = ""
+                    Swift.print("receive value:", to: &s)
+                    Pretty.prettyPrint($0, to: &s)
+                    _print(s, type: .output, terminator: "")
                 }
             }, receiveCompletion: {
-                _print("receive \($0)")
+                _print("receive \($0)", type: .completion)
             }, receiveCancel: {
-                _print("cancel")
+                _print("cancel", type: .cancel)
             }, receiveRequest: {
-                _print("request \($0)")
+                _print("request \($0)", type: .request)
             })
         }
     }
