@@ -13,13 +13,24 @@
     @available(iOS 13.0, *)
     @available(OSX 10.15, *)
     extension Publisher {
-        public func prettyPrint<Output: TextOutputStream>(format: Format = .multiline, to out: Output? = nil) -> Publishers.HandleEvents<Self> {
-            handleEvents(receiveSubscription: {
-                _print("receive subscription: \($0)", to: out)
+        public func prettyPrint<Output: TextOutputStream>(
+            format: Format = .multiline,
+            to out: Output? = nil
+        ) -> Publishers.HandleEvents<Self> {
+            func _print(_ value: Any, terminator: String = "\n") {
+                if var out = out {
+                    Swift.print(value, terminator: terminator, to: &out)
+                } else {
+                    Swift.print(value, terminator: terminator)
+                }
+            }
+
+            return handleEvents(receiveSubscription: {
+                _print("receive subscription: \($0)")
             }, receiveOutput: {
                 switch format {
                 case .singleline:
-                    _print("receive value: ", terminator: "", to: out)
+                    _print("receive value: ", terminator: "")
                     if var out = out {
                         Pretty.print($0, to: &out)
                     } else {
@@ -27,7 +38,7 @@
                     }
 
                 case .multiline:
-                    _print("receive value:", to: out)
+                    _print("receive value:")
                     if var out = out {
                         Pretty.prettyPrint($0, to: &out)
                     } else {
@@ -35,20 +46,12 @@
                     }
                 }
             }, receiveCompletion: {
-                _print("receive \($0)", to: out)
+                _print("receive \($0)")
             }, receiveCancel: {
-                _print("cancel", to: out)
+                _print("cancel")
             }, receiveRequest: {
-                _print("request \($0)", to: out)
+                _print("request \($0)")
             })
-        }
-    }
-
-    private func _print<Output: TextOutputStream>(_ value: Any, terminator: String = "\n", to: Output?) {
-        if var to = to {
-            Swift.print(value, terminator: terminator, to: &to)
-        } else {
-            Swift.print(value, terminator: terminator)
         }
     }
 
