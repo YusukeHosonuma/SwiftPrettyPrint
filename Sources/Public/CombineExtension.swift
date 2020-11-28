@@ -14,14 +14,19 @@
     @available(OSX 10.15, *)
     extension Publisher {
         public func prettyPrint<Output: TextOutputStream>(
+            _ prefix: String = "",
             format: Format = .multiline,
             to out: Output? = nil
         ) -> Publishers.HandleEvents<Self> {
             func _print(_ value: Any, terminator: String = "\n") {
+                let message = prefix.isEmpty
+                    ? "\(value)"
+                    : "\(prefix): \(value)"
+
                 if var out = out {
-                    Swift.print(value, terminator: terminator, to: &out)
+                    Swift.print(message, terminator: terminator, to: &out)
                 } else {
-                    Swift.print(value, terminator: terminator)
+                    Swift.print(message, terminator: terminator)
                 }
             }
 

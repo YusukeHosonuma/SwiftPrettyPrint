@@ -40,6 +40,33 @@ final class CombineExtensionTests: XCTestCase {
         [3, 4],
     ]
     
+    func testPrefix() throws {
+        let recorder = StringRecorder()
+        let exp = expectation(description: "")
+        
+        array
+            .publisher
+            .prettyPrint("🍎", format: .singleline, to: recorder)
+            .handleEvents(receiveCompletion: { _ in
+                exp.fulfill()
+            })
+            .sink { value in }
+            .store(in: &cancellables)
+        
+        wait(for: [exp], timeout: 3)
+        
+        // Note:
+        // Order of first and second line is unstable.
+        XCTAssert(recorder.contents.contains("🍎: receive subscription: [[1, 2], [3, 4]]"))
+        XCTAssert(recorder.contents.contains("🍎: request unlimited"))
+        assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
+            """
+            🍎: receive value: [1, 2]
+            🍎: receive value: [3, 4]
+            🍎: receive finished
+            """)
+    }
+    
     func testSingleline() throws {
         let recorder = StringRecorder()
         let exp = expectation(description: "")
