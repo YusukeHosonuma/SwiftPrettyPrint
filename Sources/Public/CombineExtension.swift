@@ -10,8 +10,7 @@
 
     import Combine
 
-    @available(iOS 13.0, *)
-    @available(OSX 10.15, *)
+    @available(macOS 10.15, iOS 13.0, watchOS 6, tvOS 13, *)
     extension Publisher {
         public func prettyPrint<Output: TextOutputStream>(format: Format = .multiline, to out: Output? = nil) -> Publishers.HandleEvents<Self> {
             handleEvents(receiveSubscription: {
