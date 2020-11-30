@@ -14,7 +14,7 @@ extension CombineOperatorOption {
         case multiline
     }
 
-    public enum When: CaseIterable {
+    public enum Event: CaseIterable {
         case subscription
         case output
         case completion

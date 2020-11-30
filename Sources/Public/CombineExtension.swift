@@ -15,12 +15,12 @@
     extension Publisher {
         public func prettyPrint<Output: TextOutputStream>(
             _ prefix: String = "",
-            when: [CombineOperatorOption.When] = CombineOperatorOption.When.allCases,
+            when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
             format: CombineOperatorOption.Format = .multiline,
             to out: Output? = nil
         ) -> Publishers.HandleEvents<Self> {
             // Use local function for capture arguments.
-            func _print(_ value: Any, type: CombineOperatorOption.When, terminator: String = "\n") {
+            func _print(_ value: Any, type: CombineOperatorOption.Event, terminator: String = "\n") {
                 guard when.contains(type) else { return }
 
                 let message = prefix.isEmpty

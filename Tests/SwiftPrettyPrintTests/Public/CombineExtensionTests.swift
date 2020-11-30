@@ -68,7 +68,7 @@ final class CombineExtensionTests: XCTestCase {
     }
     
     func testWhen() throws {
-        let tests: [(line: UInt, when: [CombineOperatorOption.When], expected: String)] = [
+        let tests: [(line: UInt, when: [CombineOperatorOption.Event], expected: String)] = [
             (
                 line: #line,
                 when: [.output],
