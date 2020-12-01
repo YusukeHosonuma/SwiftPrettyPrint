@@ -44,6 +44,9 @@
                 Swift.print(message, terminator: terminator, to: &out)
             }
 
+            var option = Pretty.sharedOption
+            option.prefix = nil // Ignore sharedOption's `prefix.
+
             return handleEvents(receiveSubscription: {
                 _print("receive subscription: \($0)", type: .subscription)
             }, receiveOutput: {
@@ -51,13 +54,13 @@
                 case .singleline:
                     var s: String = ""
                     Swift.print("receive value: ", terminator: "", to: &s)
-                    Pretty.print($0, to: &s)
+                    Pretty.print($0, option: option, to: &s)
                     _print(s, type: .output, terminator: "")
 
                 case .multiline:
                     var s: String = ""
                     Swift.print("receive value:", to: &s)
-                    Pretty.prettyPrint($0, to: &s)
+                    Pretty.prettyPrint($0, option: option, to: &s)
                     _print(s, type: .output, terminator: "")
                 }
             }, receiveCompletion: {
