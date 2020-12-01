@@ -12,42 +12,50 @@
 
     @available(macOS 10.15, iOS 13.0, watchOS 6, tvOS 13, *)
     extension Publisher {
-        public func prettyPrint<Output: TextOutputStream>(format: Format = .multiline, to out: Output? = nil) -> Publishers.HandleEvents<Self> {
-            handleEvents(receiveSubscription: {
-                _print("receive subscription: \($0)", to: out)
+        public func prettyPrint<Output: TextOutputStream>(
+            _ prefix: String = "",
+            when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
+            format: CombineOperatorOption.Format = .multiline,
+            to out: Output? = nil
+        ) -> Publishers.HandleEvents<Self> {
+            // Use local function for capture arguments.
+            func _print(_ value: Any, type: CombineOperatorOption.Event, terminator: String = "\n") {
+                guard when.contains(type) else { return }
+
+                let message = prefix.isEmpty
+                    ? "\(value)"
+                    : "\(prefix): \(value)"
+
+                if var out = out {
+                    Swift.print(message, terminator: terminator, to: &out)
+                } else {
+                    Swift.print(message, terminator: terminator)
+                }
+            }
+
+            return handleEvents(receiveSubscription: {
+                _print("receive subscription: \($0)", type: .subscription)
             }, receiveOutput: {
                 switch format {
                 case .singleline:
-                    _print("receive value: ", terminator: "", to: out)
-                    if var out = out {
-                        Pretty.print($0, to: &out)
-                    } else {
-                        Pretty.print($0)
-                    }
+                    var s: String = ""
+                    Swift.print("receive value: ", terminator: "", to: &s)
+                    Pretty.print($0, to: &s)
+                    _print(s, type: .output, terminator: "")
 
                 case .multiline:
-                    _print("receive value:", to: out)
-                    if var out = out {
-                        Pretty.prettyPrint($0, to: &out)
-                    } else {
-                        Pretty.prettyPrint($0)
-                    }
+                    var s: String = ""
+                    Swift.print("receive value:", to: &s)
+                    Pretty.prettyPrint($0, to: &s)
+                    _print(s, type: .output, terminator: "")
                 }
             }, receiveCompletion: {
-                _print("receive \($0)", to: out)
+                _print("receive \($0)", type: .completion)
             }, receiveCancel: {
-                _print("cancel", to: out)
+                _print("cancel", type: .cancel)
             }, receiveRequest: {
-                _print("request \($0)", to: out)
+                _print("request \($0)", type: .request)
             })
-        }
-    }
-
-    private func _print<Output: TextOutputStream>(_ value: Any, terminator: String = "\n", to: Output?) {
-        if var to = to {
-            Swift.print(value, terminator: terminator, to: &to)
-        } else {
-            Swift.print(value, terminator: terminator)
         }
     }
 

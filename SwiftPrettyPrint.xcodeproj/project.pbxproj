@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		70105D5B256FE289009833C5 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70105D5A256FE289009833C5 /* Format.swift */; };
+		70105D5B256FE289009833C5 /* CombineOperatorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70105D5A256FE289009833C5 /* CombineOperatorOption.swift */; };
 		703ADA64256FCCD0007BDAC3 /* CombineExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703ADA63256FCCD0007BDAC3 /* CombineExtension.swift */; };
 		703ADA6E256FCD01007BDAC3 /* CombineExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703ADA6D256FCD01007BDAC3 /* CombineExtensionTests.swift */; };
 		OBJ_100 /* FunctionBuilderDSLAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* FunctionBuilderDSLAssert.swift */; };
@@ -96,7 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		70105D5A256FE289009833C5 /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
+		70105D5A256FE289009833C5 /* CombineOperatorOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineOperatorOption.swift; sourceTree = "<group>"; };
 		703ADA63256FCCD0007BDAC3 /* CombineExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExtension.swift; sourceTree = "<group>"; };
 		703ADA6D256FCD01007BDAC3 /* CombineExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExtensionTests.swift; sourceTree = "<group>"; };
 		"Curry::Curry::Product" /* Curry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Curry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,7 +200,7 @@
 				OBJ_20 /* Option.swift */,
 				OBJ_21 /* Pretty.swift */,
 				703ADA63256FCCD0007BDAC3 /* CombineExtension.swift */,
-				70105D5A256FE289009833C5 /* Format.swift */,
+				70105D5A256FE289009833C5 /* CombineOperatorOption.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -573,7 +573,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_117 /* MultilineFormatter.swift in Sources */,
-				70105D5B256FE289009833C5 /* Format.swift in Sources */,
+				70105D5B256FE289009833C5 /* CombineOperatorOption.swift in Sources */,
 				OBJ_118 /* PrettyFormatter.swift in Sources */,
 				703ADA64256FCCD0007BDAC3 /* CombineExtension.swift in Sources */,
 				OBJ_119 /* SinglelineFormatter.swift in Sources */,
