@@ -10,13 +10,27 @@
 
     import Combine
 
+    private struct StandardOutput: TextOutputStream {
+        func write(_ string: String) {
+            print(string, terminator: "")
+        }
+    }
+
     @available(macOS 10.15, iOS 13.0, watchOS 6, tvOS 13, *)
     extension Publisher {
+        public func prettyPrint(
+            _ prefix: String = "",
+            when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
+            format: CombineOperatorOption.Format = .multiline
+        ) -> Publishers.HandleEvents<Self> {
+            prettyPrint(prefix, when: when, format: format, to: StandardOutput())
+        }
+
         public func prettyPrint<Output: TextOutputStream>(
             _ prefix: String = "",
             when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
             format: CombineOperatorOption.Format = .multiline,
-            to out: Output? = nil
+            to: Output
         ) -> Publishers.HandleEvents<Self> {
             // Use local function for capture arguments.
             func _print(_ value: Any, type: CombineOperatorOption.Event, terminator: String = "\n") {
@@ -26,11 +40,8 @@
                     ? "\(value)"
                     : "\(prefix): \(value)"
 
-                if var out = out {
-                    Swift.print(message, terminator: terminator, to: &out)
-                } else {
-                    Swift.print(message, terminator: terminator)
-                }
+                var out = to
+                Swift.print(message, terminator: terminator, to: &out)
             }
 
             return handleEvents(receiveSubscription: {
