@@ -275,6 +275,57 @@ Debug.print(dog)
 // => 2020-04-02 11:51:10.766231+0900 SwiftPrettyPrintExample[41397:2843004] Dog(id: "pochi", price: 10.0, name: "ポチ")
 ```
 
+## Combine
+
+You can use `prettyPrint()` operator in Combine framework.
+
+```swift
+[[1, 2], [3, 4]]
+    .publisher
+    .prettyPrint("🍌")
+    .sink { _ in }
+    .store(in: &cancellables)
+// =>
+// 🍌: receive subscription: [[1, 2], [3, 4]]
+// 🍌: request unlimited
+// 🍌: receive value:
+// [
+//     1,
+//     2
+// ]
+// 🍌: receive value:
+// [
+//     3,
+//     4
+// ]
+// 🍌: receive finished
+```
+
+You can specify `when:` and `format:`.
+
+```swift
+[[1, 2], [3, 4]]
+    .publisher
+    .prettyPrint("🍌", when: [.output, .completion], format: .singleline)
+    .sink { _ in }
+    .store(in: &cancellables)
+// =>
+// 🍌: receive value: [1, 2]
+// 🍌: receive value: [3, 4]
+// 🍌: receive finished
+```
+
+You can use alias API `p()` and `pp()` too.
+
+```swift
+[[1, 2], [3, 4]]
+    .publisher
+    .p("🍎")  // Output as single-line
+    .pp("🍊") // Output as multiline
+    .sink { _ in }
+    .store(in: &cancellables)
+```
+
 ## Installation
 
 ### CocoaPods (Recommended)
