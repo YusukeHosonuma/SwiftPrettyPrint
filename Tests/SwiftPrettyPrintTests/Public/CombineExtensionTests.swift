@@ -104,7 +104,7 @@ final class CombineExtensionTests: XCTestCase {
             
             array
                 .publisher
-                .prettyPrint(when: test.when, format: .multiline, to: recorder)
+                .prettyPrint(when: test.when, format: .singleline, to: recorder)
                 .handleEvents(receiveCompletion: { _ in
                     exp.fulfill()
                 })
