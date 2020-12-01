@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20F00923ACB364A57C37E2C4 /* Pods_SwiftPrettyPrintExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCD0B73BE04DAE6F974CF97 /* Pods_SwiftPrettyPrintExample.framework */; };
+		7032C8502576113900428353 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7032C84F2576113900428353 /* ContentViewModel.swift */; };
 		E560881423FB6EA2006AB5D0 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = E560881323FB6EA2006AB5D0 /* Debug.swift */; };
 		E560881C23FB707F006AB5D0 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E560881B23FB707F006AB5D0 /* Dog.swift */; };
 		E5E842E423FB6B3900391E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E842E323FB6B3900391E9F /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 		13713262837E11A7F3C73644 /* Pods-SwiftPrettyPrintExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftPrettyPrintExample.release.xcconfig"; path = "Target Support Files/Pods-SwiftPrettyPrintExample/Pods-SwiftPrettyPrintExample.release.xcconfig"; sourceTree = "<group>"; };
 		3B3B027DA6D075BA3D67CED7 /* Pods_SwiftPrettyPrintExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftPrettyPrintExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		487D9DEBB0BCBEBDF923F3A4 /* Pods-SwiftPrettyPrintExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftPrettyPrintExampleTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftPrettyPrintExampleTests/Pods-SwiftPrettyPrintExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		7032C84F2576113900428353 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		825B48CD5C133ED74B872617 /* Pods-SwiftPrettyPrintExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftPrettyPrintExample.debug.xcconfig"; path = "Target Support Files/Pods-SwiftPrettyPrintExample/Pods-SwiftPrettyPrintExample.debug.xcconfig"; sourceTree = "<group>"; };
 		A8B066E3D7B5E0CBBFE5D278 /* Pods-SwiftPrettyPrintExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftPrettyPrintExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftPrettyPrintExampleTests/Pods-SwiftPrettyPrintExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFCD0B73BE04DAE6F974CF97 /* Pods_SwiftPrettyPrintExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftPrettyPrintExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				E5E842E323FB6B3900391E9F /* AppDelegate.swift */,
 				E5E842E523FB6B3900391E9F /* SceneDelegate.swift */,
 				E5E842E723FB6B3900391E9F /* ContentView.swift */,
+				7032C84F2576113900428353 /* ContentViewModel.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			files = (
 				E5E842E423FB6B3900391E9F /* AppDelegate.swift in Sources */,
 				E560881423FB6EA2006AB5D0 /* Debug.swift in Sources */,
+				7032C8502576113900428353 /* ContentViewModel.swift in Sources */,
 				E5E842E623FB6B3900391E9F /* SceneDelegate.swift in Sources */,
 				E560881C23FB707F006AB5D0 /* Dog.swift in Sources */,
 				E5E842E823FB6B3900391E9F /* ContentView.swift in Sources */,
