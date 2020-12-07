@@ -45,7 +45,7 @@
             }
 
             var option = Pretty.sharedOption
-            option.prefix = nil // Prepend duplicat output.
+            option.prefix = nil // prevent duplicate output.
 
             return handleEvents(receiveSubscription: {
                 _print("receive subscription: \($0)", type: .subscription)
