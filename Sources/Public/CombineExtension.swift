@@ -18,6 +18,23 @@
 
     @available(macOS 10.15, iOS 13.0, watchOS 6, tvOS 13, *)
     extension Publisher {
+        /// Output events as single-line.
+        public func p(
+            _ prefix: String = "",
+            when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases
+        ) -> Publishers.HandleEvents<Self> {
+            prettyPrint(prefix, when: when, format: .singleline)
+        }
+
+        /// Output events as multiine.
+        public func pp(
+            _ prefix: String = "",
+            when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases
+        ) -> Publishers.HandleEvents<Self> {
+            prettyPrint(prefix, when: when, format: .multiline)
+        }
+
+        /// Output events to standard output.
         public func prettyPrint(
             _ prefix: String = "",
             when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
@@ -26,6 +43,7 @@
             prettyPrint(prefix, when: when, format: format, to: StandardOutput())
         }
 
+        /// Output events to specified output stream.
         public func prettyPrint<Output: TextOutputStream>(
             _ prefix: String = "",
             when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
