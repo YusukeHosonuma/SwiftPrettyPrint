@@ -5,7 +5,7 @@ use_frameworks!
 #
 # Install from local parent directory.
 #
-pod "SwiftPrettyPrint", :path => "../", :branch => "feature/combine-example", :configuration => "Debug"
+pod "SwiftPrettyPrint", :path => "../", :branch => "master", :configuration => "Debug"
 
 #
 # Typical: install from CocoaPods repository.
