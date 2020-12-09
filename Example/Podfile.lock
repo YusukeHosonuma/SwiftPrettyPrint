@@ -6,12 +6,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   SwiftPrettyPrint:
-    :branch: feature/combine-example
     :path: "../"
 
 SPEC CHECKSUMS:
   SwiftPrettyPrint: 02010eb68c416300eb9d0d0dccafa82b5856466a
 
-PODFILE CHECKSUM: a6c823860b984065d3e18d82c62ebf2829151fcd
+PODFILE CHECKSUM: e57c1331f81ff220ccc169627a83df5238a8e57f
 
 COCOAPODS: 1.10.0
