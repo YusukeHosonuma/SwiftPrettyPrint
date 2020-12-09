@@ -32,15 +32,29 @@ final class ContentViewModel: ObservableObject {
         // 🐕: receive finished
 
         let subject = PassthroughSubject<Dog, DogsError>()
-        let publisher = subject.eraseToAnyPublisher()
 
-        publisher
-            .prettyPrint("🐶", when: [.output, .completion], format: .multiline)
+        subject
+            .eraseToAnyPublisher()
+            .prettyPrint("🐩", format: .multiline)
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
             .store(in: &cancellables)
 
-        subject.send(dog1)
         subject.send(dog2)
         subject.send(completion: .failure(DogsError()))
+
+        // =>
+        // 🐩: request unlimited
+        // 🐩: receive subscription: PassthroughSubject
+        // 🐩: receive value:
+        // Dog(
+        //     id: "koro",
+        //     price: 20.0,
+        //     name: "コロ"
+        // )
+        // 🐩: receive failure:
+        // DogsError(
+        //     code: 101,
+        //     message: "dogs have run away"
+        // )
     }
 }
