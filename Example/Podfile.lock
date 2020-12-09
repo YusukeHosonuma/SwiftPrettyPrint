@@ -1,16 +1,17 @@
 PODS:
-  - SwiftPrettyPrint (0.0.6)
+  - SwiftPrettyPrint (1.0.0)
 
 DEPENDENCIES:
   - SwiftPrettyPrint (from `../`)
 
 EXTERNAL SOURCES:
   SwiftPrettyPrint:
+    :branch: feature/combine-example
     :path: "../"
 
 SPEC CHECKSUMS:
-  SwiftPrettyPrint: e6282140cfa70aced5a093b9c9a2120b8bf1a057
+  SwiftPrettyPrint: 02010eb68c416300eb9d0d0dccafa82b5856466a
 
-PODFILE CHECKSUM: e57c1331f81ff220ccc169627a83df5238a8e57f
+PODFILE CHECKSUM: a6c823860b984065d3e18d82c62ebf2829151fcd
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0
