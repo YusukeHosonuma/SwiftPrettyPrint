@@ -13,12 +13,11 @@ final class ContentViewModel: ObservableObject {
     var cancellables: [AnyCancellable] = []
 
     init() {
-        let array = [
-            Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ"),
-            Dog(id: DogId(rawValue: "koro"), price: Price(rawValue: 20.0), name: "コロ"),
-        ]
+        let dog1 = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
+        let dog2 = Dog(id: DogId(rawValue: "koro"), price: Price(rawValue: 20.0), name: "コロ")
+        let successArray = [dog1, dog2]
 
-        array
+        successArray
             .publisher
             .prettyPrint("🍌", when: [.output, .completion], format: .multiline)
             .sink { _ in }
