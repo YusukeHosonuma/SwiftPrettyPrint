@@ -63,8 +63,26 @@
                     Pretty.prettyPrint($0, option: option, to: &s)
                     _print(s, type: .output, terminator: "")
                 }
-            }, receiveCompletion: {
-                _print("receive \($0)", type: .completion)
+            }, receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    _print("receive finished", type: .completion)
+                case let .failure(error):
+                    switch format {
+                    case .singleline:
+                        var s: String = ""
+                        Swift.print("receive failure: ", terminator: "", to: &s)
+                        Pretty.print(error, option: option, to: &s)
+                        _print(s, type: .output, terminator: "")
+
+                    case .multiline:
+                        var s: String = ""
+                        Swift.print("receive failure:", to: &s)
+                        Pretty.prettyPrint(error, option: option, to: &s)
+                        _print(s, type: .output, terminator: "")
+                    }
+                }
+
             }, receiveCancel: {
                 _print("cancel", type: .cancel)
             }, receiveRequest: {
