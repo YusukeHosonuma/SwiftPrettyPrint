@@ -37,5 +37,17 @@ final class ContentViewModel: ObservableObject {
         //     name: "コロ"
         // )
         // 🍌: receive finished
+
+        let subject = PassthroughSubject<Dog, DogsError>()
+        let publisher = subject.eraseToAnyPublisher()
+
+        publisher
+            .prettyPrint("🐶", when: [.output, .completion], format: .multiline)
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &cancellables)
+
+        subject.send(dog1)
+        subject.send(dog2)
+        subject.send(completion: .failure(DogsError()))
     }
 }
