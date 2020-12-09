@@ -15,28 +15,21 @@ final class ContentViewModel: ObservableObject {
     init() {
         let dog1 = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
         let dog2 = Dog(id: DogId(rawValue: "koro"), price: Price(rawValue: 20.0), name: "コロ")
-        let successArray = [dog1, dog2]
 
-        successArray
+        [dog1]
             .publisher
-            .prettyPrint("🍌", when: [.output, .completion], format: .multiline)
+            .prettyPrint("🐕", when: [.output, .completion], format: .multiline)
             .sink { _ in }
             .store(in: &cancellables)
 
         // =>
-        // 🍌: receive value:
+        // 🐕: receive value:
         // Dog(
         //     id: "pochi",
         //     price: 10.0,
         //     name: "ポチ"
         // )
-        // 🍌: receive value:
-        // Dog(
-        //     id: "koro",
-        //     price: 20.0,
-        //     name: "コロ"
-        // )
-        // 🍌: receive finished
+        // 🐕: receive finished
 
         let subject = PassthroughSubject<Dog, DogsError>()
         let publisher = subject.eraseToAnyPublisher()
