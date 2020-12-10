@@ -206,12 +206,12 @@ final class CombineExtensionTests: XCTestCase {
         let recorder2 = StringRecorder()
         subscribeAndWait(
             Fail<[Int], TestError>(error: TestError())
-            .prettyPrint(format: .singleline, to: recorder2)
+                .prettyPrint(format: .singleline, to: recorder2)
                 .eraseToAnyPublisher(),
             exp: exp2
         )
 
-        XCTAssert(recorder.contents.contains("receive failure: TestError(code: 1, message: \"This is the error\")"))
+        XCTAssert(recorder2.contents.contains("receive failure: TestError(code: 1, message: \"This is the error\")"))
     }
 
     func testMultiline() throws {
