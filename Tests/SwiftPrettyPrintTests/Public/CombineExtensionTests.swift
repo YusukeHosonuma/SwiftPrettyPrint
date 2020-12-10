@@ -262,6 +262,27 @@ final class CombineExtensionTests: XCTestCase {
             ]
             receive finished
             """)
+        
+        let recorder2 = StringRecorder()
+        let exp2 = expectation(description: "")
+        
+        Fail<[Int], TestError>(error: TestError())
+            .prettyPrint(to: recorder2)
+            .handleEvents(receiveCompletion: { _ in
+                exp2.fulfill()
+            })
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &cancellables)
+        wait(for: [exp2], timeout: 3)
+        
+        assertEqualLines(recorder2.contents.split(separator: "\n")[2...].joined(separator: "\n"),
+            """
+            receive value:
+            TestError(
+                code: 1,
+                message: "This is the error"
+            )
+            """)
     }
 }
 
