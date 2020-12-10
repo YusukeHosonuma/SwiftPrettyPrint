@@ -47,14 +47,12 @@ final class CombineExtensionTests: XCTestCase {
     
     func testPrefix() throws {
         let recorder = StringRecorder()
-        let exp = expectation(description: "")
         
         subscribeAndWait(
             array
                 .publisher
                 .setFailureType(to: TestError.self)
-                .prettyPrint("🍎", format: .singleline, to: recorder).eraseToAnyPublisher(),
-            exp: exp
+                .prettyPrint("🍎", format: .singleline, to: recorder).eraseToAnyPublisher()
         )
         
         // Note:
@@ -68,12 +66,9 @@ final class CombineExtensionTests: XCTestCase {
             🍎: receive finished
             """)
         
-        let exp2 = expectation(description: "")
-        
         subscribeAndWait(
             Fail<[Int], TestError>(error: TestError())
-                .prettyPrint("🍎", when: [.completion], format: .singleline, to: recorder).eraseToAnyPublisher(),
-            exp: exp2
+                .prettyPrint("🍎", when: [.completion], format: .singleline, to: recorder).eraseToAnyPublisher()
         )
         
         XCTAssert(recorder.contents.contains("🍎: receive failure: TestError(code: 1, message: \"This is the error\")"))
@@ -115,13 +110,11 @@ final class CombineExtensionTests: XCTestCase {
         
         for test in tests {
             let recorder = StringRecorder()
-            let exp = expectation(description: "")
             
             subscribeAndWait(
                 array.publisher
                     .setFailureType(to: TestError.self)
-                    .prettyPrint(when: test.when, format: .singleline, to: recorder).eraseToAnyPublisher(),
-                exp: exp
+                    .prettyPrint(when: test.when, format: .singleline, to: recorder).eraseToAnyPublisher()
             )
 
             assertEqualLines(recorder.contents, test.expected, line: test.line)
@@ -162,7 +155,6 @@ final class CombineExtensionTests: XCTestCase {
         for test in tests {
             let subject: PassthroughSubject<[Int], TestError> = .init()
             let recorder = StringRecorder()
-            let exp = expectation(description: "")
             subscribeAndWait(
                 subject.prettyPrint(when: test.when,
                                     format: .singleline,to: recorder).eraseToAnyPublisher(),
@@ -170,8 +162,7 @@ final class CombineExtensionTests: XCTestCase {
                     subject.send(array[0])
                     subject.send(array[1])
                     subject.send(completion: .failure(TestError()))
-                },
-                exp: exp
+                }
             )
             
             assertEqualLines(recorder.contents, test.expected, line: test.line)
@@ -181,15 +172,13 @@ final class CombineExtensionTests: XCTestCase {
     func testSingleline() throws {
         
         let recorder = StringRecorder()
-        let exp = expectation(description: "")
         
         
         subscribeAndWait(
             array.publisher
                 .setFailureType(to: TestError.self)
                 .prettyPrint(format: .singleline, to: recorder)
-                .eraseToAnyPublisher(),
-            exp: exp
+                .eraseToAnyPublisher()
         )
         
         // Note:
@@ -203,13 +192,11 @@ final class CombineExtensionTests: XCTestCase {
             receive finished
             """)
         
-        let exp2 = expectation(description: "")
         let recorder2 = StringRecorder()
         subscribeAndWait(
             Fail<[Int], TestError>(error: TestError())
                 .prettyPrint(format: .singleline, to: recorder2)
-                .eraseToAnyPublisher(),
-            exp: exp2
+                .eraseToAnyPublisher()
         )
 
         XCTAssert(recorder2.contents.contains("receive failure: TestError(code: 1, message: \"This is the error\")"))
@@ -217,11 +204,9 @@ final class CombineExtensionTests: XCTestCase {
 
     func testMultiline() throws {
         let recorder = StringRecorder()
-        let exp = expectation(description: "")
         
         subscribeAndWait(
-            array.publisher.setFailureType(to: TestError.self).prettyPrint(to: recorder).eraseToAnyPublisher(),
-            exp: exp
+            array.publisher.setFailureType(to: TestError.self).prettyPrint(to: recorder).eraseToAnyPublisher()
         )
         // Note:
         // Order of first and second line is unstable.
@@ -243,11 +228,9 @@ final class CombineExtensionTests: XCTestCase {
             """)
         
         let recorder2 = StringRecorder()
-        let exp2 = expectation(description: "")
         
         subscribeAndWait(
-            Fail<[Int], TestError>(error: TestError()).prettyPrint(to: recorder2).eraseToAnyPublisher(),
-            exp: exp2
+            Fail<[Int], TestError>(error: TestError()).prettyPrint(to: recorder2).eraseToAnyPublisher()
         )
         
         assertEqualLines(recorder2.contents.split(separator: "\n")[2...].joined(separator: "\n"),
@@ -260,7 +243,8 @@ final class CombineExtensionTests: XCTestCase {
             """)
     }
     
-    private func subscribeAndWait(_ publisher: AnyPublisher<[Int], TestError>, sendHandler: (() -> Void)? = nil, exp: XCTestExpectation) {
+    private func subscribeAndWait(_ publisher: AnyPublisher<[Int], TestError>, sendHandler: (() -> Void)? = nil) {
+        let exp = expectation(description: "")
         publisher
             .handleEvents(receiveCompletion: { _ in
                 exp.fulfill()
