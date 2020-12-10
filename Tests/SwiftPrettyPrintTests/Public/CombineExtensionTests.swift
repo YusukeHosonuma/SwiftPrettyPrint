@@ -191,19 +191,26 @@ final class CombineExtensionTests: XCTestCase {
     }
     
     func testSingleline() throws {
+        
+        func _subscribe(_ publisher: AnyPublisher<[Int], TestError>, recorder: StringRecorder, exp: XCTestExpectation) {
+                publisher
+                    .prettyPrint(format: .singleline, to: recorder)
+                .handleEvents(receiveCompletion: { _ in
+                    exp.fulfill()
+                })
+                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+                .store(in: &cancellables)
+            
+            wait(for: [exp], timeout: 3)
+        }
+        
         let recorder = StringRecorder()
         let exp = expectation(description: "")
         
-        array
-            .publisher
-            .prettyPrint(format: .singleline, to: recorder)
-            .handleEvents(receiveCompletion: { _ in
-                exp.fulfill()
-            })
-            .sink { value in }
-            .store(in: &cancellables)
         
-        wait(for: [exp], timeout: 3)
+        _subscribe(array.publisher.setFailureType(to: TestError.self).eraseToAnyPublisher(),
+                   recorder: recorder,
+                   exp: exp)
         
         // Note:
         // Order of first and second line is unstable.
@@ -217,14 +224,10 @@ final class CombineExtensionTests: XCTestCase {
             """)
         
         let exp2 = expectation(description: "")
-        Fail<[Int], TestError>(error: TestError())
-            .prettyPrint(when: [.completion], format: .singleline, to: recorder)
-            .handleEvents(receiveCompletion: { _ in
-                exp2.fulfill()
-            })
-            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
-            .store(in: &cancellables)
-        wait(for: [exp2], timeout: 3)
+        let recorder2 = StringRecorder()
+        _subscribe(Fail<[Int], TestError>(error: TestError()).eraseToAnyPublisher(),
+                   recorder: recorder2,
+                   exp: exp2)
         
         XCTAssert(recorder.contents.contains("receive failure: TestError(code: 1, message: \"This is the error\")"))
     }
