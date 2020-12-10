@@ -233,17 +233,21 @@ final class CombineExtensionTests: XCTestCase {
         let recorder = StringRecorder()
         let exp = expectation(description: "")
         
-        array
-            .publisher
-            .prettyPrint(to: recorder)
-            .handleEvents(receiveCompletion: { _ in
-                exp.fulfill()
-            })
-            .sink { value in }
-            .store(in: &cancellables)
+        func _subscribe(_ publisher: AnyPublisher<[Int], TestError>, recorder: StringRecorder, exp: XCTestExpectation) {
+                publisher
+                    .prettyPrint(to: recorder)
+                .handleEvents(receiveCompletion: { _ in
+                    exp.fulfill()
+                })
+                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+                .store(in: &cancellables)
+            
+            wait(for: [exp], timeout: 3)
+        }
         
-        wait(for: [exp], timeout: 3)
-        
+        _subscribe(array.publisher.setFailureType(to: TestError.self).eraseToAnyPublisher(),
+                   recorder: recorder,
+                   exp: exp)
         // Note:
         // Order of first and second line is unstable.
         XCTAssert(recorder.contents.contains("receive subscription: [[1, 2], [3, 4]]"))
@@ -266,14 +270,9 @@ final class CombineExtensionTests: XCTestCase {
         let recorder2 = StringRecorder()
         let exp2 = expectation(description: "")
         
-        Fail<[Int], TestError>(error: TestError())
-            .prettyPrint(to: recorder2)
-            .handleEvents(receiveCompletion: { _ in
-                exp2.fulfill()
-            })
-            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
-            .store(in: &cancellables)
-        wait(for: [exp2], timeout: 3)
+        _subscribe(Fail<[Int], TestError>(error: TestError()).eraseToAnyPublisher(),
+                   recorder: recorder2,
+                   exp: exp2)
         
         assertEqualLines(recorder2.contents.split(separator: "\n")[2...].joined(separator: "\n"),
             """
