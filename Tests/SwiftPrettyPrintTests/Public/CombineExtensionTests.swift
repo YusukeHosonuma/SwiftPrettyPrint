@@ -123,16 +123,12 @@ final class CombineExtensionTests: XCTestCase {
             let recorder = StringRecorder()
             let exp = expectation(description: "")
             
-            array
-                .publisher
-                .prettyPrint(when: test.when, format: .singleline, to: recorder)
-                .handleEvents(receiveCompletion: { _ in
-                    exp.fulfill()
-                })
-                .sink { value in }
-                .store(in: &cancellables)
-            
-            wait(for: [exp], timeout: 3)
+            subscribeAndWait(
+                array.publisher
+                    .setFailureType(to: TestError.self)
+                    .prettyPrint(when: test.when, format: .singleline, to: recorder).eraseToAnyPublisher(),
+                exp: exp
+            )
 
             assertEqualLines(recorder.contents, test.expected, line: test.line)
         }
@@ -173,18 +169,15 @@ final class CombineExtensionTests: XCTestCase {
             let subject: PassthroughSubject<[Int], TestError> = .init()
             let recorder = StringRecorder()
             let exp = expectation(description: "")
-            subject.eraseToAnyPublisher()
-                .prettyPrint(when: test.when, format: .singleline, to: recorder)
-                .handleEvents(receiveCompletion: { _ in
-                    exp.fulfill()
-                })
-                .sink (receiveCompletion: { _ in }, receiveValue: { _ in })
-                .store(in: &cancellables)
+            
+            subscribeAndWait(
+                subject.prettyPrint(when: test.when, format: .singleline, to: recorder).eraseToAnyPublisher(),
+                exp: exp
+            )
             
             subject.send(array[0])
             subject.send(array[1])
             subject.send(completion: .failure(TestError()))
-            wait(for: [exp], timeout: 3)
             
             assertEqualLines(recorder.contents, test.expected, line: test.line)
         }
