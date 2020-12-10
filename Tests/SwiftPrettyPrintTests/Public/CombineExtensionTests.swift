@@ -277,7 +277,7 @@ final class CombineExtensionTests: XCTestCase {
         
         assertEqualLines(recorder2.contents.split(separator: "\n")[2...].joined(separator: "\n"),
             """
-            receive value:
+            receive failure:
             TestError(
                 code: 1,
                 message: "This is the error"
