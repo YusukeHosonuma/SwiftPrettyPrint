@@ -32,6 +32,11 @@ final class StringRecorder: TextOutputStream {
     }
 }
 
+struct TestError: Error {
+    let code = 1
+    let message =  "This is the error"
+}
+
 final class CombineExtensionTests: XCTestCase {
     var cancellables: [AnyCancellable] = []
     
