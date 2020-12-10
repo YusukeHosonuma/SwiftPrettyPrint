@@ -259,14 +259,14 @@ final class CombineExtensionTests: XCTestCase {
             """)
     }
     
-    private func subscribeAndWait(_ publisher: AnyPublisher<[Int], TestError>, exp: XCTestExpectation) {
+    private func subscribeAndWait(_ publisher: AnyPublisher<[Int], TestError>, sendHandler: (() -> Void)? = nil, exp: XCTestExpectation) {
         publisher
             .handleEvents(receiveCompletion: { _ in
                 exp.fulfill()
             })
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
             .store(in: &cancellables)
-        
+        sendHandler?()
         wait(for: [exp], timeout: 3)
     }
 }
