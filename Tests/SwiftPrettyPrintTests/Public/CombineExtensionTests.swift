@@ -138,6 +138,58 @@ final class CombineExtensionTests: XCTestCase {
         }
     }
     
+    func testWhenForFailure() throws {
+        let tests: [(line: UInt, when: [CombineOperatorOption.Event], expected: String)] = [
+            (
+                line: #line,
+                when: [.output],
+                expected: """
+                  receive value: [1, 2]
+                  receive value: [3, 4]
+
+                  """
+            ),
+            (
+                line: #line,
+                when: [.completion],
+                expected: """
+                  receive failure: TestError(code: 1, message: \"This is the error\")
+
+                  """
+            ),
+            (
+                line: #line,
+                when: [.output, .completion],
+                expected: """
+                  receive value: [1, 2]
+                  receive value: [3, 4]
+                  receive failure: TestError(code: 1, message: \"This is the error\")
+
+                  """
+            )
+        ]
+        
+        for test in tests {
+            let subject: PassthroughSubject<[Int], TestError> = .init()
+            let recorder = StringRecorder()
+            let exp = expectation(description: "")
+            subject.eraseToAnyPublisher()
+                .prettyPrint(when: test.when, format: .singleline, to: recorder)
+                .handleEvents(receiveCompletion: { _ in
+                    exp.fulfill()
+                })
+                .sink (receiveCompletion: { _ in }, receiveValue: { _ in })
+                .store(in: &cancellables)
+            
+            subject.send(array[0])
+            subject.send(array[1])
+            subject.send(completion: .failure(TestError()))
+            wait(for: [exp], timeout: 3)
+            
+            assertEqualLines(recorder.contents, test.expected, line: test.line)
+        }
+    }
+    
     func testSingleline() throws {
         let recorder = StringRecorder()
         let exp = expectation(description: "")
