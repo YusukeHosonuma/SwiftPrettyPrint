@@ -236,21 +236,10 @@ final class CombineExtensionTests: XCTestCase {
         let recorder = StringRecorder()
         let exp = expectation(description: "")
         
-        func _subscribe(_ publisher: AnyPublisher<[Int], TestError>, recorder: StringRecorder, exp: XCTestExpectation) {
-                publisher
-                    .prettyPrint(to: recorder)
-                .handleEvents(receiveCompletion: { _ in
-                    exp.fulfill()
-                })
-                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
-                .store(in: &cancellables)
-            
-            wait(for: [exp], timeout: 3)
-        }
-        
-        _subscribe(array.publisher.setFailureType(to: TestError.self).eraseToAnyPublisher(),
-                   recorder: recorder,
-                   exp: exp)
+        subscribeAndWait(
+            array.publisher.setFailureType(to: TestError.self).prettyPrint(to: recorder).eraseToAnyPublisher(),
+            exp: exp
+        )
         // Note:
         // Order of first and second line is unstable.
         XCTAssert(recorder.contents.contains("receive subscription: [[1, 2], [3, 4]]"))
@@ -273,9 +262,10 @@ final class CombineExtensionTests: XCTestCase {
         let recorder2 = StringRecorder()
         let exp2 = expectation(description: "")
         
-        _subscribe(Fail<[Int], TestError>(error: TestError()).eraseToAnyPublisher(),
-                   recorder: recorder2,
-                   exp: exp2)
+        subscribeAndWait(
+            Fail<[Int], TestError>(error: TestError()).prettyPrint(to: recorder2).eraseToAnyPublisher(),
+            exp: exp2
+        )
         
         assertEqualLines(recorder2.contents.split(separator: "\n")[2...].joined(separator: "\n"),
             """
