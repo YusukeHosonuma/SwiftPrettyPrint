@@ -49,16 +49,13 @@ final class CombineExtensionTests: XCTestCase {
         let recorder = StringRecorder()
         let exp = expectation(description: "")
         
-        array
-            .publisher
-            .prettyPrint("🍎", format: .singleline, to: recorder)
-            .handleEvents(receiveCompletion: { _ in
-                exp.fulfill()
-            })
-            .sink { value in }
-            .store(in: &cancellables)
-        
-        wait(for: [exp], timeout: 3)
+        subscribeAndWait(
+            array
+                .publisher
+                .setFailureType(to: TestError.self)
+                .prettyPrint("🍎", format: .singleline, to: recorder).eraseToAnyPublisher(),
+            exp: exp
+        )
         
         // Note:
         // Order of first and second line is unstable.
@@ -73,14 +70,11 @@ final class CombineExtensionTests: XCTestCase {
         
         let exp2 = expectation(description: "")
         
-        Fail<[Int], TestError>(error: TestError())
-            .prettyPrint("🍎", when: [.completion], format: .singleline, to: recorder)
-            .handleEvents(receiveCompletion: { _ in
-                exp2.fulfill()
-            })
-            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
-            .store(in: &cancellables)
-        wait(for: [exp2], timeout: 3)
+        subscribeAndWait(
+            Fail<[Int], TestError>(error: TestError())
+                .prettyPrint("🍎", when: [.completion], format: .singleline, to: recorder).eraseToAnyPublisher(),
+            exp: exp2
+        )
         
         XCTAssert(recorder.contents.contains("🍎: receive failure: TestError(code: 1, message: \"This is the error\")"))
         
