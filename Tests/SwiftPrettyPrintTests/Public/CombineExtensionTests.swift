@@ -163,15 +163,16 @@ final class CombineExtensionTests: XCTestCase {
             let subject: PassthroughSubject<[Int], TestError> = .init()
             let recorder = StringRecorder()
             let exp = expectation(description: "")
-            
             subscribeAndWait(
-                subject.prettyPrint(when: test.when, format: .singleline, to: recorder).eraseToAnyPublisher(),
+                subject.prettyPrint(when: test.when,
+                                    format: .singleline,to: recorder).eraseToAnyPublisher(),
+                sendHandler: { [array] in
+                    subject.send(array[0])
+                    subject.send(array[1])
+                    subject.send(completion: .failure(TestError()))
+                },
                 exp: exp
             )
-            
-            subject.send(array[0])
-            subject.send(array[1])
-            subject.send(completion: .failure(TestError()))
             
             assertEqualLines(recorder.contents, test.expected, line: test.line)
         }
