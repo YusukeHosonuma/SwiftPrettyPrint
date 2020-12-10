@@ -70,6 +70,22 @@ final class CombineExtensionTests: XCTestCase {
             🍎: receive value: [3, 4]
             🍎: receive finished
             """)
+        
+        let exp2 = expectation(description: "")
+        
+        Fail<[Int], TestError>(error: TestError())
+            .prettyPrint("🍎", when: [.completion], format: .singleline, to: recorder)
+            .handleEvents(receiveCompletion: { _ in
+                exp2.fulfill()
+            })
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &cancellables)
+        wait(for: [exp2], timeout: 3)
+        
+        XCTAssert(recorder.contents.contains("🍎: receive failure: TestError(code: 1, message: \"This is the error\")"))
+        
+        
+        
     }
     
     func testWhen() throws {
