@@ -52,7 +52,8 @@ final class CombineExtensionTests: XCTestCase {
             array
                 .publisher
                 .setFailureType(to: TestError.self)
-                .prettyPrint("🍎", format: .singleline, to: recorder).eraseToAnyPublisher()
+                .prettyPrint("🍎", format: .singleline, to: recorder)
+                .eraseToAnyPublisher()
         )
         
         // Note:
@@ -68,7 +69,8 @@ final class CombineExtensionTests: XCTestCase {
         
         subscribeAndWait(
             Fail<[Int], TestError>(error: TestError())
-                .prettyPrint("🍎", when: [.completion], format: .singleline, to: recorder).eraseToAnyPublisher()
+                .prettyPrint("🍎", when: [.completion], format: .singleline, to: recorder)
+                .eraseToAnyPublisher()
         )
         
         XCTAssert(recorder.contents.contains("🍎: receive failure: TestError(code: 1, message: \"This is the error\")"))
@@ -114,7 +116,8 @@ final class CombineExtensionTests: XCTestCase {
             subscribeAndWait(
                 array.publisher
                     .setFailureType(to: TestError.self)
-                    .prettyPrint(when: test.when, format: .singleline, to: recorder).eraseToAnyPublisher()
+                    .prettyPrint(when: test.when, format: .singleline, to: recorder)
+                    .eraseToAnyPublisher()
             )
 
             assertEqualLines(recorder.contents, test.expected, line: test.line)
@@ -210,7 +213,9 @@ final class CombineExtensionTests: XCTestCase {
             let recorder = StringRecorder()
             
             subscribeAndWait(
-                array.publisher.setFailureType(to: TestError.self).prettyPrint(to: recorder).eraseToAnyPublisher()
+                array.publisher.setFailureType(to: TestError.self)
+                    .prettyPrint(to: recorder)
+                    .eraseToAnyPublisher()
             )
             // Note:
             // Order of first and second line is unstable.
@@ -236,7 +241,9 @@ final class CombineExtensionTests: XCTestCase {
             let recorder = StringRecorder()
             
             subscribeAndWait(
-                Fail<[Int], TestError>(error: TestError()).prettyPrint(to: recorder).eraseToAnyPublisher()
+                Fail<[Int], TestError>(error: TestError())
+                    .prettyPrint(to: recorder)
+                    .eraseToAnyPublisher()
             )
             
             assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
