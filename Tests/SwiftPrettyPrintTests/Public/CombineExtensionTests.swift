@@ -170,36 +170,38 @@ final class CombineExtensionTests: XCTestCase {
     }
     
     func testSingleline() throws {
-        
-        let recorder = StringRecorder()
-        
-        
-        subscribeAndWait(
-            array.publisher
-                .setFailureType(to: TestError.self)
-                .prettyPrint(format: .singleline, to: recorder)
-                .eraseToAnyPublisher()
-        )
-        
-        // Note:
-        // Order of first and second line is unstable.
-        XCTAssert(recorder.contents.contains("receive subscription: [[1, 2], [3, 4]]"))
-        XCTAssert(recorder.contents.contains("request unlimited"))
-        assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
-            """
+        do {
+            let recorder = StringRecorder()
+            
+            subscribeAndWait(
+                array.publisher
+                    .setFailureType(to: TestError.self)
+                    .prettyPrint(format: .singleline, to: recorder)
+                    .eraseToAnyPublisher()
+            )
+            
+            // Note:
+            // Order of first and second line is unstable.
+            XCTAssert(recorder.contents.contains("receive subscription: [[1, 2], [3, 4]]"))
+            XCTAssert(recorder.contents.contains("request unlimited"))
+            assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
+                             """
             receive value: [1, 2]
             receive value: [3, 4]
             receive finished
             """)
+        }
         
-        let recorder2 = StringRecorder()
-        subscribeAndWait(
-            Fail<[Int], TestError>(error: TestError())
-                .prettyPrint(format: .singleline, to: recorder2)
-                .eraseToAnyPublisher()
-        )
-
-        XCTAssert(recorder2.contents.contains("receive failure: TestError(code: 1, message: \"This is the error\")"))
+        do {
+            let recorder = StringRecorder()
+            subscribeAndWait(
+                Fail<[Int], TestError>(error: TestError())
+                    .prettyPrint(format: .singleline, to: recorder)
+                    .eraseToAnyPublisher()
+            )
+            
+            XCTAssert(recorder.contents.contains("receive failure: TestError(code: 1, message: \"This is the error\")"))
+        }
     }
 
     func testMultiline() throws {
