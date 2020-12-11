@@ -203,17 +203,18 @@ final class CombineExtensionTests: XCTestCase {
     }
 
     func testMultiline() throws {
-        let recorder = StringRecorder()
-        
-        subscribeAndWait(
-            array.publisher.setFailureType(to: TestError.self).prettyPrint(to: recorder).eraseToAnyPublisher()
-        )
-        // Note:
-        // Order of first and second line is unstable.
-        XCTAssert(recorder.contents.contains("receive subscription: [[1, 2], [3, 4]]"))
-        XCTAssert(recorder.contents.contains("request unlimited"))
-        assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
-            """
+        do {
+            let recorder = StringRecorder()
+            
+            subscribeAndWait(
+                array.publisher.setFailureType(to: TestError.self).prettyPrint(to: recorder).eraseToAnyPublisher()
+            )
+            // Note:
+            // Order of first and second line is unstable.
+            XCTAssert(recorder.contents.contains("receive subscription: [[1, 2], [3, 4]]"))
+            XCTAssert(recorder.contents.contains("request unlimited"))
+            assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
+                             """
             receive value:
             [
                 1,
@@ -226,21 +227,24 @@ final class CombineExtensionTests: XCTestCase {
             ]
             receive finished
             """)
+        }
         
-        let recorder2 = StringRecorder()
-        
-        subscribeAndWait(
-            Fail<[Int], TestError>(error: TestError()).prettyPrint(to: recorder2).eraseToAnyPublisher()
-        )
-        
-        assertEqualLines(recorder2.contents.split(separator: "\n")[2...].joined(separator: "\n"),
-            """
+        do {
+            let recorder = StringRecorder()
+            
+            subscribeAndWait(
+                Fail<[Int], TestError>(error: TestError()).prettyPrint(to: recorder).eraseToAnyPublisher()
+            )
+            
+            assertEqualLines(recorder.contents.split(separator: "\n")[2...].joined(separator: "\n"),
+                             """
             receive failure:
             TestError(
                 code: 1,
                 message: "This is the error"
             )
             """)
+        }
     }
     
     private func subscribeAndWait(_ publisher: AnyPublisher<[Int], TestError>, sendHandler: (() -> Void)? = nil) {
