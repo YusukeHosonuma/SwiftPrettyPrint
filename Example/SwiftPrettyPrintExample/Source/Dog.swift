@@ -14,3 +14,8 @@ struct Dog {
 
 struct DogId { var rawValue: String }
 struct Price { var rawValue: Double }
+
+struct DogsError: Error {
+    let code: Int = 101
+    let message: String = "dogs have run away"
+}

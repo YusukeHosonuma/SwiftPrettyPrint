@@ -62,27 +62,35 @@
                 Swift.print(message, terminator: terminator, to: &out)
             }
 
+            func _prettyPrint(value: Any, label: String, type: CombineOperatorOption.Event) {
+                var s: String = ""
+                switch format {
+                case .singleline:
+                    Swift.print("receive \(label): ", terminator: "", to: &s)
+                    Pretty.print(value, option: option, to: &s)
+                    _print(s, type: type, terminator: "")
+
+                case .multiline:
+                    Swift.print("receive \(label):", to: &s)
+                    Pretty.prettyPrint(value, option: option, to: &s)
+                    _print(s, type: type, terminator: "")
+                }
+            }
+
             var option = Pretty.sharedOption
             option.prefix = nil // prevent duplicate output.
 
             return handleEvents(receiveSubscription: {
                 _print("receive subscription: \($0)", type: .subscription)
             }, receiveOutput: {
-                switch format {
-                case .singleline:
-                    var s: String = ""
-                    Swift.print("receive value: ", terminator: "", to: &s)
-                    Pretty.print($0, option: option, to: &s)
-                    _print(s, type: .output, terminator: "")
-
-                case .multiline:
-                    var s: String = ""
-                    Swift.print("receive value:", to: &s)
-                    Pretty.prettyPrint($0, option: option, to: &s)
-                    _print(s, type: .output, terminator: "")
+                _prettyPrint(value: $0, label: "value", type: .output)
+            }, receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    _print("receive finished", type: .completion)
+                case let .failure(error):
+                    _prettyPrint(value: error, label: "failure", type: .completion)
                 }
-            }, receiveCompletion: {
-                _print("receive \($0)", type: .completion)
             }, receiveCancel: {
                 _print("cancel", type: .cancel)
             }, receiveRequest: {
