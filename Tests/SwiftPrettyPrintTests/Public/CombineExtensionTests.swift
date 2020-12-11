@@ -156,8 +156,9 @@ final class CombineExtensionTests: XCTestCase {
             let subject: PassthroughSubject<[Int], TestError> = .init()
             let recorder = StringRecorder()
             subscribeAndWait(
-                subject.prettyPrint(when: test.when,
-                                    format: .singleline,to: recorder).eraseToAnyPublisher(),
+                subject
+                    .prettyPrint(when: test.when, format: .singleline, to: recorder)
+                    .eraseToAnyPublisher(),
                 sendHandler: { [array] in
                     subject.send(array[0])
                     subject.send(array[1])
