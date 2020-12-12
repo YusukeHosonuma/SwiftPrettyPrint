@@ -1,8 +1,9 @@
 //
-//  CombineOperatorOption.swift
-//  SwiftPrettyPrint
+// CombineOperatorOption.swift
+// SwiftPrettyPrint
 //
-//  Created by Yusuke Hosonuma on 2020/11/26.
+// Created by Yusuke Hosonuma on 2020/12/12.
+// Copyright (c) 2020 Yusuke Hosonuma.
 //
 
 // Namespace

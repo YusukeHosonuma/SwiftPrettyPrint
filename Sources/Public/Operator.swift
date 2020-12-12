@@ -1,8 +1,9 @@
 //
-//  Operator.swift
-//  SwiftPrettyPrint
+// Operator.swift
+// SwiftPrettyPrint
 //
-//  Created by Yusuke Hosonuma on 2020/03/06.
+// Created by Yusuke Hosonuma on 2020/12/12.
+// Copyright (c) 2020 Yusuke Hosonuma.
 //
 
 // ----------------------------------------------------------------------------

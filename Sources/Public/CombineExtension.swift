@@ -1,8 +1,9 @@
 //
-//  CombineExtension.swift
-//  SwiftPrettyPrint
+// CombineExtension.swift
+// SwiftPrettyPrint
 //
-//  Created by Yusuke Hosonuma on 2020/11/26.
+// Created by Yusuke Hosonuma on 2020/12/12.
+// Copyright (c) 2020 Yusuke Hosonuma.
 //
 
 // Linux is not supported to Combine framework.

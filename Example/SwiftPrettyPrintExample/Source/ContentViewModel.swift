@@ -1,9 +1,9 @@
 //
-//  ContentViewModel.swift
-//  SwiftPrettyPrintExample
+// ContentViewModel.swift
+// SwiftPrettyPrint
 //
-//  Created by Yusuke Hosonuma on 2020/12/01.
-//  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
+// Created by Yusuke Hosonuma on 2020/12/12.
+// Copyright (c) 2020 Yusuke Hosonuma.
 //
 
 import Combine
