@@ -2,7 +2,7 @@
 // PrettyDescriber.swift
 // SwiftPrettyPrint
 //
-// Created by Yusuke Hosonuma on 2020/02/27.
+// Created by Yusuke Hosonuma on 2020/12/12.
 // Copyright (c) 2020 Yusuke Hosonuma.
 //
 
@@ -112,7 +112,8 @@ struct PrettyDescriber {
 
             guard
                 let key = root.children.first?.value,
-                let value = root.children.dropFirst().first?.value else {
+                let value = root.children.dropFirst().first?.value
+            else {
                 throw PrettyDescriberError.failedExtractKeyValue(dictionary: dictionary)
             }
 
@@ -240,7 +241,7 @@ struct PrettyDescriber {
 
     private func dumpError(error: Error) {
         let message = """
-        
+
         ---------------------------------------------------------
         Fatal error in SwiftPrettyPrint.
         ---------------------------------------------------------
@@ -248,7 +249,7 @@ struct PrettyDescriber {
         Please report issue from below:
         https://github.com/YusukeHosonuma/SwiftPrettyPrint/issues
         ---------------------------------------------------------
-        
+
         """
         print(message)
     }

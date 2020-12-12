@@ -1,8 +1,9 @@
 //
-//  PrettyFormatter.swift
-//  SwiftPrettyPrint
+// MultilineFormatter.swift
+// SwiftPrettyPrint
 //
-//  Created by Yusuke Hosonuma on 2020/02/26.
+// Created by Yusuke Hosonuma on 2020/12/12.
+// Copyright (c) 2020 Yusuke Hosonuma.
 //
 
 class MultilineFormatter: PrettyFormatter {

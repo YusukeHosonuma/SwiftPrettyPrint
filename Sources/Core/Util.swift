@@ -1,8 +1,9 @@
 //
-//  Util.swift
-//  SwiftPrettyPrintTests
+// Util.swift
+// SwiftPrettyPrint
 //
-//  Created by Yusuke Hosonuma on 2020/03/18.
+// Created by Yusuke Hosonuma on 2020/12/12.
+// Copyright (c) 2020 Yusuke Hosonuma.
 //
 
 func prefixLabel(_ prefix: String?, _ label: String?) -> String {
