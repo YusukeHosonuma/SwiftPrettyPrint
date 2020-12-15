@@ -393,6 +393,22 @@ Debug.prettyPrint(label: "array", array)
 Note:
 This can't be used to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
 
+### Debug Settings
+It is recommended to move `.lldbinit` to` ~ / .lldbinit` to easier to debugging with SwiftPrettyPrint.
+This let you to use the lldb command in debug console as follows:
+
+```
+(lldb) _p dog
+Dog(id: "pochi", price: 10.0, name: "ポチ")
+
+(lldb) _pp dog
+Dog(
+    id: "pochi",
+    price: 10.0,
+    name: "ポチ"
+)
+```
+
 ## Development
 
 Require:
