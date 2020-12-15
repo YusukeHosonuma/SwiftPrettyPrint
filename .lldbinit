@@ -1,0 +1,2 @@
+command regex _pp 's/(.+)/e -l swift -o -- Pretty.prettyPrint(%1)/'
+command regex _p 's/(.+)/e - l swift -o -- Pretty.print(%1)/'
