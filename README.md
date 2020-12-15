@@ -13,6 +13,24 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
 
 ![Screenshot](https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/main/Image/screenshot.png)
 
+## Features 🚀
+
+ - ✅ Style
+   - ✅ Single-line
+   - ✅ Multi-line
+ - Integration
+   - ✅ LLDB
+   - ✅ Combine
+   - [ ] RxSwift
+ - Package Manager
+   - ✅ Swift Package Manager
+   - ✅ CocoaPods
+   - ✅ Carthage
+ - OS Support
+   - ✅ Apple platforms
+   - ✅ Linux
+   - [ ] Windows
+
 ## Motivation 💪
 
 The `print()`, `debugPrint()` and `dump()` are implemented in standard library of Swift.
