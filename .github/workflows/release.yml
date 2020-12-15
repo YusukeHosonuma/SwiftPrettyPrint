@@ -11,6 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Use Xcode 11.3.1
+      run: |
+        sudo xcode-select -s /Applications/Xcode_11.3.1.app/Contents/Developer
+        xcodebuild -version
+
     - name: Run Unit Test
       run: make test
 
@@ -30,6 +35,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Use Xcode 11.3.1
+      run: |
+        sudo xcode-select -s /Applications/Xcode_11.3.1.app/Contents/Developer
+        xcodebuild -version
 
     - name: Cache bundler
       uses: actions/cache@v1
@@ -61,6 +71,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Use Xcode 11.3.1
+      run: |
+        sudo xcode-select -s /Applications/Xcode_11.3.1.app/Contents/Developer
+        xcodebuild -version
 
     - name: Cache bundler
       uses: actions/cache@v1
