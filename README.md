@@ -368,6 +368,26 @@ let package = Package(
 
 Alternatively, use Xcode integration. This function is available since Xcode 10.
 
+## LLDB Integration
+Please copy and add follows to your `~/.ldbinit` (please create the file if the file doesn't exist):
+```text
+command regex _p  's/(.+)/e -l swift -o -- Pretty.print(%1)/'
+command regex _pp 's/(.+)/e -l swift -o -- Pretty.prettyPrint(%1)/'
+```
+
+This let you to use the lldb command in debug console as follows:
+```text
+(lldb) _p dog
+Dog(id: "pochi", price: 10.0, name: "ポチ")
+
+(lldb) _pp dog
+Dog(
+    id: "pochi",
+    price: 10.0,
+    name: "ポチ"
+)
+```
+
 ## Recommend Settings 📝
 
 If you don't want to write an `import` statement when debugging.
@@ -392,26 +412,6 @@ Debug.prettyPrint(label: "array", array)
 
 Note:
 This can't be used to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
-
-### Debug Settings
-Please copy and add follows to your `~/.ldbinit` (please create the file if the file doesn't exist):
-```text
-command regex _p  's/(.+)/e -l swift -o -- Pretty.print(%1)/'
-command regex _pp 's/(.+)/e -l swift -o -- Pretty.prettyPrint(%1)/'
-```
-
-This let you to use the lldb command in debug console as follows:
-```text
-(lldb) _p dog
-Dog(id: "pochi", price: 10.0, name: "ポチ")
-
-(lldb) _pp dog
-Dog(
-    id: "pochi",
-    price: 10.0,
-    name: "ポチ"
-)
-```
 
 ## Development
 
