@@ -394,10 +394,14 @@ Note:
 This can't be used to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
 
 ### Debug Settings
-It is recommended to move `.lldbinit` to `~/.lldbinit` to easier to debugging with SwiftPrettyPrint.
-This let you to use the lldb command in debug console as follows:
-
+Please copy and add follows to your `~/.ldbinit` (please create the file if the file doesn't exist):
+```text
+command regex _p  's/(.+)/e -l swift -o -- Pretty.print(%1)/'
+command regex _pp 's/(.+)/e -l swift -o -- Pretty.prettyPrint(%1)/'
 ```
+
+This let you to use the lldb command in debug console as follows:
+```text
 (lldb) _p dog
 Dog(id: "pochi", price: 10.0, name: "ポチ")
 
