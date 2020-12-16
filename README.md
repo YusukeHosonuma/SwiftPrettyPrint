@@ -31,6 +31,26 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
    - ✅ Linux
    - [ ] Windows
 
+## Table of Contents 📖
+
+ - [Motivation](#Motivation-💪)
+   - [Use Standard library of Swift](#Use-Standard-library-of-Swift)
+   - [Use SwiftPrettyPrint](#Use-SwiftPrettyPrint)
+ - [API](#API)
+ - [Operator-based API](#Operator-based-API)
+ - [Format options](#Format-options)
+   - [Indent size](#Indent-size)
+   - [Prefix and Label](#Prefix-and-Label)
+   - [Outputting in Console.app](#Outputting-in-Console.app)
+ - [Combine](#Combine)
+ - [Installation](#Installation)
+   - [CocoaPods (Recommended)](#CocoaPods-(Recommended))
+   - [Carthage](#Carthage)
+   - [Swift Package Manager](#Swift-Package-Manager)
+ - [Recommend Settings](#Recommend-Settings-📝)
+ - [Development](#Development)
+ - [Author](#Author)
+
 ## Motivation 💪
 
 The `print()`, `debugPrint()` and `dump()` are implemented in standard library of Swift.
