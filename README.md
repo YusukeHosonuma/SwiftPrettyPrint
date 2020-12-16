@@ -15,7 +15,7 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
 
 ## Features 🚀
 
- - ✅ Style
+ - Style
    - ✅ Single-line
    - ✅ Multi-line
  - Integration
