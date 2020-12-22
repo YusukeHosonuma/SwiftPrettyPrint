@@ -5,8 +5,7 @@
 //  Created by Yusuke Hosonuma on 2020/11/26.
 //
 
-// Linux is not supported to Combine framework.
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+#if canImport(Combine)
 
 import XCTest
 import Combine

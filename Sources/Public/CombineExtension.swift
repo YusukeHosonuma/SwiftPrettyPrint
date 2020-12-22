@@ -6,8 +6,7 @@
 // Copyright (c) 2020 Yusuke Hosonuma.
 //
 
-// Linux is not supported to Combine framework.
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+#if canImport(Combine)
 
     import Combine
 
