@@ -33,7 +33,7 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
 
 ## Table of Contents 📖
 
- - [Motivation](#Motivation-💪)
+ - [Motivation 💪](#Motivation-💪)
    - [Use Standard library of Swift](#Use-Standard-library-of-Swift)
    - [Use SwiftPrettyPrint](#Use-SwiftPrettyPrint)
  - [API](#API)
@@ -42,13 +42,14 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
    - [Indent size](#Indent-size)
    - [Prefix and Label](#Prefix-and-Label)
    - [Outputting in Console.app](#Outputting-in-Console.app)
- - [Combine](#Combine)
+ - [Integrations 🔌](#Integrations-🔌)
+   - [LLDB](#LLDB)
+   - [Combine](#Combine)
  - [Installation](#Installation)
    - [CocoaPods (Recommended)](#CocoaPods-(Recommended))
    - [Carthage](#Carthage)
    - [Swift Package Manager](#Swift-Package-Manager)
- - [LLDB Integration](LLDB-Integration) 
- - [Recommend Settings](#Recommend-Settings-📝)
+ - [Recommend Settings 📝](#Recommend-Settings-📝)
  - [Development](#Development)
  - [Author](#Author)
 
@@ -149,6 +150,7 @@ Pretty.prettyPrint(value)
 ```
 
 Of course, we also can use the SwiftPrettyPrint with **LLDB**.
+(By using [LLDB integration](#LLDB), you can use it with shorter keywords such as `_p` and `_pp`)
 
 ```text
 (lldb) e Pretty.prettyPrint(value)
@@ -314,7 +316,38 @@ Debug.print(dog)
 // => 2020-04-02 11:51:10.766231+0900 SwiftPrettyPrintExample[41397:2843004] Dog(id: "pochi", price: 10.0, name: "ポチ")
 ```
 
-## Combine
+## Integrations 🔌
+
+### LLDB
+
+Please copy and add follows to your `~/.ldbinit` (please create the file if the file doesn't exist):
+
+```text
+command regex _p  's/(.+)/e -l swift -o -- Pretty.print(%1)/'
+command regex _pp 's/(.+)/e -l swift -o -- Pretty.prettyPrint(%1)/'
+```
+
+or install via [lowmad](https://github.com/bangerang/lowmad):
+
+```text
+$ lowmad install https://github.com/YusukeHosonuma/SwiftPrettyPrint.git
+```
+
+This let you to use the lldb command in debug console as follows:
+
+```text
+(lldb) _p dog
+Dog(id: "pochi", price: 10.0, name: "ポチ")
+
+(lldb) _pp dog
+Dog(
+    id: "pochi",
+    price: 10.0,
+    name: "ポチ"
+)
+```
+
+### Combine
 
 You can use `prettyPrint()` operator in Combine framework.
 
@@ -370,7 +403,7 @@ You can use alias API `p()` and `pp()` too.
 ### CocoaPods (Recommended)
 
 ```ruby
-pod "SwiftPrettyPrint", "~> 1.0.0", :configuration => "Debug" # enabled on `Debug` build only
+pod "SwiftPrettyPrint", "~> 1.1.0", :configuration => "Debug" # enabled on `Debug` build only
 ```
 
 The example app is [here](./Example).
@@ -386,7 +419,7 @@ github "YusukeHosonuma/SwiftPrettyPrint"
 Add the following line to the dependencies in your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0"))
+.package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.1.0"))
 ```
 
 Finally, include "SwiftPrettyPrint" as a dependency for your any target:
@@ -395,7 +428,7 @@ Finally, include "SwiftPrettyPrint" as a dependency for your any target:
 let package = Package(
     // name, platforms, products, etc.
     dependencies: [
-        .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.1.0")),
         // other dependencies
     ],
     targets: [
@@ -406,35 +439,6 @@ let package = Package(
 ```
 
 Alternatively, use Xcode integration. This function is available since Xcode 10.
-
-## LLDB Integration
-
-Please copy and add follows to your `~/.ldbinit` (please create the file if the file doesn't exist):
-
-```text
-command regex _p  's/(.+)/e -l swift -o -- Pretty.print(%1)/'
-command regex _pp 's/(.+)/e -l swift -o -- Pretty.prettyPrint(%1)/'
-```
-
-or install via [lowmad](https://github.com/bangerang/lowmad):
-
-```text
-$ lowmad install https://github.com/YusukeHosonuma/SwiftPrettyPrint.git
-```
-
-This let you to use the lldb command in debug console as follows:
-
-```text
-(lldb) _p dog
-Dog(id: "pochi", price: 10.0, name: "ポチ")
-
-(lldb) _pp dog
-Dog(
-    id: "pochi",
-    price: 10.0,
-    name: "ポチ"
-)
-```
 
 ## Recommend Settings 📝
 
