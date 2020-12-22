@@ -31,7 +31,7 @@ format: ## format sources by SwiftFormat
 
 .PHONY: lint
 lint: ## cocoapods - lint podspec
-	bundle exec pod lib lint
+	bundle exec pod lib lint --allow-warnings
 
 .PHONY: release
 release: ## cocoapods - release
