@@ -35,7 +35,7 @@ lint: ## cocoapods - lint podspec
 
 .PHONY: release
 release: ## cocoapods - release
-	bundle exec pod trunk push SwiftPrettyPrint.podspec
+	bundle exec pod trunk push SwiftPrettyPrint.podspec --allow-warnings
 
 .PHONY: info
 info: ## cocoapods - show trunk information
