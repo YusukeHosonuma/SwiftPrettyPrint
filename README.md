@@ -320,7 +320,7 @@ Debug.print(dog)
 
 ### LLDB
 
-Please copy and add follows to your `~/.ldbinit` (please create the file if the file doesn't exist):
+Please copy and add follows to your `~/.lldbinit` (please create the file if the file doesn't exist):
 
 ```text
 command regex _p  's/(.+)/e -l swift -o -- Pretty.print(%1)/'
