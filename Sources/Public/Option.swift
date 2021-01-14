@@ -10,11 +10,13 @@ extension Pretty {
     public struct Option {
         public var prefix: String?
         public var indentSize: Int
+        public var theme: ColorTheme
         public var outputStrategy: OutputStrategy
 
-        public init(prefix: String? = nil, indentSize: Int = 4, outputStrategy: OutputStrategy = .print) {
+        public init(prefix: String? = nil, indentSize: Int = 4, theme: ColorTheme = .default, outputStrategy: OutputStrategy = .print) {
             self.prefix = prefix
             self.indentSize = indentSize
+            self.theme = theme
             self.outputStrategy = outputStrategy
         }
 

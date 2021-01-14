@@ -7,6 +7,12 @@
 //
 
 class SinglelineFormatter: PrettyFormatter {
+    private let theme: ColorTheme
+
+    init(theme: ColorTheme = .plain) {
+        self.theme = theme
+    }
+
     func collectionString(elements: [String]) -> String {
         "[\(elements.joined(separator: ", "))]"
     }
@@ -30,6 +36,6 @@ class SinglelineFormatter: PrettyFormatter {
 
     func objectString(typeName: String, fields: [(String, String)]) -> String {
         let contents = fields.map { "\($0): \($1)" }.joined(separator: ", ")
-        return "\(typeName)(" + contents + ")"
+        return theme.typeName(typeName) + "(" + contents + ")"
     }
 }
