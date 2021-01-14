@@ -50,10 +50,10 @@
             format: CombineOperatorOption.Format = .multiline,
             to: Output
         ) -> Publishers.HandleEvents<Self> {
+            // Note:
             // Use local function for capture arguments.
-            func _print(_ value: Any, type: CombineOperatorOption.Event, terminator: String = "\n") {
-                guard when.contains(type) else { return }
 
+            func _out<Output: TextOutputStream>(_ value: String, terminator: String = "\n", to: Output) {
                 let message = prefix.isEmpty
                     ? "\(value)"
                     : "\(prefix): \(value)"
@@ -62,19 +62,62 @@
                 Swift.print(message, terminator: terminator, to: &out)
             }
 
-            func _prettyPrint(value: Any, label: String, type: CombineOperatorOption.Event) {
-                var s: String = ""
-                switch format {
-                case .singleline:
-                    Swift.print("receive \(label): ", terminator: "", to: &s)
-                    Pretty.print(value, option: option, to: &s)
-                    _print(s, type: type, terminator: "")
+            func _print(_ value: String, type: CombineOperatorOption.Event) {
+                guard when.contains(type) else { return }
 
-                case .multiline:
-                    Swift.print("receive \(label):", to: &s)
-                    Pretty.prettyPrint(value, option: option, to: &s)
-                    _print(s, type: type, terminator: "")
+                // Console
+                _out(value, to: to)
+
+                // Log files
+                #if targetEnvironment(simulator) || os(macOS)
+                    // Do not output to log when specifed `Output`.
+                    if to is StandardOutput {
+                        _out(value, to: Pretty.plainLogStream)
+                        _out(value, to: Pretty.coloredLogStream)
+                    }
+                #endif
+            }
+
+            func _prettyPrint(value: Any, label: String, type: CombineOperatorOption.Event) {
+                guard when.contains(type) else { return }
+
+                var plain: String = ""
+
+                // Console
+                do {
+                    switch format {
+                    case .singleline:
+                        Swift.print("receive \(label): ", terminator: "", to: &plain)
+                        Pretty.print(value, option: option, colored: false, to: &plain)
+
+                    case .multiline:
+                        Swift.print("receive \(label):", to: &plain)
+                        Pretty.prettyPrint(value, option: option, to: &plain)
+                    }
+
+                    _out(plain, terminator: "", to: to)
                 }
+
+                // Log files
+                #if targetEnvironment(simulator) || os(macOS)
+                    // Do not output to log when specifed `Output`.
+                    if to is StandardOutput {
+                        var colored: String = ""
+
+                        switch format {
+                        case .singleline:
+                            Swift.print("receive \(label): ", terminator: "", to: &colored)
+                            Pretty.print(value, option: option, colored: true, to: &colored)
+
+                        case .multiline:
+                            Swift.print("receive \(label):", to: &colored)
+                            Pretty.prettyPrint(value, option: option, colored: true, to: &colored)
+                        }
+
+                        _out(plain, terminator: "", to: Pretty.plainLogStream)
+                        _out(colored, terminator: "", to: Pretty.coloredLogStream)
+                    }
+                #endif
             }
 
             var option = Pretty.sharedOption

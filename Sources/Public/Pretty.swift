@@ -12,14 +12,14 @@
 
 #if canImport(Foundation)
     import Foundation
-
-    private var plainLogStream = LogOutputStream(url: URL(fileURLWithPath: "/tmp/SwiftPrettyPrint/output.log"))
-    private var coloredLogStream = LogOutputStream(url: URL(fileURLWithPath: "/tmp/SwiftPrettyPrint/output-colored.log"))
 #endif
 
 public class Pretty {
     /// Global format option
     public static var sharedOption: Option = .init()
+
+    static var plainLogStream = LogOutputStream(url: URL(fileURLWithPath: "/tmp/SwiftPrettyPrint/output.log"))
+    static var coloredLogStream = LogOutputStream(url: URL(fileURLWithPath: "/tmp/SwiftPrettyPrint/output-colored.log"))
 
     private init() {}
 }
@@ -54,9 +54,10 @@ extension Pretty {
         _ targets: Any...,
         separator: String = " ",
         option: Option = Pretty.sharedOption,
+        colored: Bool = false,
         to output: inout Target
     ) {
-        let plain = _print(label: label, targets, separator: separator, option: option, colored: false)
+        let plain = _print(label: label, targets, separator: separator, option: option, colored: colored)
         Swift.print(plain, to: &output)
     }
 
@@ -87,9 +88,10 @@ extension Pretty {
         _ targets: Any...,
         separator: String = "\n",
         option: Option = Pretty.sharedOption,
+        colored: Bool = false,
         to output: inout Target
     ) {
-        let plain = _prettyPrint(label: label, targets, separator: separator, option: option, colored: false)
+        let plain = _prettyPrint(label: label, targets, separator: separator, option: option, colored: colored)
         Swift.print(plain, to: &output)
     }
 
