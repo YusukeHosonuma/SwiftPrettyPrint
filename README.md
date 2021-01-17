@@ -50,6 +50,7 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
    - [Carthage](#Carthage)
    - [Swift Package Manager](#Swift-Package-Manager)
  - [Recommend Settings 📝](#Recommend-Settings-📝)
+ - [Requirements](#Requirements)
  - [Development](#Development)
  - [Author](#Author)
 
@@ -464,6 +465,13 @@ Debug.prettyPrint(label: "array", array)
 
 Note:
 This can't be used to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
+
+## Requirements
+
+- iOS 10.0+
+- macOS 10.12+
+- watchOS 3.0+
+- tvOS 10.0+
 
 ## Development
 
