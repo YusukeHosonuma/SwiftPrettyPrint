@@ -15,7 +15,11 @@ Pod::Spec.new do |spec|
   spec.author             = { "Yusuke Hosonuma" => "tobi462@gmail.com" }
   spec.social_media_url   = "https://twitter.com/tobi462"
 
-  spec.platform     = :ios, "9.0"
+  spec.ios.deployment_target     = "10.0"
+  spec.osx.deployment_target     = "10.12"
+  spec.watchos.deployment_target = "3.0"
+  spec.tvos.deployment_target    = "10.0"
+
   spec.source       = { :git => "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", :tag => "#{spec.version}" }
 
   spec.source_files = "Sources/**/*.{swift}"

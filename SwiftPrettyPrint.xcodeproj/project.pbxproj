@@ -538,12 +538,12 @@
                "$(inherited)"
             );
             INFOPLIST_FILE = "SwiftPrettyPrint.xcodeproj/SwiftPrettyPrint_Info.plist";
-            IPHONEOS_DEPLOYMENT_TARGET = "9.0";
+            IPHONEOS_DEPLOYMENT_TARGET = "10.0";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
             );
-            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            MACOSX_DEPLOYMENT_TARGET = "10.12";
             OTHER_CFLAGS = (
                "$(inherited)"
             );
@@ -562,8 +562,8 @@
             );
             SWIFT_VERSION = "5.0";
             TARGET_NAME = "SwiftPrettyPrint";
-            TVOS_DEPLOYMENT_TARGET = "9.0";
-            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+            TVOS_DEPLOYMENT_TARGET = "10.0";
+            WATCHOS_DEPLOYMENT_TARGET = "3.0";
          };
          name = "Debug";
       };
@@ -579,12 +579,12 @@
                "$(inherited)"
             );
             INFOPLIST_FILE = "SwiftPrettyPrint.xcodeproj/SwiftPrettyPrint_Info.plist";
-            IPHONEOS_DEPLOYMENT_TARGET = "9.0";
+            IPHONEOS_DEPLOYMENT_TARGET = "10.0";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
             );
-            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            MACOSX_DEPLOYMENT_TARGET = "10.12";
             OTHER_CFLAGS = (
                "$(inherited)"
             );
@@ -603,8 +603,8 @@
             );
             SWIFT_VERSION = "5.0";
             TARGET_NAME = "SwiftPrettyPrint";
-            TVOS_DEPLOYMENT_TARGET = "9.0";
-            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+            TVOS_DEPLOYMENT_TARGET = "10.0";
+            WATCHOS_DEPLOYMENT_TARGET = "3.0";
          };
          name = "Release";
       };
@@ -839,8 +839,8 @@
             );
             SWIFT_VERSION = "5.0";
             TARGET_NAME = "SwiftPrettyPrintTests";
-            TVOS_DEPLOYMENT_TARGET = "9.0";
-            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+            TVOS_DEPLOYMENT_TARGET = "10.0";
+            WATCHOS_DEPLOYMENT_TARGET = "3.0";
          };
          name = "Debug";
       };
@@ -878,8 +878,8 @@
             );
             SWIFT_VERSION = "5.0";
             TARGET_NAME = "SwiftPrettyPrintTests";
-            TVOS_DEPLOYMENT_TARGET = "9.0";
-            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+            TVOS_DEPLOYMENT_TARGET = "10.0";
+            WATCHOS_DEPLOYMENT_TARGET = "3.0";
          };
          name = "Release";
       };
@@ -1498,11 +1498,11 @@
       "OBJ_72" = {
          isa = "PBXGroup";
          children = (
-            "SwiftPrettyPrint::SwiftPrettyPrintTests::Product",
-            "Curry::Curry::Product",
-            "SwiftPrettyPrint::SwiftPrettyPrint::Product",
             "ColorizeSwift::ColorizeSwift::Product",
-            "SwiftParamTest::SwiftParamTest::Product"
+            "SwiftPrettyPrint::SwiftPrettyPrint::Product",
+            "SwiftParamTest::SwiftParamTest::Product",
+            "SwiftPrettyPrint::SwiftPrettyPrintTests::Product",
+            "Curry::Curry::Product"
          );
          name = "Products";
          path = "";

@@ -5,6 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftPrettyPrint",
+    platforms: [
+        .iOS(.v10),
+        .macOS(.v10_12),
+        .watchOS(.v3),
+        .tvOS(.v10),
+    ],
     products: [
         .library(name: "SwiftPrettyPrint", targets: ["SwiftPrettyPrint"]),
     ],
