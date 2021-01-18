@@ -323,8 +323,8 @@ Debug.print(dog)
 Please copy and add follows to your `~/.lldbinit` (please create the file if the file doesn't exist):
 
 ```text
-command regex _p  's/(.+)/e -l swift -o -- Pretty.print(%1)/'
-command regex _pp 's/(.+)/e -l swift -o -- Pretty.prettyPrint(%1)/'
+command regex _p  's/(.+)/e -l swift -o -- var option = Pretty.sharedOption; option.prefix = nil; Pretty.print(%1, option: option)/'
+command regex _pp 's/(.+)/e -l swift -o -- var option = Pretty.sharedOption; option.prefix = nil; Pretty.prettyPrint(%1, option: option)/'
 ```
 
 or install via [lowmad](https://github.com/bangerang/lowmad):
@@ -332,6 +332,9 @@ or install via [lowmad](https://github.com/bangerang/lowmad):
 ```text
 $ lowmad install https://github.com/YusukeHosonuma/SwiftPrettyPrint.git
 ```
+
+**Note:**
+If you already install version 1.1.0 or older via [lowmad](https://github.com/bangerang/lowmad), please remove scripts manually before update. (e.g. `rm /usr/local/lib/lowmad/commands/YusukeHosonuma-SwiftPrettyPrint/swift_pretty_print.py`)
 
 This let you to use the lldb command in debug console as follows:
 
