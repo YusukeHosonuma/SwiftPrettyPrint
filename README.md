@@ -479,7 +479,8 @@ This can't be used to the operator-based API such as `p >>>`. (This is a Swift l
 
 Require:
 
-- Xcode 11.3
+- Xcode 11.3.1
+  - Note: But run tests are failed on macOS 11.0.1, please use `make test` or latest version of Xcode to run unit tests.
 - [pre-commit](https://github.com/pre-commit/pre-commit-hooks)
 
 Execute `make setup` to install development tools to system (not include Xcode 11.3).
