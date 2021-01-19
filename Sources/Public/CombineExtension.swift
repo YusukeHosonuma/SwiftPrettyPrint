@@ -50,6 +50,9 @@
             format: CombineOperatorOption.Format = .multiline,
             to: Output
         ) -> Publishers.HandleEvents<Self> {
+            var option = Pretty.sharedOption
+            option.prefix = nil // prevent duplicate output.
+
             // Note:
             // Use local function for capture arguments.
 
@@ -119,9 +122,6 @@
                     }
                 #endif
             }
-
-            var option = Pretty.sharedOption
-            option.prefix = nil // prevent duplicate output.
 
             return handleEvents(receiveSubscription: {
                 _print("receive subscription: \($0)", type: .subscription)
