@@ -31,8 +31,11 @@
             defer { output.close() }
 
             guard let data = string.data(using: .utf8) else { return }
-            let result = data.withUnsafeBytes {
-                output.write($0, maxLength: data.count)
+            data.withUnsafeBytes { ptr in
+                guard let bytes = ptr.baseAddress?.assumingMemoryBound(to: UInt8.self) else {
+                    return
+                }
+                output.write(bytes, maxLength: data.count)
             }
         }
     }
