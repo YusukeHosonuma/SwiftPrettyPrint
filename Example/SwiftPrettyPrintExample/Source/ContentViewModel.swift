@@ -16,6 +16,8 @@ final class ContentViewModel: ObservableObject {
         let dog1 = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
         let dog2 = Dog(id: DogId(rawValue: "koro"), price: Price(rawValue: 20.0), name: "コロ")
 
+        *"Combine Example"*
+
         [dog1]
             .publisher
             .prettyPrint("🐕", when: [.output, .completion], format: .multiline)

@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // --------
         // Example
         // --------
+
+        *"Example"*
+
         let dog = Dog(id: DogId(rawValue: "pochi"), price: Price(rawValue: 10.0), name: "ポチ")
 
         Debug.print(dog)
