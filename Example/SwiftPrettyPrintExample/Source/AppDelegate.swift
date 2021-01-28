@@ -74,6 +74,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // -------------------
         // Swift standard API
         // -------------------
+        print(
+            """
+            --------------------
+             Swift standard API
+            --------------------
+            """
+        )
         print(dog)
         // => Dog(id: SwiftPrettyPrintExample.DogId(rawValue: "pochi"), price: SwiftPrettyPrintExample.Price(rawValue: 10.0), name: Optional("ポチ"))
 
