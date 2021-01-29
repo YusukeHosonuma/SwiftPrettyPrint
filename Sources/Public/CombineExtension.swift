@@ -48,17 +48,17 @@
             _ prefix: String = "",
             when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
             format: CombineOperatorOption.Format = .multiline,
-            to: Output
+            to output: Output
         ) -> Publishers.HandleEvents<Self> {
             // Note:
             // Use local function for capture arguments.
 
-            func _out<Output: TextOutputStream>(_ value: String, terminator: String = "\n", to: Output) {
+            func _out<Output: TextOutputStream>(_ value: String, terminator: String = "\n", to output: Output) {
                 let message = prefix.isEmpty
                     ? "\(value)"
                     : "\(prefix): \(value)"
 
-                var out = to
+                var out = output
                 Swift.print(message, terminator: terminator, to: &out)
             }
 
@@ -66,12 +66,12 @@
                 guard when.contains(type) else { return }
 
                 // Console
-                _out(value, to: to)
+                _out(value, to: output)
 
                 // Log files
                 #if targetEnvironment(simulator) || os(macOS)
                     // Do not output to log when specifed `Output`.
-                    if to is StandardOutput {
+                    if output is StandardOutput {
                         _out(value, to: Pretty.plainLogStream)
                         _out(value, to: Pretty.coloredLogStream)
                     }
@@ -95,13 +95,13 @@
                         Pretty.prettyPrint(value, option: option, to: &plain)
                     }
 
-                    _out(plain, terminator: "", to: to)
+                    _out(plain, terminator: "", to: output)
                 }
 
                 // Log files
                 #if targetEnvironment(simulator) || os(macOS)
                     // Do not output to log when specifed `Output`.
-                    if to is StandardOutput {
+                    if output is StandardOutput {
                         var colored: String = ""
 
                         switch format {
