@@ -4,8 +4,8 @@ import shlex
 import optparse
 
 def __lldb_init_module(debugger, internal_dict):
-    debugger.HandleCommand("command regex _p  's/(.+)/e -l swift -o -- Pretty.print(%1)/'")
-    debugger.HandleCommand("command regex _pp 's/(.+)/e -l swift -o -- Pretty.prettyPrint(%1)/'")
+    debugger.HandleCommand("command regex _p  's/(.+)/e -l swift -o -- var option = Pretty.sharedOption; option.prefix = nil; Pretty.print(%1, option: option)/'")
+    debugger.HandleCommand("command regex _pp 's/(.+)/e -l swift -o -- var option = Pretty.sharedOption; option.prefix = nil; Pretty.prettyPrint(%1, option: option)/'")
     # debugger.HandleCommand('command script add -f swift_pretty_print.handle_command swift_pretty_print -h "Short documentation here"')
 
 def handle_command(debugger, command, exe_ctx, result, internal_dict):
