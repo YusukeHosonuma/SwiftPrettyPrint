@@ -5,15 +5,22 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftPrettyPrint",
+    platforms: [
+        .iOS(.v10),
+        .macOS(.v10_12),
+        .watchOS(.v3),
+        .tvOS(.v10),
+    ],
     products: [
         .library(name: "SwiftPrettyPrint", targets: ["SwiftPrettyPrint"]),
     ],
     dependencies: [
         .package(url: "https://github.com/YusukeHosonuma/SwiftParamTest.git", from: "2.2.0"),
         .package(url: "https://github.com/thoughtbot/Curry.git", from: "4.0.2"),
+        .package(url: "https://github.com/mtynior/ColorizeSwift.git", from: "1.5.0"),
     ],
     targets: [
-        .target(name: "SwiftPrettyPrint", dependencies: [], path: "Sources"),
+        .target(name: "SwiftPrettyPrint", dependencies: ["ColorizeSwift"], path: "Sources"),
         .testTarget(
             name: "SwiftPrettyPrintTests",
             dependencies: ["SwiftPrettyPrint", "SwiftParamTest", "Curry"]

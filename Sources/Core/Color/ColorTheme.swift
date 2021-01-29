@@ -1,0 +1,46 @@
+//
+//  ColoredElementVisitor.swift
+//  SwiftPrettyPrint
+//
+//  Created by Yusuke Hosonuma on 2021/01/14.
+//
+
+import ColorizeSwift
+import Foundation
+
+public struct ColorTheme {
+    public static let plain = ColorTheme(
+        typeName: { $0 },
+        nilLiteral: { $0 },
+        boolLiteral: { $0 },
+        stringLiteral: { $0 },
+        numberLiteral: { $0 }
+    )
+    public static let `default` = ColorTheme(
+        typeName: { $0.yellow() },
+        nilLiteral: { $0.red() },
+        boolLiteral: { $0.blue() },
+        stringLiteral: { $0.cyan() },
+        numberLiteral: { $0.green() }
+    )
+
+    public var typeName: (String) -> String
+    public var nilLiteral: (String) -> String
+    public var boolLiteral: (String) -> String
+    public var stringLiteral: (String) -> String
+    public var numberLiteral: (String) -> String
+
+    public init(
+        typeName: @escaping (String) -> String,
+        nilLiteral: @escaping (String) -> String,
+        boolLiteral: @escaping (String) -> String,
+        stringLiteral: @escaping (String) -> String,
+        numberLiteral: @escaping (String) -> String
+    ) {
+        self.typeName = typeName
+        self.nilLiteral = nilLiteral
+        self.boolLiteral = boolLiteral
+        self.stringLiteral = stringLiteral
+        self.numberLiteral = numberLiteral
+    }
+}

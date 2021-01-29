@@ -10,6 +10,7 @@ import Foundation
 
 struct PrettyDescriber {
     var formatter: PrettyFormatter
+    var theme: ColorTheme = .plain
     var timeZone: TimeZone = .current
 
     func string<T: Any>(_ target: T, debug: Bool) -> String {
@@ -25,12 +26,12 @@ struct PrettyDescriber {
             case .optional:
                 if let value = mirror.children.first?.value {
                     if debug {
-                        return "Optional(" + _string(value) + ")"
+                        return theme.typeName("Optional") + "(" + _string(value) + ")"
                     } else {
                         return _string(value)
                     }
                 } else {
-                    return "nil"
+                    return theme.nilLiteral("nil")
                 }
 
             case .collection:
@@ -68,7 +69,7 @@ struct PrettyDescriber {
                 let content = formatter.collectionString(elements: elements)
 
                 if debug {
-                    return "Set(" + content + ")"
+                    return theme.typeName("Set") + "(" + content + ")"
                 } else {
                     return content
                 }
@@ -137,11 +138,11 @@ struct PrettyDescriber {
     private func asPremitiveString<T>(_ target: T, debug: Bool) -> String? {
         switch target {
         case let value as String:
-            return #""\#(value)""#
+            return theme.stringLiteral(#""\#(value)""#)
 
         case let url as URL:
             if debug {
-                return #"URL("\#(url.absoluteString)")"#
+                return theme.typeName("URL") + #"("\#(url.absoluteString)")"#
             } else {
                 return url.absoluteString
             }
@@ -151,13 +152,21 @@ struct PrettyDescriber {
                 let f = DateFormatter()
                 f.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
                 f.timeZone = timeZone
-                return #"Date("\#(f.string(from: date))")"#
+                return theme.typeName("Date") + #"("\#(f.string(from: date))")"#
             } else {
                 let f = DateFormatter()
                 f.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 f.timeZone = timeZone
                 return f.string(from: date)
             }
+
+        case let bool as Bool:
+            return theme.boolLiteral(bool ? "true" : "false")
+
+        case is Int: fallthrough
+        case is Float: fallthrough
+        case is Double:
+            return theme.numberLiteral("\(target)")
 
         default:
             if debug {

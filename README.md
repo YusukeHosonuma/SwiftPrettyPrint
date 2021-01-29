@@ -52,6 +52,7 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
    - [Carthage](#Carthage)
    - [Swift Package Manager](#Swift-Package-Manager)
  - [Recommend Settings 📝](#Recommend-Settings-📝)
+ - [Requirements](#Requirements)
  - [Development](#Development)
  - [Author](#Author)
 
@@ -502,11 +503,21 @@ Debug.prettyPrint(label: "array", array)
 Note:
 This can't be used to the operator-based API such as `p >>>`. (This is a Swift language's limitation)
 
+## Requirements
+
+- Xcode 11.3+ (Swift 5.1+)
+- Platforms
+  - iOS 10.0+
+  - macOS 10.12+
+  - watchOS 3.0+
+  - tvOS 10.0+
+
 ## Development
 
 Require:
 
-- Xcode 11.3
+- Xcode 11.3.1
+  - Note: But run tests are failed on macOS 11.0.1, please use `make test` or latest version of Xcode to run unit tests.
 - [pre-commit](https://github.com/pre-commit/pre-commit-hooks)
 
 Execute `make setup` to install development tools to system (not include Xcode 11.3).
