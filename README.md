@@ -351,7 +351,7 @@ Dog(
 
 ### Terminal
 
-SwiftPrettyPrint output log files to follows automaticully when running **iOS Simulator** or **macOS**.
+SwiftPrettyPrint outputs log files to the following files automatically when running **iOS Simulator** or **macOS**.
 
  - /tmp/SwiftPrettyPrint/output.log
  - /tmp/SwiftPrettyPrint/output-colored.log (ANSI colored)
