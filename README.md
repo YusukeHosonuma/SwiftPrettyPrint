@@ -20,6 +20,7 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
    - ✅ Multi-line
  - Integration
    - ✅ LLDB
+   - ✅ Terminal
    - ✅ Combine
    - [ ] RxSwift
  - Package Manager
@@ -44,6 +45,7 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
    - [Outputting in Console.app](#Outputting-in-Console.app)
  - [Integrations 🔌](#Integrations-🔌)
    - [LLDB](#LLDB)
+   - [Terminal](#Terminal)
    - [Combine](#Combine)
  - [Installation](#Installation)
    - [CocoaPods (Recommended)](#CocoaPods-(Recommended))
@@ -346,6 +348,41 @@ Dog(
     name: "ポチ"
 )
 ```
+
+### Terminal
+
+SwiftPrettyPrint outputs log files to the following files automatically when running **iOS Simulator** or **macOS**.
+
+ - /tmp/SwiftPrettyPrint/output.log
+ - /tmp/SwiftPrettyPrint/output-colored.log (ANSI colored)
+
+So you can read them from other tools such as `tail` or `grep` and others.
+
+```text
+$ tail -F /tmp/SwiftPrettyPrint/output-colored.log
+```
+
+A `output-colored.log` is ANSI colorlized, so this looks beautiful on terminal.
+
+![Terminal](./Image/terminal.png)
+
+#### Customize
+
+You can customize terminal ANSI colors by `Debug.Option.theme` property like as follows.
+
+```swift
+let theme = ColorTheme(
+    typeName: { $0.green().bold() },
+    nilLiteral: { $0.yellow() },
+    boolLiteral: { $0.yellow() },
+    stringLiteral: { $0.blue() },
+    numberLiteral: { $0.cyan() }
+)
+
+Debug.sharedOption = Debug.Option(theme: theme)
+```
+
+ANSI colors can be easily specified using [ColorizeSwift](https://github.com/mtynior/ColorizeSwift).
 
 ### Combine
 
