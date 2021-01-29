@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ColorizeSwift: 4eef354dce7335d7747a0ccacf78afe2b589a1be
-  SwiftPrettyPrint: 926edf85fbcd88aebff58949e198bf7858fd287d
+  SwiftPrettyPrint: c15e7661db8446aa5271be190e0f5cbaf2aae179
 
 PODFILE CHECKSUM: e57c1331f81ff220ccc169627a83df5238a8e57f
 
