@@ -48,6 +48,7 @@ extension Pretty {
     ///   - target: targets
     ///   - separator: A string to print between each item.
     ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - colored: whether to apply the color theme in `option`.
     ///   - output: output
     public static func print<Target: TextOutputStream>(
         label: String? = nil,
