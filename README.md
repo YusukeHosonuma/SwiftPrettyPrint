@@ -356,7 +356,7 @@ SwiftPrettyPrint outputs log files to the following files automatically when run
  - /tmp/SwiftPrettyPrint/output.log
  - /tmp/SwiftPrettyPrint/output-colored.log (ANSI colored)
 
-So you can read its from other tools such as `tail` or `grep` and others.
+So you can read them from other tools such as `tail` or `grep` and others.
 
 ```text
 $ tail -F /tmp/SwiftPrettyPrint/output-colored.log
