@@ -336,7 +336,7 @@ $ lowmad install https://github.com/YusukeHosonuma/SwiftPrettyPrint.git
 **Note:**
 If you already installed 1.1.0 or older version of SwiftPrettyPrint via [lowmad](https://github.com/bangerang/lowmad), please remove scripts manually before update. (e.g. `rm /usr/local/lib/lowmad/commands/YusukeHosonuma-SwiftPrettyPrint/swift_pretty_print.py`)
 
-This let you to use the lldb command in debug console as follows:
+This lets you to use the lldb command in debug console as follows:
 
 ```text
 (lldb) _p dog
