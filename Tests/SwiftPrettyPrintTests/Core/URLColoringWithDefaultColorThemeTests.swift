@@ -20,54 +20,20 @@ import Curry
 /// - SeeAlso:
 /// [ANSI escape code - Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code)
 class URLColoringWithDefaultColorThemeTests: XCTestCase {
-
     let describerWithDefaultColorTheme = PrettyDescriber(formatter: SinglelineFormatter(), theme: .default)
-    let exampleURL = "https://example.com"
 
     override func setUp() {}
 
     override func tearDown() {}
 
-    
-    /// URL coloring
-    /// - Throws: when the URL could not be generated from the string given in the `url` argument
-    func testURLColoring_non_debug() throws {
-        try _test(
-            describerWithDefaultColorTheme,
-            url: exampleURL,
-            expect: "\u{1B}[4m\u{1B}[34m\(exampleURL)\u{1B}[0m\u{1B}[4m\u{1B}[0m",
-            debug: false
-        )
-    }
-    
-    /// URL Coloring in detail
-    /// - Throws: when the URL could not be generated from the string given in the `url` argument
-    func testURLColoring_debug() throws {
-        try _test(
-            describerWithDefaultColorTheme,
-            url: exampleURL,
-            expect: "\u{1B}[33mURL\u{1B}[0m(\"\u{1B}[4m\u{1B}[34m\(exampleURL)\u{1B}[0m\u{1B}[4m\u{1B}[0m\")",
-            debug: true
-        )
-    }
-}
-extension URLColoringWithDefaultColorThemeTests {
-    /// Test PrettyDescriber
-    /// - Parameters:
-    ///   - describer: generates a string for output
-    ///   - url: a url string which is the target to generate strings
-    ///   - expect: the string that is expected to be generated
-    ///   - debug: whether generated string is a detailed version for debugging or not
-    /// - Throws: when the URL could not be generated from the string given in the `url` argument
-    private func _test(
-        _ describer: PrettyDescriber,
-        url string: String,
-        expect: String,
-        debug: Bool) throws {
-        let url = try XCTUnwrap(URL(string: string))
-        assert(to: describer.string) {
+    func testURLColoring() throws {
+        let url = try XCTUnwrap(URL(string: "https://example.com"))
+        assert(to: describerWithDefaultColorTheme.string) {
             args(
-                url, debug, expect: expect
+                url, false, expect: "\u{1B}[4m\u{1B}[34m\(url)\u{1B}[0m\u{1B}[4m\u{1B}[0m"
+            )
+            args(
+                url, true, expect: "\u{1B}[33mURL\u{1B}[0m(\"\u{1B}[4m\u{1B}[34m\(url)\u{1B}[0m\u{1B}[4m\u{1B}[0m\")"
             )
         }
     }
