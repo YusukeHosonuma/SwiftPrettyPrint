@@ -35,7 +35,7 @@
                 guard let bytes = ptr.baseAddress?.assumingMemoryBound(to: UInt8.self) else {
                     return
                 }
-                output.write(bytes, maxLength: data.count)
+                _ = output.write(bytes, maxLength: data.count)
             }
         }
     }
