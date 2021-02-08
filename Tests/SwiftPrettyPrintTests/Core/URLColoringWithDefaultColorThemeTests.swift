@@ -24,9 +24,9 @@ class URLColoringWithDefaultColorThemeTests: XCTestCase {
     let describerWithDefaultColorTheme = PrettyDescriber(formatter: SinglelineFormatter(), theme: .default)
     let exampleURL = "https://example.com"
 
-    override func setUpWithError() throws {}
+    override func setUp() {}
 
-    override func tearDownWithError() throws {}
+    override func tearDown() {}
 
     
     /// URL coloring
