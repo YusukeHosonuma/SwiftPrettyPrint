@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		633314F825D0D7A6001C5C8E /* URLColoringWithDefaultColorThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633314F725D0D7A6001C5C8E /* URLColoringWithDefaultColorThemeTests.swift */; };
 		OBJ_101 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* Package.swift */; };
 		OBJ_107 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* Curry.swift */; };
 		OBJ_114 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* Package.swift */; };
@@ -116,6 +117,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		633314F725D0D7A6001C5C8E /* URLColoringWithDefaultColorThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLColoringWithDefaultColorThemeTests.swift; sourceTree = "<group>"; };
 		"ColorizeSwift::ColorizeSwift::Product" /* ColorizeSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ColorizeSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Curry::Curry::Product" /* Curry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Curry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			children = (
 				OBJ_31 /* Formatter */,
 				OBJ_34 /* PrettyDescriberTests.swift */,
+				633314F725D0D7A6001C5C8E /* URLColoringWithDefaultColorThemeTests.swift */,
 				OBJ_35 /* UtilTests.swift */,
 			);
 			path = Core;
@@ -353,7 +356,7 @@
 			path = .build/checkouts/ColorizeSwift/Sources/ColorizeSwift;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -373,7 +376,6 @@
 				OBJ_87 /* Brewfile */,
 				OBJ_88 /* version.txt */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_51 /* Curry 4.0.2 */ = {
@@ -649,7 +651,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_72 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -752,6 +754,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				633314F825D0D7A6001C5C8E /* URLColoringWithDefaultColorThemeTests.swift in Sources */,
 				OBJ_176 /* MultilineFormatterTests.swift in Sources */,
 				OBJ_177 /* SinglelineFormatterTests.swift in Sources */,
 				OBJ_178 /* PrettyDescriberTests.swift in Sources */,
