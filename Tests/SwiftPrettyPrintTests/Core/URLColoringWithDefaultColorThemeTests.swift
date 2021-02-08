@@ -26,8 +26,8 @@ class URLColoringWithDefaultColorThemeTests: XCTestCase {
 
     override func tearDown() {}
 
-    func testURLColoring() throws {
-        let url = try XCTUnwrap(URL(string: "https://example.com"))
+    func testURLColoring() {
+        let url = URL(string: "https://example.com")!
         assert(to: describerWithDefaultColorTheme.string) {
             args(
                 url, false, expect: "\u{1B}[4m\u{1B}[34m\(url)\u{1B}[0m\u{1B}[4m\u{1B}[0m"
