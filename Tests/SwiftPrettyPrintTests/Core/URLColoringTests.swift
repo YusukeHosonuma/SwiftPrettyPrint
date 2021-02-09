@@ -17,20 +17,21 @@ class URLColoringTests: XCTestCase {
     override func setUp() {}
 
     override func tearDown() {}
-
+    
     ///
-    /// URL Coloring with Default Color Theme
+    /// URL Coloring with Custom Color Theme
     ///
-    func testWithDefaultColorTheme() {
-        let describerWithDefaultColorTheme = PrettyDescriber(formatter: SinglelineFormatter(), theme: .default)
-        assert(to: describerWithDefaultColorTheme.string) {
-            args(
-                exampleURL, false, expect: "\u{1B}[4m\u{1B}[34m\(exampleURL)\u{1B}[0m\u{1B}[4m\u{1B}[0m"
-            )
-            args(
-                exampleURL, true, expect: "\u{1B}[33mURL\u{1B}[0m(\"\u{1B}[4m\u{1B}[34m\(exampleURL)\u{1B}[0m\u{1B}[4m\u{1B}[0m\")"
-            )
+    func testWithCustomColorTheme() {
+        let theme: ColorTheme = {
+            var t = ColorTheme.plain
+            t.url = { #"<a href="\#($0)">\#($0)</a>"# }
+            return t
+        }()
+        
+        let describer = PrettyDescriber(formatter: SinglelineFormatter(), theme: theme)
+        
+        assert(to: describer.string) {
+            args(exampleURL, false, expect: #"<a href="\#(exampleURL.absoluteString)">\#(exampleURL.absoluteString)</a>"#)
         }
     }
-    
 }
