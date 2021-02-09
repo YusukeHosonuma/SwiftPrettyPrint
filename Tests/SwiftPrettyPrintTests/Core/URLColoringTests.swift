@@ -24,7 +24,7 @@ class URLColoringTests: XCTestCase {
     func testWithCustomColorTheme() {
         let theme: ColorTheme = {
             var t = ColorTheme.plain
-            t.url = { #"<a href="\#($0)">\#($0)</a>"# }
+            t.url = { #"<a href="\#($0)">\#($0)</a>"# } 
             return t
         }()
         
@@ -32,6 +32,7 @@ class URLColoringTests: XCTestCase {
         
         assert(to: describer.string) {
             args(exampleURL, false, expect: #"<a href="\#(exampleURL.absoluteString)">\#(exampleURL.absoluteString)</a>"#)
+            args(exampleURL, true, expect: #"URL("<a href="\#(exampleURL.absoluteString)">\#(exampleURL.absoluteString)</a>")"#)
         }
     }
 }
