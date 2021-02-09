@@ -24,7 +24,7 @@ class URLColoringTests: XCTestCase {
     func testWithCustomColorTheme() {
         let theme: ColorTheme = {
             var t = ColorTheme.plain
-            t.url = { #"<a href="\#($0)">\#($0)</a>"# } 
+            t.url = { #"<a href="\#($0)">\#($0)</a>"# }
             return t
         }()
         
