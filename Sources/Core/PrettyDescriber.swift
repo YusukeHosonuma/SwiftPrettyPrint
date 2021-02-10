@@ -142,9 +142,9 @@ struct PrettyDescriber {
 
         case let url as URL:
             if debug {
-                return theme.typeName("URL") + #"("\#(url.absoluteString)")"#
+                return theme.typeName("URL") + #"("\#(theme.url(url.absoluteString))")"#
             } else {
-                return url.absoluteString
+                return theme.url(url.absoluteString)
             }
 
         case let date as Date:
