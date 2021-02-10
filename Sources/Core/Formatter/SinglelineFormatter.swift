@@ -36,6 +36,6 @@ class SinglelineFormatter: PrettyFormatter {
 
     func objectString(typeName: String, fields: [(String, String)]) -> String {
         let contents = fields.map { "\($0): \($1)" }.joined(separator: ", ")
-        return theme.typeName(typeName) + "(" + contents + ")"
+        return theme.type(typeName) + "(" + contents + ")"
     }
 }

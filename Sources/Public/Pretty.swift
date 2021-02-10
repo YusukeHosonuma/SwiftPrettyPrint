@@ -187,8 +187,8 @@ extension Pretty {
 
         // Log files
         #if targetEnvironment(simulator) || os(macOS)
-            Swift.print(plain, to: &plainLogStream)
-            Swift.print(colored, to: &coloredLogStream)
+            Swift.print(plain + "\n", to: &plainLogStream)
+            Swift.print(colored + "\n", to: &coloredLogStream)
         #endif
     }
 

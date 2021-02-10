@@ -376,17 +376,41 @@ You can customize terminal ANSI colors by `Debug.Option.theme` property like as 
 
 ```swift
 let theme = ColorTheme(
-    typeName: { $0.green().bold() },
-    nilLiteral: { $0.yellow() },
-    boolLiteral: { $0.yellow() },
-    stringLiteral: { $0.blue() },
-    numberLiteral: { $0.cyan() }
+    type: { $0.green().bold() },
+    nil: { $0.yellow() },
+    bool: { $0.yellow() },
+    string: { $0.blue() },
+    number: { $0.cyan() },
+    url: { $0.underline() }
 )
 
 Debug.sharedOption = Debug.Option(theme: theme)
 ```
 
 ANSI colors can be easily specified using [ColorizeSwift](https://github.com/mtynior/ColorizeSwift).
+
+#### Did you create a beautiful theme?
+
+Please add new theme to [ColorTheme.swift](https://github.com/YusukeHosonuma/SwiftPrettyPrint/tree/main/Sources/Core/Color/ColorTheme.swift) and create PR.
+
+```diff
+public struct ColorTheme {
+    ...    
++   public static let themeName = ColorTheme(
++       type: { ... },
++       nil: { ... },
++       bool: { ... },
++       string: { ... },
++       number: { ... },
++       url: { ... }
++   )
+    
+    public var type: (String) -> String
+    public var `nil`: (String) -> String
+    ...
+```
+
+Thanks!
 
 ### Combine
 
