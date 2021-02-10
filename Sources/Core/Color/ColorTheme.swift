@@ -18,11 +18,11 @@ public struct ColorTheme {
         url: { $0 }
     )
     public static let `default` = ColorTheme(
-        typeName: { $0.yellow() },
+        typeName: { $0.green().bold() },
         nilLiteral: { $0.red() },
-        boolLiteral: { $0.blue() },
-        stringLiteral: { $0.cyan() },
-        numberLiteral: { $0.green() },
+        boolLiteral: { $0.red() },
+        stringLiteral: { $0.yellow() },
+        numberLiteral: { $0.cyan() },
         url: { $0.blue().underline() }
     )
 
