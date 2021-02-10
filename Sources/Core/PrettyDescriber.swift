@@ -26,12 +26,12 @@ struct PrettyDescriber {
             case .optional:
                 if let value = mirror.children.first?.value {
                     if debug {
-                        return theme.typeName("Optional") + "(" + _string(value) + ")"
+                        return theme.type("Optional") + "(" + _string(value) + ")"
                     } else {
                         return _string(value)
                     }
                 } else {
-                    return theme.nilLiteral("nil")
+                    return theme.nil("nil")
                 }
 
             case .collection:
@@ -69,7 +69,7 @@ struct PrettyDescriber {
                 let content = formatter.collectionString(elements: elements)
 
                 if debug {
-                    return theme.typeName("Set") + "(" + content + ")"
+                    return theme.type("Set") + "(" + content + ")"
                 } else {
                     return content
                 }
@@ -138,11 +138,11 @@ struct PrettyDescriber {
     private func asPremitiveString<T>(_ target: T, debug: Bool) -> String? {
         switch target {
         case let value as String:
-            return theme.stringLiteral(#""\#(value)""#)
+            return theme.string(#""\#(value)""#)
 
         case let url as URL:
             if debug {
-                return theme.typeName("URL") + #"("\#(theme.url(url.absoluteString))")"#
+                return theme.type("URL") + #"("\#(theme.url(url.absoluteString))")"#
             } else {
                 return theme.url(url.absoluteString)
             }
@@ -152,7 +152,7 @@ struct PrettyDescriber {
                 let f = DateFormatter()
                 f.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
                 f.timeZone = timeZone
-                return theme.typeName("Date") + #"("\#(f.string(from: date))")"#
+                return theme.type("Date") + #"("\#(f.string(from: date))")"#
             } else {
                 let f = DateFormatter()
                 f.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -161,12 +161,12 @@ struct PrettyDescriber {
             }
 
         case let bool as Bool:
-            return theme.boolLiteral(bool ? "true" : "false")
+            return theme.bool(bool ? "true" : "false")
 
         case is Int: fallthrough
         case is Float: fallthrough
         case is Double:
-            return theme.numberLiteral("\(target)")
+            return theme.number("\(target)")
 
         default:
             if debug {

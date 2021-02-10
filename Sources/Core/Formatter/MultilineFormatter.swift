@@ -78,7 +78,7 @@ class MultilineFormatter: PrettyFormatter {
         typeName: String, fields: [(String, String)]
     ) -> String {
         if fields.count == 1, let field = fields.first {
-            return theme.typeName(typeName) + "(" + "\(field.0): \(field.1)" + ")"
+            return theme.type(typeName) + "(" + "\(field.0): \(field.1)" + ")"
         } else {
             let body = fields
                 .map { label, value in "\(label): \(value)" }
@@ -86,7 +86,7 @@ class MultilineFormatter: PrettyFormatter {
                 .indent(size: indentSize)
 
             return """
-            \(theme.typeName(typeName))(
+            \(theme.type(typeName))(
             \(body)
             )
             """
