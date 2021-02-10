@@ -16,7 +16,7 @@ func printSection(_ heading: String) {
     let separator = String(repeating: "-", count: heading.count + 2)
     let theme: ColorTheme = {
         var theme = ColorTheme.plain
-        theme.stringLiteral = { $0.bold() }
+        theme.string = { $0.bold() }
         return theme
     }()
     let sectionOption = Debug.Option(theme: theme)
