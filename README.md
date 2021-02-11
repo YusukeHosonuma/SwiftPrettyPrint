@@ -341,8 +341,8 @@ If you already installed 1.1.0 or older version of SwiftPrettyPrint via [lowmad]
 
 This lets you to use the lldb command in debug console as follows:
 
-```text
-(lldb) e -l swift -- import SwiftPrettyPrint  ✅ If needed
+```bash
+(lldb) e -l swift -- import SwiftPrettyPrint # If needed
 (lldb) _p dog
 Dog(id: "pochi", price: 10.0, name: "ポチ")
 
