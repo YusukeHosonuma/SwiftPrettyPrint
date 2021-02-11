@@ -36,6 +36,7 @@ struct TestError: Error {
     let message =  "This is the error"
 }
 
+@available(macOS 10.15, iOS 13.0, watchOS 6, tvOS 13, *)
 final class CombineExtensionTests: XCTestCase {
     var cancellables: [AnyCancellable] = []
     
