@@ -536,8 +536,8 @@ This can't be used to the operator-based API such as `p >>>`. (This is a Swift l
 - Platforms
   - iOS 10.0+
   - macOS 10.12+
-  - watchOS 3.0+
-  - tvOS 10.0+
+  - watchOS 5.0+
+  - tvOS 12.0+
 
 ## Development
 
