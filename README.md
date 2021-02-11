@@ -468,7 +468,7 @@ You can use alias API `p()` and `pp()` too.
 ### CocoaPods (Recommended)
 
 ```ruby
-pod "SwiftPrettyPrint", "~> 1.1.0", :configuration => "Debug" # enabled on `Debug` build only
+pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug" # enabled on `Debug` build only
 ```
 
 The example app is [here](./Example).
@@ -484,7 +484,7 @@ github "YusukeHosonuma/SwiftPrettyPrint"
 Add the following line to the dependencies in your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.1.0"))
+.package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.2.0"))
 ```
 
 Finally, include "SwiftPrettyPrint" as a dependency for your any target:
@@ -493,7 +493,7 @@ Finally, include "SwiftPrettyPrint" as a dependency for your any target:
 let package = Package(
     // name, platforms, products, etc.
     dependencies: [
-        .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.1.0")),
+        .package(url: "https://github.com/YusukeHosonuma/SwiftPrettyPrint.git", .upToNextMajor(from: "1.2.0")),
         // other dependencies
     ],
     targets: [
