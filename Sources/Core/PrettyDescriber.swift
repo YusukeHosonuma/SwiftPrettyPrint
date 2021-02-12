@@ -6,7 +6,13 @@
 // Copyright (c) 2020 Yusuke Hosonuma.
 //
 
-import Foundation
+#if canImport(UIKit)
+    import UIKit
+    typealias UIComponent = UIResponder
+#else
+    import Foundation
+    typealias UIComponent = AnyClass
+#endif
 
 struct PrettyDescriber {
     var formatter: PrettyFormatter
@@ -175,7 +181,12 @@ struct PrettyDescriber {
                     return value.debugDescription
 
                 case let value as CustomStringConvertible:
-                    return value.description
+                    if #available(iOS 10.0, tvOS 10.0, *),
+                        let _ = value as? UIComponent {
+                        return nil
+                    } else {
+                        return value.description
+                    }
 
                 default:
                     return nil
@@ -183,7 +194,12 @@ struct PrettyDescriber {
             } else {
                 switch target {
                 case let value as CustomStringConvertible:
-                    return value.description
+                    if #available(iOS 10.0, tvOS 10.0, *),
+                        let _ = value as? UIComponent {
+                        return nil
+                    } else {
+                        return value.description
+                    }
 
                 case let value as CustomDebugStringConvertible:
                     return value.debugDescription
