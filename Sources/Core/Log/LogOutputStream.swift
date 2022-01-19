@@ -14,6 +14,7 @@
 
         init(url: URL) {
             self.url = url
+            #if !os(WASI)
             let directoryPath = url.deletingLastPathComponent()
             if !FileManager().fileExists(atPath: directoryPath.absoluteString) {
                 do {
@@ -22,9 +23,11 @@
                     print("[SwiftPrettyPrint] Failed to create directory. (\(directoryPath))")
                 }
             }
+            #endif
         }
 
         func write(_ string: String) {
+#if !os(WASI)
             guard let output = OutputStream(url: url, append: true) else { return }
 
             output.open()
@@ -37,6 +40,7 @@
                 }
                 _ = output.write(bytes, maxLength: data.count)
             }
+#endif
         }
     }
 
