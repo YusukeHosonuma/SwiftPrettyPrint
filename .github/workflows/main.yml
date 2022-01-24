@@ -63,11 +63,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Select Xcode 11.3.1
-      run: |
-        sudo xcode-select -s '/Applications/Xcode_11.3.1.app/Contents/Developer'
-        xcodebuild -version
-
     - name: Cache bundler
       uses: actions/cache@v1
       with:
