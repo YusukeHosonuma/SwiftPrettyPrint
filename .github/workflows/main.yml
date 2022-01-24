@@ -46,6 +46,16 @@ jobs:
 
     - name: Run Unit Test
       run: make test
+  
+  compile-webassembly:
+    runs-on: ubuntu-latest
+    container: ghcr.io/swiftwasm/swift:5.5-focal
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Compile for webassembly
+      run: swift build --triple wasm32-unknown-wasi
 
   integration-test:
     runs-on: macos-latest
