@@ -27,7 +27,7 @@
         }
 
         func write(_ string: String) {
-#if !os(WASI)
+            #if !os(WASI)
             guard let output = OutputStream(url: url, append: true) else { return }
 
             output.open()
@@ -40,7 +40,7 @@
                 }
                 _ = output.write(bytes, maxLength: data.count)
             }
-#endif
+            #endif
         }
     }
 
