@@ -33,13 +33,16 @@ extension Pretty {
     ///   - targets: targets
     ///   - separator: A string to print between each item.
     ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - colored: whether to apply the color theme in `option`.
+    /// - Warning: Xcode doesn't support console coloring since Xcode 8
     public static func print(
         label: String? = nil,
         _ targets: Any...,
         separator: String = " ",
-        option: Option = Pretty.sharedOption
+        option: Option = Pretty.sharedOption,
+        colored: Bool = false
     ) {
-        _output(printer: _print, label: label, targets, separator: separator, option: option)
+        _output(printer: _print, label: label, targets, separator: separator, option: option, colored: colored)
     }
 
     /// Output `targets` to `output`.
@@ -68,13 +71,16 @@ extension Pretty {
     ///   - targets: targets
     ///   - separator: A string to print between each item.
     ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - colored: whether to apply the color theme in `option`.
+    /// - Warning: Xcode doesn't support console coloring since Xcode 8
     public static func prettyPrint(
         label: String? = nil,
         _ targets: Any...,
         separator: String = "\n",
-        option: Option = Pretty.sharedOption
+        option: Option = Pretty.sharedOption,
+        colored: Bool = false
     ) {
-        _output(printer: _prettyPrint, label: label, targets, separator: separator, option: option)
+        _output(printer: _prettyPrint, label: label, targets, separator: separator, option: option, colored: colored)
     }
 
     /// Output pretty-formatted `targets` to console.
@@ -102,13 +108,16 @@ extension Pretty {
     ///   - targets: targets
     ///   - separator: A string to print between each item.
     ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - colored: whether to apply the color theme in `option`.
+    /// - Warning: Xcode doesn't support console coloring since Xcode 8
     public static func printDebug(
         label: String? = nil,
         _ targets: Any...,
         separator: String = " ",
-        option: Option = Pretty.sharedOption
+        option: Option = Pretty.sharedOption,
+        colored: Bool = false
     ) {
-        _output(printer: _printDebug, label: label, targets, separator: separator, option: option)
+        _output(printer: _printDebug, label: label, targets, separator: separator, option: option, colored: colored)
     }
 
     /// Output debuggable `targets` to console.
@@ -134,13 +143,16 @@ extension Pretty {
     ///   - targets: targets
     ///   - separator: A string to print between each item.
     ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - colored: whether to apply the color theme in `option`.
+    /// - Warning: Xcode doesn't support console coloring since Xcode 8
     public static func prettyPrintDebug(
         label: String? = nil,
         _ targets: Any...,
         separator: String = "\n",
-        option: Option = Pretty.sharedOption
+        option: Option = Pretty.sharedOption,
+        colored: Bool = false
     ) {
-        _output(printer: _prettyPrintDebug, label: label, targets, separator: separator, option: option)
+        _output(printer: _prettyPrintDebug, label: label, targets, separator: separator, option: option, colored: colored)
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
@@ -169,26 +181,27 @@ extension Pretty {
         label: String?,
         _ targets: [Any],
         separator: String,
-        option: Option
+        option: Option,
+        colored: Bool
     ) {
-        let plain = printer(label, targets, separator, option, false)
-        let colored = printer(label, targets, separator, option, true)
+        let plainString = printer(label, targets, separator, option, false)
+        let coloredString = printer(label, targets, separator, option, true)
 
         // Console
-        Swift.print(plain)
+        Swift.print(colored ? coloredString : plainString)
 
         // OS Log
         #if canImport(os)
             if option.outputStrategy == .osLog, #available(OSX 10.14, iOS 12.0, *) {
-                os_log(.default, "%@", plain)
+                os_log(.default, "%@", plainString)
                 return
             }
         #endif
 
         // Log files
         #if targetEnvironment(simulator) || os(macOS)
-            Swift.print(plain + "\n", to: &plainLogStream)
-            Swift.print(colored + "\n", to: &coloredLogStream)
+            Swift.print(plainString + "\n", to: &plainLogStream)
+            Swift.print(coloredString + "\n", to: &coloredLogStream)
         #endif
     }
 
