@@ -108,20 +108,20 @@
                 #if targetEnvironment(simulator) || os(macOS)
                     // Do not output to log when specifed `Output`.
                     if output is StandardOutput {
-                        var colored: String = ""
+                        var coloredString: String = ""
 
                         switch format {
                         case .singleline:
-                            Swift.print("receive \(label): ", terminator: "", to: &colored)
-                            Pretty.print(value, option: option, colored: colored, to: &colored)
+                            Swift.print("receive \(label): ", terminator: "", to: &coloredString)
+                            Pretty.print(value, option: option, colored: colored, to: &coloredString)
 
                         case .multiline:
-                            Swift.print("receive \(label):", to: &colored)
-                            Pretty.prettyPrint(value, option: option, colored: colored, to: &colored)
+                            Swift.print("receive \(label):", to: &coloredString)
+                            Pretty.prettyPrint(value, option: option, colored: colored, to: &coloredString)
                         }
 
                         _out(plain, terminator: "", to: Pretty.plainLogStream)
-                        _out(colored, terminator: "", to: Pretty.coloredLogStream)
+                        _out(coloredString, terminator: "", to: Pretty.coloredLogStream)
                     }
                 #endif
             }
