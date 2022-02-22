@@ -42,6 +42,22 @@ extension Pretty {
         option: Option = Pretty.sharedOption,
         colored: Bool = false
     ) {
+        splatPrint(label: label, targets: targets, separator: separator, option: option, colored: colored)
+    }
+
+    /// Output `targets` to console.
+    /// - Parameters:
+    ///   - label: label
+    ///   - targets: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    public static func splatPrint(
+        label: String?,
+        targets: [Any],
+        separator: String,
+        option: Option,
+        colored: Bool
+    ) {
         _output(printer: _print, label: label, targets, separator: separator, option: option, colored: colored)
     }
 
@@ -59,6 +75,25 @@ extension Pretty {
         separator: String = " ",
         option: Option = Pretty.sharedOption,
         colored: Bool = false,
+        to output: inout Target
+    ) {
+        splatPrint(label: label, targets: targets, separator: separator, option: option, colored: colored, to: &output)
+    }
+
+    /// Output `targets` to `output`.
+    /// - Parameters:
+    ///   - label: label
+    ///   - target: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - colored: whether to apply the color theme in `option`.
+    ///   - output: output
+    public static func splatPrint<Target: TextOutputStream>(
+        label: String?,
+        targets: [Any],
+        separator: String,
+        option: Option,
+        colored: Bool,
         to output: inout Target
     ) {
         let plain = _print(label: label, targets, separator: separator, option: option, colored: colored)
@@ -80,6 +115,22 @@ extension Pretty {
         option: Option = Pretty.sharedOption,
         colored: Bool = false
     ) {
+        splatPrettyPrint(label: label, targets: targets, separator: separator, option: option, colored: colored)
+    }
+
+    /// Output pretty-formatted `targets` to console.
+    /// - Parameters:
+    ///   - label: label
+    ///   - targets: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    public static func splatPrettyPrint(
+        label: String?,
+        targets: [Any],
+        separator: String,
+        option: Option,
+        colored: Bool
+    ) {
         _output(printer: _prettyPrint, label: label, targets, separator: separator, option: option, colored: colored)
     }
 
@@ -96,6 +147,24 @@ extension Pretty {
         separator: String = "\n",
         option: Option = Pretty.sharedOption,
         colored: Bool = false,
+        to output: inout Target
+    ) {
+        splatPrettyPrint(label: label, targets: targets, separator: separator, option: option, colored: colored, to: &output)
+    }
+
+    /// Output pretty-formatted `targets` to console.
+    /// - Parameters:
+    ///   - label: label
+    ///   - targets: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - output: output
+    public static func splatPrettyPrint<Target: TextOutputStream>(
+        label: String?,
+        targets: [Any],
+        separator: String,
+        option: Option,
+        colored: Bool,
         to output: inout Target
     ) {
         let plain = _prettyPrint(label: label, targets, separator: separator, option: option, colored: colored)
@@ -117,6 +186,22 @@ extension Pretty {
         option: Option = Pretty.sharedOption,
         colored: Bool = false
     ) {
+        splatPrintDebug(label: label, targets: targets, separator: separator, option: option, colored: colored)
+    }
+
+    /// Output debuggable `targets` to console.
+    /// - Parameters:
+    ///   - label: label
+    ///   - targets: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    public static func splatPrintDebug(
+        label: String?,
+        targets: [Any],
+        separator: String,
+        option: Option,
+        colored: Bool
+    ) {
         _output(printer: _printDebug, label: label, targets, separator: separator, option: option, colored: colored)
     }
 
@@ -132,6 +217,23 @@ extension Pretty {
         _ targets: Any...,
         separator: String = " ",
         option: Option = Pretty.sharedOption,
+        to output: inout Target
+    ) {
+        splatPrintDebug(label: label, targets: targets, separator: separator, option: option, to: &output)
+    }
+
+    /// Output debuggable `targets` to console.
+    /// - Parameters:
+    ///   - label: label
+    ///   - targets: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - output: output
+    public static func splatPrintDebug<Target: TextOutputStream>(
+        label: String?,
+        targets: [Any],
+        separator: String,
+        option: Option,
         to output: inout Target
     ) {
         let plain = _printDebug(label: label, targets, separator: separator, option: option, colored: false)
@@ -152,6 +254,21 @@ extension Pretty {
         option: Option = Pretty.sharedOption,
         colored: Bool = false
     ) {
+        splatPrettyPrintDebug(label: label, targets: targets, separator: separator, option: option, colored: colored)
+    }
+
+    /// Output debuggable and pretty-formatted `targets` to console.
+    /// - Parameters:
+    ///   - targets: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    public static func splatPrettyPrintDebug(
+        label: String?,
+        targets: [Any],
+        separator: String,
+        option: Option,
+        colored: Bool
+    ) {
         _output(printer: _prettyPrintDebug, label: label, targets, separator: separator, option: option, colored: colored)
     }
 
@@ -166,6 +283,22 @@ extension Pretty {
         _ targets: Any...,
         separator: String = "\n",
         option: Option = Pretty.sharedOption,
+        to output: inout Target
+    ) {
+        splatPrettyPrintDebug(label: label, targets: targets, separator: separator, option: option, to: &output)
+    }
+
+    /// Output debuggable and pretty-formatted `target` to console.
+    /// - Parameters:
+    ///   - targets: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - output: output
+    public static func splatPrettyPrintDebug<Target: TextOutputStream>(
+        label: String?,
+        targets: [Any],
+        separator: String,
+        option: Option,
         to output: inout Target
     ) {
         let plain = _prettyPrintDebug(label: label, targets, separator: separator, option: option, colored: false)

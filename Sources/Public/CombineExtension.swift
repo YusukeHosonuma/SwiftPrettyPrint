@@ -50,7 +50,7 @@
             _ prefix: String = "",
             when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
             format: CombineOperatorOption.Format = .multiline,
-            colored: Bool = true,
+            colored: Bool = false,
             to output: Output
         ) -> Publishers.HandleEvents<Self> {
             var option = Pretty.sharedOption
