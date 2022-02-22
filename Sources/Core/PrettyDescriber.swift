@@ -156,13 +156,17 @@ struct PrettyDescriber {
         case let date as Date:
             if debug {
                 let f = DateFormatter()
+                #if !os(WASI)
                 f.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
                 f.timeZone = timeZone
+                #endif
                 return theme.type("Date") + #"("\#(f.string(from: date))")"#
             } else {
                 let f = DateFormatter()
+                #if !os(WASI)
                 f.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 f.timeZone = timeZone
+                #endif
                 return f.string(from: date)
             }
 
