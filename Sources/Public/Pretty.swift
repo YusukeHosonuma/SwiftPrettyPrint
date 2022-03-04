@@ -44,6 +44,24 @@ extension Pretty {
     ) {
         splatPrint(label: label, targets: targets, separator: separator, option: option, colored: colored)
     }
+    
+    /// returns a `String` to be used with displaying data prettily
+    /// - Parameters:
+    ///   - label: label
+    ///   - targets: targets
+    ///   - separator: A string to print between each item.
+    ///   - option: option (default: `Pretty.sharedOption`)
+    ///   - colored: whether to apply the color theme in `option`.
+    /// - Warning: Xcode doesn't support console coloring since Xcode 8
+    public static func toString(
+        label: String? = nil,
+        _ targets: Any...,
+        separator: String = " ",
+        option: Option = Pretty.sharedOption,
+        colored: Bool = false
+    ) -> String {
+        _prettyPrint(label: label, targets, separator: separator, option: option, colored: colored)
+    }
 
     /// Output `targets` to console.
     /// - Parameters:
