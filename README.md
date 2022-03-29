@@ -286,6 +286,20 @@ Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 // )
 ```
 
+### colorized
+
+Output strings can be colored.
+
+```swift
+Pretty.sharedOption = Pretty.Option(colored: true)
+let value = (bool: true, array: ["Hello", "World"])
+Pretty.prettyPrint(value)
+```
+
+This output looks like as bellow:
+
+<img src=https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/main/Image/colored-option.png>
+
 ### Prefix and Label
 
 You can specify a global prefix and a label (e.g. variable name) like following:
