@@ -12,12 +12,14 @@ extension Pretty {
         public var indentSize: Int
         public var theme: ColorTheme
         public var outputStrategy: OutputStrategy
+        public var colored: Bool
 
-        public init(prefix: String? = nil, indentSize: Int = 4, theme: ColorTheme = .default, outputStrategy: OutputStrategy = .print) {
+        public init(prefix: String? = nil, indentSize: Int = 4, theme: ColorTheme = .default, outputStrategy: OutputStrategy = .print, colored: Bool = false) {
             self.prefix = prefix
             self.indentSize = indentSize
             self.theme = theme
             self.outputStrategy = outputStrategy
+            self.colored = colored
         }
 
         public enum OutputStrategy {
