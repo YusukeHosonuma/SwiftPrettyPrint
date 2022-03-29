@@ -39,10 +39,9 @@ extension Pretty {
         label: String? = nil,
         _ targets: Any...,
         separator: String = " ",
-        option: Option = Pretty.sharedOption,
-        colored: Bool = false
+        option: Option = Pretty.sharedOption
     ) {
-        splatPrint(label: label, targets: targets, separator: separator, option: option, colored: colored)
+        splatPrint(label: label, targets: targets, separator: separator, option: option)
     }
 
     /// Output `targets` to console.
@@ -55,10 +54,9 @@ extension Pretty {
         label: String?,
         targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) {
-        _output(printer: _print, label: label, targets, separator: separator, option: option, colored: colored)
+        _output(printer: _print, label: label, targets, separator: separator, option: option)
     }
 
     /// Output `targets` to `output`.
@@ -74,10 +72,9 @@ extension Pretty {
         _ targets: Any...,
         separator: String = " ",
         option: Option = Pretty.sharedOption,
-        colored: Bool = false,
         to output: inout Target
     ) {
-        splatPrint(label: label, targets: targets, separator: separator, option: option, colored: colored, to: &output)
+        splatPrint(label: label, targets: targets, separator: separator, option: option, to: &output)
     }
 
     /// Output `targets` to `output`.
@@ -93,10 +90,9 @@ extension Pretty {
         targets: [Any],
         separator: String,
         option: Option,
-        colored: Bool,
         to output: inout Target
     ) {
-        let plain = _print(label: label, targets, separator: separator, option: option, colored: colored)
+        let plain = _print(label: label, targets, separator: separator, option: option)
         Swift.print(plain, to: &output)
     }
 
@@ -112,10 +108,9 @@ extension Pretty {
         label: String? = nil,
         _ targets: Any...,
         separator: String = "\n",
-        option: Option = Pretty.sharedOption,
-        colored: Bool = false
+        option: Option = Pretty.sharedOption
     ) {
-        splatPrettyPrint(label: label, targets: targets, separator: separator, option: option, colored: colored)
+        splatPrettyPrint(label: label, targets: targets, separator: separator, option: option)
     }
 
     /// Output pretty-formatted `targets` to console.
@@ -128,10 +123,9 @@ extension Pretty {
         label: String?,
         targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) {
-        _output(printer: _prettyPrint, label: label, targets, separator: separator, option: option, colored: colored)
+        _output(printer: _prettyPrint, label: label, targets, separator: separator, option: option)
     }
 
     /// Output pretty-formatted `targets` to console.
@@ -146,10 +140,9 @@ extension Pretty {
         _ targets: Any...,
         separator: String = "\n",
         option: Option = Pretty.sharedOption,
-        colored: Bool = false,
         to output: inout Target
     ) {
-        splatPrettyPrint(label: label, targets: targets, separator: separator, option: option, colored: colored, to: &output)
+        splatPrettyPrint(label: label, targets: targets, separator: separator, option: option, to: &output)
     }
 
     /// Output pretty-formatted `targets` to console.
@@ -164,10 +157,9 @@ extension Pretty {
         targets: [Any],
         separator: String,
         option: Option,
-        colored: Bool,
         to output: inout Target
     ) {
-        let plain = _prettyPrint(label: label, targets, separator: separator, option: option, colored: colored)
+        let plain = _prettyPrint(label: label, targets, separator: separator, option: option)
         Swift.print(plain, to: &output)
     }
 
@@ -183,10 +175,9 @@ extension Pretty {
         label: String? = nil,
         _ targets: Any...,
         separator: String = " ",
-        option: Option = Pretty.sharedOption,
-        colored: Bool = false
+        option: Option = Pretty.sharedOption
     ) {
-        splatPrintDebug(label: label, targets: targets, separator: separator, option: option, colored: colored)
+        splatPrintDebug(label: label, targets: targets, separator: separator, option: option)
     }
 
     /// Output debuggable `targets` to console.
@@ -199,10 +190,9 @@ extension Pretty {
         label: String?,
         targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) {
-        _output(printer: _printDebug, label: label, targets, separator: separator, option: option, colored: colored)
+        _output(printer: _printDebug, label: label, targets, separator: separator, option: option)
     }
 
     /// Output debuggable `targets` to console.
@@ -236,7 +226,7 @@ extension Pretty {
         option: Option,
         to output: inout Target
     ) {
-        let plain = _printDebug(label: label, targets, separator: separator, option: option, colored: false)
+        let plain = _printDebug(label: label, targets, separator: separator, option: option)
         Swift.print(plain, to: &output)
     }
 
@@ -251,10 +241,9 @@ extension Pretty {
         label: String? = nil,
         _ targets: Any...,
         separator: String = "\n",
-        option: Option = Pretty.sharedOption,
-        colored: Bool = false
+        option: Option = Pretty.sharedOption
     ) {
-        splatPrettyPrintDebug(label: label, targets: targets, separator: separator, option: option, colored: colored)
+        splatPrettyPrintDebug(label: label, targets: targets, separator: separator, option: option)
     }
 
     /// Output debuggable and pretty-formatted `targets` to console.
@@ -266,10 +255,9 @@ extension Pretty {
         label: String?,
         targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) {
-        _output(printer: _prettyPrintDebug, label: label, targets, separator: separator, option: option, colored: colored)
+        _output(printer: _prettyPrintDebug, label: label, targets, separator: separator, option: option)
     }
 
     /// Output debuggable and pretty-formatted `target` to console.
@@ -301,27 +289,26 @@ extension Pretty {
         option: Option,
         to output: inout Target
     ) {
-        let plain = _prettyPrintDebug(label: label, targets, separator: separator, option: option, colored: false)
+        let plain = _prettyPrintDebug(label: label, targets, separator: separator, option: option)
         Swift.print(plain, to: &output)
     }
 
     // MARK: - private
 
-    private typealias Printer = (String?, [Any], String, Option, Bool) -> String
+    private typealias Printer = (String?, [Any], String, Option) -> String
 
     private static func _output(
         printer: Printer,
         label: String?,
         _ targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) {
-        let plainString = printer(label, targets, separator, option, false)
-        let coloredString = printer(label, targets, separator, option, true)
+        let plainString = printer(label, targets, separator, option)
+        let coloredString = printer(label, targets, separator, option)
 
         // Console
-        Swift.print(colored ? coloredString : plainString)
+        Swift.print(option.colored ? coloredString : plainString)
 
         // OS Log
         #if canImport(os)
@@ -342,12 +329,11 @@ extension Pretty {
         label: String?,
         _ targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) -> String {
         prefixLabel(option.prefix, label) +
             targets.map {
-                PrettyDescriber.singleline(option: option, colored: colored).string($0, debug: false)
+                PrettyDescriber.singleline(option: option).string($0, debug: false)
             }.joined(separator: separator)
     }
 
@@ -355,12 +341,11 @@ extension Pretty {
         label: String?,
         _ targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) -> String {
         prefixLabelPretty(option.prefix, label) +
             targets.map {
-                PrettyDescriber.multiline(option: option, colored: colored).string($0, debug: false)
+                PrettyDescriber.multiline(option: option).string($0, debug: false)
             }.joined(separator: separator)
     }
 
@@ -368,12 +353,11 @@ extension Pretty {
         label: String?,
         _ targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) -> String {
         prefixLabel(option.prefix, label) +
             targets.map {
-                PrettyDescriber.singleline(option: option, colored: colored).string($0, debug: true)
+                PrettyDescriber.singleline(option: option).string($0, debug: true)
             }.joined(separator: separator)
     }
 
@@ -381,12 +365,11 @@ extension Pretty {
         label: String?,
         _ targets: [Any],
         separator: String,
-        option: Option,
-        colored: Bool
+        option: Option
     ) -> String {
         prefixLabelPretty(option.prefix, label) +
             targets.map {
-                PrettyDescriber.multiline(option: option, colored: colored).string($0, debug: true)
+                PrettyDescriber.multiline(option: option).string($0, debug: true)
             }.joined(separator: separator)
     }
 }

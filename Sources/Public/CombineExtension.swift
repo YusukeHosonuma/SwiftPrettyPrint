@@ -29,20 +29,18 @@
         /// Output events as multiine.
         public func pp(
             _ prefix: String = "",
-            when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
-            colored: Bool = false
+            when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases
         ) -> Publishers.HandleEvents<Self> {
-            prettyPrint(prefix, when: when, format: .multiline, colored: colored)
+            prettyPrint(prefix, when: when, format: .multiline)
         }
 
         /// Output events to standard output.
         public func prettyPrint(
             _ prefix: String = "",
             when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
-            format: CombineOperatorOption.Format = .multiline,
-            colored: Bool = false
+            format: CombineOperatorOption.Format = .multiline
         ) -> Publishers.HandleEvents<Self> {
-            prettyPrint(prefix, when: when, format: format, colored: colored, to: StandardOutput())
+            prettyPrint(prefix, when: when, format: format, to: StandardOutput())
         }
 
         /// Output events to specified output stream.
@@ -50,7 +48,6 @@
             _ prefix: String = "",
             when: [CombineOperatorOption.Event] = CombineOperatorOption.Event.allCases,
             format: CombineOperatorOption.Format = .multiline,
-            colored: Bool = false,
             to output: Output
         ) -> Publishers.HandleEvents<Self> {
             var option = Pretty.sharedOption
@@ -94,11 +91,11 @@
                     switch format {
                     case .singleline:
                         Swift.print("receive \(label): ", terminator: "", to: &plain)
-                        Pretty.print(value, option: option, colored: colored, to: &plain)
+                        Pretty.print(value, option: option, to: &plain)
 
                     case .multiline:
                         Swift.print("receive \(label):", to: &plain)
-                        Pretty.prettyPrint(value, option: option, colored: colored, to: &plain)
+                        Pretty.prettyPrint(value, option: option, to: &plain)
                     }
 
                     _out(plain, terminator: "", to: output)
@@ -113,11 +110,11 @@
                         switch format {
                         case .singleline:
                             Swift.print("receive \(label): ", terminator: "", to: &coloredString)
-                            Pretty.print(value, option: option, colored: colored, to: &coloredString)
+                            Pretty.print(value, option: option, to: &coloredString)
 
                         case .multiline:
                             Swift.print("receive \(label):", to: &coloredString)
-                            Pretty.prettyPrint(value, option: option, colored: colored, to: &coloredString)
+                            Pretty.prettyPrint(value, option: option, to: &coloredString)
                         }
 
                         _out(plain, terminator: "", to: Pretty.plainLogStream)
