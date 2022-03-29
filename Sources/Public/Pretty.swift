@@ -392,13 +392,13 @@ extension Pretty {
 }
 
 extension PrettyDescriber {
-    static func singleline(option: Pretty.Option, colored: Bool) -> PrettyDescriber {
-        let theme = colored ? option.theme : .plain
+    static func singleline(option: Pretty.Option) -> PrettyDescriber {
+        let theme = option.colored ? option.theme : .plain
         return PrettyDescriber(formatter: SinglelineFormatter(theme: theme), theme: theme)
     }
 
-    static func multiline(option: Pretty.Option, colored: Bool) -> PrettyDescriber {
-        let theme = colored ? option.theme : .plain
+    static func multiline(option: Pretty.Option) -> PrettyDescriber {
+        let theme = option.colored ? option.theme : .plain
         return PrettyDescriber(formatter: MultilineFormatter(indentSize: option.indentSize, theme: theme), theme: theme)
     }
 }
