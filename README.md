@@ -298,7 +298,7 @@ Pretty.prettyPrint(value)
 
 This output looks like as bellow:
 
-<img src=https://raw.githubusercontent.com/YusukeHosonuma/SwiftPrettyPrint/main/Image/colored-option.png>
+<img src=Image/colored-option.png>
 
 ### Prefix and Label
 
