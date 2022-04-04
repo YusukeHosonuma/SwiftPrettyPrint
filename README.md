@@ -286,6 +286,25 @@ Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 // )
 ```
 
+### colorized
+
+Output strings can be ANSI colored.
+
+```swift
+Pretty.sharedOption = Pretty.Option(colored: true)
+let value = (bool: true, array: ["Hello", "World"])
+Pretty.prettyPrint(value)
+```
+
+This output looks like as below:
+
+<img src=Image/colored-option.png>
+
+It works only on console that ANSI color supported (e.g. AppCode, Terminal.app).
+This does **not** includes Xcode debug console.
+
+See also [Terminal](#Terminal) section.
+
 ### Prefix and Label
 
 You can specify a global prefix and a label (e.g. variable name) like following:
