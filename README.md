@@ -290,19 +290,20 @@ Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 
 Output strings can be ANSI colored.
 
-Therefore it only works in terminals that support ANSI color e.g. AppCode, Terminal.app (This does ** not ** includes Xcode debug console).
-
-See also [Terminal](#Terminal) section.
-
 ```swift
 Pretty.sharedOption = Pretty.Option(colored: true)
 let value = (bool: true, array: ["Hello", "World"])
 Pretty.prettyPrint(value)
 ```
 
-This output looks like as bellow:
+This output looks like as below:
 
 <img src=Image/colored-option.png>
+
+It works only on console that ANSI color supported (e.g. AppCode, Terminal.app).
+This does **not** includes Xcode debug console.
+
+See also [Terminal](#Terminal) section.
 
 ### Prefix and Label
 
