@@ -8,7 +8,7 @@
 #if canImport(SwiftUI)
     import SwiftUI
 
-    @available(iOS 13, *)
+    @available(iOS 13, macOS 10.15, *)
     public extension View {
         func prettyPrint(label: String? = nil) -> Self {
             let view = self
