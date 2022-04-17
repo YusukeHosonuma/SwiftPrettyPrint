@@ -46,6 +46,7 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
  - [Integrations 🔌](#Integrations-🔌)
    - [LLDB](#LLDB)
    - [Terminal](#Terminal)
+   - [SwiftUI](#SwiftUI)
    - [Combine](#Combine)
  - [Installation](#Installation)
    - [CocoaPods (Recommended)](#CocoaPods-(Recommended))
@@ -431,6 +432,24 @@ public struct ColorTheme {
 ```
 
 Thanks!
+
+### SwiftUI
+
+You can use `prettyPrint()` and `prettyPrintDebug()` on any `View`.
+
+```swift
+// Standard API.
+Text("Swift")
+    .prettyPrint()
+    .prettyPrintDebug()
+
+// You can specify label if needed.
+Text("Swift")
+    .prettyPrint(label: "🍎")
+    .prettyPrintDebug(label: "🍊")
+```
+
+This extension is useful to examine the internal structure.
 
 ### Combine
 
