@@ -293,8 +293,6 @@ Output strings can be ANSI colored.
 
 ```swift
 Pretty.sharedOption = Pretty.Option(colored: true)
-let value = (bool: true, array: ["Hello", "World"])
-Pretty.prettyPrint(value)
 ```
 
 This output looks like as below:
