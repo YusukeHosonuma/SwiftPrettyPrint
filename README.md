@@ -291,6 +291,8 @@ Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 
 Output strings can be ANSI colored.
 
+The options for coloring are specified as follows:
+
 ```swift
 Pretty.sharedOption = Pretty.Option(colored: true)
 ```
