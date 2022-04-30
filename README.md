@@ -297,7 +297,7 @@ The options for coloring are specified as follows:
 Pretty.sharedOption = Pretty.Option(colored: true)
 ```
 
-This output looks like as below:
+Under this configuration, the following outputs can be achieved in AppCode:
 
 <img src=Image/colored-option.png>
 
