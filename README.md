@@ -291,13 +291,13 @@ Pretty.prettyPrint(value, option: Pretty.Option(prefix: nil, indentSize: 2))
 
 Output strings can be ANSI colored.
 
+The options for coloring are specified as follows:
+
 ```swift
 Pretty.sharedOption = Pretty.Option(colored: true)
-let value = (bool: true, array: ["Hello", "World"])
-Pretty.prettyPrint(value)
 ```
 
-This output looks like as below:
+Under this configuration, the following outputs can be achieved in AppCode:
 
 <img src=Image/colored-option.png>
 
