@@ -14,6 +14,10 @@
     typealias UIComponent = AnyClass
 #endif
 
+#if canImport(SwiftUI)
+    import SwiftUI
+#endif
+
 struct PrettyDescriber {
     var formatter: PrettyFormatter
     var theme: ColorTheme = .plain
@@ -142,6 +146,36 @@ struct PrettyDescriber {
     }
 
     private func asPremitiveString<T>(_ target: T, debug: Bool) -> String? {
+        //
+        // SwiftUI Library
+        //
+        #if canImport(SwiftUI)
+            //
+            // @Published
+            //
+            if String(describing: target.self).hasPrefix("Published<") {
+                func lookupCurrentValue(_ published: Any) -> Any? {
+                    guard
+                        let storage = Mirror(reflecting: published).children.first?.value,
+                        let publisher = Mirror(reflecting: storage).children.first?.value,
+                        let subject = Mirror(reflecting: publisher).children.first?.value,
+                        let currentValue = Mirror(reflecting: subject).children.filter({ $0.label == "currentValue" }).first?.value else { return nil }
+                    return currentValue
+                }
+
+                if let currentValue = lookupCurrentValue(target) {
+                    if debug {
+                        return "@Published(\(string(currentValue, debug: debug)))"
+                    } else {
+                        return string(currentValue, debug: debug)
+                    }
+                }
+            }
+        #endif
+
+        //
+        // Swift Standard Library
+        //
         switch target {
         case let value as String:
             return theme.string(#""\#(value)""#)
@@ -157,15 +191,15 @@ struct PrettyDescriber {
             if debug {
                 let f = DateFormatter()
                 #if !os(WASI)
-                f.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
-                f.timeZone = timeZone
+                    f.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
+                    f.timeZone = timeZone
                 #endif
                 return theme.type("Date") + #"("\#(f.string(from: date))")"#
             } else {
                 let f = DateFormatter()
                 #if !os(WASI)
-                f.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                f.timeZone = timeZone
+                    f.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    f.timeZone = timeZone
                 #endif
                 return f.string(from: date)
             }
