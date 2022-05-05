@@ -235,7 +235,9 @@ struct PrettyDescriber {
             //
             // @SceneStorage
             //
-            if #available(iOS 14, *), typeName.hasPrefix("SceneStorage<"), let key = lookup("_key", from: target) as? String {
+            if #available(iOS 14, macOS 11.0,*),
+                typeName.hasPrefix("SceneStorage<"),
+                let key = lookup("_key", from: target) as? String {
                 let value: String
 
                 switch target {
