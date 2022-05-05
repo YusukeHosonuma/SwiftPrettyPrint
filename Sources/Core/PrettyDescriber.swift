@@ -165,10 +165,27 @@ struct PrettyDescriber {
                 if typeName.hasPrefix("\(type)<") {
                     if let currentValue = lookup(key, from: target) {
                         if debug {
+                            // e.g. `@Published(42)`
                             return "@\(type)(\(string(currentValue, debug: debug)))"
                         } else {
                             return string(currentValue, debug: debug)
                         }
+                    }
+                }
+            }
+
+            //
+            // @AppStorage
+            //
+            if typeName.hasPrefix("AppStorage<") {
+                if let key = lookup("key", from: target) as? String {
+                    let value = UserDefaults.standard.value(forKey: key) ?? "nil"
+
+                    if debug {
+                        // e.g. `@AppStorage(key: "Number", userDefaultsValue: 42)`
+                        return "@AppStorage(key: \"\(key)\", userDefaultsValue: \(string(value, debug: debug)))"
+                    } else {
+                        return string(value, debug: debug)
                     }
                 }
             }
