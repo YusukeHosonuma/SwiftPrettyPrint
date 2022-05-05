@@ -163,13 +163,27 @@ struct PrettyDescriber {
 
             for (type, key) in propertyWrappers {
                 if typeName.hasPrefix("\(type)<") {
-                    if let currentValue = lookup(key, from: target) {
+                    if let value = lookup(key, from: target) {
                         if debug {
                             // e.g. `@Published(42)`
-                            return "@\(type)(\(string(currentValue, debug: debug)))"
+                            return "@\(type)(\(string(value, debug: debug)))"
                         } else {
-                            return string(currentValue, debug: debug)
+                            return string(value, debug: debug)
                         }
+                    }
+                }
+            }
+
+            //
+            // @Environment
+            //
+            if typeName.hasPrefix("Environment<") {
+                if let content = lookup("content", from: target),
+                    let rawValue = Mirror(reflecting: content).children.first?.value {
+                    if debug {
+                        return "@Environment(\(string(rawValue, debug: debug)))"
+                    } else {
+                        return string(rawValue, debug: debug)
                     }
                 }
             }
