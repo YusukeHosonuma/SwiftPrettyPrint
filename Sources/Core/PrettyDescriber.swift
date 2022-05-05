@@ -150,22 +150,28 @@ struct PrettyDescriber {
         // SwiftUI Library
         //
         #if canImport(SwiftUI)
+            let typeName = String(describing: target.self)
+
             //
             // @Published
             //
-            if String(describing: target.self).hasPrefix("Published<") {
-                func lookupCurrentValue(_ published: Any) -> Any? {
-                    guard
-                        let storage = Mirror(reflecting: published).children.first?.value,
-                        let publisher = Mirror(reflecting: storage).children.first?.value,
-                        let subject = Mirror(reflecting: publisher).children.first?.value,
-                        let currentValue = Mirror(reflecting: subject).children.filter({ $0.label == "currentValue" }).first?.value else { return nil }
-                    return currentValue
-                }
-
-                if let currentValue = lookupCurrentValue(target) {
+            if typeName.hasPrefix("Published<") {
+                if let currentValue = lookup("currentValue", from: target) {
                     if debug {
                         return "@Published(\(string(currentValue, debug: debug)))"
+                    } else {
+                        return string(currentValue, debug: debug)
+                    }
+                }
+            }
+
+            //
+            // @StateObject
+            //
+            if typeName.hasPrefix("StateObject<") {
+                if let currentValue = lookup("wrappedValue", from: target) {
+                    if debug {
+                        return "@StateObject(\(string(currentValue, debug: debug)))"
                     } else {
                         return string(currentValue, debug: debug)
                     }
@@ -291,6 +297,22 @@ struct PrettyDescriber {
 
             return "\(prefix)(" + body.removeEnclosedParentheses() + ")"
         }
+    }
+
+    private func lookup(_ key: String, from target: Any) -> Any? {
+        for children in Mirror(reflecting: target).children {
+            // 💡 Prevent infinite recursive call.
+            guard let label = children.label else { continue }
+
+            if label == key {
+                return children.value
+            } else {
+                if let found = lookup(key, from: children.value) { // ☑️ Recursive call.
+                    return found
+                }
+            }
+        }
+        return nil
     }
 
     private func handleError(_ f: () throws -> String) -> String {
