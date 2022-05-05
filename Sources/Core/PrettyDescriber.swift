@@ -177,6 +177,19 @@ struct PrettyDescriber {
                     }
                 }
             }
+
+            //
+            // @ObservedObject
+            //
+            if typeName.hasPrefix("ObservedObject<") {
+                if let currentValue = lookup("wrappedValue", from: target) {
+                    if debug {
+                        return "@ObservedObject(\(string(currentValue, debug: debug)))"
+                    } else {
+                        return string(currentValue, debug: debug)
+                    }
+                }
+            }
         #endif
 
         //
