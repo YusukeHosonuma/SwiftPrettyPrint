@@ -152,54 +152,21 @@ struct PrettyDescriber {
         #if canImport(SwiftUI)
             let typeName = String(describing: target.self)
 
-            //
-            // @Published
-            //
-            if typeName.hasPrefix("Published<") {
-                if let currentValue = lookup("currentValue", from: target) {
-                    if debug {
-                        return "@Published(\(string(currentValue, debug: debug)))"
-                    } else {
-                        return string(currentValue, debug: debug)
-                    }
-                }
-            }
+            let propertyWrappers: [(String, String)] = [
+                ("Published", "currentValue"),
+                ("StateObject", "wrappedValue"),
+                ("ObservedObject", "wrappedValue"),
+                ("EnvironmentObject", "_store"),
+            ]
 
-            //
-            // @StateObject
-            //
-            if typeName.hasPrefix("StateObject<") {
-                if let currentValue = lookup("wrappedValue", from: target) {
-                    if debug {
-                        return "@StateObject(\(string(currentValue, debug: debug)))"
-                    } else {
-                        return string(currentValue, debug: debug)
-                    }
-                }
-            }
-
-            //
-            // @ObservedObject
-            //
-            if typeName.hasPrefix("ObservedObject<") {
-                if let currentValue = lookup("wrappedValue", from: target) {
-                    if debug {
-                        return "@ObservedObject(\(string(currentValue, debug: debug)))"
-                    } else {
-                        return string(currentValue, debug: debug)
-                    }
-                }
-            }
-
-            //
-            // @EnvironmentObject
-            //
-            if typeName.hasPrefix("EnvironmentObject<") {
-                if let currentValue = lookup("_store", from: target) {
-                    if debug {
-                        return "@EnvironmentObject(\(string(currentValue, debug: debug)))"
-                    } else {
-                        return string(currentValue, debug: debug)
+            for (type, key) in propertyWrappers {
+                if typeName.hasPrefix("\(type)<") {
+                    if let currentValue = lookup(key, from: target) {
+                        if debug {
+                            return "@\(type)(\(string(currentValue, debug: debug)))"
+                        } else {
+                            return string(currentValue, debug: debug)
+                        }
                     }
                 }
             }
