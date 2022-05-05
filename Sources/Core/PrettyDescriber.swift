@@ -157,6 +157,7 @@ struct PrettyDescriber {
                 ("StateObject", "wrappedValue"),
                 ("ObservedObject", "wrappedValue"),
                 ("EnvironmentObject", "_store"),
+                ("State", "_value"),
             ]
 
             for (type, key) in propertyWrappers {
