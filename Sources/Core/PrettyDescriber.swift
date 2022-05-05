@@ -190,6 +190,19 @@ struct PrettyDescriber {
                     }
                 }
             }
+
+            //
+            // @EnvironmentObject
+            //
+            if typeName.hasPrefix("EnvironmentObject<") {
+                if let currentValue = lookup("_store", from: target) {
+                    if debug {
+                        return "@EnvironmentObject(\(string(currentValue, debug: debug)))"
+                    } else {
+                        return string(currentValue, debug: debug)
+                    }
+                }
+            }
         #endif
 
         //
