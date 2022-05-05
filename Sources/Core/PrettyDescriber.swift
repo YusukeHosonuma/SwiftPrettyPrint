@@ -102,7 +102,13 @@ struct PrettyDescriber {
 
         // Object
         let fields: [(String, String)] = mirror.children.map {
-            ($0.label ?? "-", _string($0.value))
+            let value = _string($0.value)
+
+            if isSwiftUIPropertyWrapperType($0.value), let label = $0.label, label.first == "_" {
+                return (String(label.dropFirst()), value) // e.g. `_text` -> `text`
+            } else {
+                return ($0.label ?? "-", value)
+            }
         }
         return formatter.objectString(typeName: typeName, fields: fields)
     }
