@@ -179,6 +179,10 @@ struct PrettyDescriber {
         // SwiftUI Library
         //
         #if canImport(SwiftUI)
+            func __string<T: Any>(_ target: T) -> String {
+                string(target, debug: debug) // ☑️ Capture `debug`
+            }
+
             let typeName = String(describing: target.self)
 
             let propertyWrappers: [(String, String)] = [
@@ -191,14 +195,12 @@ struct PrettyDescriber {
             ]
 
             for (type, key) in propertyWrappers {
-                if typeName.hasPrefix("\(type)<") {
-                    if let value = lookup(key, from: target) {
-                        if debug {
-                            // e.g. `@Published(42)`
-                            return "@\(type)(\(string(value, debug: debug)))"
-                        } else {
-                            return string(value, debug: debug)
-                        }
+                if typeName.hasPrefix("\(type)<"), let value = lookup(key, from: target) {
+                    if debug {
+                        // e.g. `@Published(42)`
+                        return "@\(type)(\(__string(value)))"
+                    } else {
+                        return __string(value)
                     }
                 }
             }
@@ -206,30 +208,27 @@ struct PrettyDescriber {
             //
             // @Environment
             //
-            if typeName.hasPrefix("Environment<") {
-                if let content = lookup("content", from: target),
-                    let rawValue = Mirror(reflecting: content).children.first?.value {
-                    if debug {
-                        return "@Environment(\(string(rawValue, debug: debug)))"
-                    } else {
-                        return string(rawValue, debug: debug)
-                    }
+            if typeName.hasPrefix("Environment<"),
+                let content = lookup("content", from: target),
+                let rawValue = Mirror(reflecting: content).children.first?.value {
+                if debug {
+                    return "@Environment(\(__string(rawValue)))"
+                } else {
+                    return __string(rawValue)
                 }
             }
 
             //
             // @AppStorage
             //
-            if typeName.hasPrefix("AppStorage<") {
-                if let key = lookup("key", from: target) as? String {
-                    let value = UserDefaults.standard.value(forKey: key) ?? "nil"
+            if typeName.hasPrefix("AppStorage<"), let key = lookup("key", from: target) as? String {
+                let value = UserDefaults.standard.value(forKey: key) ?? "nil"
 
-                    if debug {
-                        // e.g. `@AppStorage(key: "Number", userDefaultsValue: 42)`
-                        return "@AppStorage(key: \"\(key)\", userDefaultsValue: \(string(value, debug: debug)))"
-                    } else {
-                        return string(value, debug: debug)
-                    }
+                if debug {
+                    // e.g. `@AppStorage(key: "Number", userDefaultsValue: 42)`
+                    return "@AppStorage(key: \"\(key)\", userDefaultsValue: \(__string(value)))"
+                } else {
+                    return __string(value)
                 }
             }
 
@@ -241,19 +240,19 @@ struct PrettyDescriber {
 
                 switch target {
                 case let storage as SceneStorage<URL>:
-                    value = string(storage.wrappedValue, debug: debug)
+                    value = __string(storage.wrappedValue)
 
                 case let storage as SceneStorage<Int>:
-                    value = string(storage.wrappedValue, debug: debug)
+                    value = __string(storage.wrappedValue)
 
                 case let storage as SceneStorage<Double>:
-                    value = string(storage.wrappedValue, debug: debug)
+                    value = __string(storage.wrappedValue)
 
                 case let storage as SceneStorage<String>:
-                    value = string(storage.wrappedValue, debug: debug)
+                    value = __string(storage.wrappedValue)
 
                 case let storage as SceneStorage<Bool>:
-                    value = string(storage.wrappedValue, debug: debug)
+                    value = __string(storage.wrappedValue)
 
                 default:
                     //
