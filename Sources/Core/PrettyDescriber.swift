@@ -189,6 +189,46 @@ struct PrettyDescriber {
                     }
                 }
             }
+
+            //
+            // @SceneStorage
+            //
+            if #available(iOS 14, *), typeName.hasPrefix("SceneStorage<"), let key = lookup("_key", from: target) as? String {
+                let value: String
+
+                switch target {
+                case let storage as SceneStorage<URL>:
+                    value = string(storage.wrappedValue, debug: debug)
+
+                case let storage as SceneStorage<Int>:
+                    value = string(storage.wrappedValue, debug: debug)
+
+                case let storage as SceneStorage<Double>:
+                    value = string(storage.wrappedValue, debug: debug)
+
+                case let storage as SceneStorage<String>:
+                    value = string(storage.wrappedValue, debug: debug)
+
+                case let storage as SceneStorage<Bool>:
+                    value = string(storage.wrappedValue, debug: debug)
+
+                default:
+                    //
+                    // Can't lookup value that implemented `RawRepresentable` protocol.
+                    //
+                    if debug {
+                        return "@SceneStorage(key: \"\(key)\", value: <can not lookup>)"
+                    } else {
+                        return "<can not lookup>"
+                    }
+                }
+
+                if debug {
+                    return "@SceneStorage(key: \"\(key)\", value: \(value))"
+                } else {
+                    return value
+                }
+            }
         #endif
 
         //
