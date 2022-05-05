@@ -132,17 +132,40 @@ struct PrettyDescriber {
         }
     }
 
+    func isSwiftUIPropertyWrapperType(_ target: Any) -> Bool {
+        let typeName = String(describing: target.self)
+        return [
+            "Published",
+            "StateObject",
+            "ObservedObject",
+            "EnvironmentObject",
+            "Environment",
+            "State",
+            "Binding",
+            "AppStorage",
+            "SceneStorage",
+        ].contains { typeName.hasPrefix("\($0)<") }
+    }
+
     private func asValueString<T>(_ target: T, debug: Bool) -> String? {
+        guard debug == false else { return nil }
+
+        let children = Mirror(reflecting: target).children
+
         // Note:
+        //
         // The conditions for being a `ValueObject`:
         // - has only one field
         // - that field is `Premitive`
-
-        let mirror = Mirror(reflecting: target)
-
-        guard !debug, mirror.children.count == 1 else { return nil }
-
-        return mirror.children.first.flatMap { asPremitiveString($0.value, debug: debug) }
+        // - that filed is not property-wrapper of SwiftUI
+        //
+        if children.count == 1,
+            let value = children.first?.value,
+            isSwiftUIPropertyWrapperType(value) == false {
+            return asPremitiveString(value, debug: debug)
+        } else {
+            return nil
+        }
     }
 
     private func asPremitiveString<T>(_ target: T, debug: Bool) -> String? {
