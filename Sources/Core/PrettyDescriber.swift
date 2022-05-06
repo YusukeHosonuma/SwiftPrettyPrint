@@ -102,7 +102,13 @@ struct PrettyDescriber {
 
         // Object
         let fields: [(String, String)] = mirror.children.map {
-            ($0.label ?? "-", _string($0.value))
+            let value = _string($0.value)
+
+            if isSwiftUIPropertyWrapperType($0.value), let label = $0.label, label.first == "_" {
+                return (String(label.dropFirst()), value) // e.g. `_text` -> `text`
+            } else {
+                return ($0.label ?? "-", value)
+            }
         }
         return formatter.objectString(typeName: typeName, fields: fields)
     }
@@ -132,17 +138,40 @@ struct PrettyDescriber {
         }
     }
 
+    func isSwiftUIPropertyWrapperType(_ target: Any) -> Bool {
+        let typeName = String(describing: target.self)
+        return [
+            "Published",
+            "StateObject",
+            "ObservedObject",
+            "EnvironmentObject",
+            "Environment",
+            "State",
+            "Binding",
+            "AppStorage",
+            "SceneStorage",
+        ].contains { typeName.hasPrefix("\($0)<") }
+    }
+
     private func asValueString<T>(_ target: T, debug: Bool) -> String? {
+        guard debug == false else { return nil }
+
+        let children = Mirror(reflecting: target).children
+
         // Note:
+        //
         // The conditions for being a `ValueObject`:
         // - has only one field
         // - that field is `Premitive`
-
-        let mirror = Mirror(reflecting: target)
-
-        guard !debug, mirror.children.count == 1 else { return nil }
-
-        return mirror.children.first.flatMap { asPremitiveString($0.value, debug: debug) }
+        // - that filed is not property-wrapper of SwiftUI
+        //
+        if children.count == 1,
+            let value = children.first?.value,
+            isSwiftUIPropertyWrapperType(value) == false {
+            return asPremitiveString(value, debug: debug)
+        } else {
+            return nil
+        }
     }
 
     private func asPremitiveString<T>(_ target: T, debug: Bool) -> String? {
@@ -150,25 +179,98 @@ struct PrettyDescriber {
         // SwiftUI Library
         //
         #if canImport(SwiftUI)
+            func __string<T: Any>(_ target: T) -> String {
+                string(target, debug: debug) // ☑️ Capture `debug`
+            }
+
+            let typeName = String(describing: target.self)
+
+            let propertyWrappers: [(String, String)] = [
+                ("Published", "currentValue"),
+                ("StateObject", "wrappedValue"),
+                ("ObservedObject", "wrappedValue"),
+                ("EnvironmentObject", "_store"),
+                ("State", "_value"),
+                ("Binding", "_value"),
+            ]
+
+            for (type, key) in propertyWrappers {
+                if typeName.hasPrefix("\(type)<"), let value = lookup(key, from: target) {
+                    if debug {
+                        // e.g. `@Published(42)`
+                        return "@\(type)(\(__string(value)))"
+                    } else {
+                        return __string(value)
+                    }
+                }
+            }
+
             //
-            // @Published
+            // @Environment
             //
-            if String(describing: target.self).hasPrefix("Published<") {
-                func lookupCurrentValue(_ published: Any) -> Any? {
-                    guard
-                        let storage = Mirror(reflecting: published).children.first?.value,
-                        let publisher = Mirror(reflecting: storage).children.first?.value,
-                        let subject = Mirror(reflecting: publisher).children.first?.value,
-                        let currentValue = Mirror(reflecting: subject).children.filter({ $0.label == "currentValue" }).first?.value else { return nil }
-                    return currentValue
+            if typeName.hasPrefix("Environment<"),
+                let content = lookup("content", from: target),
+                let rawValue = Mirror(reflecting: content).children.first?.value {
+                if debug {
+                    return "@Environment(\(__string(rawValue)))"
+                } else {
+                    return __string(rawValue)
+                }
+            }
+
+            //
+            // @AppStorage
+            //
+            if typeName.hasPrefix("AppStorage<"), let key = lookup("key", from: target) as? String {
+                let value = UserDefaults.standard.value(forKey: key) ?? "nil"
+
+                if debug {
+                    // e.g. `@AppStorage(key: "Number", userDefaultsValue: 42)`
+                    return "@AppStorage(key: \"\(key)\", userDefaultsValue: \(__string(value)))"
+                } else {
+                    return __string(value)
+                }
+            }
+
+            //
+            // @SceneStorage
+            //
+            if #available(iOS 14, macOS 11.0,*),
+                typeName.hasPrefix("SceneStorage<"),
+                let key = lookup("_key", from: target) as? String {
+                let value: String
+
+                switch target {
+                case let storage as SceneStorage<URL>:
+                    value = __string(storage.wrappedValue)
+
+                case let storage as SceneStorage<Int>:
+                    value = __string(storage.wrappedValue)
+
+                case let storage as SceneStorage<Double>:
+                    value = __string(storage.wrappedValue)
+
+                case let storage as SceneStorage<String>:
+                    value = __string(storage.wrappedValue)
+
+                case let storage as SceneStorage<Bool>:
+                    value = __string(storage.wrappedValue)
+
+                default:
+                    //
+                    // Can't lookup value that implemented `RawRepresentable` protocol.
+                    //
+                    if debug {
+                        return "@SceneStorage(key: \"\(key)\", value: <can not lookup>)"
+                    } else {
+                        return "<can not lookup>"
+                    }
                 }
 
-                if let currentValue = lookupCurrentValue(target) {
-                    if debug {
-                        return "@Published(\(string(currentValue, debug: debug)))"
-                    } else {
-                        return string(currentValue, debug: debug)
-                    }
+                if debug {
+                    return "@SceneStorage(key: \"\(key)\", value: \(value))"
+                } else {
+                    return value
                 }
             }
         #endif
@@ -291,6 +393,22 @@ struct PrettyDescriber {
 
             return "\(prefix)(" + body.removeEnclosedParentheses() + ")"
         }
+    }
+
+    private func lookup(_ key: String, from target: Any) -> Any? {
+        for child in Mirror(reflecting: target).children {
+            // 💡 Prevent infinite recursive call.
+            guard let label = child.label else { continue }
+
+            if label == key {
+                return child.value
+            } else {
+                if let found = lookup(key, from: child.value) { // ☑️ Recursive call.
+                    return found
+                }
+            }
+        }
+        return nil
     }
 
     private func handleError(_ f: () throws -> String) -> String {
