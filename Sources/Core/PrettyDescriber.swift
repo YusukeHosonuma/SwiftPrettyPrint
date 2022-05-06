@@ -396,14 +396,14 @@ struct PrettyDescriber {
     }
 
     private func lookup(_ key: String, from target: Any) -> Any? {
-        for children in Mirror(reflecting: target).children {
+        for child in Mirror(reflecting: target).children {
             // 💡 Prevent infinite recursive call.
-            guard let label = children.label else { continue }
+            guard let label = child.label else { continue }
 
             if label == key {
-                return children.value
+                return child.value
             } else {
-                if let found = lookup(key, from: children.value) { // ☑️ Recursive call.
+                if let found = lookup(key, from: child.value) { // ☑️ Recursive call.
                     return found
                 }
             }
