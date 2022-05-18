@@ -150,6 +150,7 @@ struct PrettyDescriber {
             "Binding",
             "AppStorage",
             "SceneStorage",
+            "GestureState",
         ].contains { typeName.hasPrefix("\($0)<") }
     }
 
@@ -192,6 +193,7 @@ struct PrettyDescriber {
                 ("EnvironmentObject", "_store"),
                 ("State", "_value"),
                 ("Binding", "_value"),
+                ("GestureState", "_value"), // Lookup @State's value.
             ]
 
             for (type, key) in propertyWrappers {
