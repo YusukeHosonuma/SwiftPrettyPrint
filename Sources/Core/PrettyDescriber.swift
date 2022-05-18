@@ -152,6 +152,7 @@ struct PrettyDescriber {
             "SceneStorage",
             "GestureState",
             "FocusState",
+            "FocusedBinding",
         ].contains { typeName.hasPrefix("\($0)<") }
     }
 
@@ -205,6 +206,19 @@ struct PrettyDescriber {
                     } else {
                         return __string(value)
                     }
+                }
+            }
+
+            //
+            // @FocusedBinding
+            //
+            if typeName.hasPrefix("FocusedBinding<") {
+                // Try lookup `_value` of `@Binding`.
+                let value = lookup("_value", from: target).map(__string) ?? "nil"
+                if debug {
+                    return "@FocusedBinding(\(value))"
+                } else {
+                    return value
                 }
             }
 
