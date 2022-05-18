@@ -153,6 +153,7 @@ struct PrettyDescriber {
             "GestureState",
             "FocusState",
             "FocusedBinding",
+            "FocusedValue",
         ].contains { typeName.hasPrefix("\($0)<") }
     }
 
@@ -195,7 +196,8 @@ struct PrettyDescriber {
                 ("EnvironmentObject", "_store"),
                 ("State", "_value"),
                 ("Binding", "_value"),
-                ("GestureState", "_value"), // Lookup @State's value.
+                ("GestureState", "_value"), // Lookup `value` of `@State' type.
+                ("FocusedValue", "value"), // Lookup `value` of `Optional` type.
             ]
 
             for (type, key) in propertyWrappers {
