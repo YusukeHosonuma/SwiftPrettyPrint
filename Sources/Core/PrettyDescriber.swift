@@ -151,6 +151,7 @@ struct PrettyDescriber {
             "AppStorage",
             "SceneStorage",
             "GestureState",
+            "FocusState",
         ].contains { typeName.hasPrefix("\($0)<") }
     }
 
@@ -204,6 +205,20 @@ struct PrettyDescriber {
                     } else {
                         return __string(value)
                     }
+                }
+            }
+
+            //
+            // @FocusState
+            //
+            // Note: Currently not getting values, but implemented to prevent infinite loops.
+            //
+            if typeName.hasPrefix("FocusState<") {
+                // TODO: I don't know where to get the value of what's inside.
+                if debug {
+                    return "@FocusState(<can not lookup>)"
+                } else {
+                    return "<can not lookup>"
                 }
             }
 
