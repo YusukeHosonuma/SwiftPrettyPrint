@@ -154,7 +154,7 @@ struct PrettyDescriber {
             "FocusState",
             "FocusedBinding",
             "FocusedValue",
-        ].contains { typeName.hasPrefix("\($0)<") }
+        ].contains { typeName.hasPrefix("\($0)<") } || typeName.hasPrefix("Namespace")
     }
 
     private func asValueString<T>(_ target: T, debug: Bool) -> String? {
@@ -208,6 +208,18 @@ struct PrettyDescriber {
                     } else {
                         return __string(value)
                     }
+                }
+            }
+
+            //
+            // @Namespace
+            //
+            if typeName.hasPrefix("Namespace") {
+                let id = lookup("id", from: target).map(__string) ?? "nil"
+                if debug {
+                    return "@Namespace(id: \(id))"
+                } else {
+                    return id
                 }
             }
 
