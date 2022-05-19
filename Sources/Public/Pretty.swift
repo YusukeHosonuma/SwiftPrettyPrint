@@ -305,7 +305,14 @@ extension Pretty {
         option: Option
     ) {
         let plainString = printer(label, targets, separator, option)
-        let coloredString = printer(label, targets, separator, option)
+
+        let coloredOption: Option = {
+            var op = option
+            op.colored = true
+            return op
+        }()
+
+        let coloredString = printer(label, targets, separator, coloredOption)
 
         // Console
         Swift.print(option.colored ? coloredString : plainString)
