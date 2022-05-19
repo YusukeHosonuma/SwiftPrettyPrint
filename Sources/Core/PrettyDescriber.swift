@@ -158,6 +158,8 @@ struct PrettyDescriber {
             "FocusedBinding",
             "FocusedValue",
             "ScaledMetric",
+            "UIApplicationDelegateAdaptor",
+            "NSApplicationDelegateAdaptor",
         ].contains { typeName.hasPrefix("\($0)<") } || typeName.hasPrefix("Namespace")
     }
 
@@ -215,11 +217,14 @@ struct PrettyDescriber {
                 }
             }
 
-            //
-            // @ScaledMetric
-            //
-            if typeName.hasPrefix("ScaledMetric<") {
-                return formatter.objectString(typeName: "@ScaledMetric", fields: objectFields(target, debug: debug))
+            let replaceTypeNames: [String] = [
+                "ScaledMetric",
+                "UIApplicationDelegateAdaptor",
+                "NSApplicationDelegateAdaptor",
+            ]
+
+            for name in replaceTypeNames where typeName.hasPrefix("\(name)<") {
+                return formatter.objectString(typeName: "@\(name)", fields: objectFields(target, debug: debug))
             }
 
             //
