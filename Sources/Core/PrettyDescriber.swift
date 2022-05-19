@@ -101,15 +101,7 @@ struct PrettyDescriber {
         }
 
         // Object
-        let fields: [(String, String)] = mirror.children.map {
-            let value = _string($0.value)
-
-            if isSwiftUIPropertyWrapperType($0.value), let label = $0.label, label.first == "_" {
-                return (String(label.dropFirst()), value) // e.g. `_text` -> `text`
-            } else {
-                return ($0.label ?? "-", value)
-            }
-        }
+        let fields = objectFields(target, debug: debug)
         return formatter.objectString(typeName: typeName, fields: fields)
     }
 
@@ -138,7 +130,18 @@ struct PrettyDescriber {
         }
     }
 
-    func isSwiftUIPropertyWrapperType(_ target: Any) -> Bool {
+    private func objectFields(_ target: Any, debug: Bool) -> [(String, String)] {
+        Mirror(reflecting: target).children.map {
+            let value = string($0.value, debug: debug)
+            if isSwiftUIPropertyWrapperType($0.value), let label = $0.label, label.first == "_" {
+                return (String(label.dropFirst()), value) // e.g. `_text` -> `text`
+            } else {
+                return ($0.label ?? "-", value)
+            }
+        }
+    }
+
+    private func isSwiftUIPropertyWrapperType(_ target: Any) -> Bool {
         let typeName = String(describing: target.self)
         return [
             "Published",
