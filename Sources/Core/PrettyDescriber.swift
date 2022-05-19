@@ -160,6 +160,7 @@ struct PrettyDescriber {
             "ScaledMetric",
             "UIApplicationDelegateAdaptor",
             "NSApplicationDelegateAdaptor",
+            "FetchRequest",
         ].contains { typeName.hasPrefix("\($0)<") } || typeName.hasPrefix("Namespace")
     }
 
@@ -227,6 +228,19 @@ struct PrettyDescriber {
                 return formatter.objectString(typeName: "@\(name)", fields: objectFields(target, debug: debug))
             }
 
+            let notSupportedTypes: [String] = [
+                "FocusState", // Currently not getting values, but implemented to prevent infinite loops.
+                "FetchRequest", // No useful value can be obtained at currently, but the output should not be disturbing.
+            ]
+
+            for name in notSupportedTypes where typeName.hasPrefix("\(name)<") {
+                if debug {
+                    return "@\(name)(<can not lookup>)"
+                } else {
+                    return "<can not lookup>"
+                }
+            }
+
             //
             // @Namespace
             //
@@ -249,20 +263,6 @@ struct PrettyDescriber {
                     return "@FocusedBinding(\(value))"
                 } else {
                     return value
-                }
-            }
-
-            //
-            // @FocusState
-            //
-            // Note: Currently not getting values, but implemented to prevent infinite loops.
-            //
-            if typeName.hasPrefix("FocusState<") {
-                // TODO: I don't know where to get the value of what's inside.
-                if debug {
-                    return "@FocusState(<can not lookup>)"
-                } else {
-                    return "<can not lookup>"
                 }
             }
 
