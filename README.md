@@ -16,21 +16,40 @@ SwiftPrettyPrint gives **Human-readable outputs** than `print()`, `debugPrint()`
 ## Features 🚀
 
  - Style
-   - ✅ Single-line
-   - ✅ Multi-line
+   - [x] Single-line
+   - [x] Multi-line
  - Integration
-   - ✅ LLDB
-   - ✅ Terminal
-   - ✅ Combine
+   - [x] LLDB
+   - [x] Terminal
+   - [x] Combine
    - [ ] RxSwift
  - Package Manager
-   - ✅ Swift Package Manager
-   - ✅ CocoaPods
-   - ✅ Carthage
+   - [x] Swift Package Manager
+   - [x] CocoaPods
+   - [x] Carthage
  - OS Support
-   - ✅ Apple platforms
-   - ✅ Linux
+   - [x] Apple platforms
+   - [x] Linux
    - [ ] Windows
+ - SwiftUI Property-wrapper
+   - [x] `@AppStorage`
+   - [x] `@Binding`
+   - [x] `@Environment `
+   - [x] `@EnvironmentObject`
+   - [x] `@FetchRequest` (Property-wrapper name only)
+   - [x] `@FocusedBinding`
+   - [x] `@FocusedState` (Property-wrapper name only)
+   - [x] `@FocusedValue`
+   - [x] `@GestureState`
+   - [x] `@Namespace`
+   - [x] `@ObservedObject `
+   - [x] `@Published`
+   - [x] `@ScaledMetric`
+   - [x] `@SceneStorage` (Support types are limited only `URL`, `Int`, `Double`, `String` and `Bool`)
+   - [x] `@State`
+   - [x] `@StateObject`
+   - [x] `@UIApplicationDelegateAdaptor` (Property-wrapper name only)
+   - [x] `@NSApplicationDelegateAdaptor` (Property-wrapper name only)
 
 ## Table of Contents 📖
 
