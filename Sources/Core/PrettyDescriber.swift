@@ -157,6 +157,7 @@ struct PrettyDescriber {
             "FocusState",
             "FocusedBinding",
             "FocusedValue",
+            "ScaledMetric",
         ].contains { typeName.hasPrefix("\($0)<") } || typeName.hasPrefix("Namespace")
     }
 
@@ -212,6 +213,13 @@ struct PrettyDescriber {
                         return __string(value)
                     }
                 }
+            }
+
+            //
+            // @ScaledMetric
+            //
+            if typeName.hasPrefix("ScaledMetric<") {
+                return formatter.objectString(typeName: "@ScaledMetric", fields: objectFields(target, debug: debug))
             }
 
             //
