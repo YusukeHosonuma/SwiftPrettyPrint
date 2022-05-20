@@ -306,12 +306,8 @@ extension Pretty {
     ) {
         let plainString = printer(label, targets, separator, option)
 
-        let coloredOption: Option = {
-            var op = option
-            op.colored = true
-            return op
-        }()
-
+        var coloredOption = option
+        coloredOption.colored = true
         let coloredString = printer(label, targets, separator, coloredOption)
 
         // Console
