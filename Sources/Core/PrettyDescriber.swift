@@ -197,7 +197,6 @@ struct PrettyDescriber {
             let typeName = String(describing: target.self)
 
             let propertyWrappers: [(String, String)] = [
-                ("Published", "currentValue"),
                 ("StateObject", "wrappedValue"),
                 ("ObservedObject", "wrappedValue"),
                 ("EnvironmentObject", "_store"),
@@ -210,7 +209,7 @@ struct PrettyDescriber {
             for (type, key) in propertyWrappers {
                 if typeName.hasPrefix("\(type)<"), let value = lookup(key, from: target) {
                     if debug {
-                        // e.g. `@Published(42)`
+                        // e.g. `@State(42)`
                         return "@\(type)(\(__string(value)))"
                     } else {
                         return __string(value)
@@ -238,6 +237,22 @@ struct PrettyDescriber {
                     return "@\(name)(<can not lookup>)"
                 } else {
                     return "<can not lookup>"
+                }
+            }
+
+            //
+            // @Published
+            //
+            // Note:
+            // Direct lookups because some data structures infinity-loop with circular references.
+            //
+            if typeName.hasPrefix("Published") {
+                let value = lookup(keyPath: ["storage", "publisher", "subject", "currentValue"], from: target)
+                if debug {
+                    // e.g. `@Published(42)`
+                    return "@Published\(__string(value)))"
+                } else {
+                    return __string(value)
                 }
             }
 
@@ -467,6 +482,29 @@ struct PrettyDescriber {
                 if let found = lookup(key, from: child.value) { // ☑️ Recursive call.
                     return found
                 }
+            }
+        }
+        return nil
+    }
+
+    private func lookup(keyPath: [String], from: Any) -> Any? {
+        var target: Any = from
+
+        for key in keyPath {
+            if let value = lookup(key: key, from: target) {
+                target = value
+            } else {
+                return nil
+            }
+        }
+
+        return target
+    }
+
+    private func lookup(key: String, from target: Any) -> Any? {
+        for child in Mirror(reflecting: target).children {
+            if let label = child.label, label == key {
+                return child.value
             }
         }
         return nil
