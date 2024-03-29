@@ -117,6 +117,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		128A4E652BB69CB700EEDBD7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		633314F725D0D7A6001C5C8E /* URLColoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLColoringTests.swift; sourceTree = "<group>"; };
 		"ColorizeSwift::ColorizeSwift::Product" /* ColorizeSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ColorizeSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Curry::Curry::Product" /* Curry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Curry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -454,6 +455,7 @@
 				OBJ_8 /* Core */,
 				OBJ_20 /* Extension */,
 				OBJ_22 /* Public */,
+				128A4E652BB69CB700EEDBD7 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;

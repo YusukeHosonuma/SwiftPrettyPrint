@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -20,7 +20,12 @@ let package = Package(
         .package(url: "https://github.com/mtynior/ColorizeSwift.git", from: "1.5.0"),
     ],
     targets: [
-        .target(name: "SwiftPrettyPrint", dependencies: ["ColorizeSwift"], path: "Sources"),
+        .target(
+            name: "SwiftPrettyPrint",
+            dependencies: ["ColorizeSwift"],
+            path: "Sources",
+            resources: [.process("PrivacyInfo.xcprivacy")]
+        ),
         .testTarget(
             name: "SwiftPrettyPrintTests",
             dependencies: ["SwiftPrettyPrint", "SwiftParamTest", "Curry"]
