@@ -121,7 +121,7 @@ jobs:
 
     steps:
     - name: Download result for job slack-notify
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v4.1.7
       with:
         name: result
 
